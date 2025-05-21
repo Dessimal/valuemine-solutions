@@ -1,5 +1,4 @@
-"use client"
-
+"use client";
 
 import React, { useEffect } from "react";
 import Navbar from "@/components/Navbar";
@@ -9,6 +8,10 @@ import Services from "@/components/Services";
 import Contact from "@/components/Contacts";
 import Footer from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
+import ProblemSolution from "@/components/ui/ProblemSolution";
+import HowItWorks from "@/components/ui/HowItWorks";
+import Calculator from "@/components/ui/SizeCalculator";
+import Testimonials from "@/components/ui/Testimonials";
 
 const HomePage = () => {
   useEffect(() => {
@@ -44,18 +47,22 @@ const HomePage = () => {
   return (
     <AnimatePresence>
       <motion.div
-        className="min-h-screen"
+        className="min-h-screen bg-background text-foreground"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}>
         <Navbar />
-        {/* <motion.main layout> */}
+        <motion.main layout>
           <Hero />
+          <ProblemSolution />
+          <HowItWorks />
+          <Calculator />
           <About />
           <Services />
+          <Testimonials />
           <Contact />
-        {/* </motion.main> */}
+        </motion.main>
         <Footer />
       </motion.div>
     </AnimatePresence>

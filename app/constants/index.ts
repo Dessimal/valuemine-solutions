@@ -2,14 +2,10 @@ import React from "react";
 import { Shield, Battery, Sun, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 
-import HeroImage from "@/app/assets/valuemine_hero_image.png"
-import Logo from "@/app/assets/logo.png"
+import HeroImage from "@/app/assets/valuemine_hero_image.png";
+import Logo from "@/app/assets/logo.svg";
 
-
-export{
-  HeroImage, Logo
-}
-
+export { HeroImage, Logo };
 
 export const benefits = [
   {

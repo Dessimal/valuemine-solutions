@@ -1,6 +1,7 @@
 import React from "react";
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
-import Link from "next/link"
+import Link from "next/link";
+// import { Logo } from "@/app/constants";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -11,11 +12,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <img
-                src="/lovable-uploads/b99da24e-c796-49c8-b462-17a046fadd3e.png"
-                alt="Logo"
-                className="h-10 w-10"
-              />
+              {/* <img src={Logo} alt="Logo" className="h-10 w-10" /> */}
               <span className="font-bold text-xl">Valuemine Solutions</span>
             </div>
             <p className="text-gray-400 mb-6">
