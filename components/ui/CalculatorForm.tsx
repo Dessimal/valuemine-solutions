@@ -4,7 +4,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form"; // Fixed import
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
 import {
   Card,
   CardContent,
@@ -13,11 +19,22 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import { SolarPackageSelector } from "@/components/ui/SolarPackageSelector";
 import { LocationSelector } from "@/components/ui/LocationSelector";
 import { useRouter } from "next/navigation";
 import { TRANSPORT_COST, PACKAGES, WORKMANSHIP } from "@/app/constants";
+import { Input } from "./input";
 
+// Define the form schema using Zod for validation
 const formSchema = z.object({
   package: z.string().nonempty("Package is required"),
   location: z.string().nonempty("Location is required"),
@@ -30,16 +47,14 @@ const formSchema = z.object({
     .min(0, "Down payment must be a positive number"),
 });
 
+// Infer the TypeScript type from the schema
 type FormData = z.infer<typeof formSchema>;
 
 export function CalculatorForm() {
   const router = useRouter();
 
-  const {
-    handleSubmit,
-    formState: { errors },
-    control,
-  } = useForm<FormData>({
+  // Initialize the form with react-hook-form and Zod resolver
+  const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       package: "",
@@ -50,20 +65,29 @@ export function CalculatorForm() {
     },
   });
 
+  // Handle form submission
   const onSubmit = (data: FormData) => {
+    // console.log("Form data:", data);
+    // Find the selected package details
     const selectedPackage = PACKAGES.find((p) => p.name === data.package);
+    const selectedPackageBattery = selectedPackage?.battery;
+    const selectedPackagePanelArray = selectedPackage?.panelArray;
+    // Get transportation cost for the selected location
     const transportationCost =
-      TRANSPORT_COST.find((t) => t.location === data.location)?.cost || 0;
+      TRANSPORT_COST.find((t) => t.location === data.location)?.cost || 20000;
+    // Get workmanship cost for the selected building and package
     const workmanship =
       WORKMANSHIP.find(
         (w) => w.building === data.building && w.package === data.package
-      )?.cost || 0;
+      )?.cost || 100000;
 
+    // Validate selected package
     if (!selectedPackage) {
       alert("Selected package is invalid.");
       return;
     }
 
+    // Validate transportation cost
     if (transportationCost === 0) {
       alert(
         "Transportation cost could not be determined for the selected location."
@@ -71,6 +95,7 @@ export function CalculatorForm() {
       return;
     }
 
+    // Validate workmanship cost
     if (workmanship === 0) {
       alert(
         "Workmanship cost could not be determined for the selected package and building type."
@@ -78,10 +103,12 @@ export function CalculatorForm() {
       return;
     }
 
+    // Calculate total cost and chargeable amount
     const totalCost = selectedPackage.price + transportationCost + workmanship;
     const chargeableAmount = totalCost - data.downPayment;
     const monthlyInterestRate = 5.5 / 100; // Monthly interest rate (5.5% annual rate)
 
+    // Helper function to calculate repayment for a given number of months
     const calculateRepayment = (months: number) => {
       const amountWithInterest =
         chargeableAmount * (1 + monthlyInterestRate * months);
@@ -91,9 +118,12 @@ export function CalculatorForm() {
       };
     };
 
+    // Prepare result object to pass to results page
     const result = {
       ...data,
       selectedPackage,
+      selectedPackageBattery,
+      selectedPackagePanelArray,
       transportationCost,
       workmanship,
       totalCost,
@@ -106,7 +136,8 @@ export function CalculatorForm() {
       },
     };
 
-    router.push(`/results?data=${encodeURIComponent(JSON.stringify(result))}`);
+    // Redirect to results page with encoded result data
+    router.push(`/result?data=${encodeURIComponent(JSON.stringify(result))}`);
   };
 
   return (
@@ -116,68 +147,106 @@ export function CalculatorForm() {
         <CardDescription>Please enter required details below</CardDescription>
       </CardHeader>
       <CardContent>
-        <Form>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-            {/* Solar Package Selector */}
-            <FormField
-              control={control}
-              name="package"
-              render={({ field }) => <SolarPackageSelector field={field} />}
-            />
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-16">
+            <div className="grid gap-8">
+              {/* Solar Package Selector */}
+              <FormField
+                control={form.control}
+                name="package"
+                render={({ field }) => <SolarPackageSelector field={field} />}
+              />
 
-            {/* Location Selector */}
-            <FormField
-              control={control}
-              name="location"
-              render={({ field }) => <LocationSelector field={field} />}
-            />
+              {/* Location Selector */}
+              <FormField
+                control={form.control}
+                name="location"
+                render={({ field }) => <LocationSelector field={field} />}
+              />
 
-            {/* Local Government Selector */}
-            <FormField
-              control={control}
-              name="localGovt"
-              render={({ field }) => (
-                <LocationSelector locationParameter="localGovt" field={field} />
-              )}
-            />
+              {/* Local Government Selector */}
+              <FormField
+                control={form.control}
+                name="localGovt"
+                render={({ field }) => (
+                  <LocationSelector
+                    locationParameter="lga"
+                    field={field}
+                    selectedState={form.watch("location")}
+                  />
+                )}
+              />
 
-            {/* Building Type Selector */}
-            <FormField
-              control={control}
-              name="building"
-              render={({ field }) => (
-                <select {...field} className="form-select">
-                  <option value="bungalow">Bungalow</option>
-                  <option value="storey">Storey Building</option>
-                </select>
-              )}
-            />
+              {/* Building Type Selector */}
+              <FormField
+                control={form.control}
+                name="building"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Building Type</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select your Building Type" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="bungalow">Bungalow</SelectItem>
+                        <SelectItem value="storey">Storey-Building</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FormItem>
+                )}
+              />
 
-            {/* Down Payment Input */}
-            <FormField
-              control={control}
-              name="downPayment"
-              render={({ field }) => (
-                <div>
-                  <label>Down Payment (₦)</label>
-                  <FormControl>
-                    <input
-                      type="number"
-                      placeholder="Enter down payment amount"
-                      {...field}
-                      className="form-input"
-                    />
-                  </FormControl>
+              {/* Down Payment Input */}
+              <FormField
+                control={form.control}
+                name="downPayment"
+                render={({ field }) => (
+                  <FormItem>
+                    <label>Down Payment (₦)</label>
+                    <FormControl>
+                      <Input
+                        type="text"
+                        placeholder="Enter down payment amount"
+                        value={
+                          field.value
+                            ? Number(field.value).toLocaleString("en-NG")
+                            : ""
+                        }
+                        onChange={(e) => {
+                          // Remove commas and non-digit characters
+                          const rawValue = e.target.value.replace(/,/g, "");
+                          // Only allow numbers
+                          if (/^\d*$/.test(rawValue)) {
+                            // Update form state as number
+                            field.onChange(
+                              rawValue === "" ? "" : Number(rawValue)
+                            );
+                          }
+                        }}
+                        className="form-input"
+                      />
+                    </FormControl>
 
-                  {errors.downPayment && (
-                    <p className="text-red-500">{errors.downPayment.message}</p>
-                  )}
-                </div>
-              )}
-            />
+                    {/* Display validation error for down payment */}
+                    {form.formState.errors.downPayment && (
+                      <p className="text-red-500">
+                        {errors.downPayment.message}
+                      </p>
+                    )}
+                  </FormItem>
+                )}
+              />
 
-            {/* Submit Button */}
-            <Button type="submit">Calculate</Button>
+              {/* Submit Button */}
+              <Button className="w-full" type="submit">
+                Calculate
+              </Button>
+            </div>
           </form>
         </Form>
       </CardContent>

@@ -16,12 +16,19 @@ import NaijaStates from "naija-state-local-government";
 export function LocationSelector({
   field,
   locationParameter,
+  selectedState,
 }: {
-  field: ControllerRenderProps<FormData, "location" | "localGovt">;
+  field: ControllerRenderProps<FormData, "location">;
   locationParameter?: string;
+  selectedState?: string;
 }) {
   const states = NaijaStates.states(); // Get all states
-  const lgas = locationParameter === "lga" ? NaijaStates.lgas(field.value) : []; // Get LGAs for the selected state
+  // const lgas = locationParameter === "lga" ? NaijaStates.lgas(field.value) : []; // Get LGAs for the selected state
+  let lgas: string[] = [];
+  if (locationParameter === "lga" && selectedState) {
+    const stateDetails = NaijaStates.lgas(selectedState);
+    lgas = stateDetails.lgas;
+  }
 
   return (
     <FormItem>

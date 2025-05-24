@@ -23,10 +23,12 @@ export function SolarPackageSelector({
           </SelectTrigger>
         </FormControl>
         <SelectContent>
-          {PACKAGES.map((p, index) => (
-            <SelectItem key={index} value={p.name}>
+          {PACKAGES.map((p) => (
+            <SelectItem key={p.id} value={p.name}>
               {p.name}
-              <span className="font-light text-gray-500">{p.price}</span>
+              <span className="font-light text-gray-500">{p.battery}</span>
+              <span className="font-light text-gray-500">{p.panelArray}</span>
+              <span className="font-light text-gray-500">- ₦{p.price}</span>
             </SelectItem>
           ))}
         </SelectContent>
