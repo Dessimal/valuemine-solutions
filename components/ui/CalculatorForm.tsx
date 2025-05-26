@@ -72,6 +72,7 @@ export function CalculatorForm() {
     const selectedPackage = PACKAGES.find((p) => p.name === data.package);
     const selectedPackageBattery = selectedPackage?.battery;
     const selectedPackagePanelArray = selectedPackage?.panelArray;
+    const selectedPackagePicture = selectedPackage?.picture;
     // Get transportation cost for the selected location
     const transportationCost =
       TRANSPORT_COST.find((t) => t.location === data.location)?.cost || 20000;
@@ -124,6 +125,7 @@ export function CalculatorForm() {
       selectedPackage,
       selectedPackageBattery,
       selectedPackagePanelArray,
+      selectedPackagePicture,
       transportationCost,
       workmanship,
       totalCost,

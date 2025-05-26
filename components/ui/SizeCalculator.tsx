@@ -152,7 +152,7 @@ const SizeCalculator = () => {
 
   const selectedPackageBattery = packageExists?.battery;
   const selectedPackagePanelArray = packageExists?.panelArray;
-  const selectedPackagePicture = packageExist?.picture;
+  const selectedPackagePicture = packageExists?.picture;
   // Get transportation cost for the selected location
 
   // Calculate total cost and chargeable amount
@@ -166,7 +166,7 @@ const SizeCalculator = () => {
     packagePrice,
     selectedPackageBattery,
     selectedPackagePanelArray,
-    selectedPackagePicutre,
+    selectedPackagePicture,
   };
 
   return (
