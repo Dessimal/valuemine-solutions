@@ -12,6 +12,7 @@ import ProblemSolution from "@/components/ui/ProblemSolution";
 import HowItWorks from "@/components/ui/HowItWorks";
 import Calculator from "@/components/ui/SizeCalculator";
 import Testimonials from "@/components/ui/Testimonials";
+import CalculatorSection from "@/components/CalculatorSection";
 
 const HomePage = () => {
   useEffect(() => {
@@ -31,9 +32,16 @@ const HomePage = () => {
         });
       });
     });
-
-    // Update page title
-    // document.title = "Valuemine Solutions - Solar Energy Solutions";
+    // Clean up event listeners on component unmount
+    // This is important to avoid memory leaks
+    // and ensure that the event listeners are not duplicated
+    // if the component is mounted multiple times
+    // or if the page is navigated away from and back to
+    // using a client-side router
+    // (like Next.js does)
+    // This is a simple cleanup function that removes the event listeners
+    // when the component is unmounted
+    // or when the dependencies change
 
     return () => {
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -57,7 +65,7 @@ const HomePage = () => {
           <Hero />
           <ProblemSolution />
           <HowItWorks />
-          <Calculator />
+          <CalculatorSection />
           <About />
           <Services />
           <Testimonials />

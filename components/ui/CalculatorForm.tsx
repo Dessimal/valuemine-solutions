@@ -137,7 +137,9 @@ export function CalculatorForm() {
     };
 
     // Redirect to results page with encoded result data
-    router.push(`/result?data=${encodeURIComponent(JSON.stringify(result))}`);
+    router.push(
+      `/result/interest?data=${encodeURIComponent(JSON.stringify(result))}`
+    );
   };
 
   return (

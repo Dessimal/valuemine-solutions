@@ -1,34 +1,14 @@
-// app/calculator/page.tsx
-"use client";
+import SizeCalculator from "@/components/ui/SizeCalculator";
+import React from "react";
 
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-
-export default function CalculatorPage() {
-  const router = useRouter();
-  const [load, setLoad] = useState("");
-
-  const handleCalculate = () => {
-    // You can do a proper calculation logic here
-    const estimatedLoad = load || "2.5kva";
-    router.push(`/auth?load=${estimatedLoad}`);
-  };
-
+const page = () => {
   return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold mb-4">Solar Load Calculator</h1>
-      <input
-        type="text"
-        placeholder="Enter your load in kVA"
-        value={load}
-        onChange={(e) => setLoad(e.target.value)}
-        className="border p-2 mb-4 w-full"
-      />
-      <button
-        onClick={handleCalculate}
-        className="bg-green-600 text-white px-4 py-2 rounded">
-        See Quote
-      </button>
-    </div>
+    <main className="grid items-center justify-center pt-16 sm:pt-20 px-10 sm:px-14 min-h-screen bg-gradient-to-bl from-yellow-600 to-orange-400">
+      <div className="bg-white shadow-lg rounded-lg p-4 sm:p-8 mx-auto grid items-center justify-center">
+        <SizeCalculator />
+      </div>
+    </main>
   );
-}
+};
+
+export default page;

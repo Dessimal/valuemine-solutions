@@ -11,6 +11,19 @@ import {
   Lightbulb,
 } from "lucide-react";
 
+import FiveHundredWatts from "@/public/500W-65AH- 280K.png";
+import OneThousandWatts from "@/public/1000W-100AH 420K.png";
+import OneThousandWatts2P from "@/public/1000W-100AH-2P 470K.png";
+import OneKvaFamicare from "@/public/1KVA 705K .png";
+import oneKva from "@/public/1KVA 860K .png";
+import onePointFiveKva from "@/public/1.5KVA 900K.png";
+import twoKva from "@/public/2KVA 960K.png";
+import twoPointFiveKva from "@/public/2.5kva 1.5m.png";
+import threePointFiveKva from "@/public/3.5kva 1.8m.png";
+import fourPointTwoKva from "@/public/4.2kva 1.9m.png";
+import sixPointTwoKvaTubular from "@/public/6.2kva 2.8m.png";
+import sixPointTwoKvaLithium from "@/public/6.2kva lithium 3m.png";
+
 export { Logo };
 
 export const benefits = [
@@ -91,13 +104,21 @@ export const services = [
   },
 ];
 export const PACKAGES = [
-  { id: 1, name: "500W", battery: "65ah", panelArray: "200w", price: 280000 },
+  {
+    id: 1,
+    name: "500W",
+    battery: "65ah",
+    panelArray: "200w",
+    price: 280000,
+    picture: FiveHundredWatts,
+  },
   {
     id: 2,
     name: "1000W(a)",
     battery: "100ah",
     panelArray: "200w",
     price: 420000,
+    picture: OneThousandWatts,
   },
   {
     id: 3,
@@ -105,6 +126,7 @@ export const PACKAGES = [
     battery: "100ah",
     panelArray: "400w",
     price: 470000,
+    picture: OneThousandWatts2P,
   },
   {
     id: 4,
@@ -112,6 +134,7 @@ export const PACKAGES = [
     battery: "100ah",
     panelArray: "800w",
     price: 705000,
+    picture: OneKvaFamicare,
   },
   {
     id: 5,
@@ -119,6 +142,7 @@ export const PACKAGES = [
     battery: "Tubular 220ah",
     panelArray: "800w",
     price: 860000,
+    picture: oneKva,
   },
   {
     id: 6,
@@ -126,6 +150,7 @@ export const PACKAGES = [
     battery: "Tubular 220ah",
     panelArray: "800w",
     price: 900000,
+    picture: onePointFiveKva,
   },
   {
     id: 7,
@@ -133,6 +158,7 @@ export const PACKAGES = [
     battery: "Tubular 220ah",
     panelArray: "800w",
     price: 960000,
+    picture: twoKva,
   },
   {
     id: 8,
@@ -140,6 +166,7 @@ export const PACKAGES = [
     battery: "Tubular 2 x 220ah",
     panelArray: "1200w",
     price: 1500000,
+    picture: twoPointFiveKva,
   },
   {
     id: 9,
@@ -147,6 +174,7 @@ export const PACKAGES = [
     battery: "Tubular 2 x 220ah",
     panelArray: "1800w",
     price: 1800000,
+    picture: threePointFiveKva,
   },
   {
     id: 10,
@@ -154,6 +182,7 @@ export const PACKAGES = [
     battery: "Tubular 2 x 220ah",
     panelArray: "2400w",
     price: 1900000,
+    picture: fourPointTwoKva,
   },
   {
     id: 11,
@@ -161,6 +190,7 @@ export const PACKAGES = [
     battery: "Tubular 4 x 220ah",
     panelArray: "3000w",
     price: 2800000,
+    picture: sixPointTwoKvaTubular,
   },
   {
     id: 12,
@@ -168,6 +198,7 @@ export const PACKAGES = [
     battery: "Lithium 5kwh",
     panelArray: "3000w",
     price: 3000000,
+    picture: sixPointTwoKvaLithium,
   },
 ];
 
