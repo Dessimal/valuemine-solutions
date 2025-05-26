@@ -1,7 +1,7 @@
 "use client";
 
 import { CalculatorForm } from "@/components/ui/CalculatorForm";
-import { ArrowLeft, ArrowLeftToLine } from "lucide-react";
+import { ArrowLeftToLine } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
 
