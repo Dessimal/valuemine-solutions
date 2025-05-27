@@ -133,14 +133,14 @@ const SizeCalculator = () => {
   };
 
   return (
-    <div className="grid items-center w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="grid border-2 items-center w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <motion.div
-        className="relative flex justify-center"
+        className="relative flex justify-center border-2"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.2 }}>
-        <div className="relative bg-white p-10 rounded-2xl shadow-xl border border-gray-100 max-w-md">
+        <div className="relative bg-white p-6 rounded-2xl shadow-xl border border-gray-100 max-w-md">
           <div className="absolute -top-12 -right-12 w-24 h-24 gradient-bg rounded-full flex items-center justify-center">
             <motion.div
               animate={{ scale: [1, 1.2, 1] }}
