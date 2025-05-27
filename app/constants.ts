@@ -215,3 +215,63 @@ export const WORKMANSHIP = [
   { building: "bungalow", package: "2kVA", cost: 90000 },
   { building: "storey", package: "2kVA", cost: 130000 },
 ];
+
+export const appliances = [
+  // Fans
+  { icon: "Fan", name: "Ceiling Fan", watts: 80 },
+  { icon: "Fan", name: "Standing Fan", watts: 100 },
+  { icon: "Fan", name: "Table Fan", watts: 50 },
+  { icon: "Fan", name: "Exhaust Fan", watts: 40 },
+
+  // Lighting
+  { icon: "Bulb", name: "LED Bulb (10W)", watts: 10 },
+  { icon: "Bulb", name: "Energy Saving Bulb", watts: 20 },
+  { icon: "Bulb", name: "Tube Light", watts: 36 },
+  { icon: "Bulb", name: "Chandelier", watts: 150 },
+
+  // Kitchen Appliances
+  { icon: "Microwave", name: "Microwave Oven", watts: 1200 },
+  { icon: "Toaster", name: "Toaster", watts: 800 },
+  { icon: "Kettle", name: "Electric Kettle", watts: 1500 },
+  { icon: "Cooker", name: "Electric Cooker", watts: 2000 },
+  { icon: "Cooker", name: "Induction Cooker", watts: 1800 },
+  { icon: "Blender", name: "Blender", watts: 400 },
+  { icon: "Fridge", name: "Refrigerator (Small)", watts: 150 },
+  { icon: "Fridge", name: "Refrigerator (Medium)", watts: 250 },
+  { icon: "Fridge", name: "Refrigerator (Large)", watts: 400 },
+  { icon: "Freezer", name: "Chest Freezer", watts: 300 },
+
+  // Laundry
+  { icon: "WashingMachine", name: "Washing Machine", watts: 500 },
+  { icon: "Iron", name: "Electric Iron", watts: 1000 },
+  { icon: "Dryer", name: "Clothes Dryer", watts: 3000 },
+
+  // Living Room
+  { icon: "TV", name: 'LED TV (32")', watts: 60 },
+  { icon: "TV", name: 'LED TV (50")', watts: 120 },
+  { icon: "TV", name: "Plasma TV", watts: 250 },
+  { icon: "Speaker", name: "Home Theater", watts: 150 },
+  { icon: "AC", name: "Air Conditioner (1 HP)", watts: 900 },
+  { icon: "AC", name: "Air Conditioner (1.5 HP)", watts: 1200 },
+  { icon: "AC", name: "Air Conditioner (2 HP)", watts: 1500 },
+
+  // Office
+  { icon: "Laptop", name: "Laptop", watts: 65 },
+  { icon: "Desktop", name: "Desktop Computer", watts: 200 },
+  { icon: "Monitor", name: "Computer Monitor", watts: 50 },
+  { icon: "Printer", name: "Inkjet Printer", watts: 30 },
+  { icon: "Printer", name: "Laser Printer", watts: 500 },
+  { icon: "Router", name: "WiFi Router", watts: 10 },
+  { icon: "Projector", name: "Projector", watts: 300 },
+  { icon: "Scanner", name: "Flatbed Scanner", watts: 50 },
+  { icon: "Server", name: "Small Server", watts: 600 },
+
+  // Miscellaneous
+  { icon: "Pump", name: "Water Pump (0.5 HP)", watts: 370 },
+  { icon: "Pump", name: "Water Pump (1 HP)", watts: 750 },
+  { icon: "Camera", name: "CCTV Camera", watts: 15 },
+  { icon: "Fan", name: "Standing AC Fan", watts: 120 },
+  { icon: "Heater", name: "Water Heater", watts: 3000 },
+  { icon: "Dispenser", name: "Water Dispenser", watts: 550 },
+  { icon: "HairDryer", name: "Hair Dryer", watts: 1200 },
+];

@@ -9,6 +9,7 @@ import { ArrowLeftToLine, Check, Copy } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import Spinner from "./ui/Spinner";
+import ShareButton from "./ShareButton";
 
 export default function ResultComponent({ result }) {
   const params = useParams();
@@ -73,7 +74,7 @@ export default function ResultComponent({ result }) {
   };
 
   return (
-    <main className="min-h-screen p-6 bg-gray-50">
+    <div className="min-h-screen bg-gray-50">
       <div>
         <button
           onClick={() => router.back()}
@@ -83,11 +84,11 @@ export default function ResultComponent({ result }) {
           </span>
         </button>
       </div>
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl border-2 px-1 sm:px-4 lg:px-8 py-12">
         {interestCalculatorEnabled ? (
-          <div className="max-w-3xl mx-auto p-6 text-sm md:text-base leading-relaxed">
+          <div className="w-full border-2 text-sm md:text-base leading-relaxed">
             {result?.building && result?.downPayment && (
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 p-6">
+              <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 p-4 sm:p-6">
                 <div className="w-full">
                   <Image
                     src={result?.selectedPackagePicture}
@@ -98,25 +99,25 @@ export default function ResultComponent({ result }) {
                   />
                 </div>
                 <div ref={textRef} className="relative">
-                  <button
-                    onClick={handleCopy}
-                    className="absolute top-4 right-4 cursor-pointer">
-                    {copied ? (
-                      <span className="ml-2 text-green-600 inline-flex gap-1 items-center">
-                        <Check className="inline-block" />
-                        Copied!
-                      </span>
-                    ) : (
-                      <span className="ml-2 text-gray-600 inline-flex gap-1 items-center">
-                        <Copy className="inline-block" />
-                        Copy
-                      </span>
-                    )}
-                  </button>
-                  <h2 className="text-xl font-semibold mx-4">
-                    Here’s the cost breakdown for our{" "}
-                    {result?.selectedPackage?.name} package:
-                  </h2>
+                  <div className="flex items-center justify-between my-6">
+                    <h2 className="text-xl md:text-2xl text-gray-700 font-semibold">
+                      Here’s the cost breakdown for our{" "}
+                      {result?.selectedPackage?.name} package:
+                    </h2>
+                    <button onClick={handleCopy} className=" cursor-pointer">
+                      {copied ? (
+                        <span className="ml-2 text-green-600 inline-flex gap-1 items-center">
+                          <Check className="inline-block" />
+                          Copied!
+                        </span>
+                      ) : (
+                        <span className="ml-2 text-gray-600 inline-flex gap-1 items-center">
+                          <Copy className="inline-block" />
+                          Copy
+                        </span>
+                      )}
+                    </button>
+                  </div>
                   <p>
                     Gadgets & Materials: ₦
                     {result?.selectedPackage?.price?.toLocaleString()}
@@ -175,6 +176,9 @@ export default function ResultComponent({ result }) {
                     )
                   )}
                 </div>
+                <div className="my-6 flex flex-col items-center justify-center">
+                  <ShareButton />
+                </div>
               </div>
             )}
           </div>
@@ -230,9 +234,7 @@ export default function ResultComponent({ result }) {
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button className="bg-green-700 hover:bg-green-600 text-white px-8 py-3 rounded-md font-semibold">
-                    Share with us to get a Discount
-                  </Button>
+                  <ShareButton />
                   <Button
                     asChild
                     variant="ghost"
@@ -247,6 +249,6 @@ export default function ResultComponent({ result }) {
           </div>
         )}
       </div>
-    </main>
+    </div>
   );
 }

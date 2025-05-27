@@ -40,9 +40,9 @@ const Result = () => {
   console.log(dataString);
 
   return (
-    <div>
+    <main>
       <ResultComponent result={result} />
-    </div>
+    </main>
   );
 };
 

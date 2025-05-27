@@ -2,17 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import {
-  Calculator as CalcIcon,
-  Lightbulb,
-  Fan,
-  Refrigerator,
-  Monitor,
-  Tv,
-  Laptop,
-  Trash2,
-  Plus,
-} from "lucide-react";
+import { Calculator, Pencil, Trash2 } from "lucide-react";
+import { appliances } from "@/app/constants";
 
 import {
   Dialog,
@@ -34,54 +25,15 @@ import Link from "next/link";
 import { Serializer } from "v8";
 import { cn } from "@/lib/utils";
 import { PACKAGES } from "@/app/constants";
-
-const applianceOptions = [
-  {
-    icon: <Fan className="h-5 w-5" />,
-    name: "Fans",
-    watts: 80,
-  },
-  {
-    icon: <Refrigerator className="h-5 w-5" />,
-    name: "Fridge",
-    watts: 150,
-  },
-  {
-    icon: <Lightbulb className="h-5 w-5" />,
-    name: "Lights",
-    watts: 10,
-  },
-];
-
-const extraApplianceOptions = [
-  {
-    icon: <Laptop className="h-5 w-5" />,
-    name: "Laptop",
-    watts: 60,
-  },
-  {
-    icon: <Tv className="h-5 w-5" />,
-    name: "TV",
-    watts: 100,
-  },
-  {
-    icon: <Monitor className="h-5 w-5" />,
-    name: "Monitor",
-    watts: 100,
-  },
-];
-
-const allApplianceOptions = [...applianceOptions, ...extraApplianceOptions];
+import Appliance from "../Appliance";
 
 const SizeCalculator = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedAppliance, setSelectedAppliance] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [customWattage, setCustomWattage] = useState(0);
-  const [devices, setDevices] = useState([
-    ...applianceOptions,
-    ...extraApplianceOptions,
-  ]);
+  const [devices, setDevices] = useState([...appliances]);
+  const [editIndex, setEditIndex] = useState<number | null>(null);
 
   const [load, setLoad] = useState("");
 
@@ -106,13 +58,22 @@ const SizeCalculator = () => {
         name: `${selectedAppliance.name} x ${quantity}`,
         watts: totalWatts,
       };
-      setDevices([...devices, newDevice]);
+      if (editIndex !== null) {
+        // Edit existing
+        const updatedDevices = [...devices];
+        updatedDevices[editIndex] = newDevice;
+        setDevices(updatedDevices);
+        setEditIndex(null);
+      } else {
+        // Add new
+        setDevices([...devices, newDevice]);
+      }
       setIsDialogOpen(false);
     }
   };
 
   const handleSelectChange = (value) => {
-    const found = allApplianceOptions.find((item) => item.name === value);
+    const found = appliances.find((item) => item.name === value);
     if (found) {
       setSelectedAppliance(found);
       setCustomWattage(found.watts);
@@ -146,7 +107,7 @@ const SizeCalculator = () => {
 
   const packageExists = PACKAGES.find((p) => possibleNames.includes(p.name));
 
-  if (!packageExists) {
+  if (devices.length > 0 && !packageExists) {
     return <h3>We don&apos;t have a package that can serve you for now</h3>;
   }
 
@@ -156,7 +117,7 @@ const SizeCalculator = () => {
   // Get transportation cost for the selected location
 
   // Calculate total cost and chargeable amount
-  const packagePrice = packageExists.price;
+  const packagePrice = packageExists?.price;
   const selectedPackage = packageExists;
 
   // Prepare result object to pass to results page
@@ -182,11 +143,11 @@ const SizeCalculator = () => {
             <motion.div
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 2, repeat: Infinity }}>
-              <CalcIcon className="h-10 w-10 text-white" />
+              <Calculator className="h-10 w-10 text-white" />
             </motion.div>
           </div>
           <h3 className="text-xl font-semibold mb-8 text-center">
-            Calculate Your System Size
+            Calculate Your Solar System Size
           </h3>
           <div
             className={cn(
@@ -201,19 +162,67 @@ const SizeCalculator = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.3 }}>
+                  transition={{ duration: 0.3 }}
+                  onClick={() => {
+                    setEditIndex(index);
+                    setSelectedAppliance(
+                      appliances.find(
+                        (a) =>
+                          a.icon === device.icon &&
+                          a.name === device.name.split(" x ")[0]
+                      )
+                    );
+                    setQuantity(Number(device.name.split(" x ")[1]) || 1);
+                    setCustomWattage(
+                      device.watts / (Number(device.name.split(" x ")[1]) || 1)
+                    );
+                    setIsDialogOpen(true);
+                  }}>
                   <div className="h-10 w-10 rounded-full bg-brand-yellow/20 flex items-center justify-center text-brand-orange">
-                    {device.icon}
+                    <Appliance icon={device.icon} />
                   </div>
                   <div>
                     <p className="font-medium">{device.name}</p>
                     <p className="text-xs text-gray-500">{device.watts}W</p>
                   </div>
                   <button
-                    onClick={() => handleRemoveDevice(index)}
-                    className="absolute top-1 right-1 p-1 rounded hover:bg-gray-100">
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleRemoveDevice(index);
+                    }}
+                    className="absolute top-1 right-1 p-1 rounded hover:bg-gray-100"
+                    title="Remove">
                     <Trash2 className="w-4 h-4 text-gray-400" />
                   </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setEditIndex(index);
+                      setSelectedAppliance(
+                        appliances.find(
+                          (a) =>
+                            a.icon === device.icon &&
+                            a.name === device.name.split(" x ")[0]
+                        )
+                      );
+                      setQuantity(Number(device.name.split(" x ")[1]) || 1);
+                      setCustomWattage(
+                        device.watts /
+                          (Number(device.name.split(" x ")[1]) || 1)
+                      );
+                      setIsDialogOpen(true);
+                    }}
+                    className="absolute bottom-1 right-1 p-1 rounded hover:bg-gray-100"
+                    title="Edit">
+                    <Pencil className="w-4 h-4 text-gray-400" />
+                  </button>
+
+                  <Button
+                    variant="outline"
+                    className="mb-4"
+                    onClick={() => setDevices([])}>
+                    Reset Calculator
+                  </Button>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -245,7 +254,7 @@ const SizeCalculator = () => {
                         <SelectValue placeholder="Select Appliance" />
                       </SelectTrigger>
                       <SelectContent>
-                        {allApplianceOptions.map((item, i) => (
+                        {appliances.map((item, i) => (
                           <SelectItem key={i} value={item.name}>
                             <div className="flex items-center gap-2">
                               {item.icon}

@@ -1,10 +1,19 @@
+"use client";
+
 import React from "react";
 import SizeCalculator from "./ui/SizeCalculator";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Calculator as CalcIcon } from "lucide-react";
+import { Calculator as CalcIcon, Router } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const CalculatorSection = () => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/calculator");
+  };
+
   return (
     <section className="py-20 bg-gray-50 relative overflow-hidden">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
@@ -38,7 +47,9 @@ const CalculatorSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.3 }}>
-              <Button className="gradient-bg text-lg py-6 px-8 mb-8">
+              <Button
+                onClick={handleClick}
+                className="gradient-bg text-lg py-6 px-8 mb-8">
                 <CalcIcon className="mr-2 h-5 w-5" />
                 Try the Solar Calculator
               </Button>
