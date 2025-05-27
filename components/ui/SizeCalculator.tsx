@@ -22,10 +22,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Link from "next/link";
-import { Serializer } from "v8";
 import { cn } from "@/lib/utils";
 import { PACKAGES } from "@/app/constants";
 import Appliance from "../Appliance";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const defaultDevices = [{ icon: "Bulb", name: "LED Bulb (10W)", watts: 10 }];
 
@@ -36,8 +37,11 @@ const SizeCalculator = () => {
   const [customWattage, setCustomWattage] = useState(0);
   const [devices, setDevices] = useState(defaultDevices);
   const [editIndex, setEditIndex] = useState<number | null>(null);
+  const [noPackage, setNoPackage] = useState(false);
 
   const [load, setLoad] = useState("");
+
+  const router = useRouter();
 
   const totalWatts = devices.reduce(
     (sum, device) => sum + Number(device.watts),
@@ -48,12 +52,57 @@ const SizeCalculator = () => {
   const totalVA = (totalWatts / 0.8).toFixed(2);
   const totalkVA = (totalVA / 1000).toFixed(2);
 
+  // Custom package selection logic
+  let customPackageName = "";
+
+  if (totalWatts < 500) {
+    customPackageName = "500watts";
+  } else if (totalVA > 1 && totalVA <= 1.5) {
+    customPackageName = "1.5kva";
+  } else if (totalVA > 2.5 && totalVA <= 3.5) {
+    customPackageName = "3.5kva";
+  } else if (totalVA > 3.5 && totalVA <= 4.2) {
+    customPackageName = "4.2kva";
+  }
+
+  // Use customPackageName if set, otherwise use your existing logic
+  const possibleNames = customPackageName
+    ? [customPackageName]
+    : [
+        `${load}kva`,
+        `${load}kva(a)`,
+        `${load}kva(b)`,
+        `${loadInWatts}W`,
+        `${loadInWatts}W(a)`,
+        `${loadInWatts}W(b)`,
+      ];
+
+  const selectedPackage = PACKAGES.find((p) => possibleNames.includes(p.name));
+
+  const selectedPackageBattery = selectedPackage?.battery;
+  const selectedPackagePanelArray = selectedPackage?.panelArray;
+  const selectedPackagePicture = selectedPackage?.picture;
+  const packagePrice = selectedPackage?.price;
+
   useEffect(() => {
     setLoad(Math.ceil(totalkVA).toString());
   }, [totalkVA]);
 
   const handleAddDevice = () => {
     if (selectedAppliance && quantity > 0) {
+      const deviceName = selectedAppliance.name;
+      const icon = selectedAppliance.icon;
+      const alreadyExists = devices.some(
+        (d) => d.icon === icon && d.name.split(" x ")[0] === deviceName
+      );
+
+      if (alreadyExists && editIndex === null) {
+        toast(
+          `You've already added "${deviceName}", to edit the quantity please click on the pencil icon.`
+        );
+        return;
+      }
+
       const totalWatts = customWattage * quantity;
       const newDevice = {
         icon: selectedAppliance.icon,
@@ -71,6 +120,7 @@ const SizeCalculator = () => {
         setDevices([...devices, newDevice]);
       }
       setIsDialogOpen(false);
+      setNoPackage(false);
     }
   };
 
@@ -98,31 +148,6 @@ const SizeCalculator = () => {
   //     `${loadInWatts}W(b)`
   // );
 
-  const possibleNames = [
-    `${load}kva`,
-    `${load}kva(a)`,
-    `${load}kva(b)`,
-    `${loadInWatts}W`,
-    `${loadInWatts}W(a)`,
-    `${loadInWatts}W(b)`,
-  ];
-
-  const packageExists = PACKAGES.find((p) => possibleNames.includes(p.name));
-
-  if (devices.length > 0 && !packageExists) {
-    return <h3>We don&apos;t have a package that can serve you for now</h3>;
-  }
-
-  const selectedPackageBattery = packageExists?.battery;
-  const selectedPackagePanelArray = packageExists?.panelArray;
-  const selectedPackagePicture = packageExists?.picture;
-  // Get transportation cost for the selected location
-
-  // Calculate total cost and chargeable amount
-  const packagePrice = packageExists?.price;
-  const selectedPackage = packageExists;
-
-  // Prepare result object to pass to results page
   const result = {
     load,
     selectedPackage,
@@ -132,8 +157,28 @@ const SizeCalculator = () => {
     selectedPackagePicture,
   };
 
+  const handleGetQuote = () => {
+    if (!selectedPackage) {
+      setNoPackage(true);
+      return;
+    }
+    // proceed to result page
+    router.push(
+      `/result/size?data=${encodeURIComponent(JSON.stringify(result))}`
+    );
+  };
+
+  console.log("load", load);
+  console.log("loadInWatts", loadInWatts);
+
   return (
     <div className="grid items-center w-full max-w-4xl mx-auto sm:px-6 lg:px-8 py-12">
+      {noPackage && (
+        <h3 className="text-center text-red-500 mb-4">
+          Sorry, We don&apos;t have a package that can serve you for now
+        </h3>
+      )}
+
       <motion.div
         className="relative flex justify-center border-2"
         initial={{ opacity: 0, y: 30 }}
@@ -165,7 +210,8 @@ const SizeCalculator = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.3 }}
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     setEditIndex(index);
                     setSelectedAppliance(
                       appliances.find(
@@ -304,7 +350,10 @@ const SizeCalculator = () => {
             <Button
               variant="ghost"
               className="mb-4 justify-self-end"
-              onClick={() => setDevices([])}>
+              onClick={() => {
+                setDevices([]);
+                setNoPackage(false);
+              }}>
               <RotateCcw className="w-4 h-4 text-gray-400 " />
             </Button>
           </div>
@@ -316,13 +365,8 @@ const SizeCalculator = () => {
             Equivalent kVA rating:{" "}
             <span className="font-semibold text-gray-900">{totalkVA} kVA</span>
           </div>
-          <Button asChild className="w-full gradient-bg">
-            <Link
-              href={`/result/size?data=${encodeURIComponent(
-                JSON.stringify(result)
-              )}`}>
-              Get My System Quote
-            </Link>
+          <Button onClick={handleGetQuote} className="w-full gradient-bg">
+            Get My System Quote
           </Button>
         </div>
       </motion.div>
