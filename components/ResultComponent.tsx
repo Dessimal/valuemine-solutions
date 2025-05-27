@@ -248,15 +248,22 @@ Total Cost: ₦${result?.totalCost?.toLocaleString()}
                           Solar Panel Array: {result?.selectedPackagePanelArray}
                         </li>
                       </ul>
-                      {aiDescription && (
-                        <div
-                          className="mt-4"
-                          style={{ whiteSpace: "pre-line" }}>
-                          <ReactMarkdown>
-                            {stripCodeFences(aiDescription)}
-                          </ReactMarkdown>
-                        </div>
-                      )}
+
+                      <div>
+                        {loading ? (
+                          <Spinner />
+                        ) : (
+                          aiDescription && (
+                            <div
+                              className="mt-4"
+                              style={{ whiteSpace: "pre-line" }}>
+                              <ReactMarkdown>
+                                {stripCodeFences(aiDescription)}
+                              </ReactMarkdown>
+                            </div>
+                          )
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
