@@ -69,26 +69,24 @@ export default function ResultComponent({ result }) {
 
   const textRef = useRef<HTMLDivElement>(null);
 
-  const shareText = `
-
+  function getShareText(result) {
+    return `
   Hello Valuemine, Please I am interested in the solar package below:
   
-Solar Package: ${result?.selectedPackage?.name}
-Battery: ${result?.selectedPackageBattery}
-Panel Array: ${result?.selectedPackagePanelArray}
- Gadgets & Materials: ₦
-                    ${result?.selectedPackage?.price?.toLocaleString()}
- Workmanship: ₦${result?.workmanship?.toLocaleString()} for{" "}
-                    ${result?.building}
- Transportation: ₦
-                    ${result?.transportationCost?.toLocaleString()}
+  Solar Package: ${result?.selectedPackage?.name}
+  Battery: ${result?.selectedPackageBattery}
+  Panel Array: ${result?.selectedPackagePanelArray}
+  Gadgets & Materials: ₦${result?.selectedPackage?.price?.toLocaleString()}
+  Workmanship: ₦${result?.workmanship?.toLocaleString()} for ${result?.building}
+  Transportation: ₦${result?.transportationCost?.toLocaleString()}
   Total: ₦${result?.totalCost?.toLocaleString()}
- 
- Chargable Amount: ₦${result?.chargeableAmount?.toLocaleString()}
-...
-`;
+  ${result?.chargeableAmount?.toLocaleString()}
+  ...
+  `;
+  }
 
-  <ShareButton textToShare={shareText} />;
+  // Then in your JSX:
+  <ShareButton textToShare={getShareText(result)} />;
 
   const handleCopy = () => {
     if (textRef.current) {
@@ -205,7 +203,7 @@ Panel Array: ${result?.selectedPackagePanelArray}
                   )}
                 </div>
                 <div className="my-6 flex flex-col items-center justify-center">
-                  <ShareButton />
+                  <ShareButton textToShare={getShareText(result)} />
                 </div>
               </div>
             )}
@@ -283,7 +281,7 @@ Panel Array: ${result?.selectedPackagePanelArray}
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <ShareButton textToShare={shareText} />
+                  <ShareButton textToShare={getShareText(result)} />
                   <Button
                     asChild
                     variant="ghost"
