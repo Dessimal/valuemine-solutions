@@ -274,4 +274,7 @@ export const appliances = [
   { icon: "Heater", name: "Water Heater", watts: 3000 },
   { icon: "Dispenser", name: "Water Dispenser", watts: 550 },
   { icon: "HairDryer", name: "Hair Dryer", watts: 1200 },
+
+  //Custom
+  { icon: "Plus", name: "Custom Device", watts: 0 },
 ];

@@ -147,8 +147,12 @@ export function CalculatorForm() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Calculate Interest On Your Inverter Package</CardTitle>
-        <CardDescription>Please enter required details below</CardDescription>
+        <CardTitle className="text-center text-xl text-gray-700 font-bold mb-4">
+          Calculate Interest On Your Inverter Package
+        </CardTitle>
+        <CardDescription className="">
+          Please enter required details below
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -255,7 +259,9 @@ export function CalculatorForm() {
         </Form>
       </CardContent>
       <CardFooter>
-        <p>Fill out the form to calculate your payment plan.</p>
+        <p className="text-center">
+          Fill out the form to calculate your payment plan.
+        </p>
       </CardFooter>
     </Card>
   );

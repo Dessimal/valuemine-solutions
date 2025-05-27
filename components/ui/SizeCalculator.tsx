@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Calculator, Pencil, Trash2 } from "lucide-react";
+import { Calculator, Pencil, RotateCcw, Trash2 } from "lucide-react";
 import { appliances } from "@/app/constants";
 
 import {
@@ -27,12 +27,14 @@ import { cn } from "@/lib/utils";
 import { PACKAGES } from "@/app/constants";
 import Appliance from "../Appliance";
 
+const defaultDevices = [{ icon: "Bulb", name: "LED Bulb (10W)", watts: 10 }];
+
 const SizeCalculator = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedAppliance, setSelectedAppliance] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [customWattage, setCustomWattage] = useState(0);
-  const [devices, setDevices] = useState([...appliances]);
+  const [devices, setDevices] = useState(defaultDevices);
   const [editIndex, setEditIndex] = useState<number | null>(null);
 
   const [load, setLoad] = useState("");
@@ -158,7 +160,7 @@ const SizeCalculator = () => {
               {devices.map((device, index) => (
                 <motion.div
                   key={`custom-${index}`}
-                  className="border border-gray-200 rounded-lg p-4 flex items-center gap-3 cursor-pointer hover:border-brand-orange relative"
+                  className="w-32 h-32 overflow-auto border border-gray-200 rounded-lg p-4 flex items-center gap-3 cursor-pointer hover:border-brand-orange relative"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
@@ -205,6 +207,7 @@ const SizeCalculator = () => {
                             a.name === device.name.split(" x ")[0]
                         )
                       );
+
                       setQuantity(Number(device.name.split(" x ")[1]) || 1);
                       setCustomWattage(
                         device.watts /
@@ -216,21 +219,24 @@ const SizeCalculator = () => {
                     title="Edit">
                     <Pencil className="w-4 h-4 text-gray-400" />
                   </button>
-
-                  <Button
-                    variant="outline"
-                    className="mb-4"
-                    onClick={() => setDevices([])}>
-                    Reset Calculator
-                  </Button>
                 </motion.div>
               ))}
             </AnimatePresence>
 
-            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            <Dialog
+              open={isDialogOpen}
+              onOpenChange={(open) => {
+                setIsDialogOpen(open);
+                if (!open) {
+                  setSelectedAppliance(null);
+                  setQuantity(1);
+                  setCustomWattage(0);
+                  setEditIndex(null);
+                }
+              }}>
               <DialogTrigger asChild>
                 <motion.div
-                  className="bg-white border-2 border-dashed border-gray-200 rounded-lg p-4 flex items-center justify-center h-full cursor-pointer hover:border-brand-orange"
+                  className=" bg-white border-2 border-dashed border-gray-200 rounded-lg p-4 flex items-center justify-center h-full cursor-pointer hover:border-brand-orange"
                   whileHover={{ scale: 1.05 }}
                   transition={{
                     type: "spring",
@@ -248,8 +254,11 @@ const SizeCalculator = () => {
                 </DialogHeader>
                 <div className="space-y-4">
                   <div>
-                    <Label>Appliance</Label>
-                    <Select onValueChange={handleSelectChange}>
+                    <Label className="mb-2">Appliance</Label>
+                    <Select
+                      key={isDialogOpen ? "open" : "closed"}
+                      value={selectedAppliance?.name || ""}
+                      onValueChange={handleSelectChange}>
                       <SelectTrigger>
                         <SelectValue placeholder="Select Appliance" />
                       </SelectTrigger>
@@ -257,7 +266,6 @@ const SizeCalculator = () => {
                         {appliances.map((item, i) => (
                           <SelectItem key={i} value={item.name}>
                             <div className="flex items-center gap-2">
-                              {item.icon}
                               <span>{item.name}</span>
                             </div>
                           </SelectItem>
@@ -266,7 +274,7 @@ const SizeCalculator = () => {
                     </Select>
                   </div>
                   <div>
-                    <Label>Quantity</Label>
+                    <Label className="mb-2">Quantity</Label>
                     <Input
                       type="number"
                       min={1}
@@ -275,19 +283,27 @@ const SizeCalculator = () => {
                     />
                   </div>
                   <div>
-                    <Label>Wattage</Label>
+                    <Label className="mb-2">Wattage</Label>
                     <Input
                       type="number"
                       value={customWattage}
                       onChange={(e) => setCustomWattage(Number(e.target.value))}
                     />
                   </div>
-                  <Button className="w-full" onClick={handleAddDevice}>
+                  <Button className="w-full mt-6" onClick={handleAddDevice}>
                     Add
                   </Button>
                 </div>
               </DialogContent>
             </Dialog>
+          </div>
+          <div className="grid">
+            <Button
+              variant="ghost"
+              className="mb-4 justify-self-end"
+              onClick={() => setDevices([])}>
+              <RotateCcw className="w-4 h-4 text-gray-400 " />
+            </Button>
           </div>
           <div className="text-center text-sm text-gray-600 mb-1">
             Estimated total consumption:{" "}

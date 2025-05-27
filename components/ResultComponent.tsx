@@ -65,6 +65,19 @@ export default function ResultComponent({ result }) {
 
   const textRef = useRef<HTMLDivElement>(null);
 
+  const shareText = `
+
+  Hello Valuemine, Please I am interested in the solar package below:
+  
+Solar Package: ${result?.selectedPackage?.name}
+Battery: ${result?.selectedPackageBattery}
+Panel Array: ${result?.selectedPackagePanelArray}
+Total Cost: ₦${result?.totalCost?.toLocaleString()}
+...
+`;
+
+  <ShareButton textToShare={shareText} />;
+
   const handleCopy = () => {
     if (textRef.current) {
       navigator.clipboard.writeText(textRef.current.innerText);
@@ -74,7 +87,7 @@ export default function ResultComponent({ result }) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 text-gray-900">
       <div>
         <button
           onClick={() => router.back()}
@@ -100,7 +113,7 @@ export default function ResultComponent({ result }) {
                 </div>
                 <div ref={textRef} className="relative">
                   <div className="flex items-center justify-between my-6">
-                    <h2 className="text-xl md:text-2xl text-gray-700 font-semibold">
+                    <h2 className="text-xl md:text-2xl text-gray-900 font-semibold">
                       Here’s the cost breakdown for our{" "}
                       {result?.selectedPackage?.name} package:
                     </h2>
@@ -185,12 +198,12 @@ export default function ResultComponent({ result }) {
         ) : (
           <div>
             <p className=" font-bold text-center text-gray-500 mb-12">
-              Your Recommended Solar
+              Your Recommended Solar Package
             </p>
             <h2 className="text-gray-900 font-bold text-4xl sm:text-6xl w-full text-center">
               {result?.selectedPackage.name} Inverter Package
             </h2>
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 p-6">
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 p-4 sm:p-6">
               <div className="w-full">
                 <Image
                   src={result?.selectedPackagePicture}
@@ -200,16 +213,30 @@ export default function ResultComponent({ result }) {
                   className="object-cover w-full"
                 />
               </div>
-              <div className="p-8">
-                <div className="flex items-center mb-6">
-                  <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mr-3">
-                    <div className="w-4 h-4 border-2 border-gray-600 rounded-full"></div>
-                  </div>
+              <div ref={textRef} className="">
+                <div className="flex items-center mb-6 ">
                   <div>
                     <div>
-                      <h4 className="mt-6 font-bold">
-                        _*Detailed Breakdown of the system&apos;s capacity*_
-                      </h4>
+                      <div className="flex items-center justify-between my-6">
+                        <h2 className="text-xl md:text-2xl text-gray-900 font-semibold">
+                          Detailed Breakdown of the system&apos;s capacity
+                        </h2>
+                        <button
+                          onClick={handleCopy}
+                          className=" cursor-pointer">
+                          {copied ? (
+                            <span className="ml-2 text-green-600 inline-flex gap-1 items-center">
+                              <Check className="inline-block" />
+                              Copied!
+                            </span>
+                          ) : (
+                            <span className="ml-2 text-gray-600 inline-flex gap-1 items-center">
+                              <Copy className="inline-block" />
+                              Copy
+                            </span>
+                          )}
+                        </button>
+                      </div>
                       <h5 className="mt-2 font-semibold">
                         {result?.selectedPackage?.name}
                       </h5>
@@ -234,7 +261,7 @@ export default function ResultComponent({ result }) {
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <ShareButton />
+                  <ShareButton textToShare={shareText} />
                   <Button
                     asChild
                     variant="ghost"
