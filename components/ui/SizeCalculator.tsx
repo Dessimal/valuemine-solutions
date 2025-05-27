@@ -187,7 +187,7 @@ const SizeCalculator = () => {
       )}
 
       <motion.div
-        className="relative flex justify-center border-2"
+        className="relative flex justify-center"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}

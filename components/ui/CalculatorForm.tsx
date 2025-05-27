@@ -70,6 +70,7 @@ export function CalculatorForm() {
     // console.log("Form data:", data);
     // Find the selected package details
     const selectedPackage = PACKAGES.find((p) => p.name === data.package);
+    const packagePrice = selectedPackage?.price || 0;
     const selectedPackageBattery = selectedPackage?.battery;
     const selectedPackagePanelArray = selectedPackage?.panelArray;
     const selectedPackagePicture = selectedPackage?.picture;
@@ -123,6 +124,7 @@ export function CalculatorForm() {
     const result = {
       ...data,
       selectedPackage,
+      packagePrice,
       selectedPackageBattery,
       selectedPackagePanelArray,
       selectedPackagePicture,

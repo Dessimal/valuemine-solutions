@@ -70,17 +70,38 @@ export default function ResultComponent({ result }) {
   const textRef = useRef<HTMLDivElement>(null);
 
   function getShareText(result) {
+    let repaymentText = "";
+    if (result?.repayment) {
+      repaymentText = Object.entries(result.repayment)
+        .map(
+          ([months, value]: [string, any]) =>
+            `${months}: Monthly ₦${value.monthly?.toLocaleString()} / Weekly ₦${value.weekly?.toLocaleString()}`
+        )
+        .join("\n");
+    }
+
+    let interestBlock = "";
+    if (interestCalculatorEnabled) {
+      interestBlock = `
+  Gadgets & Materials: ₦${result?.selectedPackage?.price?.toLocaleString()}
+  Workmanship: ₦${result?.workmanship?.toLocaleString()} for ${result?.building}
+  Transportation: ₦${result?.transportationCost?.toLocaleString()}
+  Total: ₦${result?.totalCost?.toLocaleString()}
+  Down Payment: ₦${result?.downPayment?.toLocaleString()}
+  Chargeable Amount: ₦${result?.chargeableAmount?.toLocaleString()}
+  
+  Repayment Options:
+  ${repaymentText}
+  `;
+    }
+
     return `
   Hello Valuemine, Please I am interested in the solar package below:
   
   Solar Package: ${result?.selectedPackage?.name}
   Battery: ${result?.selectedPackageBattery}
   Panel Array: ${result?.selectedPackagePanelArray}
-  Gadgets & Materials: ₦${result?.selectedPackage?.price?.toLocaleString()}
-  Workmanship: ₦${result?.workmanship?.toLocaleString()} for ${result?.building}
-  Transportation: ₦${result?.transportationCost?.toLocaleString()}
-  Total: ₦${result?.totalCost?.toLocaleString()}
-  ${result?.chargeableAmount?.toLocaleString()}
+  ${interestBlock}
   ...
   `;
   }
