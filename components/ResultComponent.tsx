@@ -8,6 +8,7 @@ import { Button } from "./ui/button";
 import { ArrowLeftToLine, Check, Copy } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import Spinner from "./ui/Spinner";
 
 export default function ResultComponent({ result }) {
   const params = useParams();
@@ -16,6 +17,7 @@ export default function ResultComponent({ result }) {
 
   const [aiDescription, setAIDescription] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   async function fetchAIDescription() {
     if (!result) {
@@ -38,6 +40,7 @@ export default function ResultComponent({ result }) {
   useEffect(() => {
     if (result) {
       fetchAIDescription();
+      setLoading(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [result]);
@@ -110,7 +113,7 @@ export default function ResultComponent({ result }) {
                       </span>
                     )}
                   </button>
-                  <h2 className="text-xl font-semibold mb-4">
+                  <h2 className="text-xl font-semibold mx-4">
                     Here’s the cost breakdown for our{" "}
                     {result?.selectedPackage?.name} package:
                   </h2>
@@ -160,12 +163,16 @@ export default function ResultComponent({ result }) {
                       Solar Panel Array: {result?.selectedPackagePanelArray}
                     </li>
                   </ul>
-                  {aiDescription && (
-                    <div className="mt-4" style={{ whiteSpace: "pre-line" }}>
-                      <ReactMarkdown>
-                        {stripCodeFences(aiDescription)}
-                      </ReactMarkdown>
-                    </div>
+                  {loading ? (
+                    <Spinner />
+                  ) : (
+                    aiDescription && (
+                      <div className="mt-4" style={{ whiteSpace: "pre-line" }}>
+                        <ReactMarkdown>
+                          {stripCodeFences(aiDescription)}
+                        </ReactMarkdown>
+                      </div>
+                    )
                   )}
                 </div>
               </div>
