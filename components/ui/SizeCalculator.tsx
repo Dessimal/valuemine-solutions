@@ -56,13 +56,17 @@ const SizeCalculator = () => {
   let customPackageName = "";
 
   if (totalWatts < 500) {
-    customPackageName = "500watts";
-  } else if (totalVA > 1 && totalVA <= 1.5) {
+    customPackageName = "500W";
+  } else if (totalVA > 1000 && totalVA <= 1500) {
     customPackageName = "1.5kva";
-  } else if (totalVA > 2.5 && totalVA <= 3.5) {
+  } else if (totalVA == 2500) {
+    customPackageName = "2.5kva";
+  } else if (totalVA > 2500 && totalVA <= 3500) {
     customPackageName = "3.5kva";
-  } else if (totalVA > 3.5 && totalVA <= 4.2) {
+  } else if (totalVA > 3500 && totalVA <= 4200) {
     customPackageName = "4.2kva";
+  } else if (totalVA > 4500 && totalVA <= 6200) {
+    customPackageName = "6.2kva";
   }
 
   // Use customPackageName if set, otherwise use your existing logic
@@ -77,12 +81,17 @@ const SizeCalculator = () => {
         `${loadInWatts}W(b)`,
       ];
 
+  console.log(possibleNames);
+
   const selectedPackage = PACKAGES.find((p) => possibleNames.includes(p.name));
 
   const selectedPackageBattery = selectedPackage?.battery;
   const selectedPackagePanelArray = selectedPackage?.panelArray;
   const selectedPackagePicture = selectedPackage?.picture;
   const packagePrice = selectedPackage?.price;
+
+  console.log(PACKAGES.find(() => possibleNames.includes("500watts")));
+  console.log("Selected Package:", selectedPackage);
 
   useEffect(() => {
     setLoad(Math.ceil(totalkVA).toString());
@@ -168,14 +177,12 @@ const SizeCalculator = () => {
     );
   };
 
-  console.log("load", load);
-  console.log("loadInWatts", loadInWatts);
-
   return (
     <div className="grid items-center w-full max-w-4xl mx-auto sm:px-6 lg:px-8 py-12">
       {noPackage && (
         <h3 className="text-center text-red-500 mb-4">
-          Sorry, We don&apos;t have a package that can serve you for now
+          Please reach out to us on WhatsApp 09020532639 to get a quote for your
+          system.
         </h3>
       )}
 
@@ -205,7 +212,7 @@ const SizeCalculator = () => {
               {devices.map((device, index) => (
                 <motion.div
                   key={`custom-${index}`}
-                  className="w-32 h-32 overflow-auto border border-gray-200 rounded-lg p-4 flex items-center gap-3 cursor-pointer hover:border-brand-orange relative"
+                  className="w-32 h-32 overflow-hidden border border-gray-200 rounded-lg p-4 flex items-center gap-3 cursor-pointer hover:border-brand-orange relative"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
