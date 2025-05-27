@@ -21,27 +21,31 @@ export default function ResultComponent({ result }) {
   const [loading, setLoading] = useState(true);
 
   async function fetchAIDescription() {
-    if (!result) {
-      setAIDescription("Failed to get AI description");
-      return;
-    }
-    const res = await fetch("/api/gemini", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        packageName: result.selectedPackage?.name,
-        packageDetails: JSON.stringify(result.selectedPackage),
-      }),
-    });
-    const data = await res.json();
+    setLoading(true);
+    try {
+      if (!result) {
+        setAIDescription("Failed to get AI description");
+        return;
+      }
+      const res = await fetch("/api/gemini", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          packageName: result.selectedPackage?.name,
+          packageDetails: JSON.stringify(result.selectedPackage),
+        }),
+      });
+      const data = await res.json();
 
-    setAIDescription(data.text);
+      setAIDescription(data.text);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
     if (result) {
       fetchAIDescription();
-      setLoading(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [result]);
@@ -178,7 +182,10 @@ Total Cost: ₦${result?.totalCost?.toLocaleString()}
                     </li>
                   </ul>
                   {loading ? (
-                    <Spinner />
+                    <div>
+                      Loading ...
+                      <Spinner />
+                    </div>
                   ) : (
                     aiDescription && (
                       <div className="mt-4" style={{ whiteSpace: "pre-line" }}>
