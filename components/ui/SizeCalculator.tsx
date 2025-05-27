@@ -133,7 +133,7 @@ const SizeCalculator = () => {
   };
 
   return (
-    <div className="grid border-2 items-center w-full max-w-4xl mx-auto sm:px-6 lg:px-8 py-12">
+    <div className="grid items-center w-full max-w-4xl mx-auto sm:px-6 lg:px-8 py-12">
       <motion.div
         className="relative flex justify-center border-2"
         initial={{ opacity: 0, y: 30 }}
@@ -236,7 +236,10 @@ const SizeCalculator = () => {
               }}>
               <DialogTrigger asChild>
                 <motion.div
-                  className=" bg-white border-2 border-dashed border-gray-200 rounded-lg p-4 flex items-center justify-center h-full cursor-pointer hover:border-brand-orange"
+                  className={cn(
+                    "min-h-32 bg-white border-2 border-dashed border-gray-200 rounded-lg p-4 flex items-center justify-center h-full cursor-pointer hover:border-brand-orange",
+                    devices.length === 0 ? "w-full" : "w-32 h-32"
+                  )}
                   whileHover={{ scale: 1.05 }}
                   transition={{
                     type: "spring",
