@@ -76,7 +76,15 @@ export default function ResultComponent({ result }) {
 Solar Package: ${result?.selectedPackage?.name}
 Battery: ${result?.selectedPackageBattery}
 Panel Array: ${result?.selectedPackagePanelArray}
-Total Cost: ₦${result?.totalCost?.toLocaleString()}
+ Gadgets & Materials: ₦
+                    ${result?.selectedPackage?.price?.toLocaleString()}
+ Workmanship: ₦${result?.workmanship?.toLocaleString()} for{" "}
+                    ${result?.building}
+ Transportation: ₦
+                    ${result?.transportationCost?.toLocaleString()}
+  Total: ₦${result?.totalCost?.toLocaleString()}
+ 
+ Chargable Amount: ₦${result?.chargeableAmount?.toLocaleString()}
 ...
 `;
 
