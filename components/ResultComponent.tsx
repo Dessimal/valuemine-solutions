@@ -266,7 +266,7 @@ Total Cost: ₦${result?.totalCost?.toLocaleString()}
                     asChild
                     variant="ghost"
                     className="text-blue-500 hover:text-blue-600 px-8 py-3 rounded-md font-semibold">
-                    <Link className="capitalize" href="/interest-calculator">
+                    <Link className="capitalize" href="/Interest-calculator">
                       pay small-small for this package
                     </Link>
                   </Button>
