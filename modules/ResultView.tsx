@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useParams, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import ResultComponent from "@/components/ResultComponent";
 import { Button } from "@/components/ui/button";
 import { authClient } from "@/app/lib/auth-client";
@@ -10,6 +10,8 @@ import { toast } from "sonner";
 export const ResultView = () => {
   const params = useParams();
   const searchParams = useSearchParams();
+
+  const router = useRouter();
 
   console.log("searchParams", searchParams);
 
@@ -46,6 +48,7 @@ export const ResultView = () => {
     await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
+          router.push("/sign-in");
           toast("You just signed out"); // redirect to login page
         },
       },
