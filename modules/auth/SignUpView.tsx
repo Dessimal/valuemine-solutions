@@ -85,11 +85,13 @@ const SignInView = () => {
           },
           onSuccess: () => {
             //redirect to the dashboard or sign in page
-            toast("Sign up successful!");
+            toast("Sign Up Successful!");
+            setLoading(false);
           },
           onError: () => {
             // display the error message
             toast("Something went wrong");
+            setLoading(false);
           },
         }
       );
@@ -120,7 +122,7 @@ const SignInView = () => {
       <Card>
         <CardHeader>
           <CardTitle className="text-center text-2xl text-slate-600">
-            Welcome Back!
+            Let&apos;s Get Started!
           </CardTitle>
           <CardDescription className="text-gray-300 text-sm text-center">
             Please enter your login details to sign in

@@ -74,9 +74,11 @@ const SignInView = () => {
           },
           onSucces: () => {
             toast("Signed in successfully!");
+            setLoading(false);
           },
           onError: () => {
             toast("Something went wrong, please try again");
+            setLoading(false);
           },
         }
       );
