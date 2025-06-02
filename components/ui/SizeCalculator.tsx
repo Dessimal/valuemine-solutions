@@ -2,7 +2,13 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Calculator, Pencil, RotateCcw, Trash2 } from "lucide-react";
+import {
+  Calculator,
+  LoaderCircle,
+  Pencil,
+  RotateCcw,
+  Trash2,
+} from "lucide-react";
 import { appliances } from "@/app/constants";
 
 import {
@@ -31,6 +37,7 @@ import { toast } from "sonner";
 const defaultDevices = [{ icon: "Bulb", name: "LED Bulb (10W)", watts: 10 }];
 
 const SizeCalculator = () => {
+  const [loading, setLoading] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedAppliance, setSelectedAppliance] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -171,6 +178,7 @@ const SizeCalculator = () => {
       setNoPackage(true);
       return;
     }
+    setLoading(true);
     // proceed to result page
     router.push(
       `/result/size?data=${encodeURIComponent(JSON.stringify(result))}`
@@ -373,7 +381,14 @@ const SizeCalculator = () => {
             <span className="font-semibold text-gray-900">{totalkVA} kVA</span>
           </div>
           <Button onClick={handleGetQuote} className="w-full gradient-bg">
-            Get My System Quote
+            {loading ? (
+              <span className="flex items-center gap-2">
+                <LoaderCircle className="animate-spin w-4 h-4" />
+                Loading...
+              </span>
+            ) : (
+              "Get My System Quote"
+            )}
           </Button>
         </div>
       </motion.div>

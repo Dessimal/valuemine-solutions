@@ -19,8 +19,19 @@ export async function POST(req: NextRequest) {
     Name: ${packageName}
     Details: ${packageDetails}
 
-    Please describe in detail what this package can power in a typical Nigerian home or office. List the types of appliances, estimated hours of use, and any limitations. here is an example below. Use the same format as the example below.
-    Note: Present it in plain English.   Do not return code or HTML. Use checkboxes for lists. Use emojis to highlight key points. Make it easy to read and understand, and beautifully formatted.
+    Please describe in detail what this package can power in a typical Nigerian home or office. List the types of appliances, estimated hours of use, and any limitations. here is an example below.
+    Note: Present it in plain English.  Please return the result as a JSON object with the following structure:
+{
+  "What can this system power": " details here...",
+  "Daytime Power Output": " details here...",
+  "Simultaneous Power Load Capacity": " details here...",
+  "Battery Backup for Nighttime Use": " details here..."
+  "Can it power an Air Conditioner": " details here..."
+  "Can it power a Freezer": " details here..."
+}
+Do not include any text outside the JSON object.
+
+
     Example:  **6.2kVA Hybrid Inverter Package**
 
 **What Can This System Power?** 

@@ -1,49 +1,35 @@
-"use client";
+import { ResultView } from "@/modules/ResultView";
+import { auth } from "@/utils/auth";
 
-import React from "react";
-import { useParams, useSearchParams } from "next/navigation";
-import ResultComponent from "@/components/ResultComponent";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
-const Result = () => {
-  const params = useParams();
-  const searchParams = useSearchParams();
+type Props = {
+  params: { type: string };
+};
 
-  console.log("searchParams", searchParams);
-
-  console.log(params.type);
-
-  if (!params.type) {
-    return <div>No type specified in URL.</div>;
+const ResultPage = async ({ params }: Props) => {
+  const session = await auth.api.getSession({
+    headers: await headers(), // you need to pass the headers object.
+  });
+  const currentPath = `/result/${params.type}`;
+  console.log("session", session);
+  if (!session) {
+    redirect(`/sign-in?callbackUrl=${encodeURIComponent(currentPath)}`);
   }
 
-  const dataString = searchParams.get("data");
-  const dataObject = JSON.parse(decodeURIComponent(dataString));
-
-  // const result = useMemo(() => {
-  //   if (!dataString) return null;
-  //   try {
-  //     if (params.type === "interest") {
-  //       const interestResult = dataObject;
-  //       return interestResult;
-  //     } else if (params.type === "size") {
-  //       const sizeResult = dataObject;
-  //       return sizeResult;
-  //     }
-  //   } catch (error) {
-  //     console.error("Error parsing dataParam:", error);
-  //     return null;
-  //   }
-  // }, [dataString, params]);
-
-  const result = dataObject;
-
-  console.log(dataString);
-
   return (
-    <main>
-      <ResultComponent result={result} />
-    </main>
+    <div>
+      {session && (
+        <div className="flex justify-between items-center max-w-3xs gap-4">
+          <div>Hello</div>
+          <div>Welcome, {session?.user?.name}</div>
+        </div>
+      )}
+
+      <ResultView />
+    </div>
   );
 };
 
-export default Result;
+export default ResultPage;

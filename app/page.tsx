@@ -6,7 +6,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import Contact from "@/components/Contacts";
-import Footer from "@/components/Footer";
+
 import { motion, AnimatePresence } from "framer-motion";
 import ProblemSolution from "@/components/ui/ProblemSolution";
 import HowItWorks from "@/components/ui/HowItWorks";
@@ -71,7 +71,6 @@ const HomePage = () => {
           <Testimonials />
           <Contact />
         </motion.main>
-        <Footer />
       </motion.div>
     </AnimatePresence>
   );

@@ -10,6 +10,9 @@ import Link from "next/link";
 import Image from "next/image";
 import Spinner from "./ui/Spinner";
 import ShareButton from "./ShareButton";
+import PackageCard from "./packageCard";
+import { PACKAGES } from "@/app/constants";
+import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
 
 export default function ResultComponent({ result }) {
   const params = useParams();
@@ -19,6 +22,34 @@ export default function ResultComponent({ result }) {
   const [aiDescription, setAIDescription] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [loading, setLoading] = useState(true);
+  // Example usage in your parent component
+
+  const [selectedResult, setSelectedResult] = useState<{
+    load: number;
+    selectedPackage: string;
+    packagePrice: number;
+    selectedPackageBattery: string;
+    selectedPackagePanelArray: string;
+    selectedPackagePicture: string;
+  } | null>(null);
+
+  const handleSelect = (pkg: {
+    name: string;
+    price: number;
+    battery: string;
+    panelArray: string;
+    picture: string;
+    load: number;
+  }) => {
+    setSelectedResult({
+      load: pkg.load,
+      selectedPackage: pkg.name,
+      packagePrice: pkg.price,
+      selectedPackageBattery: pkg.battery,
+      selectedPackagePanelArray: pkg.panelArray,
+      selectedPackagePicture: pkg.picture,
+    });
+  };
 
   async function fetchAIDescription() {
     setLoading(true);
@@ -70,7 +101,94 @@ export default function ResultComponent({ result }) {
   const textRef = useRef<HTMLDivElement>(null);
 
   function getShareText(result) {
-    let repaymentText = "";
+    let repaymentText = ""; // ...existing imports...
+
+    // ...existing code...
+
+    // ...existing hooks and functions...
+
+    // Helper to parse and render AI description as cards
+    function renderAIDescriptionCards(aiDescription: string) {
+      if (!aiDescription) return null;
+
+      let parsed;
+      try {
+        // Try to parse as JSON (from Gemini API)
+        parsed = JSON.parse(stripCodeFences(aiDescription));
+      } catch {
+        // Fallback: split by markdown headings if not JSON
+        // This fallback is optional and can be improved
+        return (
+          <Card className="mb-4">
+            <CardContent>
+              <ReactMarkdown>{aiDescription}</ReactMarkdown>
+            </CardContent>
+          </Card>
+        );
+      }
+
+      // Render each section as a Card
+      return Object.entries(parsed).map(([section, content]) => (
+        <Card key={section} className="mb-4">
+          <CardHeader>
+            <CardTitle>
+              {section
+                .replace(/([A-Z])/g, " $1")
+                .replace(/^./, (str) => str.toUpperCase())}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ReactMarkdown>{content}</ReactMarkdown>
+          </CardContent>
+        </Card>
+      ));
+    }
+
+    // ...existing code...
+
+    return (
+      <div className="min-h-screen bg-gray-50 text-gray-900">
+        {/* ...existing code... */}
+        <div className="max-w-7xl px-1 sm:px-4 lg:px-8 py-12">
+          {interestCalculatorEnabled ? (
+            <div className="w-full text-sm md:text-base leading-relaxed">
+              {/* ...existing cost breakdown code... */}
+              {loading ? (
+                <div>
+                  Loading ...
+                  <Spinner />
+                </div>
+              ) : (
+                aiDescription && (
+                  <div className="mt-4">
+                    {renderAIDescriptionCards(aiDescription)}
+                  </div>
+                )
+              )}
+              {/* ...existing code... */}
+            </div>
+          ) : (
+            <div>
+              {/* ...existing recommended package code... */}
+              <div>
+                {loading ? (
+                  <Spinner />
+                ) : (
+                  aiDescription && (
+                    <div className="mt-4">
+                      {renderAIDescriptionCards(aiDescription)}
+                    </div>
+                  )
+                )}
+              </div>
+              {/* ...existing code... */}
+            </div>
+          )}
+
+          {/* ...existing explore other packages section... */}
+        </div>
+      </div>
+    );
     if (result?.repayment) {
       repaymentText = Object.entries(result.repayment)
         .map(
@@ -117,6 +235,10 @@ export default function ResultComponent({ result }) {
     }
   };
 
+  const otherPackages = PACKAGES.filter(
+    (pkg) => pkg.name !== result?.selectedPackage?.name
+  );
+
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
       <div>
@@ -128,9 +250,9 @@ export default function ResultComponent({ result }) {
           </span>
         </button>
       </div>
-      <div className="max-w-7xl border-2 px-1 sm:px-4 lg:px-8 py-12">
+      <div className="max-w-7xl px-1 sm:px-4 lg:px-8 py-12">
         {interestCalculatorEnabled ? (
-          <div className="w-full border-2 text-sm md:text-base leading-relaxed">
+          <div className="w-full text-sm md:text-base leading-relaxed">
             {result?.building && result?.downPayment && (
               <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 p-4 sm:p-6">
                 <div className="w-full">
@@ -316,6 +438,28 @@ export default function ResultComponent({ result }) {
             </div>
           </div>
         )}
+
+        {/* Explore other packages section */}
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold mb-6 text-center text-gray-800">
+            Explore other Solar Packages
+          </h3>
+          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {otherPackages.map((pkg) => (
+              <PackageCard
+                key={pkg.name}
+                name={pkg.name}
+                price={pkg.price}
+                battery={pkg.battery}
+                panelArray={pkg.panelArray}
+                picture={pkg.picture}
+                description={pkg.description}
+                onSelect={() => handleSelect(packageObj)}
+                // Optionally, add an onSelect handler or link to details
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
