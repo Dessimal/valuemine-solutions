@@ -1,10 +1,12 @@
 import SignInView from "@/modules/auth/SignInView";
-import React from "react";
+import React, { Suspense } from "react";
 
 const page = () => {
   return (
     <div className="w-full">
-      <SignInView />
+      <Suspense fallback={<div>Loading...</div>}>
+        <SignInView />
+      </Suspense>
     </div>
   );
 };
