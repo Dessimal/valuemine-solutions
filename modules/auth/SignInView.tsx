@@ -35,6 +35,7 @@ import { LoaderCircle } from "lucide-react";
 
 const SignInView = () => {
   const [loading, setLoading] = useState(false);
+  const [socialLoading, setSocialLoading] = useState(false);
 
   const formSchema = z.object({
     email: z
@@ -88,6 +89,7 @@ const SignInView = () => {
   };
 
   const handleSocialSignIn = async () => {
+    setSocialLoading(true);
     try {
       await authClient.signIn.social({
         provider: "google",
@@ -173,7 +175,7 @@ const SignInView = () => {
               <span className="inline-flex items-center gap-2">
                 {" "}
                 <FaGoogle />
-                {loading && searchParams.get("provider") === "google" ? (
+                {socialLoading ? (
                   <>
                     Signing in with Google...
                     <LoaderCircle className="animate-spin size-8" />

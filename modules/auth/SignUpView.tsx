@@ -35,6 +35,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 const SignInView = () => {
   const [loading, setLoading] = useState(false);
+  const [socialLoading, setSocialLoading] = useState(false);
 
   const formSchema = z
     .object({
@@ -101,6 +102,7 @@ const SignInView = () => {
   };
 
   const handleSocialSignIn = async () => {
+    setSocialLoading(true);
     try {
       await authClient.signIn.social({
         provider: "google",
@@ -226,10 +228,11 @@ const SignInView = () => {
               <span className="inline-flex items-center gap-2">
                 {" "}
                 <FaGoogle />
-                {loading ? (
-                  <LoaderCircle className="animate-spin size-8" />
-                ) : searchParams.get("provider") === "google" ? (
-                  "Signing in with Google..."
+                {socialLoading ? (
+                  <>
+                    Signing in with Google...
+                    <LoaderCircle className="animate-spin size-8" />
+                  </>
                 ) : (
                   "Google"
                 )}
