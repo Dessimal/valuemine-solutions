@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+
 import { Button } from "@/components/ui/button";
 import {
   Calculator,
@@ -9,7 +10,6 @@ import {
   RotateCcw,
   Trash2,
 } from "lucide-react";
-import { appliances } from "@/app/constants";
 
 import {
   Dialog,
@@ -27,163 +27,195 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { PACKAGES } from "@/app/constants";
+import { useSizeCalculator } from "@/hooks/useSizeCalculator";
 import Appliance from "../Appliance";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
-
-const defaultDevices = [{ icon: "Bulb", name: "LED Bulb (10W)", watts: 10 }];
 
 const SizeCalculator = () => {
-  const [loading, setLoading] = useState(false);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [selectedAppliance, setSelectedAppliance] = useState(null);
-  const [quantity, setQuantity] = useState(1);
-  const [customWattage, setCustomWattage] = useState(0);
-  const [devices, setDevices] = useState(defaultDevices);
-  const [editIndex, setEditIndex] = useState<number | null>(null);
-  const [noPackage, setNoPackage] = useState(false);
-
-  const [load, setLoad] = useState("");
-
-  const router = useRouter();
-
-  const totalWatts = devices.reduce(
-    (sum, device) => sum + Number(device.watts),
-    0
-  );
-  const loadInWatts = Math.ceil(totalWatts).toString();
-
-  const totalVA = (totalWatts / 0.8).toFixed(2);
-  const totalkVA = (totalVA / 1000).toFixed(2);
-
-  // Custom package selection logic
-  let customPackageName = "";
-
-  if (totalWatts < 500) {
-    customPackageName = "500W";
-  } else if (totalVA > 1000 && totalVA <= 1500) {
-    customPackageName = "1.5kva";
-  } else if (totalVA == 2500) {
-    customPackageName = "2.5kva";
-  } else if (totalVA > 2500 && totalVA <= 3500) {
-    customPackageName = "3.5kva";
-  } else if (totalVA > 3500 && totalVA <= 4200) {
-    customPackageName = "4.2kva";
-  } else if (totalVA > 4500 && totalVA <= 6200) {
-    customPackageName = "6.2kva";
-  }
-
-  // Use customPackageName if set, otherwise use your existing logic
-  const possibleNames = customPackageName
-    ? [customPackageName]
-    : [
-        `${load}kva`,
-        `${load}kva(a)`,
-        `${load}kva(b)`,
-        `${loadInWatts}W`,
-        `${loadInWatts}W(a)`,
-        `${loadInWatts}W(b)`,
-      ];
-
-  console.log(possibleNames);
-
-  const selectedPackage = PACKAGES.find((p) => possibleNames.includes(p.name));
-
-  const selectedPackageBattery = selectedPackage?.battery;
-  const selectedPackagePanelArray = selectedPackage?.panelArray;
-  const selectedPackagePicture = selectedPackage?.picture;
-  const packagePrice = selectedPackage?.price;
-
-  console.log(PACKAGES.find(() => possibleNames.includes("500watts")));
-  console.log("Selected Package:", selectedPackage);
-
-  useEffect(() => {
-    setLoad(Math.ceil(totalkVA).toString());
-  }, [totalkVA]);
-
-  const handleAddDevice = () => {
-    if (selectedAppliance && quantity > 0) {
-      const deviceName = selectedAppliance.name;
-      const icon = selectedAppliance.icon;
-      const alreadyExists = devices.some(
-        (d) => d.icon === icon && d.name.split(" x ")[0] === deviceName
-      );
-
-      if (alreadyExists && editIndex === null) {
-        toast(
-          `You've already added "${deviceName}", to edit the quantity please click on the pencil icon.`
-        );
-        return;
-      }
-
-      const totalWatts = customWattage * quantity;
-      const newDevice = {
-        icon: selectedAppliance.icon,
-        name: `${selectedAppliance.name} x ${quantity}`,
-        watts: totalWatts,
-      };
-      if (editIndex !== null) {
-        // Edit existing
-        const updatedDevices = [...devices];
-        updatedDevices[editIndex] = newDevice;
-        setDevices(updatedDevices);
-        setEditIndex(null);
-      } else {
-        // Add new
-        setDevices([...devices, newDevice]);
-      }
-      setIsDialogOpen(false);
-      setNoPackage(false);
-    }
-  };
-
-  const handleSelectChange = (value) => {
-    const found = appliances.find((item) => item.name === value);
-    if (found) {
-      setSelectedAppliance(found);
-      setCustomWattage(found.watts);
-    }
-  };
-
-  const handleRemoveDevice = (index: number) => {
-    const updatedDevices = [...devices];
-    updatedDevices.splice(index, 1);
-    setDevices(updatedDevices);
-  };
-
-  // const packageExists = PACKAGES.find(
-  //   (p) =>
-  //     p.name === `${load}kva` ||
-  //     `${load}kva(a)` ||
-  //     `${load}kva(b)` ||
-  //     `${loadInWatts}W` ||
-  //     `${loadInWatts}W(a)` ||
-  //     `${loadInWatts}W(b)`
-  // );
-
-  const result = {
+  const {
+    appliances,
+    loading,
+    setLoading,
+    isDialogOpen,
+    setIsDialogOpen,
+    selectedAppliance,
+    setSelectedAppliance,
+    quantity,
+    setQuantity,
+    customWattage,
+    setCustomWattage,
+    devices,
+    setDevices,
+    editIndex,
+    setEditIndex,
+    noPackage,
+    setNoPackage,
     load,
+    totalWatts,
+    totalkVA,
+    approximateLoad,
     selectedPackage,
-    packagePrice,
     selectedPackageBattery,
     selectedPackagePanelArray,
     selectedPackagePicture,
-  };
+    packagePrice,
+    handleAddDevice,
+    handleSelectChange,
+    handleRemoveDevice,
+    handleGetQuote,
+  } = useSizeCalculator();
+  // const [loading, setLoading] = useState(false);
+  // const [isDialogOpen, setIsDialogOpen] = useState(false);
+  // const [selectedAppliance, setSelectedAppliance] = useState(null);
+  // const [quantity, setQuantity] = useState(1);
+  // const [customWattage, setCustomWattage] = useState(0);
+  // const [devices, setDevices] = useState(defaultDevices);
+  // const [editIndex, setEditIndex] = useState<number | null>(null);
+  // const [noPackage, setNoPackage] = useState(false);
 
-  const handleGetQuote = () => {
-    if (!selectedPackage) {
-      setNoPackage(true);
-      return;
-    }
-    setLoading(true);
-    // proceed to result page
-    router.push(
-      `/result/size?data=${encodeURIComponent(JSON.stringify(result))}`
-    );
-  };
+  // const [load, setLoad] = useState("");
+
+  // const router = useRouter();
+
+  // const totalWatts = devices.reduce(
+  //   (sum, device) => sum + Number(device.watts),
+  //   0
+  // );
+  // const loadInWatts = Math.ceil(totalWatts).toString();
+
+  // const totalkVA = (totalWatts / 800).toFixed(2);
+
+  // const approximateLoad = Math.ceil(totalkVA);
+  // // Custom package selection logic
+  // let customPackageName = "";
+
+  // if (totalWatts < 500) {
+  //   customPackageName = "500W";
+  // } else if (totalWatts >= 500 && totalWatts <= 700) {
+  //   customPackageName = "1000W";
+  // } else if (totalWatts >= 700 && totalWatts <= 950) {
+  //   customPackageName = "1000W";
+  // } else if (approximateLoad > 1000 && approximateLoad <= 1500) {
+  // } else if (approximateLoad > 1000 && approximateLoad <= 1500) {
+  //   customPackageName = "1.5kva";
+  // } else if (approximateLoad == 2500) {
+  //   customPackageName = "2.5kva";
+  // } else if (approximateLoad > 2500 && approximateLoad <= 3500) {
+  //   customPackageName = "3.5kva";
+  // } else if (approximateLoad > 3500 && approximateLoad <= 4200) {
+  //   customPackageName = "4.2kva";
+  // } else if (approximateLoad > 4500 && approximateLoad <= 6200) {
+  //   customPackageName = "6.2kva";
+  // }
+
+  // // Use customPackageName if set, otherwise use your existing logic
+  // const possibleNames = customPackageName
+  //   ? [customPackageName]
+  //   : [
+  //       `${load}kva`,
+  //       `${load}kva(a)`,
+  //       `${load}kva(b)`,
+  //       `${loadInWatts}W`,
+  //       `${loadInWatts}W(a)`,
+  //       `${loadInWatts}W(b)`,
+  //     ];
+
+  // console.log(possibleNames);
+
+  // const selectedPackage = PACKAGES.find((p) => possibleNames.includes(p.name));
+
+  // const selectedPackageBattery = selectedPackage?.battery;
+  // const selectedPackagePanelArray = selectedPackage?.panelArray;
+  // const selectedPackagePicture = selectedPackage?.picture;
+  // const packagePrice = selectedPackage?.price;
+
+  // console.log(PACKAGES.find(() => possibleNames.includes("500watts")));
+  // console.log("Selected Package:", selectedPackage);
+
+  // useEffect(() => {
+  //   setLoad(Math.ceil(totalkVA).toString());
+  // }, [totalkVA]);
+
+  // const handleAddDevice = () => {
+  //   if (selectedAppliance && quantity > 0) {
+  //     const deviceName = selectedAppliance.name;
+  //     const icon = selectedAppliance.icon;
+  //     const alreadyExists = devices.some(
+  //       (d) => d.icon === icon && d.name.split(" x ")[0] === deviceName
+  //     );
+
+  //     if (alreadyExists && editIndex === null) {
+  //       toast(
+  //         `You've already added "${deviceName}", to edit the quantity please click on the pencil icon.`
+  //       );
+  //       return;
+  //     }
+
+  //     const totalWatts = customWattage * quantity;
+  //     const newDevice = {
+  //       icon: selectedAppliance.icon,
+  //       name: `${selectedAppliance.name} x ${quantity}`,
+  //       watts: totalWatts,
+  //     };
+  //     if (editIndex !== null) {
+  //       // Edit existing
+  //       const updatedDevices = [...devices];
+  //       updatedDevices[editIndex] = newDevice;
+  //       setDevices(updatedDevices);
+  //       setEditIndex(null);
+  //     } else {
+  //       // Add new
+  //       setDevices([...devices, newDevice]);
+  //     }
+  //     setIsDialogOpen(false);
+  //     setNoPackage(false);
+  //   }
+  // };
+
+  // const handleSelectChange = (value) => {
+  //   const found = appliances.find((item) => item.name === value);
+  //   if (found) {
+  //     setSelectedAppliance(found);
+  //     setCustomWattage(found.watts);
+  //   }
+  // };
+
+  // const handleRemoveDevice = (index: number) => {
+  //   const updatedDevices = [...devices];
+  //   updatedDevices.splice(index, 1);
+  //   setDevices(updatedDevices);
+  // };
+
+  // // const packageExists = PACKAGES.find(
+  // //   (p) =>
+  // //     p.name === `${load}kva` ||
+  // //     `${load}kva(a)` ||
+  // //     `${load}kva(b)` ||
+  // //     `${loadInWatts}W` ||
+  // //     `${loadInWatts}W(a)` ||
+  // //     `${loadInWatts}W(b)`
+  // // );
+
+  // const result = {
+  //   load,
+  //   selectedPackage,
+  //   packagePrice,
+  //   selectedPackageBattery,
+  //   selectedPackagePanelArray,
+  //   selectedPackagePicture,
+  // };
+
+  // const handleGetQuote = () => {
+  //   if (!selectedPackage) {
+  //     setNoPackage(true);
+  //     return;
+  //   }
+  //   setLoading(true);
+  //   // proceed to result page
+  //   router.push(
+  //     `/result/size?data=${encodeURIComponent(JSON.stringify(result))}`
+  //   );
+  // };
 
   return (
     <div className="grid items-center w-full max-w-4xl mx-auto sm:px-6 lg:px-8 py-12">
@@ -379,6 +411,12 @@ const SizeCalculator = () => {
           <div className="text-center text-sm text-gray-600 mb-4">
             Equivalent kVA rating:{" "}
             <span className="font-semibold text-gray-900">{totalkVA} kVA</span>
+          </div>
+          <div className="text-center text-sm text-gray-600 mb-4">
+            Appox kVA rating:{" "}
+            <span className="font-semibold text-gray-900">
+              {approximateLoad} kVA
+            </span>
           </div>
           <Button onClick={handleGetQuote} className="w-full gradient-bg">
             {loading ? (

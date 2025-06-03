@@ -60,6 +60,12 @@ const SignInView = () => {
 
   const callbackUrl = searchParams.get("callbackUrl") || "/";
 
+  // Only include callbackUrl if it's not "/" and is truthy
+  const signUpHref =
+    callbackUrl && callbackUrl !== "/"
+      ? `/sign-up?callbackUrl=${encodeURIComponent(callbackUrl)}`
+      : "/sign-up";
+
   const onSubmit = async (data: FormData) => {
     try {
       await authClient.signIn.email(
@@ -75,6 +81,7 @@ const SignInView = () => {
           onSucces: () => {
             toast("Signed in successfully!");
             setLoading(false);
+            router.push(callbackUrl);
           },
           onError: () => {
             toast("Something went wrong, please try again");
@@ -191,9 +198,7 @@ const SignInView = () => {
               Don&apos;t have an account?{" "}
               <Link
                 className="underline text-slate-900 font-bold"
-                href={`/sign-up?callbackUrl=${encodeURIComponent(
-                  searchParams.get("callbackUrl") || "/"
-                )}`}>
+                href={signUpHref}>
                 Sign Up
               </Link>
             </p>

@@ -6,13 +6,19 @@ import { redirect } from "next/navigation";
 
 type Props = {
   params: { type: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
-const ResultPage = async ({ params }: Props) => {
+const ResultPage = async ({ params, searchParams }: Props) => {
   const session = await auth.api.getSession({
     headers: await headers(), // you need to pass the headers object.
   });
-  const currentPath = `/result/${params.type}`;
+  const currentPath = `/result/${params.type}${
+    searchParams?.data
+      ? `?data=${encodeURIComponent(searchParams.data as string)}`
+      : ""
+  }`;
+
   console.log("session", session);
   if (!session) {
     redirect(`/sign-in?callbackUrl=${encodeURIComponent(currentPath)}`);

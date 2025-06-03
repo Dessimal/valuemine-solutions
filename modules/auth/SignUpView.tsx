@@ -87,6 +87,7 @@ const SignInView = () => {
             //redirect to the dashboard or sign in page
             toast("Sign Up Successful!");
             setLoading(false);
+            router.push(callbackUrl);
           },
           onError: () => {
             // display the error message

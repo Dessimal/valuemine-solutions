@@ -8,6 +8,8 @@ import { authClient } from "@/app/lib/auth-client";
 import { toast } from "sonner";
 
 export const ResultView = () => {
+  const [loggingout, setLoggingout] = React.useState(false);
+
   const params = useParams();
   const searchParams = useSearchParams();
 
@@ -47,9 +49,13 @@ export const ResultView = () => {
   const handleSignOut = async () => {
     await authClient.signOut({
       fetchOptions: {
+        onRequest: () => {
+          setLoggingout(true); // redirect to login page
+        },
         onSuccess: () => {
           router.push("/sign-in");
-          toast("You just signed out"); // redirect to login page
+          toast("You just signed out");
+          setLoggingout(false);
         },
       },
     });
@@ -58,7 +64,9 @@ export const ResultView = () => {
   return (
     <main className="space-y-6">
       <div className="w-full">
-        <Button onClick={handleSignOut}>Log out</Button>
+        <Button onClick={handleSignOut}>
+          {loggingout ? "Logging out..." : "Log out"}
+        </Button>
       </div>
       <ResultComponent result={result} />
     </main>
