@@ -36,28 +36,30 @@ export function useSizeCalculator() {
     );
   });
 
-  if (totalWatts <= 1000) {
+  if (totalWatts <= 800) {
     if (!hasFreezerOrFridge) {
       if (totalWatts < 500) {
         customPackageName = "500W";
       }
       if (totalWatts >= 500 && totalWatts <= 700) {
         customPackageName = "1000W(a)";
-      } else if (totalWatts >= 700 && totalWatts <= 1000) {
+      } else if (totalWatts >= 700 && totalWatts <= 800) {
         customPackageName = "1000W(b)";
       }
     } else {
       customPackageName = "1kva(a)";
     }
-  } else if (totalWatts > 1000 && totalWatts <= 1500) {
+  } else if (totalkVA > 1 && totalkVA <= 1.5) {
     customPackageName = "1.5kva";
-  } else if (totalWatts == 2500) {
+  } else if (totalkVA > 1.5 && totalkVA <= 2) {
+    customPackageName = "2kva hybrid";
+  } else if (totalkVA > 2 && totalkVA <= 2.5) {
     customPackageName = "2.5kva";
-  } else if (totalWatts > 2500 && totalWatts <= 3500) {
+  } else if (totalkVA > 2.5 && totalkVA <= 3.5) {
     customPackageName = "3.5kva";
-  } else if (totalWatts > 3500 && totalWatts <= 4200) {
+  } else if (totalkVA > 3.5 && totalkVA <= 4.2) {
     customPackageName = "4.2kva";
-  } else if (totalWatts > 4500 && totalWatts <= 6200) {
+  } else if (totalkVA > 4.2 && totalkVA <= 6.2) {
     customPackageName = "6.2kva";
   }
 
@@ -164,6 +166,7 @@ export function useSizeCalculator() {
 
   return {
     appliances,
+    customPackageName,
     loading,
     setLoading,
     isDialogOpen,

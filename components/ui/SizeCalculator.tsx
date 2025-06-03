@@ -34,6 +34,7 @@ import Appliance from "../Appliance";
 const SizeCalculator = () => {
   const {
     appliances,
+    customPackageName,
     loading,
     setLoading,
     isDialogOpen,
@@ -416,6 +417,12 @@ const SizeCalculator = () => {
             Appox kVA rating:{" "}
             <span className="font-semibold text-gray-900">
               {approximateLoad} kVA
+            </span>
+          </div>
+          <div className="text-center text-sm text-gray-600 mb-4">
+            Appox kVA rating:{" "}
+            <span className="font-semibold text-gray-900">
+              {customPackageName}
             </span>
           </div>
           <Button onClick={handleGetQuote} className="w-full gradient-bg">

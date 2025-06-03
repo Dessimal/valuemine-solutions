@@ -1,54 +1,23 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import ReactMarkdown from "react-markdown";
-import { Button } from "./ui/button";
-import { ArrowLeftToLine, Check, Copy } from "lucide-react";
-import Link from "next/link";
-import Image from "next/image";
-import Spinner from "./ui/Spinner";
-import ShareButton from "./ShareButton";
-import PackageCard from "./packageCard";
+import { ArrowLeftToLine } from "lucide-react";
 import { PACKAGES } from "@/app/constants";
-import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
+import RecommendedPackage from "./RecommendedPackage";
+import CostBreakdown from "./CostBreakDown";
+import OtherPackagesSection from "./OtherPackages";
 
 export default function ResultComponent({ result }) {
   const params = useParams();
-
   const router = useRouter();
 
-  const [aiDescription, setAIDescription] = useState<string | null>(null);
-  const [copied, setCopied] = useState(false);
+  const [aiDescription, setAIDescription] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  // Example usage in your parent component
 
-  const [selectedResult, setSelectedResult] = useState<{
-    load: number;
-    selectedPackage: string;
-    packagePrice: number;
-    selectedPackageBattery: string;
-    selectedPackagePanelArray: string;
-    selectedPackagePicture: string;
-  } | null>(null);
-
-  const handleSelect = (pkg: {
-    name: string;
-    price: number;
-    battery: string;
-    panelArray: string;
-    picture: string;
-    load: number;
-  }) => {
-    setSelectedResult({
-      load: pkg.load,
-      selectedPackage: pkg.name,
-      packagePrice: pkg.price,
-      selectedPackageBattery: pkg.battery,
-      selectedPackagePanelArray: pkg.panelArray,
-      selectedPackagePicture: pkg.picture,
-    });
+  const handleSelect = (pkg: any) => {
+    // ...your logic for selecting a package...
   };
 
   async function fetchAIDescription() {
@@ -67,8 +36,9 @@ export default function ResultComponent({ result }) {
         }),
       });
       const data = await res.json();
-
-      setAIDescription(data.text);
+      setAIDescription(
+        typeof data.data === "string" ? JSON.parse(data.data) : data.data
+      );
     } finally {
       setLoading(false);
     }
@@ -85,11 +55,6 @@ export default function ResultComponent({ result }) {
     return <div>No result data found.</div>;
   }
 
-  function stripCodeFences(data: string) {
-    // Remove ```jsx and ```
-    return data.replace(/^```[a-z]*\n?/i, "").replace(/```$/, "");
-  }
-
   let sizeCalculatorEnabled;
   let interestCalculatorEnabled;
   if (params.type === "size") {
@@ -98,97 +63,8 @@ export default function ResultComponent({ result }) {
     interestCalculatorEnabled = true;
   }
 
-  const textRef = useRef<HTMLDivElement>(null);
-
-  function getShareText(result) {
-    let repaymentText = ""; // ...existing imports...
-
-    // ...existing code...
-
-    // ...existing hooks and functions...
-
-    // Helper to parse and render AI description as cards
-    function renderAIDescriptionCards(aiDescription: string) {
-      if (!aiDescription) return null;
-
-      let parsed;
-      try {
-        // Try to parse as JSON (from Gemini API)
-        parsed = JSON.parse(stripCodeFences(aiDescription));
-      } catch {
-        // Fallback: split by markdown headings if not JSON
-        // This fallback is optional and can be improved
-        return (
-          <Card className="mb-4">
-            <CardContent>
-              <ReactMarkdown>{aiDescription}</ReactMarkdown>
-            </CardContent>
-          </Card>
-        );
-      }
-
-      // Render each section as a Card
-      return Object.entries(parsed).map(([section, content]) => (
-        <Card key={section} className="mb-4">
-          <CardHeader>
-            <CardTitle>
-              {section
-                .replace(/([A-Z])/g, " $1")
-                .replace(/^./, (str) => str.toUpperCase())}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ReactMarkdown>{content}</ReactMarkdown>
-          </CardContent>
-        </Card>
-      ));
-    }
-
-    // ...existing code...
-
-    return (
-      <div className="min-h-screen bg-gray-50 text-gray-900">
-        {/* ...existing code... */}
-        <div className="max-w-7xl px-1 sm:px-4 lg:px-8 py-12">
-          {interestCalculatorEnabled ? (
-            <div className="w-full text-sm md:text-base leading-relaxed">
-              {/* ...existing cost breakdown code... */}
-              {loading ? (
-                <div>
-                  Loading ...
-                  <Spinner />
-                </div>
-              ) : (
-                aiDescription && (
-                  <div className="mt-4">
-                    {renderAIDescriptionCards(aiDescription)}
-                  </div>
-                )
-              )}
-              {/* ...existing code... */}
-            </div>
-          ) : (
-            <div>
-              {/* ...existing recommended package code... */}
-              <div>
-                {loading ? (
-                  <Spinner />
-                ) : (
-                  aiDescription && (
-                    <div className="mt-4">
-                      {renderAIDescriptionCards(aiDescription)}
-                    </div>
-                  )
-                )}
-              </div>
-              {/* ...existing code... */}
-            </div>
-          )}
-
-          {/* ...existing explore other packages section... */}
-        </div>
-      </div>
-    );
+  function getShareText(result: any) {
+    let repaymentText = "";
     if (result?.repayment) {
       repaymentText = Object.entries(result.repayment)
         .map(
@@ -224,17 +100,6 @@ export default function ResultComponent({ result }) {
   `;
   }
 
-  // Then in your JSX:
-  <ShareButton textToShare={getShareText(result)} />;
-
-  const handleCopy = () => {
-    if (textRef.current) {
-      navigator.clipboard.writeText(textRef.current.innerText);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000); // Reset copied state after 2 seconds
-    }
-  };
-
   const otherPackages = PACKAGES.filter(
     (pkg) => pkg.name !== result?.selectedPackage?.name
   );
@@ -252,214 +117,24 @@ export default function ResultComponent({ result }) {
       </div>
       <div className="max-w-7xl px-1 sm:px-4 lg:px-8 py-12">
         {interestCalculatorEnabled ? (
-          <div className="w-full text-sm md:text-base leading-relaxed">
-            {result?.building && result?.downPayment && (
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 p-4 sm:p-6">
-                <div className="w-full">
-                  <Image
-                    src={result?.selectedPackagePicture}
-                    height={500}
-                    width={500}
-                    alt="solar package flyer"
-                    className="object-cover w-full "
-                  />
-                </div>
-                <div ref={textRef} className="relative">
-                  <div className="flex items-center justify-between my-6">
-                    <h2 className="text-xl md:text-2xl text-gray-900 font-semibold">
-                      Here’s the cost breakdown for our{" "}
-                      {result?.selectedPackage?.name} package:
-                    </h2>
-                    <button onClick={handleCopy} className=" cursor-pointer">
-                      {copied ? (
-                        <span className="ml-2 text-green-600 inline-flex gap-1 items-center">
-                          <Check className="inline-block" />
-                          Copied!
-                        </span>
-                      ) : (
-                        <span className="ml-2 text-gray-600 inline-flex gap-1 items-center">
-                          <Copy className="inline-block" />
-                          Copy
-                        </span>
-                      )}
-                    </button>
-                  </div>
-                  <p>
-                    Gadgets & Materials: ₦
-                    {result?.selectedPackage?.price?.toLocaleString()}
-                  </p>
-                  <p>
-                    Workmanship: ₦{result?.workmanship?.toLocaleString()} for{" "}
-                    {result?.building}
-                  </p>
-                  <p>
-                    Transportation: ₦
-                    {result?.transportationCost?.toLocaleString()}
-                  </p>
-                  <p className="mt-2 font-semibold">
-                    Total: ₦{result?.totalCost?.toLocaleString()}
-                  </p>
-                  <p>Down Payment: ₦{result?.downPayment?.toLocaleString()}</p>
-                  <p>
-                    Chargeable Amount: ₦
-                    {result?.chargeableAmount?.toLocaleString()}
-                  </p>
-                  <h3 className="mt-6 font-semibold">Repayment Options</h3>
-                  <ul className="list-disc ml-5">
-                    {result?.repayment &&
-                      Object.entries(result?.repayment).map(
-                        ([months, value]: [string, any]) => (
-                          <li key={months}>
-                            {months}: Monthly ₦{value.monthly?.toLocaleString()}{" "}
-                            / Weekly ₦{value.weekly?.toLocaleString()}
-                          </li>
-                        )
-                      )}
-                  </ul>
-                  <h4 className="mt-6 font-bold">
-                    *Detailed Breakdown of the system&apos;s capacity*
-                  </h4>
-                  <h5 className="mt-2 font-semibold">
-                    {result?.selectedPackage?.name}
-                  </h5>
-                  <p className="italic">_*Components:*_</p>
-                  <ul className="list-disc ml-5">
-                    <li>Inverter: {result?.selectedPackage.name}</li>
-                    <li>Battery: {result?.selectedPackageBattery}</li>
-                    <li>
-                      Solar Panel Array: {result?.selectedPackagePanelArray}
-                    </li>
-                  </ul>
-                  {loading ? (
-                    <div>
-                      Loading ...
-                      <Spinner />
-                    </div>
-                  ) : (
-                    aiDescription && (
-                      <div className="mt-4" style={{ whiteSpace: "pre-line" }}>
-                        <ReactMarkdown>
-                          {stripCodeFences(aiDescription)}
-                        </ReactMarkdown>
-                      </div>
-                    )
-                  )}
-                </div>
-                <div className="my-6 flex flex-col items-center justify-center">
-                  <ShareButton textToShare={getShareText(result)} />
-                </div>
-              </div>
-            )}
-          </div>
+          <CostBreakdown
+            result={result}
+            aiDescription={aiDescription}
+            loading={loading}
+            getShareText={getShareText}
+          />
         ) : (
-          <div>
-            <p className=" font-bold text-center text-gray-500 mb-12">
-              Your Recommended Solar Package
-            </p>
-            <h2 className="text-gray-900 font-bold text-4xl sm:text-6xl w-full text-center">
-              {result?.selectedPackage.name} Inverter Package
-            </h2>
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 p-4 sm:p-6">
-              <div className="w-full">
-                <Image
-                  src={result?.selectedPackagePicture}
-                  height={1080}
-                  width={1080}
-                  alt="solar package flyer"
-                  className="object-cover w-full"
-                />
-              </div>
-              <div ref={textRef} className="">
-                <div className="flex items-center mb-6 ">
-                  <div>
-                    <div>
-                      <div className="flex items-center justify-between my-6">
-                        <h2 className="text-xl md:text-2xl text-gray-900 font-semibold">
-                          Detailed Breakdown of the system&apos;s capacity
-                        </h2>
-                        <button
-                          onClick={handleCopy}
-                          className=" cursor-pointer">
-                          {copied ? (
-                            <span className="ml-2 text-green-600 inline-flex gap-1 items-center">
-                              <Check className="inline-block" />
-                              Copied!
-                            </span>
-                          ) : (
-                            <span className="ml-2 text-gray-600 inline-flex gap-1 items-center">
-                              <Copy className="inline-block" />
-                              Copy
-                            </span>
-                          )}
-                        </button>
-                      </div>
-                      <h5 className="mt-2 font-semibold">
-                        {result?.selectedPackage?.name}
-                      </h5>
-                      <p className="italic">_*Components:*_</p>
-                      <ul className="list-disc ml-5">
-                        <li>Inverter: {result?.selectedPackage.name}</li>
-                        <li>Battery: {result?.selectedPackageBattery}</li>
-                        <li>
-                          Solar Panel Array: {result?.selectedPackagePanelArray}
-                        </li>
-                      </ul>
-
-                      <div>
-                        {loading ? (
-                          <Spinner />
-                        ) : (
-                          aiDescription && (
-                            <div
-                              className="mt-4"
-                              style={{ whiteSpace: "pre-line" }}>
-                              <ReactMarkdown>
-                                {stripCodeFences(aiDescription)}
-                              </ReactMarkdown>
-                            </div>
-                          )
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <ShareButton textToShare={getShareText(result)} />
-                  <Button
-                    asChild
-                    variant="ghost"
-                    className="text-blue-500 hover:text-blue-600 px-8 py-3 rounded-md font-semibold">
-                    <Link className="capitalize" href="/Interest-calculator">
-                      pay small-small for this package
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <RecommendedPackage
+            result={result}
+            aiDescription={aiDescription}
+            loading={loading}
+            getShareText={getShareText}
+          />
         )}
-
-        {/* Explore other packages section */}
-        <div className="mt-16">
-          <h3 className="text-2xl font-bold mb-6 text-center text-gray-800">
-            Explore other Solar Packages
-          </h3>
-          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {otherPackages.map((pkg) => (
-              <PackageCard
-                key={pkg.name}
-                name={pkg.name}
-                price={pkg.price}
-                battery={pkg.battery}
-                panelArray={pkg.panelArray}
-                picture={pkg.picture}
-                description={pkg.description}
-                onSelect={() => handleSelect(packageObj)}
-                // Optionally, add an onSelect handler or link to details
-              />
-            ))}
-          </div>
-        </div>
+        <OtherPackagesSection
+          otherPackages={otherPackages}
+          handleSelect={handleSelect}
+        />
       </div>
     </div>
   );
