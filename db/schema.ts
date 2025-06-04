@@ -1,4 +1,13 @@
-import { pgTable, varchar, boolean, timestamp } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  varchar,
+  boolean,
+  text,
+  timestamp,
+  json,
+  serial,
+  uniqueIndex
+} from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 
 export const user = pgTable("user", {
@@ -50,3 +59,20 @@ export const verification = pgTable("verification", {
   createdAt: timestamp({ mode: "date" }).notNull().defaultNow(),
   updatedAt: timestamp({ mode: "date" }).notNull().defaultNow(),
 });
+
+export const gemini_descriptions = pgTable(
+  "gemini_descriptions",
+  {
+    id: serial("id").primaryKey(), // auto-increment integer PK
+    package_name: text("package_name").notNull(),
+    details_hash: text("details_hash").notNull(),
+    gemini_response: json("gemini_response").notNull(),
+    created_at: timestamp("created_at", { withTimezone: true }).defaultNow(),
+  },
+  (table) => ({
+    packageDetailsUnique: uniqueIndex("package_details_unique_idx").on(
+      table.package_name,
+      table.details_hash
+    ),
+  })
+);

@@ -1,59 +1,90 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeftToLine } from "lucide-react";
 import { PACKAGES } from "@/app/constants";
 import RecommendedPackage from "./RecommendedPackage";
 import CostBreakdown from "./CostBreakDown";
 import OtherPackagesSection from "./OtherPackages";
+import debounce from "lodash/debounce";
 
 export default function ResultComponent({ result }) {
   const params = useParams();
   const router = useRouter();
 
   const [aiDescription, setAIDescription] = useState<any>(null);
+  const [primaryAIDescription, setPrimaryAIDescription] = useState(null);
+  const [otherAIDescriptions, setOtherAIDescriptions] = useState({});
+
   const [loading, setLoading] = useState(true);
 
-  const handleSelect = (pkg: any) => {
-    // ...your logic for selecting a package...
-  };
-
-  async function fetchAIDescription() {
-    setLoading(true);
-    try {
-      if (!result) {
-        setAIDescription("Failed to get AI description");
-        return;
-      }
-      const res = await fetch("/api/gemini", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          packageName: result.selectedPackage?.name,
-          packageDetails: JSON.stringify(result.selectedPackage),
-        }),
-      });
-      const data = await res.json();
-      setAIDescription(
-        typeof data.data === "string" ? JSON.parse(data.data) : data.data
-      );
-    } finally {
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
-    if (result) {
-      fetchAIDescription();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [result]);
+    console.log("Selected package changed:", result?.selectedPackage);
+    async function fetchPrimary() {
+      try {
+        const res = await fetch("/api/gemini", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            packageName: result?.selectedPackage?.name,
+            packageDetails: JSON.stringify(result?.selectedPackage),
+          }),
+        });
 
-  if (!result) {
-    return <div>No result data found.</div>;
-  }
+        if (!res.ok) throw new Error("Failed to fetch AI description");
+
+        const data = await res.json();
+        const parsed =
+          typeof data.data === "string" ? JSON.parse(data.data) : data.data;
+
+        setPrimaryAIDescription(parsed);
+      } catch (error) {
+        console.error("Error fetching primary AI description:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    if (result?.selectedPackage) fetchPrimary();
+  }, [result?.selectedPackage]);
+
+  const handleSelect = useCallback(
+    debounce(async (pkg) => {
+      try {
+        setLoading(true);
+        const res = await fetch("/api/gemini", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            packageName: pkg.name,
+            packageDetails: JSON.stringify(pkg),
+          }),
+        });
+
+        if (!res.ok)
+          throw new Error("Failed to fetch alternate AI description");
+
+        const data = await res.json();
+        const parsed =
+          typeof data.data === "string" ? JSON.parse(data.data) : data.data;
+
+        setOtherAIDescriptions((prev) => ({
+          ...prev,
+          [pkg.name]: parsed,
+        }));
+      } catch (error) {
+        console.error(
+          "Error fetching AI description for selected package:",
+          error
+        );
+      } finally {
+        setLoading(false);
+      }
+    }, 500),
+    []
+  );
 
   let sizeCalculatorEnabled;
   let interestCalculatorEnabled;
@@ -77,7 +108,9 @@ export default function ResultComponent({ result }) {
     let interestBlock = "";
     if (interestCalculatorEnabled) {
       interestBlock = `
-  Gadgets & Materials: ₦${result?.selectedPackage?.price?.toLocaleString()}
+  Gadgets & Materials: ₦${(
+    result?.selectedPackage?.price ?? 0
+  ).toLocaleString()}
   Workmanship: ₦${result?.workmanship?.toLocaleString()} for ${result?.building}
   Transportation: ₦${result?.transportationCost?.toLocaleString()}
   Total: ₦${result?.totalCost?.toLocaleString()}
@@ -99,17 +132,17 @@ export default function ResultComponent({ result }) {
   ...
   `;
   }
-
-  const otherPackages = PACKAGES.filter(
-    (pkg) => pkg.name !== result?.selectedPackage?.name
+  const otherPackages = useMemo(
+    () => PACKAGES.filter((pkg) => pkg.name !== result?.selectedPackage?.name),
+    [result]
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
+    <div className="min-h-screen">
       <div>
         <button
           onClick={() => router.back()}
-          className="font-bold text-gray-700 hover:text-gray-900 px-4 py-2">
+          className="font-bold hover:text-gray-900 px-4 py-2">
           <span className="inline-flex items-center gap-2">
             <ArrowLeftToLine /> Go back
           </span>
@@ -119,21 +152,23 @@ export default function ResultComponent({ result }) {
         {interestCalculatorEnabled ? (
           <CostBreakdown
             result={result}
-            aiDescription={aiDescription}
+            aiDescription={primaryAIDescription}
             loading={loading}
-            getShareText={getShareText}
+            // getShareText={getShareText}
           />
         ) : (
           <RecommendedPackage
             result={result}
-            aiDescription={aiDescription}
+            aiDescription={primaryAIDescription}
             loading={loading}
             getShareText={getShareText}
           />
         )}
         <OtherPackagesSection
           otherPackages={otherPackages}
-          handleSelect={handleSelect}
+          // handleSelect={handleSelect}
+          aiDescriptions={otherAIDescriptions}
+          loading={loading}
         />
       </div>
     </div>

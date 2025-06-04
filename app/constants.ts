@@ -1,5 +1,6 @@
 // constants.ts
 import Logo from "@/app/assets/logo.svg";
+import HeroImage from "@/app/assets/valuemine_hero_image.png"
 import {
   Sun,
   Battery,
@@ -24,7 +25,7 @@ import fourPointTwoKva from "@/public/4.2kva 1.9m.png";
 import sixPointTwoKvaTubular from "@/public/6.2kva 2.8m.png";
 import sixPointTwoKvaLithium from "@/public/6.2kva lithium 3m.png";
 
-export { Logo };
+export { Logo, HeroImage };
 
 export const benefits = [
   {

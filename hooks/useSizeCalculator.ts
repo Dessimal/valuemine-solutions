@@ -144,11 +144,11 @@ export function useSizeCalculator() {
   const { data: session } = authClient.useSession();
 
   const handleGetQuote = () => {
+    setLoading(true);
     if (!selectedPackage) {
       setNoPackage(true);
       return;
     }
-    setLoading(true);
 
     const callbackUrl = `/result/size?data=${encodeURIComponent(
       JSON.stringify(result)

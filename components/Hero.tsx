@@ -4,8 +4,8 @@
 // import { motion } from "framer-motion";
 // // import {HeroImage } from "@/app/constants"
 // import HeroImage from "@/app/assets/valuemine_hero_image.png"
-// import Image from "next/image"
 
+// import Image from "next/image"
 // const Hero = () => {
 //   return (
 //     <section className="relative min-h-screen">
@@ -142,6 +142,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Sun, Fan, Refrigerator } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
+import {HeroImage } from "@/app/constants"
+import Image from "next/image"
 
 const Hero = () => {
   return (
@@ -271,11 +273,10 @@ const Hero = () => {
               ease: "easeInOut",
             }}>
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-brand-yellow to-brand-orange opacity-20 blur-2xl"></div>
-            <img
-              src="/lovable-uploads/a248f2f1-f6ce-43a8-8d3b-f651fa300333.png"
-              alt="Valuemine Solutions Professional"
-              className="w-full h-full object-contain relative z-10"
-            />
+            <Image
+           src={HeroImage}
+                        height={500}
+                        width={500}              alt="Valuemine Solutions Professional"              className="w-full h-full object-contain relative z-10"            />
           </motion.div>
         </motion.div>
       </div>

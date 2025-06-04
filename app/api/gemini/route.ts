@@ -2,6 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { generateText } from "ai";
 import { google } from "@ai-sdk/google";
 import { geminiPrompt } from "@/geminiPrompt";
+import crypto from "crypto";
+import { db } from "@/db";
+import { eq, and } from "drizzle-orm";
+import { gemini_descriptions } from "@/db/schema";
+
+function hash(str: string) {
+  return crypto.createHash("sha256").update(str).digest("hex");
+}
 
 export async function POST(req: NextRequest) {
   const { packageName, packageDetails } = await req.json();
@@ -11,6 +19,27 @@ export async function POST(req: NextRequest) {
       { status: 400 }
     );
   }
+
+  const detailsHash = hash(packageDetails);
+
+  // Check for cached response in Supabase/Drizzle
+  const cached = await db
+  .select()
+  .from(gemini_descriptions)
+  .where(
+    and(
+      eq(gemini_descriptions.package_name, packageName),
+      eq(gemini_descriptions.details_hash, detailsHash)
+    )
+  )
+  .limit(1);
+
+  
+
+  if (cached.length > 0) {
+    return NextResponse.json({ data: cached[0].gemini_response });
+  }
+
   try {
     const { text } = await generateText({
       model: google("models/gemini-2.0-flash-exp", {
@@ -35,6 +64,15 @@ export async function POST(req: NextRequest) {
         );
       }
     }
+
+    // Store in Supabase/Drizzle
+    await db.insert(gemini_descriptions).values({
+      package_name: packageName,
+      details_hash: detailsHash,
+      gemini_response: parsed,
+      created_at: new Date(),
+    })
+    .onConflictDoNothing();
 
     return NextResponse.json({ data: parsed });
   } catch (error) {

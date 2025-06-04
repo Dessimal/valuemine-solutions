@@ -1,91 +1,112 @@
+import { CheckCircle, Zap } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
 
 export default function GeminiResultCard({ data }: { data: any }) {
   if (!data) return null;
 
+  const specifications = data.systemSpecifications
+    ? [
+        {
+          label: "Total Solar Capacity",
+          value: data.systemSpecifications.totalSolarCapacity?.value ?? "N/A",
+          unit:
+            (data.systemSpecifications.totalSolarCapacity?.unit ?? "") +
+            (data.systemSpecifications.totalSolarCapacity?.type
+              ? ` (${data.systemSpecifications.totalSolarCapacity.type})`
+              : ""),
+        },
+        {
+          label: "Inverter Capacity",
+          value: data.systemSpecifications.inverterCapacity?.value ?? "N/A",
+          unit:
+            (data.systemSpecifications.inverterCapacity?.unit ?? "") +
+            (data.systemSpecifications.inverterCapacity?.type
+              ? ` (${data.systemSpecifications.inverterCapacity.type})`
+              : ""),
+        },
+        {
+          label: "Battery Storage",
+          value: data.systemSpecifications.batteryStorage?.value ?? "N/A",
+          unit:
+            (data.systemSpecifications.batteryStorage?.unit ?? "") +
+            (data.systemSpecifications.batteryStorage?.type
+              ? ` (${data.systemSpecifications.batteryStorage.type})`
+              : ""),
+        },
+        {
+          label: "Expected Daily Generation",
+          value:
+            (data.systemSpecifications.expectedDailyGeneration?.min ?? "N/A") +
+            " - " +
+            (data.systemSpecifications.expectedDailyGeneration?.max ?? "N/A"),
+          unit:
+            (data.systemSpecifications.expectedDailyGeneration?.unit ?? "") +
+            (data.systemSpecifications.expectedDailyGeneration?.note
+              ? ` (${data.systemSpecifications.expectedDailyGeneration.note})`
+              : ""),
+        },
+        {
+          label: "System Efficiency",
+          value: data.systemSpecifications.systemEfficiency?.value ?? "N/A",
+          unit:
+            (data.systemSpecifications.systemEfficiency?.unit ?? "") +
+            (data.systemSpecifications.systemEfficiency?.type
+              ? ` (${data.systemSpecifications.systemEfficiency.type})`
+              : ""),
+        },
+        {
+          label: "Warranty Period",
+          value: data.systemSpecifications.warrantyPeriod?.value ?? "N/A",
+          unit:
+            (data.systemSpecifications.warrantyPeriod?.unit ?? "") +
+            (data.systemSpecifications.warrantyPeriod?.appliesTo
+              ? ` (Applies to: ${data.systemSpecifications.warrantyPeriod.appliesTo})`
+              : ""),
+        },
+      ]
+    : [];
+
   return (
     <div className="space-y-6">
       {/* System Specifications */}
-      <Card>
-        <CardHeader>
-          <CardTitle>System Specifications</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ul>
-            <li>
-              <strong>Total Solar Capacity:</strong>{" "}
-              {data.systemSpecifications?.totalSolarCapacity?.value ?? "N/A"}{" "}
-              {data.systemSpecifications?.totalSolarCapacity?.unit ?? ""} (
-              {data.systemSpecifications?.totalSolarCapacity?.type ?? ""})
-            </li>
-            <li>
-              <strong>Inverter Capacity:</strong>{" "}
-              {data.systemSpecifications?.inverterCapacity?.value ?? "N/A"}{" "}
-              {data.systemSpecifications?.inverterCapacity?.unit ?? ""} (
-              {data.systemSpecifications?.inverterCapacity?.type ?? ""})
-            </li>
-            <li>
-              <strong>Battery Storage:</strong>{" "}
-              {data.systemSpecifications?.batteryStorage?.value ?? "N/A"}{" "}
-              {data.systemSpecifications?.batteryStorage?.unit ?? ""} (
-              {data.systemSpecifications?.batteryStorage?.type ?? ""})
-            </li>
-            <li>
-              <strong>Expected Daily Generation:</strong>{" "}
-              {data.systemSpecifications?.expectedDailyGeneration?.min ?? "N/A"}
-              -
-              {data.systemSpecifications?.expectedDailyGeneration?.max ?? "N/A"}{" "}
-              {data.systemSpecifications?.expectedDailyGeneration?.unit ?? ""} (
-              {data.systemSpecifications?.expectedDailyGeneration?.note ?? ""})
-            </li>
-            <li>
-              <strong>System Efficiency:</strong>{" "}
-              {data.systemSpecifications?.systemEfficiency?.value ?? "N/A"}
-              {data.systemSpecifications?.systemEfficiency?.unit ?? ""} (
-              {data.systemSpecifications?.systemEfficiency?.type ?? ""})
-            </li>
-            <li>
-              <strong>Warranty Period:</strong>{" "}
-              {data.systemSpecifications?.warrantyPeriod?.value ?? "N/A"}{" "}
-              {data.systemSpecifications?.warrantyPeriod?.unit ?? ""} ( Applies
-              to: {data.systemSpecifications?.warrantyPeriod?.appliesTo ?? ""})
-            </li>
-          </ul>
-        </CardContent>
-      </Card>
-
-      {/* Installation Timeline */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Installation Timeline</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ul>
-            {(data.installationTimeline?.steps ?? []).length > 0 ? (
-              data.installationTimeline.steps.map((step: any, idx: number) => (
-                <li key={idx}>
-                  <strong>{step.name ?? "Step"}:</strong>{" "}
-                  {step.duration?.min ?? "N/A"}-{step.duration?.max ?? "N/A"}{" "}
-                  {step.duration?.unit ?? ""}
-                </li>
-              ))
-            ) : (
-              <li>No steps provided.</li>
-            )}
-            <li>
-              <strong>Total Timeline:</strong>{" "}
-              {data.installationTimeline?.totalTimeline?.min ?? "N/A"}-
-              {data.installationTimeline?.totalTimeline?.max ?? "N/A"}{" "}
-              {data.installationTimeline?.totalTimeline?.unit ?? ""}
-            </li>
-          </ul>
-        </CardContent>
-      </Card>
+      {data.systemSpecifications && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center">
+              <Zap className="h-5 w-5 mr-2 text-blue-600" />
+              System Specifications
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {specifications.map((spec, index) => (
+                <div
+                  key={index}
+                  className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
+                  <span className="text-sm text-gray-600">{spec.label}</span>
+                  <div className="text-right">
+                    <span className="font-semibold text-gray-900">
+                      {spec.value}
+                    </span>
+                    <div className="text-xs text-gray-500">{spec.unit}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* What Can This System Power */}
-      <Card>
-        <CardHeader>
-          <CardTitle>What Can This System Power?</CardTitle>
+      {/* <Card className="w-full">
+        <CardHeader className="text-center">
+          <CardTitle className="text-3xl font-bold text-gray-900 mb-2">
+            What Can This System Power?
+          </CardTitle>
+          <p className="text-lg text-gray-600">
+            Your 4.8kW solar system with 10.2kWh battery storage can comfortably
+            power:
+          </p>
         </CardHeader>
         <CardContent>
           <div>
@@ -127,82 +148,205 @@ export default function GeminiResultCard({ data }: { data: any }) {
             </ul>
           </div>
         </CardContent>
-      </Card>
+      </Card> */}
 
-      {/* Daily Energy Production */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Daily Energy Production</CardTitle>
+      <Card className="w-full">
+        <CardHeader className="text-center">
+          <CardTitle className="text-3xl font-bold text-gray-900 mb-2">
+            What Can This System Power?
+          </CardTitle>
+          <p className="text-lg text-gray-600">
+            Your{" "}
+            {data.whatCanThisSystemPower?.system_power_capability
+              ?.solar_system_kilowatts ?? "N/A"}
+            kW solar system with{" "}
+            {data.whatCanThisSystemPower?.system_power_capability
+              ?.battery_storage_kilowatt_hours ?? "N/A"}
+            kWh battery storage can comfortably power:
+          </p>
         </CardHeader>
         <CardContent>
-          <ul>
-            <li>
-              <strong>Peak Summer:</strong>{" "}
-              {data.daily_energy_production?.peak_summer?.min_kwh ?? "N/A"}-
-              {data.daily_energy_production?.peak_summer?.max_kwh ?? "N/A"} kWh
-            </li>
-            <li>
-              <strong>Spring/Fall:</strong>{" "}
-              {data.daily_energy_production?.spring_fall?.min_kwh ?? "N/A"}-
-              {data.daily_energy_production?.spring_fall?.max_kwh ?? "N/A"} kWh
-            </li>
-            <li>
-              <strong>Winter:</strong>{" "}
-              {data.daily_energy_production?.winter?.min_kwh ?? "N/A"}-
-              {data.daily_energy_production?.winter?.max_kwh ?? "N/A"} kWh
-            </li>
-            <li>
-              <strong>Backup Power:</strong>{" "}
-              {data.daily_energy_production?.backup_power?.min_days ?? "N/A"}-
-              {data.daily_energy_production?.backup_power?.max_days ?? "N/A"}{" "}
-              days
-            </li>
-          </ul>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {data.whatCanThisSystemPower?.system_power_capability
+              ?.comfortably_powers ? (
+              Object.entries(
+                data.whatCanThisSystemPower.system_power_capability
+                  .comfortably_powers
+              ).map(([category, value]: [string, any], categoryIndex) => (
+                <div key={categoryIndex} className="space-y-4">
+                  <h4 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    <span className="bg-gradient-to-r from-blue-600 to-green-600 w-2 h-6 rounded-full mr-3"></span>
+                    {category.replace(/_/g, " ")}
+                  </h4>
+                  <div className="mb-2 text-gray-700">
+                    {value.description ?? ""}
+                  </div>
+                  <div className="space-y-3">
+                    {(value.appliances ?? []).map(
+                      (item: any, itemIndex: number) => (
+                        <div
+                          key={itemIndex}
+                          className="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
+                          <div className="flex items-start space-x-3">
+                            <div className="bg-white p-2 rounded-lg shadow-sm">
+                              {/* If you have an icon component mapping, use it here. Otherwise, just show the icon name */}
+                              {item.icon ? (
+                                <span className="h-5 w-5 text-gray-600">
+                                  {item.icon}
+                                </span>
+                              ) : null}
+                            </div>
+                            <div className="flex-1">
+                              <h5 className="font-medium text-gray-900 mb-1">
+                                {item.name}
+                              </h5>
+                              <div className="text-sm text-gray-600 space-y-1">
+                                <div>
+                                  {item.quantity ?? item.watts
+                                    ? `${item.watts ?? ""}W`
+                                    : ""}
+                                </div>
+                                <div className="text-xs text-green-600 font-medium">
+                                  {item.hours ?? ""}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="col-span-full text-center text-gray-500">N/A</div>
+            )}
+          </div>
+
+          {/* Daily Energy Production styled summary */}
+          <div className="mt-8 p-6 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg border border-green-200">
+            <div className="text-center">
+              <h5 className="text-lg font-semibold text-gray-900 mb-2">
+                Daily Energy Production
+              </h5>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div>
+                  <div className="text-2xl font-bold text-green-600">
+                    {data.daily_energy_production?.peak_summer
+                      ? `${
+                          data.daily_energy_production.peak_summer.min_kwh ??
+                          "N/A"
+                        }-${
+                          data.daily_energy_production.peak_summer.max_kwh ??
+                          "N/A"
+                        } kWh`
+                      : "N/A"}
+                  </div>
+                  <div className="text-sm text-gray-600">Peak Summer</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-blue-600">
+                    {data.daily_energy_production?.spring_fall
+                      ? `${
+                          data.daily_energy_production.spring_fall.min_kwh ??
+                          "N/A"
+                        }-${
+                          data.daily_energy_production.spring_fall.max_kwh ??
+                          "N/A"
+                        } kWh`
+                      : "N/A"}
+                  </div>
+                  <div className="text-sm text-gray-600">Spring/Fall</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-orange-600">
+                    {data.daily_energy_production?.winter
+                      ? `${
+                          data.daily_energy_production.winter.min_kwh ?? "N/A"
+                        }-${
+                          data.daily_energy_production.winter.max_kwh ?? "N/A"
+                        } kWh`
+                      : "N/A"}
+                  </div>
+                  <div className="text-sm text-gray-600">Winter</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-purple-600">
+                    {data.daily_energy_production?.backup_power
+                      ? `${
+                          data.daily_energy_production.backup_power.min_days ??
+                          "N/A"
+                        }-${
+                          data.daily_energy_production.backup_power.max_days ??
+                          "N/A"
+                        } Days`
+                      : "N/A"}
+                  </div>
+                  <div className="text-sm text-gray-600">Backup Power</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </CardContent>
       </Card>
 
       {/* Simultaneous Power Load Capacity */}
       <Card>
         <CardHeader>
-          <CardTitle>Simultaneous Power Load Capacity</CardTitle>
+          <CardTitle className="flex items-center">
+            <CheckCircle className="h-5 w-5 mr-2 text-green-600" />
+            Simultaneous Power Load Capacity
+          </CardTitle>
         </CardHeader>
         <CardContent>
-          <div>
+          <div className="mb-4 text-gray-700">
             <strong>Description:</strong>{" "}
             {data.simultaneousPowerLoadCapacity?.description ?? "N/A"}
           </div>
-          <ul>
+          <div className="space-y-3">
             {(data.simultaneousPowerLoadCapacity?.devices ?? []).length > 0 ? (
               data.simultaneousPowerLoadCapacity.devices.map(
-                (dev: string, idx: number) => <li key={idx}>{dev}</li>
+                (dev: string, idx: number) => (
+                  <div key={idx} className="flex items-start">
+                    <CheckCircle className="h-4 w-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm text-gray-700">{dev}</span>
+                  </div>
+                )
               )
             ) : (
-              <li>No devices listed.</li>
+              <div className="text-gray-500 text-sm">No devices listed.</div>
             )}
-          </ul>
+          </div>
         </CardContent>
       </Card>
 
       {/* Can It Power */}
       <Card>
         <CardHeader>
-          <CardTitle>Can It Power?</CardTitle>
+          <CardTitle className="flex items-center">
+            <CheckCircle className="h-5 w-5 mr-2 text-green-600" />
+            Can It Power?
+          </CardTitle>
         </CardHeader>
         <CardContent>
-          <ul>
+          <div className="space-y-3">
             {data.canItPower ? (
               Object.entries(data.canItPower).map(
-                ([device, val]: [string, any]) => (
-                  <li key={device}>
-                    <strong>{device}:</strong> {val.emoji ?? ""}{" "}
-                    {val.response ?? ""}
-                  </li>
+                ([device, val]: [string, any], idx) => (
+                  <div key={device} className="flex items-start">
+                    <span className="text-xl mr-3 mt-0.5 flex-shrink-0">
+                      {val.emoji ?? "❓"}
+                    </span>
+                    <span className="text-sm text-gray-700">
+                      <strong>{device}:</strong> {val.response ?? ""}
+                    </span>
+                  </div>
                 )
               )
             ) : (
-              <li>N/A</li>
+              <div className="text-gray-500 text-sm">No data available.</div>
             )}
-          </ul>
+          </div>
         </CardContent>
       </Card>
 

@@ -27,7 +27,7 @@ export default function CostBreakdown({
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 p-4 sm:p-6">
+    <div className="rounded-2xl shadow-lg overflow-hidden mb-8 p-4 sm:p-6">
       <div className="w-full">
         <img
           src={result?.selectedPackagePicture}
@@ -39,7 +39,7 @@ export default function CostBreakdown({
       </div>
       <div ref={textRef} className="relative">
         <div className="flex items-center justify-between my-6">
-          <h2 className="text-xl md:text-2xl text-gray-900 font-semibold">
+          <h2 className="text-xl md:text-2xl font-semibold">
             Here’s the cost breakdown for our {result?.selectedPackage?.name}{" "}
             package:
           </h2>
@@ -50,7 +50,7 @@ export default function CostBreakdown({
                 Copied!
               </span>
             ) : (
-              <span className="ml-2 text-gray-600 inline-flex gap-1 items-center">
+              <span className="ml-2 inline-flex gap-1 items-center">
                 <Copy className="inline-block" />
                 Copy
               </span>

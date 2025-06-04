@@ -56,7 +56,7 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-gray-50">
+    <section id="services" className="py-20">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-16"
@@ -76,7 +76,7 @@ const Services = () => {
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow"
+              className="rounded-lg shadow-md overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

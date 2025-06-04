@@ -233,7 +233,7 @@ const SizeCalculator = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.2 }}>
-        <div className="relative bg-white p-6 rounded-2xl shadow-xl border border-gray-100 max-w-md">
+        <div className="relative p-6 rounded-2xl shadow-xl border border-gray-100 max-w-md">
           <div className="absolute -top-12 -right-12 w-24 h-24 gradient-bg rounded-full flex items-center justify-center">
             <motion.div
               animate={{ scale: [1, 1.2, 1] }}
@@ -331,7 +331,7 @@ const SizeCalculator = () => {
               <DialogTrigger asChild>
                 <motion.div
                   className={cn(
-                    "min-h-32 bg-white border-2 border-dashed border-gray-200 rounded-lg p-4 flex items-center justify-center h-full cursor-pointer hover:border-brand-orange",
+                    "min-h-32 border-2 border-dashed border-gray-200 rounded-lg p-4 flex items-center justify-center h-full cursor-pointer hover:border-brand-orange",
                     devices.length === 0 ? "w-full" : "w-32 h-32"
                   )}
                   whileHover={{ scale: 1.05 }}

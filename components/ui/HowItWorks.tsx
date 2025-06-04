@@ -41,7 +41,7 @@ const HowItWorks = () => {
   };
 
   return (
-    <section className="py-20 bg-white relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-16"
@@ -82,7 +82,7 @@ const HowItWorks = () => {
             {steps.map((step, index) => (
               <motion.div
                 key={index}
-                className="bg-white p-8 rounded-xl shadow-md border border-gray-100 relative z-10 md:w-[30%] h-auto flex flex-col"
+                className=" p-8 rounded-xl shadow-md border border-gray-100 relative z-10 md:w-[30%] h-auto flex flex-col"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

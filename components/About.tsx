@@ -20,7 +20,7 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="py-20">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-16"
@@ -60,7 +60,7 @@ const About = () => {
             </p>
 
             <motion.div
-              className="bg-gray-50 p-6 rounded-lg border border-gray-100"
+              className="p-6 rounded-lg border border-gray-100"
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 300, damping: 10 }}>
               <h4 className="font-semibold mb-2">
@@ -106,7 +106,7 @@ const About = () => {
                 {benefits.map(({title, description, icon:Icon, index}) => (
                   <motion.div
                     key={title}
-                    className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center"
+                    className="rounded-xl shadow-md p-6 flex flex-col items-center text-center"
                     whileHover={{
                       y: -5,
                       boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)",

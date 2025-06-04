@@ -32,7 +32,7 @@ export default function RecommendedPackage({
   return (
     <div>
       <p className=" font-bold text-center text-gray-500 mb-12">
-        Your Recommended Solar Package
+        Here's the Minimum Recommended Solar Package for your Load:
       </p>
       <h2 className="text-gray-900 font-bold text-4xl sm:text-6xl w-full text-center">
         {result?.selectedPackage.name} Inverter Package
@@ -66,7 +66,7 @@ export default function RecommendedPackage({
               )}
             </button>
           </div>
-          <h5 className="mt-2 font-semibold">
+          {/* <h5 className="mt-2 font-semibold">
             {result?.selectedPackage?.name}
           </h5>
           <p className="italic">_*Components:*_</p>
@@ -74,7 +74,7 @@ export default function RecommendedPackage({
             <li>Inverter: {result?.selectedPackage.name}</li>
             <li>Battery: {result?.selectedPackageBattery}</li>
             <li>Solar Panel Array: {result?.selectedPackagePanelArray}</li>
-          </ul>
+          </ul> */}
           <div>
             {loading ? (
               <Spinner />
@@ -87,11 +87,11 @@ export default function RecommendedPackage({
             )}
           </div>
         </div>
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex flex-col sm:flex-row gap-4 mt-6 items-center justify-between">
           <ShareButton textToShare={getShareText(result)} />
           <Button
             asChild
-            variant="ghost"
+            variant="outline"
             className="text-blue-500 hover:text-blue-600 px-8 py-3 rounded-md font-semibold">
             <Link className="capitalize" href="/Interest-calculator">
               pay small-small for this package

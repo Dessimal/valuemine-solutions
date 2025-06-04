@@ -1,12 +1,15 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* :root {
   --background: #ffffff;
   --foreground: #171717;
 } */
+
+
+
 
 @theme inline {
   --color-background: var(--background);
@@ -15,12 +18,12 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   background: var(--background);
@@ -233,7 +236,7 @@ body {
     --sidebar-ring: oklch(0.708 0 0);
   }
 
-  /* .dark {
+  .dark {
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);
     --card: oklch(0.205 0 0);
@@ -265,7 +268,7 @@ body {
     --sidebar-accent-foreground: oklch(0.985 0 0);
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.556 0 0);
-  } */
+  }
 
   @layer base {
     * {
