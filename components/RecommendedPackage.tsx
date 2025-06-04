@@ -31,13 +31,13 @@ export default function RecommendedPackage({
 
   return (
     <div>
-      <p className=" font-bold text-center text-gray-500 mb-12">
+      <p className=" font-bold text-center mb-12">
         Here's the Minimum Recommended Solar Package for your Load:
       </p>
-      <h2 className="text-gray-900 font-bold text-4xl sm:text-6xl w-full text-center">
+      <h2 className=" font-bold text-4xl sm:text-6xl w-full text-center">
         {result?.selectedPackage.name} Inverter Package
       </h2>
-      <div className="bg-white rounded-2xl shadow-lg overflow-hidden mb-8 p-4 sm:p-6">
+      <div className="rounded-2xl shadow-lg overflow-hidden mb-8 p-4 sm:p-6">
         <div className="w-full">
           <Image
             src={result?.selectedPackagePicture}
@@ -49,7 +49,7 @@ export default function RecommendedPackage({
         </div>
         <div ref={textRef} className="">
           <div className="flex items-center justify-between my-6">
-            <h2 className="text-xl md:text-2xl text-gray-900 font-semibold">
+            <h2 className="text-xl md:text-2xl font-semibold">
               Detailed Breakdown of the system&apos;s capacity
             </h2>
             <button onClick={handleCopy} className=" cursor-pointer">
@@ -59,7 +59,7 @@ export default function RecommendedPackage({
                   Copied!
                 </span>
               ) : (
-                <span className="ml-2 text-gray-600 inline-flex gap-1 items-center">
+                <span className="ml-2 inline-flex gap-1 items-center">
                   <Copy className="inline-block" />
                   Copy
                 </span>

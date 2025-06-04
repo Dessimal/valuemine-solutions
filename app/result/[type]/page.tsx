@@ -27,7 +27,7 @@ const ResultPage = async ({ params, searchParams }: Props) => {
   return (
     <div>
       {session && (
-        <div className="flex justify-between items-center max-w-3xs gap-4">
+        <div className="flex justify-between items-center w-full gap-4">
           <div>Hello</div>
           <div>Welcome, {session?.user?.name}</div>
         </div>

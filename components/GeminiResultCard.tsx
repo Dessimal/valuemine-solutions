@@ -83,12 +83,12 @@ export default function GeminiResultCard({ data }: { data: any }) {
                 <div
                   key={index}
                   className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
-                  <span className="text-sm text-gray-600">{spec.label}</span>
+                  <span className="text-sm">{spec.label}</span>
                   <div className="text-right">
-                    <span className="font-semibold text-gray-900">
+                    <span className="font-semibold">
                       {spec.value}
                     </span>
-                    <div className="text-xs text-gray-500">{spec.unit}</div>
+                    <div className="text-xs">{spec.unit}</div>
                   </div>
                 </div>
               ))}
@@ -152,7 +152,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
 
       <Card className="w-full">
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold text-gray-900 mb-2">
+          <CardTitle className="text-3xl font-bold gradient-text mb-2">
             What Can This System Power?
           </CardTitle>
           <p className="text-lg text-gray-600">
@@ -174,11 +174,11 @@ export default function GeminiResultCard({ data }: { data: any }) {
                   .comfortably_powers
               ).map(([category, value]: [string, any], categoryIndex) => (
                 <div key={categoryIndex} className="space-y-4">
-                  <h4 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <span className="bg-gradient-to-r from-blue-600 to-green-600 w-2 h-6 rounded-full mr-3"></span>
+                  <h4 className="text-xl font-semibold mb-4 flex items-center">
+                    <span className="gradient-bg w-2 h-6 rounded-full mr-3"></span>
                     {category.replace(/_/g, " ")}
                   </h4>
-                  <div className="mb-2 text-gray-700">
+                  <div className="mb-2">
                     {value.description ?? ""}
                   </div>
                   <div className="space-y-3">
@@ -186,21 +186,21 @@ export default function GeminiResultCard({ data }: { data: any }) {
                       (item: any, itemIndex: number) => (
                         <div
                           key={itemIndex}
-                          className="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors">
+                          className="rounded-lg p-4 hover:bg-gray-100 transition-colors">
                           <div className="flex items-start space-x-3">
-                            <div className="bg-white p-2 rounded-lg shadow-sm">
+                            <div className="p-2 rounded-lg shadow-sm">
                               {/* If you have an icon component mapping, use it here. Otherwise, just show the icon name */}
                               {item.icon ? (
-                                <span className="h-5 w-5 text-gray-600">
+                                <span className="h-5 w-5">
                                   {item.icon}
                                 </span>
                               ) : null}
                             </div>
                             <div className="flex-1">
-                              <h5 className="font-medium text-gray-900 mb-1">
+                              <h5 className="font-medium mb-1">
                                 {item.name}
                               </h5>
-                              <div className="text-sm text-gray-600 space-y-1">
+                              <div className="text-sm space-y-1">
                                 <div>
                                   {item.quantity ?? item.watts
                                     ? `${item.watts ?? ""}W`
@@ -219,12 +219,12 @@ export default function GeminiResultCard({ data }: { data: any }) {
                 </div>
               ))
             ) : (
-              <div className="col-span-full text-center text-gray-500">N/A</div>
+              <div className="col-span-full text-center">N/A</div>
             )}
           </div>
 
           {/* Daily Energy Production styled summary */}
-          <div className="mt-8 p-6 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg border border-green-200">
+          {/* <div className="mt-8 p-6 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg border border-green-200">
             <div className="text-center">
               <h5 className="text-lg font-semibold text-gray-900 mb-2">
                 Daily Energy Production
@@ -286,7 +286,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </CardContent>
       </Card>
 
@@ -299,7 +299,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="mb-4 text-gray-700">
+          <div className="mb-4">
             <strong>Description:</strong>{" "}
             {data.simultaneousPowerLoadCapacity?.description ?? "N/A"}
           </div>
@@ -309,12 +309,12 @@ export default function GeminiResultCard({ data }: { data: any }) {
                 (dev: string, idx: number) => (
                   <div key={idx} className="flex items-start">
                     <CheckCircle className="h-4 w-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm text-gray-700">{dev}</span>
+                    <span className="text-sm">{dev}</span>
                   </div>
                 )
               )
             ) : (
-              <div className="text-gray-500 text-sm">No devices listed.</div>
+              <div className="text-sm">No devices listed.</div>
             )}
           </div>
         </CardContent>
@@ -337,14 +337,14 @@ export default function GeminiResultCard({ data }: { data: any }) {
                     <span className="text-xl mr-3 mt-0.5 flex-shrink-0">
                       {val.emoji ?? "❓"}
                     </span>
-                    <span className="text-sm text-gray-700">
+                    <span className="text-sm">
                       <strong>{device}:</strong> {val.response ?? ""}
                     </span>
                   </div>
                 )
               )
             ) : (
-              <div className="text-gray-500 text-sm">No data available.</div>
+              <div className="text-sm">No data available.</div>
             )}
           </div>
         </CardContent>
