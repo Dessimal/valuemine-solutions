@@ -142,12 +142,60 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Sun, Fan, Refrigerator } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import {HeroImage } from "@/app/constants"
-import Image from "next/image"
+import { HeroImage } from "@/app/constants";
+import { TiredMan } from "@/app/constants";
+import Image from "next/image";
+import { useIsMobile } from "@/hooks/use-mobile";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const Hero = () => {
+  const isMobile = useIsMobile();
+
+  gsap.registerPlugin(useGSAP);
+
+  useGSAP(() => {
+    gsap.from(".intro-text", {
+      opacity: 0,
+      stagger: 1,
+      y: 100,
+      ease: "power2.out",
+      delay: 1,
+    });
+  }, []);
+
   return (
     <section className="relative min-h-screen">
+      <div
+        className={`
+          absolute top-0 left-0 h-screen w-screen border-red-500 bg-red-600"
+          ${isMobile ? "flex flex-col justify-center items-center" : ""}
+        `}>
+        <Image
+          className="overflow-hidden"
+          fill
+          src={TiredMan}
+          alt="man staring"
+          style={{ objectFit: "cover" }}
+        />
+
+        <div className="absolute top-0 left-0 h-screen w-full bg-gradient-to-t from-gray-950 to-transparent " />
+        <h1 className="absolute top-16 text-3xl intro-text">
+          Tired of Frequent Blackouts...
+        </h1>
+        <p className="absolute bottom-1/3 intro-text text-2xl font-bold">
+          Tired of
+        </p>
+        <p className="absolute bottom-1/4 intro-text text-2xl font-bold">
+          Stress,
+        </p>
+        <p className="absolute bottom-2/12 intro-text text-2xl font-bold">
+          Headaches from...
+        </p>
+        <p className="absolute text-2xl bottom-1/12 intro-text font-bold">
+          Generator Noise?{" "}
+        </p>
+      </div>
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-brand-yellow/20 to-brand-orange/20 overflow-hidden">
         <motion.div
@@ -175,7 +223,7 @@ const Hero = () => {
         />
       </div>
 
-      <div className="container relative mx-auto px-4 pt-32 pb-16 flex flex-col lg:flex-row items-center">
+      {/* <div className="container relative mx-auto px-4 pt-32 pb-16 flex flex-col lg:flex-row items-center">
         <motion.div
           className="lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0"
           initial={{ opacity: 0, y: 20 }}
@@ -274,12 +322,15 @@ const Hero = () => {
             }}>
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-brand-yellow to-brand-orange opacity-20 blur-2xl"></div>
             <Image
-           src={HeroImage}
-                        height={500}
-                        width={500}              alt="Valuemine Solutions Professional"              className="w-full h-full object-contain relative z-10"            />
+              src={HeroImage}
+              height={500}
+              width={500}
+              alt="Valuemine Solutions Professional"
+              className="w-full h-full object-contain relative z-10"
+            />
           </motion.div>
         </motion.div>
-      </div>
+      </div> */}
 
       {/* Scroll Guide Animation */}
       <motion.div
