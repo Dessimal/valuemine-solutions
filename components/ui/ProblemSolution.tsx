@@ -26,19 +26,19 @@ const ProblemSolution = () => {
 
   const solutions = [
     {
-      title: "Clean, Renewable Solar Power",
+      title: "Switch to Solar",
       description:
-        "Harness the abundant sunlight in Nigeria with high-efficiency solar panels.",
+        "With Solar, constant power supply is as sure as the day, power is constantly generated throught sunlight - which is constant",
     },
     {
-      title: "24/7 Inverter Backup",
+      title: "Switch to Solar",
       description:
-        "Advanced battery storage solutions ensure you have power even after sunset.",
+        "Solar/Inverter systems come with zero maintainance, zero refuelling and zero servicing. They save you a lot of money",
     },
     {
-      title: "Expert Installation & Support",
+      title: "Switch to Solar",
       description:
-        "Professional setup, maintenance, and readily available customer service.",
+        "Harness the abundant sunlight in Nigeria with high-efficiency solar panels, powerful batteries as backup for the night",
     },
   ];
 
@@ -51,11 +51,13 @@ const ProblemSolution = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            What's <span className="gradient-text">Stealing</span> Your Power?
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 ">
+            Welcome to the{" "}
+            <span className="gradient-text">End of Your Power Struggles</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Identify your energy challenges and discover how we solve them
+            Discover power solutions that boost your productivity, save you
+            money and give you peace of mind.
           </p>
         </motion.div>
 
@@ -103,7 +105,7 @@ const ProblemSolution = () => {
             transition={{ duration: 0.7 }}
             className="space-y-8">
             <h3 className="text-2xl font-semibold text-center md:text-left">
-              Our Solutions
+              The Solution
             </h3>
 
             {solutions.map((solution, index) => (
@@ -127,7 +129,7 @@ const ProblemSolution = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.8 }}>
               <Button className="gradient-bg">
-                Why Solar?
+                Go Solar Now
                 <svg
                   className="ml-2 h-5 w-5"
                   viewBox="0 0 20 20"
