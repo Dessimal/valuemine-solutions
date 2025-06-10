@@ -9,6 +9,7 @@ import Link from "next/link";
 import { Logo } from "@/app/constants";
 import Image from "next/image";
 import { FaUser } from "react-icons/fa";
+import { authClient } from "@/app/lib/auth-client";
 
 const Navbar = ({ session }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,6 +17,21 @@ const Navbar = ({ session }) => {
   const isMobile = useIsMobile();
 
   console.log("Your session:", session);
+
+  const handleSignOut = async () => {
+    await authClient.signOut({
+      fetchOptions: {
+        onRequest: () => {
+          setLoggingout(true); // redirect to login page
+        },
+        onSuccess: () => {
+          router.push("/sign-in");
+          toast("You just signed out");
+          setLoggingout(false);
+        },
+      },
+    });
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -84,13 +100,17 @@ const Navbar = ({ session }) => {
 
             {session && (
               <div>
-                {session.user?.image ? (
+                {session?.user?.image ? (
                   <FaUser size={24} color="black" />
                 ) : (
-                  <span className="w-10 h-10 p-2 rounded-full bg-blue-700 text-white text-3xl uppercase text-xs">
-                    {/* {session?.user?.name.slice(0, 1)} */}
-                    va
-                  </span>
+                  <>
+                    <span className="size-18 p-2 rounded-full bg-blue-700 text-white text-3xl uppercase text-xs mr-4">
+                      {session?.user?.name.slice(0, 1)}
+                    </span>
+                    <Button variant="ghost" onClick={handleSignOut}>
+                      sign out
+                    </Button>
+                  </>
                 )}
               </div>
             )}

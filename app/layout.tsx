@@ -22,19 +22,14 @@ export const metadata: Metadata = {
   description: "Sustainable Solutions, Exceptional Value",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const getUsersStatus = async () => {
-    const currentSession = await auth.api.getSession({
-      headers: await headers(), // you need to pass the headers object.
-    });
-    return currentSession;
-  };
-
-  const session = getUsersStatus();
+  const session = await auth.api.getSession({
+    headers: await headers(), // you need to pass the headers object.
+  });
 
   return (
     <html lang="en">
