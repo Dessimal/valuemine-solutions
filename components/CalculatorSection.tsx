@@ -15,9 +15,9 @@ const CalculatorSection = () => {
   };
 
   return (
-    <section className="py-20 relative overflow-hidden">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
-        <div className="container mx-auto">
+    <section className="py-20 relative overflow-hidden ">
+      <div className="px-4 container grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto ">
+        <div className=" mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -29,8 +29,8 @@ const CalculatorSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}>
-              Build <span className="gradient-text">Your System</span>{" "}
-              Calculator
+              Calculate Size of Solar System Needed for{" "}
+              <span className="gradient-text">Your Home or Office</span>{" "}
             </motion.h2>
             <motion.p
               className="text-lg text-gray-400 mb-8"
@@ -38,8 +38,8 @@ const CalculatorSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}>
-              We've made it easy to build your ideal solar system. Just tell us
-              what gadgets and appliances you use — our smart calculator does
+              We've made it easy to calculate your ideal solar system. Just tell
+              us what gadgets and appliances you use — our smart calculator does
               the rest.
             </motion.p>
             <motion.div

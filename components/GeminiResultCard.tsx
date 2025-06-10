@@ -70,7 +70,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
     <div className="space-y-6">
       {/* System Specifications */}
       {data.systemSpecifications && (
-        <Card>
+        <Card className="gray-800">
           <CardHeader>
             <CardTitle className="flex items-center">
               <Zap className="h-5 w-5 mr-2 text-blue-600" />
@@ -85,9 +85,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
                   className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
                   <span className="text-sm">{spec.label}</span>
                   <div className="text-right">
-                    <span className="font-semibold">
-                      {spec.value}
-                    </span>
+                    <span className="font-semibold">{spec.value}</span>
                     <div className="text-xs">{spec.unit}</div>
                   </div>
                 </div>
@@ -150,7 +148,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
         </CardContent>
       </Card> */}
 
-      <Card className="w-full">
+      <Card className="w-full gray-800">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl font-bold gradient-text mb-2">
             What Can This System Power?
@@ -178,9 +176,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
                     <span className="gradient-bg w-2 h-6 rounded-full mr-3"></span>
                     {category.replace(/_/g, " ")}
                   </h4>
-                  <div className="mb-2">
-                    {value.description ?? ""}
-                  </div>
+                  <div className="mb-2">{value.description ?? ""}</div>
                   <div className="space-y-3">
                     {(value.appliances ?? []).map(
                       (item: any, itemIndex: number) => (
@@ -191,15 +187,11 @@ export default function GeminiResultCard({ data }: { data: any }) {
                             <div className="p-2 rounded-lg shadow-sm">
                               {/* If you have an icon component mapping, use it here. Otherwise, just show the icon name */}
                               {item.icon ? (
-                                <span className="h-5 w-5">
-                                  {item.icon}
-                                </span>
+                                <span className="h-5 w-5">{item.icon}</span>
                               ) : null}
                             </div>
                             <div className="flex-1">
-                              <h5 className="font-medium mb-1">
-                                {item.name}
-                              </h5>
+                              <h5 className="font-medium mb-1">{item.name}</h5>
                               <div className="text-sm space-y-1">
                                 <div>
                                   {item.quantity ?? item.watts

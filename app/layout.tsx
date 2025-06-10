@@ -1,27 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Manrope, Noto_Sans } from "next/font/google";
+import { Inter, Mulish, Urbanist } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
+import { auth } from "@/utils/auth";
+import Navbar from "@/components/Navbar";
+import { headers } from "next/headers";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const mulish = Mulish({
   subsets: ["latin"],
+  variable: "--font-mulish",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const urbanist = Urbanist({
   subsets: ["latin"],
-});
-
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-});
-
-const notosans = Noto_Sans({
-  variable: "--font-noto-sans",
-  subsets: ["latin"],
+  variable: "--font-urbanist",
 });
 
 export const metadata: Metadata = {
@@ -34,6 +27,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const getUsersStatus = async () => {
+    const currentSession = await auth.api.getSession({
+      headers: await headers(), // you need to pass the headers object.
+    });
+    return currentSession;
+  };
+
+  const session = getUsersStatus();
+
   return (
     <html lang="en">
       <head>
@@ -42,8 +44,8 @@ export default function RootLayout({
           content="2ngp53js7du0iszol3bufkogxiznlo"
         />
       </head>
-      <body
-        className={`${manrope.variable} ${notosans.variable} antialiased dark`}>
+      <body className={` ${urbanist.variable} antialiased dark`}>
+        <Navbar session={session} />
         <main>{children}</main>
         <Footer />
         <Toaster />

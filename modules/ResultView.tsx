@@ -62,13 +62,15 @@ export const ResultView = () => {
   };
 
   return (
-    <main className="space-y-6">
+    <main className="space-y-6 w-screen bg-red-500">
       <div className="w-full">
         <Button onClick={handleSignOut}>
           {loggingout ? "Logging out..." : "Log out"}
         </Button>
       </div>
-      <ResultComponent result={result} />
+      <div className="mx-auto max-w-7xl">
+        <ResultComponent result={result} />
+      </div>
     </main>
   );
 };

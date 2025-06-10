@@ -181,7 +181,7 @@ const Hero = () => {
 
         <div className="absolute top-0 left-0 h-screen w-full bg-gradient-to-t from-gray-950 to-transparent " />
         <h1 className="absolute top-16 text-3xl intro-text">
-          Tired of Frequent Blackouts...
+          Tired of Frequent Blackouts?
         </h1>
         <p className="absolute bottom-1/3 intro-text text-2xl font-bold">
           Tired of

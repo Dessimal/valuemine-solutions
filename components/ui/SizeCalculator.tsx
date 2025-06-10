@@ -219,7 +219,7 @@ const SizeCalculator = () => {
   // };
 
   return (
-    <div className="grid items-center w-full max-w-4xl mx-auto sm:px-6 lg:px-8 py-12">
+    <div className="grid items-center w-full max-w-4xl mx-auto py-12">
       {noPackage && (
         <h3 className="text-center text-red-500 mb-4">
           Please reach out to us on WhatsApp 09020532639 to get a quote for your
