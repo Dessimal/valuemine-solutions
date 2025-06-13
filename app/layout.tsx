@@ -27,9 +27,28 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth.api.getSession({
-    headers: await headers(), // you need to pass the headers object.
-  });
+  // const session = await auth.api.getSession({
+  //   headers: await headers(), // you need to pass the headers object.
+  // });
+
+  // if (!session) {
+  //   return (
+  //     <html lang="en">
+  //       <head>
+  //         <meta
+  //           name="facebook-domain-verification"
+  //           content="2ngp53js7du0iszol3bufkogxiznlo"
+  //         />
+  //       </head>
+  //       <body className={` ${urbanist.variable} antialiased dark`}>
+  //         <Navbar />
+  //         <main>{children}</main>
+  //         <Footer />
+  //         <Toaster />
+  //       </body>
+  //     </html>
+  //   );
+  // }
 
   return (
     <html lang="en">
@@ -40,7 +59,7 @@ export default async function RootLayout({
         />
       </head>
       <body className={` ${urbanist.variable} antialiased dark`}>
-        <Navbar session={session} />
+        <Navbar />
         <main>{children}</main>
         <Footer />
         <Toaster />

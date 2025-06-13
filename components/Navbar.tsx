@@ -11,12 +11,12 @@ import Image from "next/image";
 import { FaUser } from "react-icons/fa";
 import { authClient } from "@/app/lib/auth-client";
 
-const Navbar = ({ session }) => {
+const Navbar = ({}) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isMobile = useIsMobile();
 
-  console.log("Your session:", session);
+  // console.log("Your session:", session);
 
   const handleSignOut = async () => {
     await authClient.signOut({
@@ -98,7 +98,7 @@ const Navbar = ({ session }) => {
               </a>
             ))}
 
-            {session && (
+            {/* {session && (
               <div>
                 {session?.user?.image ? (
                   <FaUser size={24} color="black" />
@@ -113,7 +113,7 @@ const Navbar = ({ session }) => {
                   </>
                 )}
               </div>
-            )}
+            )} */}
             <div>
               <Button className="gradient-bg">Get Started</Button>
             </div>
