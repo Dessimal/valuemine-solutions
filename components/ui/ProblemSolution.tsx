@@ -91,6 +91,10 @@ const ProblemSolution = () => {
               tired of suffering, our custom solar/inverter systems give you
               peace of mind day and night.
             </p>
+
+            <h2 className="mt-4 font-bold text-2xl">
+              Why Nigerians Are Switching to Valuemine:
+            </h2>
             {problems.map((problem, index) => (
               <motion.div
                 key={index}
