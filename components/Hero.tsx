@@ -421,7 +421,7 @@ const Hero = () => {
         <p className="text-xl text-center max-w-2xl mb-2">
           Your Light, Your Peace - <span className="italic">Delivered!</span>
         </p>
-        <p className="text-lg text-center max-w-2xl font-inter">
+        <p className="text-lg text-center max-w-2xl text-gray-600">
           Discover sustainable, reliable power solutions for homes and
           businesses across Nigeria. Join the solar revolution today.
         </p>
