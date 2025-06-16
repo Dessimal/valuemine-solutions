@@ -7,40 +7,47 @@ const ProblemSolution = () => {
   const problems = [
     {
       icon: <Zap className="h-6 w-6" />,
-      title: "Unstable Electricity",
-      description:
-        "Constant power outages disrupting your daily life and business operations.",
+      title: "Zero Blackouts",
+      description: "Sleep, work, and enjoy your life without interruption.",
     },
     {
       icon: <Battery className="h-6 w-6" />,
-      title: "High Generator Costs",
-      description:
-        "Excessive fuel consumption and maintenance costs for generators.",
+      title: "No more Fuel Queues",
+      description: "Your generator is now a backup to the backup.",
     },
     {
       icon: <Sun className="h-6 w-6" />,
-      title: "Constant Blackouts",
-      description: "Frustrating darkness when you need power the most.",
+      title: "Silent Power",
+      description: "No noise, no fumes — just clean, quiet electricity.",
+    },
+    {
+      icon: <Sun className="h-6 w-6" />,
+      title: "Protects Your Appliances",
+      description: "Say goodbye to blown TVs, fridges & fans.",
+    },
+    {
+      icon: <Sun className="h-6 w-6" />,
+      title: "Pays for itself",
+      description: "Save more over time than you'll ever spend on fuel.",
     },
   ];
 
-  const solutions = [
-    {
-      title: "Switch to Solar",
-      description:
-        "With Solar, constant power supply is as sure as the day, power is constantly generated throught sunlight - which is constant",
-    },
-    {
-      title: "Switch to Solar",
-      description:
-        "Solar/Inverter systems come with zero maintainance, zero refuelling and zero servicing. They save you a lot of money",
-    },
-    {
-      title: "Switch to Solar",
-      description:
-        "Harness the abundant sunlight in Nigeria with high-efficiency solar panels, powerful batteries as backup for the night",
-    },
-  ];
+  // const solutions = [
+  //   {
+  //     title: "Protects Your Appliances",
+  //     description: "Say goodbye to blown TVs, fridges & fans.",
+  //   },
+  //   {
+  //     title: "Pays for itself",
+  //     description:
+  //       "Solar/Inverter systems come with zero maintainance, zero refuelling and zero servicing. They save you a lot of money",
+  //   },
+  //   {
+  //     title: "Switch to Solar",
+  //     description:
+  //       "Harness the abundant sunlight in Nigeria with high-efficiency solar panels, powerful batteries as backup for the night",
+  //   },
+  // ];
 
   return (
     <section className="py-20 relative overflow-hidden">
@@ -52,12 +59,19 @@ const ProblemSolution = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}>
           <h2 className="text-3xl md:text-4xl font-bold mb-4 ">
-            Welcome to the{" "}
-            <span className="gradient-text">End of Your Power Struggles</span>
+            Tired of NEPA Stress?{" "}
+            <span className="gradient-text italic">Fuel Don Finish Again?</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <h3 className="text-lg text-gray-600 max-w-2xl mx-auto">
             Discover power solutions that boost your productivity, save you
             money and give you peace of mind.
+          </h3>
+
+          <p className="text-sm">
+            Say goodbye to blackouts, noisy generators, and fuel wahala. At
+            Valuemine Solutions, we help Nigerians like you enjoy 24/7 power
+            without touching a drop of fuel — and without ever hearing &quot;Up
+            NEPA!&quot; again.
           </p>
         </motion.div>
 
@@ -70,9 +84,13 @@ const ProblemSolution = () => {
             transition={{ duration: 0.7 }}
             className="space-y-8">
             <h3 className="text-2xl font-semibold text-center md:text-left">
-              The Problems
+              Finally...Reliable Power That works for YOU!
             </h3>
-
+            <p>
+              Whether you&apos;re a parent, business owner, landlord, or just
+              tired of suffering, our custom solar/inverter systems give you
+              peace of mind day and night.
+            </p>
             {problems.map((problem, index) => (
               <motion.div
                 key={index}
@@ -98,7 +116,7 @@ const ProblemSolution = () => {
           </motion.div>
 
           {/* Right Column - Solutions */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -142,7 +160,7 @@ const ProblemSolution = () => {
                 </svg>
               </Button>
             </motion.div>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
 
