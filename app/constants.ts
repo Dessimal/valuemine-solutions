@@ -1,6 +1,6 @@
 // constants.ts
 import Logo from "@/app/assets/logo.svg";
-import HeroImage from "@/app/assets/valuemine_hero_image.png";
+import HeroImage from "@/app/assets/family-hero-image.jpg";
 import TiredMan from "@/app/assets/tired-man.jpg";
 import TiredManTwo from "@/app/assets/frustratedNigerian.jpg";
 import {

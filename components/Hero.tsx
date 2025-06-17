@@ -8,6 +8,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/SplitText";
+import Link from "next/link";
 
 // Register GSAP plugins
 gsap.registerPlugin(useGSAP);
@@ -367,7 +368,7 @@ const Hero = () => {
           {/* First H1 element (initial phrase) */}
           <h1
             ref={dynamicTextSpan1Ref}
-            className="text-3xl md:text-5xl font-bold uppercase text-white overflow-hidden z-150">
+            className="text-5xl md:text-7xl font-bold uppercase text-white overflow-hidden z-150">
             Tired of NEPA WAHALA?
           </h1>
           {/* Second H1 element (replacement phrase) - absolute positioned to overlap first H1 */}
@@ -414,84 +415,76 @@ const Hero = () => {
       {/* Actual Hero Section (The final content of the page) */}
       <div
         ref={heroSectionRef}
-        className="absolute inset-0 flex flex-col items-center justify-center z-50 opacity-0 p-4">
-        <h1 className="text-5xl md:text-7xl font-extrabold text-center mb-1">
-          Valuemine Solutions
-        </h1>
-        <p className="text-xl text-center max-w-2xl mb-2">
-          Your Light, Your Peace - <span className="italic">Delivered!</span>
-        </p>
-        <p className="text-lg text-center max-w-2xl text-gray-600">
-          Discover sustainable, reliable power solutions for homes and
-          businesses across Nigeria. Join the solar revolution today.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 mt-8">
-          <Button className="gradient-bg text-lg py-6">
-            Try Solar Calculator
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+        className="container mx-auto absolute inset-0 flex flex-col md:flex-row items-center md:justify-between md:gap-10 gap:6 z-50 opacity-0 p-4">
+        <div className="flex-1/2">
+          <h1 className="text-5xl md:text-7xl font-extrabold  mb-1">
+            SAY GOODBYE TO NEPA WAHALA
+          </h1>
+          <p className="text-xl max-w-2xl mb-2">
+            Your Light, Your Peace - <span className="italic">Delivered!</span>
+          </p>
+          <p className="text-lg  max-w-2xs">
+            Discover sustainable, reliable power solutions for your home and
+            business. Join the solar revolution today!
+          </p>
+          <div className="w-full mt-8">
+            <Button asChild className="gradient-bg text-lg py-6 ">
+              <span>
+                <Link href="/calculator">Try Solar Calculaltor</Link>
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </span>
+            </Button>
+          </div>
+          {/* <div className="mt-12 grid grid-cols-3 gap-6 max-w-md mx-auto lg:mx-0">
+            <motion.div
+              className="flex items-center gap-3"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+              <div className="h-10 w-10 rounded-full gradient-bg flex items-center justify-center">
+                <Sun className="h-5 w-5 text-white" />
+              </div>
+              <div className="text-left">
+                <p className="font-medium">Solar Panels</p>
+                <p className="text-xs text-gray-500">High Efficiency</p>
+              </div>
+            </motion.div>
+            <motion.div
+              className="flex items-center gap-3"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+              <div className="h-10 w-10 rounded-full gradient-bg flex items-center justify-center">
+                <Sun className="h-5 w-5 text-white" />
+              </div>
+              <div className="text-left">
+                <p className="font-medium">Solar Panels</p>
+                <p className="text-xs text-gray-500">High Efficiency</p>
+              </div>
+            </motion.div>
+            <motion.div
+              className="flex items-center gap-3"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+              <div className="h-10 w-10 rounded-full gradient-bg flex items-center justify-center">
+                <Refrigerator className="h-5 w-5 text-white" />
+              </div>
+              <div className="text-left">
+                <p className="font-medium">24/7 Power</p>
+                <p className="text-xs text-gray-500">No Blackouts</p>
+              </div>
+            </motion.div>
+          </div> */}
         </div>
-        <div className="mt-12 grid grid-cols-2 gap-6 max-w-md mx-auto lg:mx-0">
-          <motion.div
-            className="flex items-center gap-3"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-            <div className="h-10 w-10 rounded-full gradient-bg flex items-center justify-center">
-              <Sun className="h-5 w-5 text-white" />
-            </div>
-            <div className="text-left">
-              <p className="font-medium">Solar Panels</p>
-              <p className="text-xs text-gray-500">High Efficiency</p>
-            </div>
-          </motion.div>
-          <motion.div
-            className="flex items-center gap-3"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-            <div className="h-10 w-10 rounded-full gradient-bg flex items-center justify-center">
-              <Refrigerator className="h-5 w-5 text-white" />
-            </div>
-            <div className="text-left">
-              <p className="font-medium">24/7 Power</p>
-              <p className="text-xs text-gray-500">No Blackouts</p>
-            </div>
-          </motion.div>
+
+        <div className="ring ring-gray-800/5 rounded-lg shadow-lg h-fit w-full relative overflow-hidden flex-1/2">
+          <Image
+            className="object-cover"
+            src={HeroImage}
+            height={1000}
+            width={1000}
+            alt="picture of a Nigerian fiamily"
+          />
         </div>
       </div>
-
-      {/* Scroll Guide Animation */}
-      <motion.div
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center z-60"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: [0, 10, 0] }}
-        transition={{
-          opacity: { delay: 1.5, duration: 1 },
-          y: { delay: 1.5, duration: 2, repeat: Infinity },
-        }}>
-        <p className="text-sm text-gray-500 mb-2">Scroll to explore</p>
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <motion.path
-            d="M12 5L12 19M12 19L19 12M12 19L5 12"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{
-              duration: 1.5,
-              delay: 2,
-              repeat: Infinity,
-              repeatDelay: 2,
-            }}
-          />
-        </svg>
-      </motion.div>
     </section>
   );
 };

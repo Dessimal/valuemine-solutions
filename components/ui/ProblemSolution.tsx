@@ -2,6 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Zap, Battery, Sun } from "lucide-react";
+import Image from "next/image";
+import { TiredMan } from "@/app/constants";
 
 const ProblemSolution = () => {
   const problems = [
@@ -62,12 +64,21 @@ const ProblemSolution = () => {
             Tired of NEPA Stress?{" "}
             <span className="gradient-text italic">Fuel Don Finish Again?</span>
           </h2>
-          <h3 className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <h3 className="text-lg max-w-2xl mx-auto">
             Discover power solutions that boost your productivity, save you
             money and give you peace of mind.
           </h3>
 
-          <p className="text-sm">
+          <div className="w-full h-64 relative rounded-md shadow-md ring ring-gray-800 overflow-hidden mb-4">
+            <Image
+              className="object-cover"
+              src={TiredMan}
+              fill
+              alt="picture of a powerful inverter system"
+            />
+          </div>
+
+          <p>
             Say goodbye to blackouts, noisy generators, and fuel wahala. At
             Valuemine Solutions, we help Nigerians like you enjoy 24/7 power
             without touching a drop of fuel — and without ever hearing &quot;Up
@@ -75,7 +86,7 @@ const ProblemSolution = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-stretch">
+        <div className="container mx-auto">
           {/* Left Column - Problems */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -92,31 +103,35 @@ const ProblemSolution = () => {
               peace of mind day and night.
             </p>
 
-            <h2 className="mt-4 font-bold text-2xl">
-              Why Nigerians Are Switching to Valuemine:
-            </h2>
-            {problems.map((problem, index) => (
-              <motion.div
-                key={index}
-                className="p-6 rounded-lg shadow-md border border-gray-100"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}>
-                <div className="flex items-start gap-4">
-                  <div className="mt-1 p-3 rounded-full bg-red-100 text-red-600">
-                    {problem.icon}
+            <div className="w-full">
+              <h2 className="mt-4 font-bold text-3xl text-center">
+                Why Nigerians Are Switching to Valuemine:
+              </h2>
+            </div>
+            <div className="container mx-auto grid md:grid-cols-3 gap-8">
+              {problems.map((problem, index) => (
+                <motion.div
+                  key={index}
+                  className="section-card"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -5 }}>
+                  <div className="flex items-start gap-4">
+                    <div className="mt-1 p-3 text-yellow-500 rounded-full">
+                      {problem.icon}
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-lg mb-2">
+                        {problem.title}
+                      </h4>
+                      <p className="">{problem.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-lg mb-2">
-                      {problem.title}
-                    </h4>
-                    <p className="text-gray-600">{problem.description}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
 
           {/* Right Column - Solutions */}
