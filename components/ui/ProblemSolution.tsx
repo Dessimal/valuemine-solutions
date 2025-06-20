@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Zap, Battery, Sun } from "lucide-react";
 import Image from "next/image";
-import { TiredMan } from "@/app/constants";
+import { TiredMan, TiredManTwo } from "@/app/constants";
 
 const ProblemSolution = () => {
   const problems = [
@@ -52,23 +52,23 @@ const ProblemSolution = () => {
   // ];
 
   return (
-    <section className="py-20 relative overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section className="py-36 relative overflow-hidden">
+      <div className="container mx-auto px-4  gap-8">
+        {/* <div className="w-full text-center mb-[96px] ">
+          <h2 className="text-3xl md:text-4xl text-center font-bold mb-4 uppercase">
+            Welcome to the end of Your power Struggles{" "}
+          </h2>
+          <p className="text-lg max-w-2xl mx-auto">
+            Discover power solutions that boost your productivity, save you
+            money and give you peace of mind.
+          </p>
+        </div> */}
         <motion.div
-          className="text-center mb-16"
+          className=" mb-16 flex flex-col flex-col-reverse md:flex-row gap-8 md:gap-32"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 ">
-            Tired of NEPA Stress?{" "}
-            <span className="gradient-text italic">Fuel Don Finish Again?</span>
-          </h2>
-          <h3 className="text-lg max-w-2xl mx-auto">
-            Discover power solutions that boost your productivity, save you
-            money and give you peace of mind.
-          </h3>
-
           <div className="w-full h-64 relative rounded-md shadow-md ring ring-gray-800 overflow-hidden mb-4">
             <Image
               className="object-cover"
@@ -77,13 +77,41 @@ const ProblemSolution = () => {
               alt="picture of a powerful inverter system"
             />
           </div>
-
-          <p>
-            Say goodbye to blackouts, noisy generators, and fuel wahala. At
-            Valuemine Solutions, we help Nigerians like you enjoy 24/7 power
-            without touching a drop of fuel — and without ever hearing &quot;Up
-            NEPA!&quot; again.
-          </p>
+          <div>
+            <h2 className="text-3xl font-bold mb-3">Fuel Don Finish Again?</h2>
+            <p className="max-w-2xl">
+              <span className="italic">You deserve better!</span>— Say goodbye
+              to blackouts, noisy generators, and fuel wahala. At Valuemine
+              Solutions, we help Nigerians like you enjoy 24/7 power without
+              touching a drop of fuel — and without ever hearing &quot;Up
+              NEPA!&quot; again.
+            </p>
+          </div>
+        </motion.div>
+        <motion.div
+          className=" mb-16 flex flex-col md:flex-row gap-8 md:gap-32"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}>
+          <div>
+            <h3 className="text-2xl font-semibold text-center md:text-left">
+              Finally...Reliable Power That works for YOU!
+            </h3>
+            <p>
+              Whether you&apos;re a parent, business owner, landlord, or just
+              tired of suffering, our custom solar/inverter systems give you
+              peace of mind day and night.
+            </p>
+          </div>
+          <div className="w-full h-64 relative rounded-md shadow-md ring ring-gray-800 overflow-hidden mb-4">
+            <Image
+              className="object-cover"
+              src={TiredManTwo}
+              fill
+              alt="picture of a powerful inverter system"
+            />
+          </div>
         </motion.div>
 
         <div className="container mx-auto">
@@ -94,18 +122,9 @@ const ProblemSolution = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             className="space-y-8">
-            <h3 className="text-2xl font-semibold text-center md:text-left">
-              Finally...Reliable Power That works for YOU!
-            </h3>
-            <p>
-              Whether you&apos;re a parent, business owner, landlord, or just
-              tired of suffering, our custom solar/inverter systems give you
-              peace of mind day and night.
-            </p>
-
             <div className="w-full">
-              <h2 className="mt-4 font-bold text-3xl text-center">
-                Why Nigerians Are Switching to Valuemine:
+              <h2 className="mt-12 font-bold text-3xl max-w-96">
+                Why Nigerians Are Switching to Valuemine?
               </h2>
             </div>
             <div className="container mx-auto grid md:grid-cols-3 gap-8">

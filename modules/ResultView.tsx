@@ -62,7 +62,7 @@ export const ResultView = () => {
   };
 
   return (
-    <main className="space-y-6 w-screen bg-red-500">
+    <main className="space-y-6 w-screen">
       <div className="w-full">
         <Button onClick={handleSignOut}>
           {loggingout ? "Logging out..." : "Log out"}

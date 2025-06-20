@@ -35,7 +35,7 @@ body::-webkit-scrollbar {
   }
 
   p {
-    @apply dark:text-gray-400 text-sm;
+    @apply dark:text-gray-400 text-sm md:text-lg;
   }
 }
 
@@ -57,6 +57,9 @@ body::-webkit-scrollbar {
 @layer components {
   .section-card {
     @apply ring ring-gray-800 shadow-md rounded-lg p-6;
+  }
+  .result-card {
+    @apply w-full ring ring-gray-800 shadow-md;
   }
 }
 

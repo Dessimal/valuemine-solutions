@@ -9,7 +9,7 @@ Please describe in detail what this package can power in a typical Nigerian home
 
 Return ONLY the result as a JSON object with the following structure. 
 You MUST include every field and subfield, even if you have to use null, empty arrays, or placeholder values. 
-Do not omit any field. Do not include any text outside the JSON object. Do not include the word "example" in your response.
+Do not omit any field. Do not include any text outside the JSON object. Do not include the word "example" in your response. For the "Can it Power?" section, Do not give answers like, "Maybe", just say "Yes" or "No", and state the size of freezer or AC that the system can power.
   {
 
     "systemSpecifications": {
@@ -17,7 +17,7 @@ Do not omit any field. Do not include any text outside the JSON object. Do not i
         "value": 4.8,
         "unit": "kW",
         "type": "DC"
-      },
+      },gemini
       "inverterCapacity": {
         "value": 5.0,
         "unit": "kW",

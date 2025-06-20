@@ -70,7 +70,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
     <div className="space-y-6">
       {/* System Specifications */}
       {data.systemSpecifications && (
-        <Card className="gray-800">
+        <Card className="w-full result-card">
           <CardHeader>
             <CardTitle className="flex items-center">
               <Zap className="h-5 w-5 mr-2 text-blue-600" />
@@ -148,7 +148,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
         </CardContent>
       </Card> */}
 
-      <Card className="w-full gray-800">
+      <Card className="result-card">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl font-bold gradient-text mb-2">
             What Can This System Power?
@@ -283,7 +283,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
       </Card>
 
       {/* Simultaneous Power Load Capacity */}
-      <Card>
+      <Card className="result-card">
         <CardHeader>
           <CardTitle className="flex items-center">
             <CheckCircle className="h-5 w-5 mr-2 text-green-600" />
@@ -313,7 +313,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
       </Card>
 
       {/* Can It Power */}
-      <Card>
+      <Card className="result-card">
         <CardHeader>
           <CardTitle className="flex items-center">
             <CheckCircle className="h-5 w-5 mr-2 text-green-600" />
@@ -344,7 +344,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
 
       {/* Fallbacks for missing sections */}
       {!data.systemSpecifications && (
-        <Card>
+        <Card className="result-card">
           <CardHeader>
             <CardTitle>System Specifications</CardTitle>
           </CardHeader>
@@ -355,7 +355,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
       )}
 
       {!data.installationTimeline && (
-        <Card>
+        <Card className="result-card">
           <CardHeader>
             <CardTitle>Installation Timeline</CardTitle>
           </CardHeader>
@@ -366,7 +366,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
       )}
 
       {!data.whatCanThisSystemPower && (
-        <Card>
+        <Card className="result-card">
           <CardHeader>
             <CardTitle>What Can This System Power?</CardTitle>
           </CardHeader>
@@ -377,7 +377,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
       )}
 
       {!data.daily_energy_production && (
-        <Card>
+        <Card className="result-card">
           <CardHeader>
             <CardTitle>Daily Energy Production</CardTitle>
           </CardHeader>
@@ -388,7 +388,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
       )}
 
       {!data.simultaneousPowerLoadCapacity && (
-        <Card>
+        <Card className="result-card">
           <CardHeader>
             <CardTitle>Simultaneous Power Load Capacity</CardTitle>
           </CardHeader>
@@ -399,7 +399,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
       )}
 
       {!data.canItPower && (
-        <Card>
+        <Card className="result-card">
           <CardHeader>
             <CardTitle>Can It Power?</CardTitle>
           </CardHeader>
