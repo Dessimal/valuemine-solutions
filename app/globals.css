@@ -35,7 +35,7 @@ body::-webkit-scrollbar {
   }
 
   p {
-    @apply dark:text-gray-400 text-sm md:text-lg;
+    @apply dark:text-gray-400 text-base md:text-lg;
   }
 }
 
@@ -51,6 +51,10 @@ body::-webkit-scrollbar {
   }
   .general-title {
     @apply 2xl:text-[8.5rem] md:text-8xl text-5xl font-bold uppercase leading-[9vw] tracking-[-.35vw];
+  }
+
+  .debug {
+    @apply border-2 border-red-500;
   }
 }
 
