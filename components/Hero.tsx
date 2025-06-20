@@ -43,8 +43,8 @@ const Hero = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="flex-1/2 p-6 border-2 rounded-md">
-          <div className="relative h-[560px] w-[560px] md:w-[964px] ring ring-gray-800 rounded-md overflow-hidden shadow-lg ">
+          className="flex-1/2 p-6 rounded-md">
+          <div className="relative h-80 w-80 md:size-[960px]  ring ring-gray-800 rounded-lg overflow-hidden shadow-lg ">
             <Image
               src={MainHeroImage}
               className="object-cover       
