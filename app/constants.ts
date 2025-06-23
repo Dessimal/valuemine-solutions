@@ -4,7 +4,7 @@ import HeroImage from "@/app/assets/family-hero-image.jpg";
 import MainHeroImage from "@/app/assets/main-family-hero-image.png";
 import TiredMan from "@/app/assets/manTired.jpg";
 import TiredManTwo from "@/app/assets/frustratedNigerian.jpg";
-import familyRelaxing from "@/app/assets/hero-family-image1.jpg";
+import familyRelaxing from "@/app/assets/website-family3.png";
 import {
   Sun,
   Battery,

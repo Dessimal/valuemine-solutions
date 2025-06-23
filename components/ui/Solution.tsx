@@ -35,11 +35,14 @@ const Solution = () => {
               transition={{ duration: 0.7 }}>
               <div className="w-full h-[320px] md:h-[640px] relative rounded-lg shadow-lg overflow-hidden mb-4">
                 <Image
-                  className={`${isMobile ? "object-cover" : "object-contain"}`}
+                  className={`${
+                    isMobile ? "object-cover" : "object-contain"
+                  } z-50`}
                   src={familyRelaxing}
                   fill
                   alt="picture of a powerful inverter system"
                 />
+                <div className="border border-4 border-dashed border-amber-500  z-0 size-full rounded-full animate-spin duration-1000" />
               </div>
             </motion.div>
           </div>

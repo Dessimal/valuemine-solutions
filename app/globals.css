@@ -192,6 +192,24 @@ body::-webkit-scrollbar {
   color: #888;
 }
 
+.move-to-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.spin-circle {
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .gradient-text {
   background: linear-gradient(to right, #ffd700, #ff7700);
   -webkit-background-clip: text;
@@ -520,14 +538,4 @@ body::-webkit-scrollbar {
   background-image: radial-gradient(circle, #f3ece2, #dcccb0);
 }
 
-.spin-circle {
-  animation: spin 20s linear infinite;
-}
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
+ */
