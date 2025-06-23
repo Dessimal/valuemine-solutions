@@ -1,16 +1,25 @@
 import { benefits, familyRelaxing } from "@/app/constants";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
 
 const Solution = () => {
+  const isMobile = useIsMobile();
+
   return (
     <section>
       <div className="container mx-auto">
-        <h3 className="section-heading">
-          Welcome to the{" "}
-          <span className="gradient-text">end of your power struggles!</span>
-        </h3>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}>
+          <h3 className="section-heading">
+            Welcome to the{" "}
+            <span className="gradient-text">end of your power struggles!</span>
+          </h3>
+        </motion.div>
         <div className=" container mx-auto flex flex-col md:flex-row md:flex-row-reverse items-center gap-8">
           <div className="md:flex-1/2 space-y-8">
             <p>
@@ -24,9 +33,9 @@ const Solution = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}>
-              <div className="w-full h-[640px] relative rounded-lg shadow-lg overflow-hidden mb-4">
+              <div className="w-full h-[320px] md:h-[640px] relative rounded-lg shadow-lg overflow-hidden mb-4">
                 <Image
-                  className="object-cover"
+                  className={`${isMobile ? "object-cover" : "object-contain"}`}
                   src={familyRelaxing}
                   fill
                   alt="picture of a powerful inverter system"
@@ -44,7 +53,7 @@ const Solution = () => {
               className="space-y-8">
               <div className="w-full">
                 <h2 className="mt-2 text-xl max-w-96">
-                  Why Nigerians Are Switching to Valuemine?
+                  Why Nigerians Are Switching to Solar:
                 </h2>
               </div>
               <div className="container mx-auto grid md:grid-cols-1 gap-8">

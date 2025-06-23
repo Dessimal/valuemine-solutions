@@ -15,7 +15,9 @@ const CalculatorSection = () => {
   };
 
   return (
-    <section className="py-20 relative overflow-hidden ">
+    <section
+      id="calculator-section"
+      className="py-20 relative overflow-hidden ">
       <div className="px-4 container grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto ">
         <div className=" mx-auto">
           <motion.div

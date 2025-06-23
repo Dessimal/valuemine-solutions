@@ -12,7 +12,7 @@ const Hero = () => {
 
   return (
     <section className="w-screen min-h-screen ">
-      <div className="container md:py-32 py-32 px-4 flex flex-col md:flex-row  justify-center gap-12 h-full mx-auto hero-container">
+      <div className="container md:py-32 py-16 px-4 flex flex-col md:flex-row  justify-center gap-12 h-full mx-auto hero-container">
         <div className="flex justify-center  flex-1/2 flex-col gap-4">
           <motion.div
             initial={{ opacity: 0, x: -20 }}

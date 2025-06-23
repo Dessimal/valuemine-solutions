@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Zap, Battery, Sun } from "lucide-react";
+import { Zap, Battery, Sun, CircleX } from "lucide-react";
 import Image from "next/image";
 import { TiredMan, TiredManTwo } from "@/app/constants";
 
@@ -76,10 +76,16 @@ const ProblemSolution = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}>
           <div>
-            <h2 className="section-heading">
-              Tired of NEPA Stress and{" "}
-              <span className="gradient-text">Generator Troubles?</span>
-            </h2>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}>
+              <h2 className="section-heading">
+                Tired of NEPA Stress and{" "}
+                <span className="gradient-text">Generator Troubles?</span>
+              </h2>
+            </motion.div>
 
             <div className="flex flex-col md:flex-row gap-8 w-full items-center justify-center">
               <div className="rounded-lg shadow-lg overflow-hidden w-full h-full flex-1/3 relative">
@@ -99,9 +105,14 @@ const ProblemSolution = () => {
                     <h3 className="tracking-tight text-xl max-w-32 mb-3">
                       {problem.title}
                     </h3>
-                    <ul>
+                    <ul className="list-none space-y-2">
                       {problem.description.map((desc, index) => (
-                        <li key={index}>{desc}</li>
+                        <li key={index}>
+                          <span className="inline-flex items-center gap-2">
+                            <CircleX color="red" size={12} />
+                            {desc}
+                          </span>
+                        </li>
                       ))}
                     </ul>
                   </div>

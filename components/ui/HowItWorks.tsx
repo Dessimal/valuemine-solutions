@@ -7,7 +7,7 @@ const HowItWorks = () => {
   const steps = [
     {
       number: "01",
-      title: "Tell Us About Your Home",
+      title: "Tell Us About Your Home or Use our Calculator",
       description:
         "We help assess your appliances and power needs to determine the right system size.",
     },
@@ -96,9 +96,7 @@ const HowItWorks = () => {
                   {step.number}
                 </div>
                 <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
-                <p className="text-gray-600 mb-6 flex-grow">
-                  {step.description}
-                </p>
+                <p className=" mb-6 flex-grow">{step.description}</p>
                 <div>
                   <motion.div
                     className="flex items-center text-brand-orange font-medium"
@@ -118,8 +116,8 @@ const HowItWorks = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.8 }}>
-            <Button className="gradient-bg text-lg py-6 px-8">
-              Start Assessment
+            <Button asChild className="gradient-bg text-lg py-6 px-8">
+              <a href="#calculator-section">Start Assessment</a>
             </Button>
           </motion.div>
         </div>
