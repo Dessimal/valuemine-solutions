@@ -13,6 +13,7 @@ import HowItWorks from "@/components/ui/HowItWorks";
 import Calculator from "@/components/ui/SizeCalculator";
 import Testimonials from "@/components/ui/Testimonials";
 import CalculatorSection from "@/components/CalculatorSection";
+import Solution from "@/components/ui/Solution";
 
 const HomePage = () => {
   useEffect(() => {
@@ -63,6 +64,7 @@ const HomePage = () => {
         <motion.main layout>
           <Hero />
           <ProblemSolution />
+          <Solution />
           <HowItWorks />
           <CalculatorSection />
           <About />

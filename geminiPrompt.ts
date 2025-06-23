@@ -17,7 +17,7 @@ Do not omit any field. Do not include any text outside the JSON object. Do not i
         "value": 4.8,
         "unit": "kW",
         "type": "DC"
-      },gemini
+      },
       "inverterCapacity": {
         "value": 5.0,
         "unit": "kW",

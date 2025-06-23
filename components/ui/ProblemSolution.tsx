@@ -8,29 +8,44 @@ import { TiredMan, TiredManTwo } from "@/app/constants";
 const ProblemSolution = () => {
   const problems = [
     {
-      icon: <Zap className="h-6 w-6" />,
-      title: "Zero Blackouts",
-      description: "Sleep, work, and enjoy your life without interruption.",
+      image: TiredManTwo,
+      title: "PHCN Wahala",
+      description: [
+        "Tired of NEPA taking light when you need it the most?",
+        "You plug your phone, they take it. You’re ironing — boom! Darkness",
+        " It’s like playing emotional roulette every day",
+        "You pay bills, but power supply is still worse than before",
+      ],
     },
     {
-      icon: <Battery className="h-6 w-6" />,
-      title: "No more Fuel Queues",
-      description: "Your generator is now a backup to the backup.",
+      image: TiredManTwo,
+      title: "Fuel Scarcity",
+      description: [
+        "You're up by 5am just to queue for fuel, yet the station hoards it.",
+        "Prices change daily, and you're always guessing if N10,000 will even last 2 days",
+        "Fuel scarcity now feels like a monthly festival of stress",
+        "You've even started calculating which room in your house deserves power",
+      ],
     },
     {
-      icon: <Sun className="h-6 w-6" />,
-      title: "Silent Power",
-      description: "No noise, no fumes — just clean, quiet electricity.",
+      image: TiredManTwo,
+      title: "Generator Noise",
+      description: [
+        "Sleep is now a luxury. The gen beside your window has stolen your peace.",
+        "You can't even take calls or pray in peace — the gen is louder than your thoughts",
+        "Plus, neighbours complain, but you're all stuck in the same noisy boat",
+        "And the worst? Your gen works today, breaks down tomorrow.",
+      ],
     },
     {
-      icon: <Sun className="h-6 w-6" />,
-      title: "Protects Your Appliances",
-      description: "Say goodbye to blown TVs, fridges & fans.",
-    },
-    {
-      icon: <Sun className="h-6 w-6" />,
-      title: "Pays for itself",
-      description: "Save more over time than you'll ever spend on fuel.",
+      image: TiredManTwo,
+      title: "Blown Electronics",
+      description: [
+        "TV, fridge, fan, blender — all damaged thanks to crazy voltage spikes.",
+        "You're replacing gadgets like you're paying school fees.",
+        "Stabilizer help sometimes, buty they not reliable.",
+        "Every time NEPA brings light, your heart skips. Not out of joy — but fear",
+      ],
     },
   ];
 
@@ -54,152 +69,47 @@ const ProblemSolution = () => {
   return (
     <section className="py-36 relative overflow-hidden">
       <div className="container mx-auto px-4  gap-8">
-        {/* <div className="w-full text-center mb-[96px] ">
-          <h2 className="text-3xl md:text-4xl text-center font-bold mb-4 uppercase">
-            Welcome to the end of Your power Struggles{" "}
-          </h2>
-          <p className="text-lg max-w-2xl mx-auto">
-            Discover power solutions that boost your productivity, save you
-            money and give you peace of mind.
-          </p>
-        </div> */}
         <motion.div
-          className=" mb-16 flex flex-col flex-col-reverse md:flex-row gap-8 md:gap-32"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}>
-          <div className="w-full h-64 relative rounded-md shadow-md ring ring-gray-800 overflow-hidden mb-4">
-            <Image
-              className="object-cover"
-              src={TiredMan}
-              fill
-              alt="picture of a powerful inverter system"
-            />
-          </div>
-          <div>
-            <h2 className="text-3xl font-bold mb-3">Fuel Don Finish Again?</h2>
-            <p className="max-w-2xl">
-              <span className="italic">You deserve better!</span>— Say goodbye
-              to blackouts, noisy generators, and fuel wahala. At Valuemine
-              Solutions, we help Nigerians like you enjoy 24/7 power without
-              touching a drop of fuel — and without ever hearing &quot;Up
-              NEPA!&quot; again.
-            </p>
-          </div>
-        </motion.div>
-        <motion.div
-          className=" mb-16 flex flex-col md:flex-row gap-8 md:gap-32"
+          className=""
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}>
           <div>
-            <h3 className="text-2xl font-semibold text-center md:text-left">
-              Finally...Reliable Power That works for YOU!
-            </h3>
-            <p>
-              Whether you&apos;re a parent, business owner, landlord, or just
-              tired of suffering, our custom solar/inverter systems give you
-              peace of mind day and night.
-            </p>
-          </div>
-          <div className="w-full h-64 relative rounded-md shadow-md ring ring-gray-800 overflow-hidden mb-4">
-            <Image
-              className="object-cover"
-              src={TiredManTwo}
-              fill
-              alt="picture of a powerful inverter system"
-            />
-          </div>
-        </motion.div>
+            <h2 className="section-heading">
+              Tired of NEPA Stress and{" "}
+              <span className="gradient-text">Generator Troubles?</span>
+            </h2>
 
-        <div className="container mx-auto">
-          {/* Left Column - Problems */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="space-y-8">
-            <div className="w-full">
-              <h2 className="mt-12 font-bold text-3xl max-w-96">
-                Why Nigerians Are Switching to Valuemine?
-              </h2>
-            </div>
-            <div className="container mx-auto grid md:grid-cols-3 gap-8">
-              {problems.map((problem, index) => (
-                <motion.div
-                  key={index}
-                  className="section-card"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}>
-                  <div className="flex items-start gap-4">
-                    <div className="mt-1 p-3 text-yellow-500 rounded-full">
-                      {problem.icon}
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-lg mb-2">
-                        {problem.title}
-                      </h4>
-                      <p className="">{problem.description}</p>
-                    </div>
+            <div className="flex flex-col md:flex-row gap-8 w-full items-center justify-center">
+              <div className="rounded-lg shadow-lg overflow-hidden w-full h-full flex-1/3 relative">
+                {" "}
+                <Image
+                  className="object-cover"
+                  src={TiredMan}
+                  alt="picture of a powerful inverter system"
+                />
+              </div>
+              <div className="flex-2/3 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
+                {problems.map((problem) => (
+                  <div
+                    key={problem.title}
+                    className="rounded-md shadow-lg ring ring-gray-800 p-6">
+                    <div>image here</div>
+                    <h3 className="tracking-tight text-xl max-w-32 mb-3">
+                      {problem.title}
+                    </h3>
+                    <ul>
+                      {problem.description.map((desc, index) => (
+                        <li key={index}>{desc}</li>
+                      ))}
+                    </ul>
                   </div>
-                </motion.div>
-              ))}
+                ))}
+              </div>
             </div>
-          </motion.div>
-
-          {/* Right Column - Solutions */}
-          {/* <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="space-y-8">
-            <h3 className="text-2xl font-semibold text-center md:text-left">
-              The Solution
-            </h3>
-
-            {solutions.map((solution, index) => (
-              <motion.div
-                key={index}
-                className=" p-6 rounded-lg shadow-md border border-gray-100 border-l-4 border-l-brand-orange"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
-                whileHover={{ y: -5 }}>
-                <h4 className="font-semibold text-lg mb-2">{solution.title}</h4>
-                <p className="text-gray-600">{solution.description}</p>
-              </motion.div>
-            ))}
-
-            <motion.div
-              className="mt-8 flex justify-center md:justify-start"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.8 }}>
-              <Button className="gradient-bg">
-                Go Solar Now
-                <svg
-                  className="ml-2 h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor">
-                  <path
-                    fillRule="evenodd"
-                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </Button>
-            </motion.div>
-          </motion.div> */}
-        </div>
+          </div>
+        </motion.div>
       </div>
 
       {/* Background decoration */}

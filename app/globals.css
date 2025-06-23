@@ -30,6 +30,10 @@ body::-webkit-scrollbar {
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
+  section {
+    @apply min-h-screen py-12 px-4 relative overflow-hidden;
+  }
+
   h3 {
     @apply text-gray-900 dark:text-white mb-4 text-base font-medium tracking-tight;
   }
@@ -40,6 +44,9 @@ body::-webkit-scrollbar {
 }
 
 @layer utilities {
+  .section-heading {
+    @apply text-4xl text-wrap max-w-80  tracking-tight font-bold mb-10 capitalize;
+  }
   .flex-center {
     @apply flex justify-center items-center;
   }

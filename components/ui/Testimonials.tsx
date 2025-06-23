@@ -60,8 +60,8 @@ const Testimonials = () => {
             Lives
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what our clients have to say
-            about their Valuemine experience.
+            Don&apos; just take our word for it. Here&apos;s what our clients
+            have to say about their Valuemine experience.
           </p>
         </motion.div>
 
@@ -113,9 +113,7 @@ const Testimonials = () => {
                   ))}
                 </div>
 
-                <p className="text-gray-600 mb-6 italic">
-                  "{testimonial.text}"
-                </p>
+                <p className="text-gray-600 mb-6 italic">{testimonial.text}</p>
 
                 <div className="mt-auto">
                   <p className="font-semibold">{testimonial.name}</p>

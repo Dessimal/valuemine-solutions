@@ -2,8 +2,9 @@
 import Logo from "@/app/assets/logo.svg";
 import HeroImage from "@/app/assets/family-hero-image.jpg";
 import MainHeroImage from "@/app/assets/main-family-hero-image.png";
-import TiredMan from "@/app/assets/tired-man.jpg";
+import TiredMan from "@/app/assets/manTired.jpg";
 import TiredManTwo from "@/app/assets/frustratedNigerian.jpg";
+import familyRelaxing from "@/app/assets/hero-family-image1.jpg";
 import {
   Sun,
   Battery,
@@ -13,6 +14,9 @@ import {
   Building2,
   Factory,
   Lightbulb,
+  Zap,
+  ArrowBigDown,
+  ArrowBigLeft,
 } from "lucide-react";
 
 import FiveHundredWatts from "@/public/500W-65AH- 280K.png";
@@ -28,34 +32,41 @@ import fourPointTwoKva from "@/public/4.2kva 1.9m.png";
 import sixPointTwoKvaTubular from "@/public/6.2kva 2.8m.png";
 import sixPointTwoKvaLithium from "@/public/6.2kva lithium 3m.png";
 
-export { Logo, HeroImage, MainHeroImage, TiredMan, TiredManTwo };
+export {
+  Logo,
+  HeroImage,
+  MainHeroImage,
+  TiredMan,
+  TiredManTwo,
+  familyRelaxing,
+};
 
-export const benefits = [
-  {
-    icon: Sun,
-    title: "Clean Energy",
-    description:
-      "Harness the power of the sun with zero emissions and sustainable technology",
-  },
-  {
-    icon: Battery,
-    title: "Energy Storage",
-    description:
-      "Advanced battery solutions ensure power continues even after sunset",
-  },
-  {
-    icon: Shield,
-    title: "Reliable Systems",
-    description:
-      "Engineered for durability in the Nigerian climate with minimal maintenance",
-  },
-  {
-    icon: Clock,
-    title: "Long Lifespan",
-    description:
-      "Our solar solutions last 25+ years with industry-leading warranties",
-  },
-];
+// export const benefits = [
+//   {
+//     icon: Sun,
+//     title: "Clean Energy",
+//     description:
+//       "Harness the power of the sun with zero emissions and sustainable technology",
+//   },
+//   {
+//     icon: Battery,
+//     title: "Energy Storage",
+//     description:
+//       "Advanced battery solutions ensure power continues even after sunset",
+//   },
+//   {
+//     icon: Shield,
+//     title: "Reliable Systems",
+//     description:
+//       "Engineered for durability in the Nigerian climate with minimal maintenance",
+//   },
+//   {
+//     icon: Clock,
+//     title: "Long Lifespan",
+//     description:
+//       "Our solar solutions last 25+ years with industry-leading warranties",
+//   },
+// ];
 
 export const services = [
   {
@@ -281,4 +292,32 @@ export const appliances = [
 
   //Custom
   { icon: "Plus", name: "Custom Device", watts: 0 },
+];
+
+export const benefits = [
+  {
+    icon: Zap,
+    title: "Zero Blackouts",
+    description: "Sleep, work, and enjoy your life without interruption.",
+  },
+  {
+    icon: Battery,
+    title: "No more Fuel Queues",
+    description: "Your generator is now a backup to the backup.",
+  },
+  {
+    icon: Sun,
+    title: "Silent Power",
+    description: "No noise, no fumes — just clean, quiet electricity.",
+  },
+  {
+    icon: ArrowBigDown,
+    title: "Protects Your Appliances",
+    description: "Say goodbye to blown TVs, fridges & fans.",
+  },
+  {
+    icon: ArrowBigLeft,
+    title: "Pays for itself",
+    description: "Save more over time than you'll ever spend on fuel.",
+  },
 ];

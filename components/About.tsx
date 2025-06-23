@@ -1,7 +1,7 @@
 import React from "react";
 import { Shield, Battery, Sun, Clock } from "lucide-react";
 import { motion } from "framer-motion";
-import {benefits} from "@/app/constants"
+import { benefits } from "@/app/constants";
 
 const About = () => {
   const container = {
@@ -94,7 +94,7 @@ const About = () => {
             </motion.div>
           </motion.div>
 
-          <motion.div
+          {/* <motion.div
             className="order-1 md:order-2"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -103,7 +103,7 @@ const About = () => {
             <div className="aspect-square relative rounded-2xl overflow-hidden">
               <div className="absolute inset-0 gradient-bg opacity-10"></div>
               <div className="grid grid-cols-2 gap-4 p-4 h-full">
-                {benefits.map(({title, description, icon:Icon, index}) => (
+                {benefits.map(({ title, description, icon: Icon, index }) => (
                   <motion.div
                     key={title}
                     className="rounded-xl shadow-md p-6 flex flex-col items-center text-center"
@@ -117,17 +117,15 @@ const About = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.2 * index }}>
                     <div className="h-12 w-12 rounded-full gradient-bg flex items-center justify-center mb-4 text-white">
-                      <Icon/>
+                      <Icon />
                     </div>
                     <h4 className="font-semibold mb-2">{title}</h4>
-                    <p className="text-sm text-gray-500">
-                      {description}
-                    </p>
+                    <p className="text-sm text-gray-500">{description}</p>
                   </motion.div>
                 ))}
               </div>
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
     </section>
