@@ -42,7 +42,7 @@ const Solution = () => {
                   fill
                   alt="picture of a powerful inverter system"
                 />
-                <div className="border border-4 border-dashed border-amber-500  z-0 size-full rounded-full animate-spin duration-1000" />
+                {/* <div className="border border-4 border-dashed border-amber-500  z-0 size-full rounded-full animate-spin duration-1800" /> */}
               </div>
             </motion.div>
           </div>
