@@ -5,6 +5,11 @@ import MainHeroImage from "@/app/assets/main-family-hero-image.png";
 import TiredMan from "@/app/assets/manTired.jpg";
 import TiredManTwo from "@/app/assets/frustratedNigerian.jpg";
 import familyRelaxing from "@/app/assets/website-family3.png";
+import generator from "@/app/assets/gen.png";
+import nationalGrid from "@/app/assets/national-grid.jpeg";
+import fuelQueue from "@/app/assets/fuel-queues.jpeg";
+import DoodleArrowUp from "@/app/assets/Frame 5.svg";
+import DoodleArrowDown from "@/app/assets/Frame 6.svg";
 import {
   Sun,
   Battery,
@@ -39,6 +44,11 @@ export {
   TiredMan,
   TiredManTwo,
   familyRelaxing,
+  generator,
+  nationalGrid,
+  fuelQueue,
+  DoodleArrowUp,
+  DoodleArrowDown,
 };
 
 // export const benefits = [

@@ -21,7 +21,7 @@ const Hero = () => {
             transition={{ duration: 0.7 }}
             className="flex flex-col gap-1">
             <h1 className="text-5xl md:text-9xl font-extrabold tracking-tight">
-              Say Goodbye to Nepa Wahala
+              Say Goodbye to NEPA Wahala
             </h1>
             <p className="max-w-2xs ">
               {" "}

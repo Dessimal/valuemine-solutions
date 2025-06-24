@@ -1,14 +1,25 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Zap, Battery, Sun, CircleX } from "lucide-react";
+import { Zap, Battery, Sun, CircleX, DoorClosedLocked } from "lucide-react";
 import Image from "next/image";
-import { TiredMan, TiredManTwo } from "@/app/constants";
+import {
+  fuelQueue,
+  nationalGrid,
+  generator,
+  TiredMan,
+  TiredManTwo,
+  DoodleArrowDown,
+  DoodleArrowUp,
+} from "@/app/constants";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const ProblemSolution = () => {
+  const isMobile = useIsMobile();
+
   const problems = [
     {
-      image: TiredManTwo,
+      image: nationalGrid,
       title: "PHCN Wahala",
       description: [
         "Tired of NEPA taking light when you need it the most?",
@@ -18,7 +29,7 @@ const ProblemSolution = () => {
       ],
     },
     {
-      image: TiredManTwo,
+      image: fuelQueue,
       title: "Fuel Scarcity",
       description: [
         "You're up by 5am just to queue for fuel, yet the station hoards it.",
@@ -28,7 +39,7 @@ const ProblemSolution = () => {
       ],
     },
     {
-      image: TiredManTwo,
+      image: generator,
       title: "Generator Noise",
       description: [
         "Sleep is now a luxury. The gen beside your window has stolen your peace.",
@@ -67,7 +78,7 @@ const ProblemSolution = () => {
   // ];
 
   return (
-    <section className="py-36 relative overflow-hidden">
+    <section className="py-36 relative min-h-screen overflow-hidden">
       <div className="container mx-auto px-4  gap-8">
         <motion.div
           className=""
@@ -88,11 +99,21 @@ const ProblemSolution = () => {
             </motion.div>
 
             <div className="flex flex-col md:flex-row gap-8 w-full items-center justify-center">
-              <div className="rounded-lg shadow-lg overflow-hidden w-full h-full flex-1/3 relative">
+              <div className="flex flex-col gap-1 overflow-hidden w-full h-full flex-1/3 relative">
                 {" "}
                 <Image
-                  className="object-cover"
+                  className="hidden md:block object-contain"
+                  src={DoodleArrowUp}
+                  alt="picture of a powerful inverter system"
+                />
+                <Image
+                  className="object-cover rounded-lg shadow-md"
                   src={TiredMan}
+                  alt="picture of a powerful inverter system"
+                />
+                <Image
+                  className="hidden md:block object-contain"
+                  src={DoodleArrowDown}
                   alt="picture of a powerful inverter system"
                 />
               </div>
@@ -100,21 +121,34 @@ const ProblemSolution = () => {
                 {problems.map((problem) => (
                   <div
                     key={problem.title}
-                    className="rounded-md shadow-lg ring ring-gray-800 p-6">
-                    <div>image here</div>
-                    <h3 className="tracking-tight text-xl max-w-32 mb-3">
-                      {problem.title}
-                    </h3>
-                    <ul className="list-none space-y-2">
-                      {problem.description.map((desc, index) => (
-                        <li key={index}>
-                          <span className="inline-flex items-center gap-2">
-                            <CircleX color="red" size={12} />
-                            {desc}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
+                    className="flex flex-col gap-3 rounded-md shadow-lg ring ring-gray-800 p-6">
+                    <div className="w-full h-[280px] rounded-lg shadow-md relative overflow-hidden">
+                      <Image
+                        src={problem.image}
+                        alt={problem.title}
+                        className={`${
+                          isMobile
+                            ? "object-cover"
+                            : "object-cover h-full w-full"
+                        }`}
+                        fill
+                      />
+                    </div>
+                    <div className=" flex flex-col justify-between">
+                      <h3 className="tracking-tight text-xl max-w-32 mb-3">
+                        {problem.title}
+                      </h3>
+                      <ul className="list-none space-y-2">
+                        {problem.description.map((desc, index) => (
+                          <li key={index}>
+                            <span className="flex items-center gap-2 text-sm">
+                              <CircleX color="red" size={18} />
+                              {desc}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 ))}
               </div>
