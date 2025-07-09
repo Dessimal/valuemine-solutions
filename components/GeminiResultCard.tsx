@@ -164,14 +164,16 @@ export default function GeminiResultCard({ data }: { data: any }) {
           </p>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 shadow-2xs rounded-sm gap-8 ">
             {data.whatCanThisSystemPower?.system_power_capability
               ?.comfortably_powers ? (
               Object.entries(
                 data.whatCanThisSystemPower.system_power_capability
                   .comfortably_powers
               ).map(([category, value]: [string, any], categoryIndex) => (
-                <div key={categoryIndex} className="space-y-4">
+                <div
+                  key={categoryIndex}
+                  className="space-y-4 border-gray-200 border-2 p-2">
                   <h4 className="text-xl font-semibold mb-4 flex items-center">
                     <span className="gradient-bg w-2 h-6 rounded-full mr-3"></span>
                     {category.replace(/_/g, " ")}
@@ -182,8 +184,8 @@ export default function GeminiResultCard({ data }: { data: any }) {
                       (item: any, itemIndex: number) => (
                         <div
                           key={itemIndex}
-                          className="rounded-lg p-4 hover:bg-gray-100 transition-colors">
-                          <div className="flex items-start space-x-3">
+                          className=" p-4 hover:bg-gray-100 transition-colors  border-gray-300 border-t-[1px]">
+                          <div className="flex items-start space-x-3 ">
                             <div className="p-2 rounded-lg shadow-sm">
                               {/* If you have an icon component mapping, use it here. Otherwise, just show the icon name */}
                               {item.icon ? (
@@ -194,7 +196,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
                               <h5 className="font-medium mb-1">{item.name}</h5>
                               <div className="text-sm space-y-1">
                                 <div>
-                                  {item.quantity ?? item.watts
+                                  {(item.quantity ?? item.watts)
                                     ? `${item.watts ?? ""}W`
                                     : ""}
                                 </div>

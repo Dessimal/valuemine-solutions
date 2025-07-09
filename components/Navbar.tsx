@@ -72,10 +72,10 @@ const Navbar = ({}) => {
     <>
       <nav
         className={cn(
-          "fixed flex justify-between items-center w-full z-50 transition-all duration-300 py-4 border-4"
+          "fixed flex justify-between items-center w-full  transition-all duration-300 py-4 bg-background"
         )}>
         <div className="container mx-auto flex justify-between items-center">
-          <div className="flex space-x-4 items-center border border-red-500">
+          <div className="flex space-x-4 items-center ">
             <Link href="/" className="flex items-center gap-2">
               <Image
                 height={50}

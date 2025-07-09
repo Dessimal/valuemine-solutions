@@ -1,13 +1,6 @@
 "use session";
 
-import {
-  Calculator,
-  ChevronDownIcon,
-  Layers2Icon,
-  LogOutIcon,
-  PinIcon,
-  UserPenIcon,
-} from "lucide-react";
+import { Calculator, ChevronDownIcon, LogOutIcon } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -53,7 +46,9 @@ export function UserDropdown() {
         <Button variant="ghost" className="h-auto p-0 hover:bg-transparent">
           <Avatar>
             <AvatarImage src="./avatar.jpg" alt="Profile image" />
-            <AvatarFallback>KK</AvatarFallback>
+            <AvatarFallback>
+              {userName?.slice(0, 2).toUpperCase()}
+            </AvatarFallback>
           </Avatar>
           <ChevronDownIcon
             size={16}
@@ -65,7 +60,7 @@ export function UserDropdown() {
       <DropdownMenuContent className="max-w-64">
         <DropdownMenuLabel className="flex min-w-0 flex-col">
           <span className="text-foreground truncate text-sm font-medium">
-            {isPending ? null : session ? <>{userName.slice(0, 2)}</> : null}
+            {isPending ? null : session ? <>Hello, {userName}</> : null}
           </span>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />

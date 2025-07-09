@@ -281,7 +281,7 @@ export default function RecommendedPackage({
           ? `${selectedPackage.name} Inverter Package`
           : "No Package Selected"}
       </h2>
-      <div className="rounded-2xl shadow-lg overflow-hidden mb-8 p-4 sm:p-6">
+      <div className="rounded-md shadow-sm overflow-hidden mb-8 p-4 sm:p-6">
         <div className="w-full">
           {selectedPackagePicture && (
             <Image

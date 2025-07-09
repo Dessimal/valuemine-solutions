@@ -334,7 +334,6 @@ export default function ResultComponent() {
             <ArrowLeftToLine /> Go back
           </span>
         </button> */}
-        <SignOutButton />
       </div>
       <div className="max-w-7xl px-1 sm:px-4 lg:px-8 py-12">
         {interestCalculatorEnabled ? (
