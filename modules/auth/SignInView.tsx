@@ -32,17 +32,20 @@ import { Input } from "@/components/ui/input";
 import React, { useState } from "react";
 import Link from "next/link";
 import { LoaderCircle } from "lucide-react";
+import { EmailTemplate } from "@/components/EmailTemplate";
+import { useCalculatorStore } from "@/app/store/calculator";
 
 const SignInView = () => {
   const [loading, setLoading] = useState(false);
   const [socialLoading, setSocialLoading] = useState(false);
+
+  const { email, setEmail } = useCalculatorStore();
 
   const formSchema = z.object({
     email: z
       .string()
       .email("Invalid email address")
       .min(1, "Email is required"),
-    password: z.string().min(6, "Password must be at least 6 characters"),
   });
 
   type FormData = z.infer<typeof formSchema>;
@@ -51,7 +54,6 @@ const SignInView = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
-      password: "",
     },
   });
 
@@ -68,20 +70,20 @@ const SignInView = () => {
 
   const onSubmit = async (data: FormData) => {
     try {
-      await authClient.signIn.email(
+      await authClient.emailOtp.sendVerificationOtp(
         {
           email: data.email,
-          password: data.password,
-          callbackURL: callbackUrl,
+          type: "sign-in",
         },
         {
           onRequest: () => {
             setLoading(true);
+            setEmail(data.email);
           },
-          onSucces: () => {
-            toast("Signed in successfully!");
+          onSuccess: () => {
+            toast("verification email sent!");
             setLoading(false);
-            router.push(callbackUrl);
+            router.push("/verify-user");
           },
           onError: () => {
             toast("Something went wrong, please try again");
@@ -118,7 +120,7 @@ const SignInView = () => {
             Welcome Back!
           </CardTitle>
           <CardDescription className="text-gray-500 text-sm text-center">
-            Please enter your login details to sign in
+            Please enter your email to sign in
           </CardDescription>
           <CardContent>
             <Form {...form}>
@@ -141,22 +143,7 @@ const SignInView = () => {
                     </FormItem>
                   )}
                 />
-                <FormField
-                  name="password"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          type="password"
-                          placeholder="********"
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
+
                 <Button
                   disabled={loading}
                   type="submit"
@@ -173,10 +160,10 @@ const SignInView = () => {
               </form>
             </Form>
           </CardContent>
-          <CardFooter className="grid gap-4 w-full">
-            <p className="text-gray-500 text-sm text-center">
-              or Continue with
-            </p>
+          <CardFooter className="grid gap-4 w-full relative">
+            <div className="w-full after:absolute after:border-2 after:border-t z-0 ">
+              <p className="bg-card z-10">or Continue with</p>
+            </div>
             <Button
               onClick={handleSocialSignIn}
               variant="outline"

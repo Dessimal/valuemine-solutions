@@ -155,6 +155,7 @@ export const Card = ({
   card: Card;
   index: number;
   layout?: boolean;
+  onSelect?: () => void;
 }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -180,7 +181,7 @@ export const Card = ({
   useOutsideClick(containerRef, () => handleClose());
 
   const handleOpen = () => {
-    // if (onSelect) onSelect();
+    if (onSelect) onSelect();
     setOpen(true);
   };
 
@@ -215,18 +216,7 @@ export const Card = ({
               <motion.p
                 layoutId={layout ? `category-${card.title}` : undefined}
                 className="text-base font-medium text-black dark:text-white">
-                {card.category}I really want to know how this works I really
-                want to know how this works I really want to know how this works
-                I really want to know how this works I really want to know how
-                this works I really want to know how this works I really want to
-                know how this works I really want to know how this works I
-                really want to know how this works I really want to know how
-                this works I really want to know how this works I really want to
-                know how this works I really want to know how this works I
-                really want to know how this works I really want to know how
-                this works I really want to know how this works I really want to
-                know how this works I really want to know how this works I
-                really want to know how this works
+                {card.category}
               </motion.p>
               <motion.p
                 layoutId={layout ? `title-${card.title}` : undefined}
@@ -253,13 +243,6 @@ export const Card = ({
             layoutId={layout ? `title-${card.title}` : undefined}
             className="mt-2 max-w-xs text-left font-sans text-xl font-semibold [text-wrap:balance] text-white md:text-3xl">
             {card.title}
-            This is the second text This is the second text This is the second
-            text This is the second text This is the second text This is the
-            second text This is the second text This is the second text This is
-            the second text This is the second text This is the second text This
-            is the second text This is the second text This is the second text
-            This is the second text This is the second text This is the second
-            text This is the second text This is the second text
           </motion.p>
         </div>
         <BlurImage

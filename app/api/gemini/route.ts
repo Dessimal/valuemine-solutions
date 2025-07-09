@@ -6,12 +6,14 @@ import crypto from "crypto";
 import { db } from "@/db";
 import { eq, and } from "drizzle-orm";
 import { gemini_descriptions } from "@/db/schema";
+import { verifyUser } from "@/app/data/user/verify-user";
 
 function hash(str: string) {
   return crypto.createHash("sha256").update(str).digest("hex");
 }
 
 export async function POST(req: NextRequest) {
+  await verifyUser();
   const { packageName, packageDetails } = await req.json();
   if (!packageName || !packageDetails) {
     return NextResponse.json(
@@ -24,17 +26,15 @@ export async function POST(req: NextRequest) {
 
   // Check for cached response in Supabase/Drizzle
   const cached = await db
-  .select()
-  .from(gemini_descriptions)
-  .where(
-    and(
-      eq(gemini_descriptions.package_name, packageName),
-      eq(gemini_descriptions.details_hash, detailsHash)
+    .select()
+    .from(gemini_descriptions)
+    .where(
+      and(
+        eq(gemini_descriptions.package_name, packageName),
+        eq(gemini_descriptions.details_hash, detailsHash)
+      )
     )
-  )
-  .limit(1);
-
-  
+    .limit(1);
 
   if (cached.length > 0) {
     return NextResponse.json({ data: cached[0].gemini_response });
@@ -66,13 +66,15 @@ export async function POST(req: NextRequest) {
     }
 
     // Store in Supabase/Drizzle
-    await db.insert(gemini_descriptions).values({
-      package_name: packageName,
-      details_hash: detailsHash,
-      gemini_response: parsed,
-      created_at: new Date(),
-    })
-    .onConflictDoNothing();
+    await db
+      .insert(gemini_descriptions)
+      .values({
+        package_name: packageName,
+        details_hash: detailsHash,
+        gemini_response: parsed,
+        created_at: new Date(),
+      })
+      .onConflictDoNothing();
 
     return NextResponse.json({ data: parsed });
   } catch (error) {

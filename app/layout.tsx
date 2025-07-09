@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { auth } from "@/utils/auth";
 import Navbar from "@/components/Navbar";
 import { headers } from "next/headers";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const mulish = Mulish({
   subsets: ["latin"],
@@ -51,18 +52,24 @@ export default async function RootLayout({
   // }
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta
           name="facebook-domain-verification"
           content="2ngp53js7du0iszol3bufkogxiznlo"
         />
       </head>
-      <body className={` ${urbanist.variable} antialiased dark`}>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <Toaster />
+      <body className={` ${urbanist.variable} antialiased`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

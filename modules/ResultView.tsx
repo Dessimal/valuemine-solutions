@@ -1,50 +1,47 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import ResultComponent from "@/components/ResultComponent";
 import { Button } from "@/components/ui/button";
 import { authClient } from "@/app/lib/auth-client";
 import { toast } from "sonner";
+import { useCalculatorStore } from "@/app/store/calculator";
 
 export const ResultView = () => {
   const [loggingout, setLoggingout] = React.useState(false);
+  const [isPending, startTransition] = React.useTransition();
 
-  const params = useParams();
-  const searchParams = useSearchParams();
+  // Get values from Zustand store
+  // const {
+  //   load,
+  //   selectedPackage,
+  //   packagePrice,
+  //   selectedPackageBattery,
+  //   selectedPackagePanelArray,
+  //   selectedPackagePicture,
+  // } = useCalculatorStore();
 
-  const router = useRouter();
+  // const result = useMemo(
+  //   () => ({
+  //     load,
+  //     selectedPackage,
+  //     packagePrice,
+  //     selectedPackageBattery,
+  //     selectedPackagePanelArray,
+  //     selectedPackagePicture,
+  //   }),
+  //   [
+  //     load,
+  //     selectedPackage,
+  //     packagePrice,
+  //     selectedPackageBattery,
+  //     selectedPackagePanelArray,
+  //     selectedPackagePicture,
+  //   ]
+  // );
 
-  console.log("searchParams", searchParams);
-
-  console.log(params.type);
-
-  if (!params.type) {
-    return <div>No type specified in URL.</div>;
-  }
-
-  const dataString = searchParams.get("data");
-  const dataObject = JSON.parse(decodeURIComponent(dataString));
-
-  // const result = useMemo(() => {
-  //   if (!dataString) return null;
-  //   try {
-  //     if (params.type === "interest") {
-  //       const interestResult = dataObject;
-  //       return interestResult;
-  //     } else if (params.type === "size") {
-  //       const sizeResult = dataObject;
-  //       return sizeResult;
-  //     }
-  //   } catch (error) {
-  //     console.error("Error parsing dataParam:", error);
-  //     return null;
-  //   }
-  // }, [dataString, params]);
-
-  const result = dataObject;
-
-  console.log(dataString);
+  // console.log(result);
 
   const handleSignOut = async () => {
     await authClient.signOut({
@@ -53,9 +50,11 @@ export const ResultView = () => {
           setLoggingout(true); // redirect to login page
         },
         onSuccess: () => {
-          router.push("/sign-in");
-          toast("You just signed out");
-          setLoggingout(false);
+          startTransition(() => {
+            router.push("/sign-in");
+            toast("You just signed out");
+            setLoggingout(false);
+          });
         },
       },
     });
@@ -65,11 +64,11 @@ export const ResultView = () => {
     <main className="space-y-6 w-screen">
       <div className="w-full">
         <Button onClick={handleSignOut}>
-          {loggingout ? "Logging out..." : "Log out"}
+          {isPending ? "signing out..." : "Log out"}
         </Button>
       </div>
       <div className="mx-auto max-w-7xl">
-        <ResultComponent result={result} />
+        <ResultComponent />
       </div>
     </main>
   );

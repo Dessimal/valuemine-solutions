@@ -1,56 +1,57 @@
-// import PackageCard from "./packageCard";
-
-// export default function OtherPackagesSection({
-//   otherPackages,
-//   handleSelect,
-// }: {
-//   otherPackages: any[];
-//   handleSelect: (pkg: any) => void;
-// }) {
-//   return (
-//     <div className="mt-16">
-//       <h3 className="text-2xl font-bold mb-6 text-center text-gray-800">
-//         Explore other Solar Packages
-//       </h3>
-//       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-//         {otherPackages.map((pkg) => (
-//           <PackageCard
-//             key={pkg.name}
-//             name={pkg.name}
-//             price={pkg.price}
-//             battery={pkg.battery}
-//             panelArray={pkg.panelArray}
-//             picture={pkg.picture}
-//             description={pkg.description}
-//             onSelect={() => handleSelect(pkg)}
-//           />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
+import { useState } from "react";
 import { Carousel, Card } from "./Carousel";
-
-import { useEffect, useState } from "react";
 import GeminiResultCard from "./GeminiResultCard";
+import { PACKAGES } from "@/app/constants";
+import { fetchPrimaryGeminiDescription } from "@/app/data/aiDescription/get-aiDescription";
+import { StaticImageData } from "next/image";
 
-export default function OtherPackagesSection({
-  otherPackages,
-  // handleSelect,
-  aiDescriptions,
-}) {
-  const carouselItems = otherPackages.map((pkg, idx) => (
+type Package = {
+  id: number;
+  name: string;
+  battery: string;
+  panelArray: string;
+  price: number;
+  picture: StaticImageData;
+  category?: string;
+};
+
+export default function OtherPackagesSection() {
+  const [loading, setLoading] = useState(false);
+  const [selectedOtherPackage, setSelectedOtherPackage] = useState<string>("");
+  const [aiDescription, setAIDescription] = useState<Record<string, any>>({});
+
+  const handleSelect = async (pkg: Package) => {
+    setSelectedOtherPackage(pkg.name);
+    setLoading(true);
+    try {
+      const desc = await fetchPrimaryGeminiDescription(pkg);
+      setAIDescription((prev) => ({
+        ...prev,
+        [pkg.name]: desc,
+      }));
+    } catch (error) {
+      console.error("Error fetching AI description:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const carouselItems = PACKAGES.map((pkg, idx) => (
     <Card
       key={pkg.name}
       card={{
         src: pkg.picture,
         title: pkg.name,
         category: pkg.category || "Solar Package",
-        content: <GeminiResultCard data={aiDescriptions[pkg.name]} />,
+        content:
+          selectedOtherPackage === pkg.name && loading ? (
+            <div className="text-center py-4">Loading...</div>
+          ) : (
+            <GeminiResultCard data={aiDescription?.[pkg.name]} />
+          ),
       }}
       index={idx}
-      // onSelect={handleSelect(pkg)}
+      onSelect={() => handleSelect(pkg)}
     />
   ));
 

@@ -4,14 +4,12 @@ import React from "react";
 import { Button } from "./ui/button";
 import { Share2 } from "lucide-react";
 
-const ShareButton = ({ textToShare }: { textToShare: string }) => {
-  const handleShare = () => {
-    const phoneNumber = "2349020532639";
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-      textToShare
-    )}`;
-    window.open(url, "_blank");
-  };
+const ShareButton = ({
+  handleShare,
+}: {
+  textToShare: string;
+  handleShare: () => void;
+}) => {
   return (
     <Button
       onClick={handleShare}

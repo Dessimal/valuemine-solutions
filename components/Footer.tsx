@@ -1,6 +1,7 @@
 import React from "react";
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import Link from "next/link";
+import { footerLinks, services } from "@/app/constants";
 // import { Logo } from "@/app/constants";
 
 const Footer = () => {
@@ -37,11 +38,15 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-lg mb-4">Our Services</h3>
             <ul className="space-y-2">
-              <li>
-                <Link href="#" className="text-gray-400 hover:text-white">
-                  Residential Solar
-                </Link>
-              </li>
+              {services.map((service) => (
+                <li key={service.id}>
+                  <Link
+                    href={service.id}
+                    className="text-gray-400 hover:text-white">
+                    {service.text}
+                  </Link>
+                </li>
+              ))}
               <li>
                 <Link href="#" className="text-gray-400 hover:text-white">
                   Commercial Solar
@@ -68,11 +73,15 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white">
-                  About Us
-                </a>
-              </li>
+              {footerLinks.map((footerLink, index) => (
+                <li key={index}>
+                  <Link
+                    href={footerLink.link}
+                    className="text-gray-400 hover:text-white">
+                    {footerLink.name}
+                  </Link>
+                </li>
+              ))}
               <li>
                 <a href="#" className="text-gray-400 hover:text-white">
                   Our Projects
@@ -124,19 +133,19 @@ const Footer = () => {
           <div className="mt-4 md:mt-0">
             <ul className="flex space-x-6 text-sm text-gray-400">
               <li>
-                <a href="#" className="hover:text-white">
+                <Link href="/terms-of-service" className="hover:text-white">
                   Terms
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white">
+                <Link href="privacy-policy" className="hover:text-white">
                   Privacy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white">
+                <Link href="#" className="hover:text-white">
                   Cookies
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

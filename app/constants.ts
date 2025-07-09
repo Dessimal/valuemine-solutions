@@ -22,6 +22,12 @@ import {
   Zap,
   ArrowBigDown,
   ArrowBigLeft,
+  PencilRuler,
+  Cable,
+  Workflow,
+  FireExtinguisher,
+  AirVent,
+  Cctv,
 } from "lucide-react";
 
 import FiveHundredWatts from "@/public/500W-65AH- 280K.png";
@@ -78,56 +84,56 @@ export {
 //   },
 // ];
 
-export const services = [
-  {
-    icon: Home,
-    title: "Residential Solar",
-    description:
-      "Complete solar power systems for homes with options for grid-tied or off-grid solutions",
-    features: [
-      "Solar panels",
-      "Inverters",
-      "Battery storage",
-      "Installation & maintenance",
-    ],
-  },
-  {
-    icon: Building2,
-    title: "Commercial Solar",
-    description:
-      "Reduce operational costs and enhance sustainability for your business with custom solar solutions",
-    features: [
-      "Rooftop systems",
-      "Solar carports",
-      "Energy monitoring",
-      "24/7 support",
-    ],
-  },
-  {
-    icon: Factory,
-    title: "Industrial Power",
-    description:
-      "Large-scale solar installations for manufacturing facilities and industrial complexes",
-    features: [
-      "MW-scale systems",
-      "Hybrid solutions",
-      "Load management",
-      "Energy consulting",
-    ],
-  },
-  {
-    icon: Lightbulb,
-    title: "Energy Consulting",
-    description:
-      "Expert advice on energy efficiency, system design, and financial planning for solar adoption",
-    features: [
-      "Energy audits",
-      "ROI analysis",
-      "Financing options",
-      "Grant assistance",
-    ],
-  },
-];
+// export const services = [
+//   {
+//     icon: Home,
+//     title: "Residential Solar",
+//     description:
+//       "Complete solar power systems for homes with options for grid-tied or off-grid solutions",
+//     features: [
+//       "Solar panels",
+//       "Inverters",
+//       "Battery storage",
+//       "Installation & maintenance",
+//     ],
+//   },
+//   {
+//     icon: Building2,
+//     title: "Commercial Solar",
+//     description:
+//       "Reduce operational costs and enhance sustainability for your business with custom solar solutions",
+//     features: [
+//       "Rooftop systems",
+//       "Solar carports",
+//       "Energy monitoring",
+//       "24/7 support",
+//     ],
+//   },
+//   {
+//     icon: Factory,
+//     title: "Industrial Power",
+//     description:
+//       "Large-scale solar installations for manufacturing facilities and industrial complexes",
+//     features: [
+//       "MW-scale systems",
+//       "Hybrid solutions",
+//       "Load management",
+//       "Energy consulting",
+//     ],
+//   },
+//   {
+//     icon: Lightbulb,
+//     title: "Energy Consulting",
+//     description:
+//       "Expert advice on energy efficiency, system design, and financial planning for solar adoption",
+//     features: [
+//       "Energy audits",
+//       "ROI analysis",
+//       "Financing options",
+//       "Grant assistance",
+//     ],
+//   },
+// ];
 export const PACKAGES = [
   {
     id: 1,
@@ -329,5 +335,90 @@ export const benefits = [
     icon: ArrowBigLeft,
     title: "Pays for itself",
     description: "Save more over time than you'll ever spend on fuel.",
+  },
+];
+
+export const videoLinks = [
+  "https://res.cloudinary.com/druwmu39g/video/upload/v1745409377/avwwz26bqagorah2d5be.mp4",
+  "https://res.cloudinary.com/druwmu39g/video/upload/v1745811611/2Nd-Biodun_Alonge_1_d7xskq.mp4",
+  "https://res.cloudinary.com/druwmu39g/video/upload/v1746011976/0430_mrst13.mp4",
+];
+
+export const services = [
+  {
+    id: "#design",
+    icon: PencilRuler,
+    iconSize: 32,
+    text: "Design, procurement, and installation of solar and inverter systems.",
+  },
+  {
+    id: "#electrical",
+    icon: Cable,
+    iconSize: 32,
+
+    text: "Residential, commercial, and industrial electrical wiring and installations.",
+  },
+  {
+    id: "#procurement",
+    icon: Cctv,
+    iconSize: 32,
+
+    text: "Procurement and installation of CCTV surveillance and security systems.",
+  },
+  {
+    id: "#development",
+    icon: Workflow,
+    iconSize: 32,
+
+    text: "Development and deployment of home and building automation solutions.",
+  },
+  {
+    id: "#fire-alarm",
+    icon: FireExtinguisher,
+    iconSize: 32,
+
+    text: "Installation and maintenance of fire alarm and detection systems.",
+  },
+  {
+    id: "#electronics",
+    icon: AirVent,
+    iconSize: 32,
+
+    text: "General procurement, supply, and installation of electrical and electronic equipment.",
+  },
+];
+
+export const footerLinks = [
+  { name: "About", link: "/about" },
+  { name: "Contact", link: "/about" },
+  { name: "Our Projects", link: "/projects" },
+  { name: "Testimonials", link: "/testimonials" },
+  { name: "FAQs", link: "/faqs" },
+];
+
+export const faqs = [
+  {
+    question: "Can I pay for your packages in installments?",
+    answer:
+      "Yes, you can pay in instalments. However, this is only applicable to businesses, for now.",
+  },
+  {
+    question: "How many days does installation take?",
+    answer: "Typically one day, all things being equal",
+  },
+  {
+    question: "Can I pay for your packages in installments?",
+    answer:
+      "Yes, you can pay in instalme,nts. However, this is only applicable to businesses, for now.",
+  },
+  {
+    question: "Can I pay for your packages in installments?",
+    answer:
+      "Yes, you can pay in instalments. However, this is only applicable to businesses, for now.",
+  },
+  {
+    question: "Can I pay for your packages in installments?",
+    answer:
+      "Yes, you can pay in instalments. However, this is only applicable to businesses, for now.",
   },
 ];

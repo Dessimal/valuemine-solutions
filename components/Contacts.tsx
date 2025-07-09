@@ -4,13 +4,27 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { motion } from "framer-motion";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import {
+  useFormField,
+  Form,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+  FormField,
+} from "@/components/ui/form";
+import ContactForm from "./ContactForm";
 
 const Contact = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Form submission logic would go here
-    console.log("Form submitted");
-  };
+  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   // Form submission logic would go here
+  //   console.log("Form submitted");
+  // };
 
   const contactDetails = [
     {
@@ -117,100 +131,85 @@ const Contact = () => {
             transition={{ duration: 0.7 }}
             whileHover={{ boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}>
             <h3 className="text-2xl font-semibold mb-6">Send Us A Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <motion.div
-                className="grid gap-4 sm:grid-cols-2"
-                variants={staggerAnimation}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}>
-                <motion.div className="space-y-2" variants={itemAnimation}>
-                  <label htmlFor="name" className="block text-sm font-medium">
-                    Name
-                  </label>
-                  <Input id="name" placeholder="Your name" required />
-                </motion.div>
-                <motion.div className="space-y-2" variants={itemAnimation}>
-                  <label htmlFor="email" className="block text-sm font-medium">
-                    Email
-                  </label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="Your email"
-                    required
-                  />
-                </motion.div>
-              </motion.div>
-
-              <motion.div
-                className="space-y-2"
-                variants={itemAnimation}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}>
-                <label htmlFor="phone" className="block text-sm font-medium">
-                  Phone Number
-                </label>
-                <Input id="phone" placeholder="Your phone number" required />
-              </motion.div>
-
-              <motion.div
-                className="space-y-2"
-                variants={itemAnimation}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}>
-                <label htmlFor="subject" className="block text-sm font-medium">
-                  Subject
-                </label>
-                <Input
-                  id="subject"
-                  placeholder="How can we help you?"
-                  required
-                />
-              </motion.div>
-
-              <motion.div
-                className="space-y-2"
-                variants={itemAnimation}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.4 }}>
-                <label htmlFor="message" className="block text-sm font-medium">
-                  Message
-                </label>
-                <Textarea
-                  id="message"
-                  placeholder="Your message"
-                  rows={4}
-                  required
-                />
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.5 }}>
-                <Button type="submit" className="w-full gradient-bg">
-                  Send Message
-                </Button>
-              </motion.div>
-            </form>
+            <ContactForm />
           </motion.div>
         </div>
       </div>
     </section>
   );
-
-
-  
 };
 
 export default Contact;
+
+// <form onSubmit={handleSubmit} className="space-y-6">
+//   <motion.div
+//     className="grid gap-4 sm:grid-cols-2"
+//     variants={staggerAnimation}
+//     initial="hidden"
+//     whileInView="show"
+//     viewport={{ once: true }}>
+//     <motion.div className="space-y-2" variants={itemAnimation}>
+//       <label htmlFor="name" className="block text-sm font-medium">
+//         Name
+//       </label>
+//       <Input id="name" placeholder="Your name" required />
+//     </motion.div>
+//     <motion.div className="space-y-2" variants={itemAnimation}>
+//       <label htmlFor="email" className="block text-sm font-medium">
+//         Email
+//       </label>
+//       <Input id="email" type="email" placeholder="Your email" required />
+//     </motion.div>
+//   </motion.div>
+
+//   <motion.div
+//     className="space-y-2"
+//     variants={itemAnimation}
+//     initial={{ opacity: 0, y: 20 }}
+//     whileInView={{ opacity: 1, y: 0 }}
+//     viewport={{ once: true }}
+//     transition={{ duration: 0.5, delay: 0.2 }}>
+//     <label htmlFor="phone" className="block text-sm font-medium">
+//       Phone Number
+//     </label>
+//     <Input id="phone" placeholder="Your phone number" required />
+//   </motion.div>
+
+//   <motion.div
+//     className="space-y-2"
+//     variants={itemAnimation}
+//     initial={{ opacity: 0, y: 20 }}
+//     whileInView={{ opacity: 1, y: 0 }}
+//     viewport={{ once: true }}
+//     transition={{ duration: 0.5, delay: 0.3 }}>
+//     <label htmlFor="subject" className="block text-sm font-medium">
+//       Subject
+//     </label>
+//     <Input id="subject" placeholder="How can we help you?" required />
+//   </motion.div>
+
+//   <motion.div
+//     className="space-y-2"
+//     variants={itemAnimation}
+//     initial={{ opacity: 0, y: 20 }}
+//     whileInView={{ opacity: 1, y: 0 }}
+//     viewport={{ once: true }}
+//     transition={{ duration: 0.5, delay: 0.4 }}>
+//     <label htmlFor="message" className="block text-sm font-medium">
+//       Message
+//     </label>
+//     <Textarea id="message" placeholder="Your message" rows={4} required />
+//   </motion.div>
+
+//   <motion.div
+//     whileHover={{ scale: 1.03 }}
+//     whileTap={{ scale: 0.97 }}
+//     initial={{ opacity: 0, y: 20 }}
+//     whileInView={{ opacity: 1, y: 0 }}
+//     viewport={{ once: true }}
+//     transition={{ duration: 0.5, delay: 0.5 }}>
+//     <Button type="submit" className="w-full gradient-bg">
+//       Send Message
+//     </Button>
+//   </motion.div>
+// </form>;

@@ -14,7 +14,7 @@ import Link from "next/link";
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(SplitText);
 
-const Hero = () => {
+const AnimatedHero = () => {
   const isMobile = useIsMobile();
   // Refs for the sliding overlay panels (not used in this sequence, kept for potential future use)
   const leftRef = useRef(null);
@@ -489,4 +489,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default AnimatedHero;

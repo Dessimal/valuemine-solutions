@@ -141,8 +141,12 @@ const ProblemSolution = () => {
                       <ul className="list-none space-y-2">
                         {problem.description.map((desc, index) => (
                           <li key={index}>
-                            <span className="flex items-center gap-2 text-sm">
-                              <CircleX color="red" size={18} />
+                            <span className="text-sm">
+                              <CircleX
+                                className="inline-block mr-2"
+                                color="red"
+                                size={18}
+                              />
                               {desc}
                             </span>
                           </li>
