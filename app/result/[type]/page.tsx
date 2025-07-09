@@ -5,7 +5,6 @@ const ResultPage = () => {
   return (
     <div>
       <ResultComponent />
-      <VideoTestimonials />
     </div>
   );
 };

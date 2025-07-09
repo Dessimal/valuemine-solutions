@@ -190,6 +190,7 @@ import { useCalculatorStore } from "@/app/store/calculator";
 import { fetchPrimaryGeminiDescription } from "@/app/data/aiDescription/get-aiDescription";
 import SignOutButton from "./SignOutButton";
 import FAQ from "./FAQ";
+import { VideoTestimonials } from "./VideoTestimonials";
 
 // type FetchPrimaryGeminiDescription = (selectedPackage: any) => Promise<any>;
 
@@ -350,6 +351,7 @@ export default function ResultComponent() {
           />
         )}
         <OtherPackagesSection />
+        <VideoTestimonials />
         <FAQ />
       </div>
     </div>

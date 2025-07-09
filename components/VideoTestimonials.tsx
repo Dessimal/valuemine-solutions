@@ -1,15 +1,48 @@
+"use client";
+
+import { videoLinks } from "@/app/constants";
+
 import React from "react";
+import { motion } from "framer-motion";
+import { VideoPlayer } from "./VideoPlayer";
 
 export const VideoTestimonials = () => {
+  const fadeInAnimationVariantY = {
+    initial: {
+      opacity: 0,
+    },
+    animate: (index: number) => ({
+      opacity: 1,
+      transition: {
+        delay: 0.2 * index,
+        ease: "easeInOut",
+        duration: 1.8,
+      },
+    }),
+  };
+
   return (
-    <section>
+    <section className="space-y-6 py-6">
       <div>
         <h2 className="tracking-tight text-3xl md:text-5xl mb-2 capitalize font-bold">
           What People are saying about Valuemine
         </h2>
       </div>
-      <div className="grid md:grid-cols-3 gap-4">
-        <div>Video Placeholder</div>
+      <div className="container mx-auto flex flex-col md:flex-row items-center md:justify-between justify-center py-10 gap-8 md:gap-4">
+        {videoLinks.map((link, index) => (
+          <motion.div
+            className="w-full"
+            key={index}
+            variants={fadeInAnimationVariantY}
+            initial="initial"
+            whileInView="animate"
+            viewport={{
+              once: true,
+            }}
+            custom={index}>
+            <VideoPlayer src={link} />
+          </motion.div>
+        ))}
       </div>
     </section>
   );
