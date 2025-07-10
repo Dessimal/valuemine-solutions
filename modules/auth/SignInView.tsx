@@ -35,7 +35,7 @@ import { LoaderCircle } from "lucide-react";
 import { EmailTemplate } from "@/components/EmailTemplate";
 import { useCalculatorStore } from "@/app/store/calculator";
 
-const SignInView = () => {
+export const SignInView = () => {
   const [loading, setLoading] = useState(false);
   const [socialLoading, setSocialLoading] = useState(false);
 
@@ -195,5 +195,3 @@ const SignInView = () => {
     </div>
   );
 };
-
-export default SignInView;

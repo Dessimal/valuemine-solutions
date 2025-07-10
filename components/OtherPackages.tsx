@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Carousel, Card } from "./Carousel";
 import GeminiResultCard from "./GeminiResultCard";
@@ -15,7 +17,7 @@ type Package = {
   category?: string;
 };
 
-export default function OtherPackagesSection() {
+export function OtherPackagesSection() {
   const [loading, setLoading] = useState(false);
   const [selectedOtherPackage, setSelectedOtherPackage] = useState<string>("");
   const [aiDescription, setAIDescription] = useState<Record<string, any>>({});

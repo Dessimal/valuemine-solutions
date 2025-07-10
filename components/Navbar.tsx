@@ -14,7 +14,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { useRouter } from "next/navigation";
 import { UserDropdown } from "./UserDropdown";
 
-const Navbar = ({}) => {
+export const Navbar = ({}) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isMobile = useIsMobile();
@@ -167,4 +167,4 @@ const Navbar = ({}) => {
   );
 };
 
-export default Navbar;
+export Navbar;

@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { SquarePlus } from "lucide-react";
 import React, { useState } from "react";
 
-const FAQ = () => {
+export const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<null>(null);
 
   const handleClick = (index) => {
@@ -45,5 +45,3 @@ const FAQ = () => {
     </div>
   );
 };
-
-export default FAQ;

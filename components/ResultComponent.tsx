@@ -15,7 +15,7 @@ import SignOutButton from "./SignOutButton";
 import FAQ from "./FAQ";
 import { VideoTestimonials } from "./VideoTestimonials";
 
-export default function ResultComponent() {
+export function ResultComponent() {
   const params = useParams();
   const router = useRouter();
 

@@ -5,7 +5,7 @@ import { ArrowLeftToLine } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const InterestCalculatorPage = () => {
+export const InterestCalculatorPage = () => {
   const router = useRouter();
 
   return (
@@ -24,5 +24,3 @@ const InterestCalculatorPage = () => {
     </main>
   );
 };
-
-export default InterestCalculatorPage;

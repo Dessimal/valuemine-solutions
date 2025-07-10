@@ -21,7 +21,7 @@ interface ModalProps {
   countdown?: number; // New prop
 }
 
-const Modal: React.FC<ModalProps> = ({
+export const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
   title,
@@ -92,5 +92,3 @@ const Modal: React.FC<ModalProps> = ({
     </div>
   );
 };
-
-export default Modal;
