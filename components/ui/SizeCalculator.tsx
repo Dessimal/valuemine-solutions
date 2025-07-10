@@ -27,7 +27,7 @@ import { useCalculatorStore } from "@/app/store/calculator";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/app/lib/auth-client";
 
-const SizeCalculator = () => {
+export const SizeCalculator = () => {
   const [isPending, startTransition] = useTransition();
 
   const router = useRouter();
@@ -321,5 +321,3 @@ const SizeCalculator = () => {
     </div>
   );
 };
-
-export default SizeCalculator;

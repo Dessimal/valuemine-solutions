@@ -1,19 +1,17 @@
 "use client";
 
 import React, { useEffect } from "react";
-import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import Contact from "@/components/Contacts";
 
 import { motion, AnimatePresence } from "framer-motion";
-import ProblemSolution from "@/components/ui/ProblemSolution";
-import HowItWorks from "@/components/ui/HowItWorks";
-import Calculator from "@/components/ui/SizeCalculator";
-import Testimonials from "@/components/ui/Testimonials";
-import CalculatorSection from "@/components/CalculatorSection";
-import Solution from "@/components/ui/Solution";
+import { ProblemSolution } from "@/components/ui/ProblemSolution";
+import { HowItWorks } from "@/components/ui/HowItWorks";
+import { Testimonials } from "@/components/ui/Testimonials";
+import { CalculatorSection } from "@/components/CalculatorSection";
+import { Solution } from "@/components/ui/Solution";
 
 const HomePage = () => {
   useEffect(() => {

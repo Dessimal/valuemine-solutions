@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
 
-const Solution = () => {
+export const Solution = () => {
   const isMobile = useIsMobile();
 
   return (
@@ -88,5 +88,3 @@ const Solution = () => {
     </section>
   );
 };
-
-export default Solution;

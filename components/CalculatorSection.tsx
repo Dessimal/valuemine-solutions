@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Calculator as CalcIcon, Router } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-const CalculatorSection = () => {
+export const CalculatorSection = () => {
   const router = useRouter();
 
   const handleClick = () => {
@@ -84,5 +84,3 @@ const CalculatorSection = () => {
     </section>
   );
 };
-
-export default CalculatorSection;

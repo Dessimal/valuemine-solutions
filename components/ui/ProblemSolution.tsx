@@ -14,7 +14,7 @@ import {
 } from "@/app/constants";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-const ProblemSolution = () => {
+export const ProblemSolution = () => {
   const isMobile = useIsMobile();
 
   const problems = [
@@ -179,5 +179,3 @@ const ProblemSolution = () => {
     </section>
   );
 };
-
-export default ProblemSolution;

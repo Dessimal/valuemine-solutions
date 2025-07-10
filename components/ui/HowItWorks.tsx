@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
 
-const HowItWorks = () => {
+export const HowItWorks = () => {
   const steps = [
     {
       number: "01",
@@ -125,5 +125,3 @@ const HowItWorks = () => {
     </section>
   );
 };
-
-export default HowItWorks;

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 
-const Testimonials = () => {
+export const Testimonials = () => {
   const testimonials = [
     {
       name: "Chuka O.",
@@ -162,5 +162,3 @@ const Testimonials = () => {
     </section>
   );
 };
-
-export default Testimonials;

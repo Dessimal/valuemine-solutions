@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter, Mulish, Urbanist } from "next/font/google";
 import "./globals.css";
-import Footer from "@/components/Footer";
+import { Footer } from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import { auth } from "@/utils/auth";
-import Navbar from "@/components/Navbar";
+import { Navbar } from "@/components/Navbar";
 import { headers } from "next/headers";
 import { ThemeProvider } from "@/components/theme-provider";
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { footerLinks, services } from "@/app/constants";
 // import { Logo } from "@/app/constants";
 
-const Footer = () => {
+export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -154,5 +154,3 @@ const Footer = () => {
     </footer>
   );
 };
-
-export default Footer;
