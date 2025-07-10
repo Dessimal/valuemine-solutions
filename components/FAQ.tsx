@@ -25,7 +25,7 @@ const FAQ = () => {
               <SquarePlus
                 className={cn(
                   openIndex === index
-                    ? "rotate-45 transition-all duration-300 ease-in-out"
+                    ? "rotate-[225deg] transition-all duration-300 ease-in-out"
                     : ""
                 )}
               />

@@ -12,7 +12,7 @@ import { FaUser } from "react-icons/fa";
 import { authClient } from "@/app/lib/auth-client";
 import { ThemeToggle } from "./ThemeToggle";
 import { useRouter } from "next/navigation";
-import { UserDropdown } from "./UserDropDown";
+import { UserDropdown } from "./UserDropdown";
 
 const Navbar = ({}) => {
   const [isScrolled, setIsScrolled] = useState(false);

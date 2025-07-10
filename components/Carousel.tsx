@@ -223,6 +223,16 @@ export const Card = ({
                 className="mt-4 text-2xl font-semibold text-neutral-700 md:text-5xl dark:text-white">
                 {card.title}
               </motion.p>
+              <div className="py-10">
+                {" "}
+                <Image
+                  src={card.src}
+                  height={1080}
+                  width={1080}
+                  alt="solar package flyer"
+                  className="object-cover w-full"
+                />
+              </div>
               <div className="py-10">{card.content}</div>
             </motion.div>
           </div>
@@ -272,14 +282,33 @@ export const BlurImage = ({
         className
       )}
       onLoad={() => setLoading(false)}
-      src={src as string}
-      width={width}
-      height={height}
+      src={typeof src === "string" ? src : (src as any)?.src}
+      width={width || 400}
+      height={height || 400}
       loading="lazy"
       decoding="async"
       // blurDataURL={typeof src === "string" ? src : undefined}
-      alt={alt ? alt : "Background of a beautiful view"}
+      alt={alt ? alt : "flyer design for solar package"}
       {...rest}
     />
   );
 };
+
+{
+  /* <img
+  className={cn(
+    "h-full w-full transition duration-300",
+    isLoading ? "blur-sm" : "blur-0",
+    className
+  )}
+  onLoad={() => setLoading(false)}
+  src={src as string}
+  width={width}
+  height={height}
+  loading="lazy"
+  decoding="async"
+  // blurDataURL={typeof src === "string" ? src : undefined}
+  alt={alt ? alt : "Background of a beautiful view"}
+  {...rest}
+/>; */
+}

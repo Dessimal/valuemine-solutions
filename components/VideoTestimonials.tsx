@@ -22,16 +22,16 @@ export const VideoTestimonials = () => {
   };
 
   return (
-    <section className="space-y-6 py-6">
-      <div>
-        <h2 className="tracking-tight text-3xl md:text-5xl mb-2 capitalize font-bold">
+    <section className="space-y-6 py-6 mt-10">
+      <div className="container mx-auto">
+        <h2 className="tracking-tight text-2xl md:text-5xl mb-2 capitalize font-bold">
           What People are saying about Valuemine
         </h2>
       </div>
-      <div className="container mx-auto flex flex-col md:flex-row items-center md:justify-between justify-center py-10 gap-8 md:gap-4">
+      <div className="container mx-auto grid grid-cols-1 place-items-center py-10 gap-12 md:gap-4">
         {videoLinks.map((link, index) => (
           <motion.div
-            className="w-full"
+            className="w-full grid place-items-center"
             key={index}
             variants={fadeInAnimationVariantY}
             initial="initial"

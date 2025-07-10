@@ -102,7 +102,7 @@
 // }
 
 import Image from "next/image";
-import { Check, CircleCheckBig, Copy, XCircle } from "lucide-react";
+import { Check, CircleCheckBig, Copy, Send, XCircle } from "lucide-react";
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import GeminiResultCard from "./GeminiResultCard";
@@ -113,6 +113,7 @@ import Spinner from "./ui/Spinner";
 import { useCalculatorStore } from "@/app/store/calculator";
 import Modal from "./Modal";
 import { FaWhatsapp } from "react-icons/fa";
+import OpenModalButton from "./OpenModalButton";
 
 export default function RecommendedPackage({
   aiDescription,
@@ -121,7 +122,7 @@ export default function RecommendedPackage({
 }: {
   aiDescription: any;
   loading: boolean;
-  getShareText: (result: any) => string;
+  getShareText: () => string;
 }) {
   const [copied, setCopied] = useState(false);
   const textRef = useRef<HTMLDivElement>(null);
@@ -144,10 +145,13 @@ export default function RecommendedPackage({
   } = useCalculatorStore();
 
   const handleShare = () => {
+    console.log("handleShare function called!");
     const phoneNumber = "2349020532639";
+    const shareText = getShareText();
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-      getShareText
+      shareText
     )}`;
+    console.log("This is the shared text", shareText);
     window.open(url, "_blank");
   };
 
@@ -228,18 +232,43 @@ export default function RecommendedPackage({
         <p className="text-center text-lg text-gray-700">Submitting...</p>
       </div>
     ) : modalState === "success" ? (
+      // **** THIS IS THE 'SUCCESS' STATE BLOCK ****
       <div className="flex flex-col items-center justify-center gap-4 py-8">
         <CircleCheckBig className="text-green-600" size={64} />
         <div>
           <p className="text-center text-xl font-bold uppercase">SUCCESS!</p>
           <p className="text-center text-sm">
-            Thank you for sharing your contact with us. You will be redirected
-            to WhatsApp in <span className="font-bold">{countdown}</span> second
-            {countdown !== 1 ? "s" : ""}.
+            Thank you for sharing your contact with us.
+            {countdown > 0 ? (
+              // Message shown during countdown
+              <>
+                You will be redirected to WhatsApp in{" "}
+                <span className="font-bold">{countdown}</span> second
+                {countdown !== 1 ? "s" : ""}.
+              </>
+            ) : (
+              // Message shown after countdown finishes
+              <p className="mt-4">
+                Click the button below to open WhatsApp if it doesn't open
+                automatically:
+              </p>
+            )}
           </p>
+
+          {/* **** THIS IS THE CONDITIONAL BUTTON INSIDE THE 'SUCCESS' STATE **** */}
+          {countdown === 0 && ( // This ternary renders the button ONLY if countdown is 0
+            <div className="w-full border-2 flex items-center justify-center my-4">
+              <button
+                onClick={handleShare} // Direct user click to open WhatsApp
+                className="mx-auto mt-4 bg-green-600 text-white px-4 py-2 rounded flex items-center gap-2 mx-auto">
+                <FaWhatsapp size={24} /> Share on WhatsApp
+              </button>
+            </div>
+          )}
         </div>
       </div>
     ) : (
+      // **** END OF 'SUCCESS' STATE BLOCK ****
       // Error state
       <div className="flex flex-col items-center justify-center gap-4 py-8 text-center">
         <XCircle className="text-red-600" size={64} />
@@ -276,12 +305,12 @@ export default function RecommendedPackage({
       <p className="font-bold text-center mb-12">
         Here&apos;s the Minimum Recommended Solar Package for your Load:
       </p>
-      <h2 className="font-bold text-4xl sm:text-6xl w-full text-center">
+      <h2 className="font-bold text-2xl md:text-5xl mb-10 w-full text-center">
         {selectedPackage?.name
           ? `${selectedPackage.name} Inverter Package`
           : "No Package Selected"}
       </h2>
-      <div className="rounded-md shadow-sm overflow-hidden mb-8 p-4 sm:p-6">
+      <div className="rounded-md shadow-sm overflow-hidden mb-8 p-4 md:p-10 sm:p-6">
         <div className="w-full">
           {selectedPackagePicture && (
             <Image
@@ -324,17 +353,18 @@ export default function RecommendedPackage({
             )}
           </div>
         </div>
-        <div className="w-full flex flex-col items-center m-0 justify-center ">
-          <button
-            onClick={() => {
-              setModalState("form");
-              setIsOpen(true);
-            }}
-            className="relative shadow-2xl z-50 my-20 px-6 py-8 w-full max-w-[800px] shadow-lg rounded-4xl bg-orange-600 hover:bg-sky-950 hover:border-2 hover:border-white transition-color linear duration-300">
-            <span className="text-2xl text-white font-bold">
-              Share Package With Us
-            </span>
-          </button>
+        <div className="w-full flex flex-col gap-10 items-center my-20 justify-center ">
+          <OpenModalButton
+            setModalState={setModalState}
+            setIsOpen={setIsOpen}
+            text="Share Package With Us"
+          />
+          <OpenModalButton
+            variant="outline"
+            setModalState={setModalState}
+            setIsOpen={setIsOpen}
+            text="Pay Small Small"
+          />
         </div>
       </div>
 
