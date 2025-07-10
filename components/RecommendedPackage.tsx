@@ -101,6 +101,8 @@
 //   );
 // }
 
+"use client";
+
 import Image from "next/image";
 import { Check, CircleCheckBig, Copy, Send, XCircle } from "lucide-react";
 import { useRef, useState } from "react";
@@ -115,7 +117,7 @@ import Modal from "./Modal";
 import { FaWhatsapp } from "react-icons/fa";
 import OpenModalButton from "./OpenModalButton";
 
-export default function RecommendedPackage({
+export function RecommendedPackage({
   aiDescription,
   loading,
   getShareText,

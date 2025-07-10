@@ -5,13 +5,12 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeftToLine } from "lucide-react";
 import { PACKAGES } from "@/app/constants";
-import RecommendedPackage from "./RecommendedPackage";
+import { RecommendedPackage } from "./RecommendedPackage";
 import CostBreakdown from "./CostBreakDown";
-import OtherPackagesSection from "./OtherPackages";
+import { OtherPackagesSection } from "./OtherPackages";
 import debounce from "lodash/debounce";
 import { useCalculatorStore } from "@/app/store/calculator";
 import { fetchPrimaryGeminiDescription } from "@/app/data/aiDescription/get-aiDescription";
-import SignOutButton from "./SignOutButton";
 import FAQ from "./FAQ";
 import { VideoTestimonials } from "./VideoTestimonials";
 
