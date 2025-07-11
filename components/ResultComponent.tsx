@@ -11,7 +11,7 @@ import { OtherPackagesSection } from "./OtherPackages";
 import debounce from "lodash/debounce";
 import { useCalculatorStore } from "@/app/store/calculator";
 import { fetchPrimaryGeminiDescription } from "@/app/data/aiDescription/get-aiDescription";
-import FAQ from "./FAQ";
+import { FAQ } from "./FAQ";
 import { VideoTestimonials } from "./VideoTestimonials";
 
 export function ResultComponent() {
@@ -106,17 +106,8 @@ export function ResultComponent() {
   );
 
   return (
-    <div className="min-h-screen py-80">
-      <div>
-        {/* <button
-          onClick={() => router.back()}
-          className="font-bold hover:text-gray-900 px-4 py-2">
-          <span className="inline-flex items-center gap-2">
-            <ArrowLeftToLine /> Go back
-          </span>
-        </button> */}
-      </div>
-      <div className="max-w-7xl px-1 sm:px-4 lg:px-8 py-12">
+    <div className="container  mx-auto w-full py-20">
+      <div className="mx-auto max-w-7xl px-1 sm:px-4 lg:px-8 py-12">
         {interestCalculatorEnabled ? (
           <CostBreakdown
             aiDescription={primaryAIDescription}

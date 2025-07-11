@@ -5,7 +5,7 @@ import Image from "next/image";
 import { MainHeroImage } from "@/app/constants";
 import { HeroImage } from "../app/constants";
 import { ArrowRight, CheckCircle } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "@/lib/framerMotion";
 
 const Hero = () => {
   const router = useRouter();

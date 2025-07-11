@@ -3,7 +3,7 @@
 import { videoLinks } from "@/app/constants";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "@/lib/framerMotion";
 import { VideoPlayer } from "./VideoPlayer";
 
 export const VideoTestimonials = () => {
@@ -24,11 +24,11 @@ export const VideoTestimonials = () => {
   return (
     <section className="space-y-6 py-6 mt-10">
       <div className="container mx-auto">
-        <h2 className="tracking-tight text-2xl md:text-5xl mb-2 capitalize font-bold">
+        <h2 className="tracking-tight text-2xl text-center md:text-5xl mb-2 capitalize font-bold">
           What People are saying about Valuemine
         </h2>
       </div>
-      <div className="container mx-auto grid grid-cols-1 place-items-center py-10 gap-12 md:gap-4">
+      <div className="container mx-auto grid grid-cols-1 place-items-center py-10 gap-12 ">
         {videoLinks.map((link, index) => (
           <motion.div
             className="w-full grid place-items-center"

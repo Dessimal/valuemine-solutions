@@ -1,6 +1,6 @@
 import React from "react";
 import { Shield, Battery, Sun, Clock } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "@/lib/framerMotion";
 import { benefits } from "@/app/constants";
 
 const About = () => {

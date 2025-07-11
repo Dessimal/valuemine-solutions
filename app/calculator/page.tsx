@@ -1,5 +1,5 @@
 import { GridBackground } from "@/components/GridBackground";
-import SizeCalculator from "@/components/ui/SizeCalculator";
+import { SizeCalculator } from "@/components/ui/SizeCalculator";
 import React from "react";
 
 const page = () => {

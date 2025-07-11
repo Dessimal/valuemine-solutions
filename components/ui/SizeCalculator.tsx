@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState, useTransition } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/lib/framerMotion";
 
 import { Button } from "@/components/ui/button";
 import { Calculator, Loader2, Pencil, RotateCcw, Trash2 } from "lucide-react";

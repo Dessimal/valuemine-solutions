@@ -106,14 +106,14 @@
 import Image from "next/image";
 import { Check, CircleCheckBig, Copy, Send, XCircle } from "lucide-react";
 import { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "@/lib/framerMotion";
 import GeminiResultCard from "./GeminiResultCard";
 import ShareButton from "./ShareButton";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import Spinner from "./ui/Spinner";
 import { useCalculatorStore } from "@/app/store/calculator";
-import Modal from "./Modal";
+import { Modal } from "./Modal";
 import { FaWhatsapp } from "react-icons/fa";
 import OpenModalButton from "./OpenModalButton";
 

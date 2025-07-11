@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "@/lib/framerMotion";
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
 

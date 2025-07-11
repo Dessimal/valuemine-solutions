@@ -6,7 +6,7 @@ import About from "@/components/About";
 import Services from "@/components/Services";
 import Contact from "@/components/Contacts";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/lib/framerMotion";
 import { ProblemSolution } from "@/components/ui/ProblemSolution";
 import { HowItWorks } from "@/components/ui/HowItWorks";
 import { Testimonials } from "@/components/ui/Testimonials";

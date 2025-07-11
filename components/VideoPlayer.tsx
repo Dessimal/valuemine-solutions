@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { useEffect, useState, useRef, useCallback } from "react";
 import { VolumeOff } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "@/lib/framerMotion";
 
 interface VideoPlayerProps {
   src: string;

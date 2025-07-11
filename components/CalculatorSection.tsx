@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import SizeCalculator from "./ui/SizeCalculator";
-import { motion, AnimatePresence } from "framer-motion";
+import { SizeCalculator } from "./ui/SizeCalculator";
+import { motion, AnimatePresence } from "@/lib/framerMotion";
 import { Button } from "@/components/ui/button";
 import { Calculator as CalcIcon, Router } from "lucide-react";
 import { useRouter } from "next/navigation";

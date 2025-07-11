@@ -3,9 +3,9 @@ import { VideoTestimonials } from "@/components/VideoTestimonials";
 
 const ResultPage = () => {
   return (
-    <div>
+    <section className=" border">
       <ResultComponent />
-    </div>
+    </section>
   );
 };
 

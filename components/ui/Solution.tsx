@@ -1,6 +1,6 @@
 import { benefits, familyRelaxing } from "@/app/constants";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { motion } from "framer-motion";
+import { motion } from "@/lib/framerMotion";
 import Image from "next/image";
 import React from "react";
 

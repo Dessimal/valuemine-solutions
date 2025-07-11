@@ -75,7 +75,7 @@ export const Navbar = ({}) => {
           "fixed flex justify-between items-center w-full  transition-all duration-300 py-4 bg-background"
         )}>
         <div className="container mx-auto flex justify-between items-center">
-          <div className="flex space-x-4 items-center ">
+          <div className="flex space-x-8 items-center ">
             <Link href="/" className="flex items-center gap-2">
               <Image
                 height={50}
@@ -93,8 +93,7 @@ export const Navbar = ({}) => {
                   key={link.name}
                   href={link.path}
                   className={cn(
-                    "font-medium hover:text-brand-orange transition-colors",
-                    isScrolled ? "text-gray-800" : "text-white"
+                    "font-medium hover:text-brand-orange transition-colors"
                   )}>
                   {link.name}
                 </Link>

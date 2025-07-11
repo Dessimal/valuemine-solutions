@@ -1,7 +1,7 @@
 import React, { useRef, useLayoutEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sun, Fan, Refrigerator } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "@/lib/framerMotion";
 import { HeroImage, TiredMan, TiredManTwo } from "@/app/constants"; // Assuming this is your second image (larger, main one)
 import Image from "next/image";
 import { useIsMobile } from "@/hooks/use-mobile";
