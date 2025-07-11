@@ -1,3 +1,5 @@
+// "use client";
+
 import React from "react";
 import { Shield, Battery, Sun, Clock } from "lucide-react";
 import { motion } from "@/lib/framerMotion";
