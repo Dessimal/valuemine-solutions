@@ -1,6 +1,6 @@
 import { Check, Copy } from "lucide-react";
 import { useRef, useState } from "react";
-import Spinner from "./ui/Spinner";
+import { Spinner } from "./ui/Spinner";
 import GeminiResultCard from "./GeminiResultCard";
 import ShareButton from "./ShareButton";
 

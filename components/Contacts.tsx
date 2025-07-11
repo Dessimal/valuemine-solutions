@@ -68,7 +68,7 @@ export const Contact = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}>
-              {contactDetails.map((item, index) => (
+              {contactDetails.map(({ icon: Icon, title, details }, index) => (
                 <motion.div
                   key={index}
                   className="flex items-start gap-3"
@@ -76,11 +76,11 @@ export const Contact = () => {
                   whileHover={{ scale: 1.03 }}
                   transition={{ type: "spring", stiffness: 300, damping: 10 }}>
                   <div className="h-10 w-10 rounded-full gradient-bg flex items-center justify-center text-white shrink-0">
-                    {item.icon}
+                    {<Icon className="h-5 w-5" />}
                   </div>
                   <div>
-                    <h4 className="font-semibold">{item.title}</h4>
-                    {item.details.map((detail, i) => (
+                    <h4 className="font-semibold">{title}</h4>
+                    {details.map((detail, i) => (
                       <p key={i} className="text-gray-500 text-sm">
                         {detail}
                       </p>

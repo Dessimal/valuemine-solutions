@@ -28,6 +28,10 @@ import {
   FireExtinguisher,
   AirVent,
   Cctv,
+  MapPin,
+  Phone,
+  Mail,
+  Clock1,
 } from "lucide-react";
 
 import FiveHundredWatts from "@/public/500W-65AH- 280K.png";
@@ -423,27 +427,25 @@ export const faqs = [
   },
 ];
 
-
-
-  export const contactDetails = [
-    {
-      icon: <MapPin className="h-5 w-5" />,
-      title: "Visit Us",
-      details: ["No 1, Idi-Osan, Ologuneru", "Ibadan, Nigeria"],
-    },
-    {
-      icon: <Phone className="h-5 w-5" />,
-      title: "Call Us",
-      details: ["+234 902 053 2639", "+234 813 681 2541"],
-    },
-    {
-      icon: <Mail className="h-5 w-5" />,
-      title: "Email Us",
-      details: ["info@valuemine.com.ng", "support@valuemine.com.ng"],
-    },
-    {
-      icon: <Clock className="h-5 w-5" />,
-      title: "Working Hours",
-      details: ["Mon-Fri: 8AM - 6PM", "Saturday: 9AM - 1PM"],
-    },
-  ];
+export const contactDetails = [
+  {
+    icon: MapPin,
+    title: "Visit Us",
+    details: ["No 1, Idi-Osan, Ologuneru", "Ibadan, Nigeria"],
+  },
+  {
+    icon: Phone,
+    title: "Call Us",
+    details: ["+234 902 053 2639", "+234 813 681 2541"],
+  },
+  {
+    icon: Mail,
+    title: "Email Us",
+    details: ["info@valuemine.com.ng", "support@valuemine.com.ng"],
+  },
+  {
+    icon: Clock1,
+    title: "Working Hours",
+    details: ["Mon-Fri: 8AM - 6PM", "Saturday: 9AM - 1PM"],
+  },
+];

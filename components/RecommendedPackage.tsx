@@ -111,7 +111,7 @@ import GeminiResultCard from "./GeminiResultCard";
 import ShareButton from "./ShareButton";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import Spinner from "./ui/Spinner";
+import { Spinner } from "./ui/Spinner";
 import { useCalculatorStore } from "@/app/store/calculator";
 import { Modal } from "./Modal";
 import { FaWhatsapp } from "react-icons/fa";

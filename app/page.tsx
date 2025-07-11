@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services";
-import Contact from "@/components/Contacts";
+import { Contact } from "@/components/Contacts";
 
 import { motion, AnimatePresence } from "@/lib/framerMotion";
 import { ProblemSolution } from "@/components/ui/ProblemSolution";
