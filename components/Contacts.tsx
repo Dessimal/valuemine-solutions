@@ -8,36 +8,14 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { motion } from "@/lib/framerMotion";
 
 import ContactForm from "./ContactForm";
+import { contactDetails } from "@/app/constants";
 
-const Contact = () => {
+export const Contact = () => {
   // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
   //   e.preventDefault();
   //   // Form submission logic would go here
   //   console.log("Form submitted");
   // };
-
-  const contactDetails = [
-    {
-      icon: <MapPin className="h-5 w-5" />,
-      title: "Visit Us",
-      details: ["123 Solar Road", "Lagos, Nigeria"],
-    },
-    {
-      icon: <Phone className="h-5 w-5" />,
-      title: "Call Us",
-      details: ["+234 123 456 7890", "+234 987 654 3210"],
-    },
-    {
-      icon: <Mail className="h-5 w-5" />,
-      title: "Email Us",
-      details: ["info@shinenigeria.com", "support@shinenigeria.com"],
-    },
-    {
-      icon: <Clock className="h-5 w-5" />,
-      title: "Working Hours",
-      details: ["Mon-Fri: 8AM - 6PM", "Saturday: 9AM - 1PM"],
-    },
-  ];
 
   const staggerAnimation = {
     hidden: { opacity: 0 },
@@ -128,8 +106,6 @@ const Contact = () => {
     </section>
   );
 };
-
-export default Contact;
 
 // <form onSubmit={handleSubmit} className="space-y-6">
 //   <motion.div

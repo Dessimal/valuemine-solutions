@@ -422,3 +422,28 @@ export const faqs = [
       "Yes, you can pay in instalments. However, this is only applicable to businesses, for now.",
   },
 ];
+
+
+
+  export const contactDetails = [
+    {
+      icon: <MapPin className="h-5 w-5" />,
+      title: "Visit Us",
+      details: ["No 1, Idi-Osan, Ologuneru", "Ibadan, Nigeria"],
+    },
+    {
+      icon: <Phone className="h-5 w-5" />,
+      title: "Call Us",
+      details: ["+234 902 053 2639", "+234 813 681 2541"],
+    },
+    {
+      icon: <Mail className="h-5 w-5" />,
+      title: "Email Us",
+      details: ["info@valuemine.com.ng", "support@valuemine.com.ng"],
+    },
+    {
+      icon: <Clock className="h-5 w-5" />,
+      title: "Working Hours",
+      details: ["Mon-Fri: 8AM - 6PM", "Saturday: 9AM - 1PM"],
+    },
+  ];

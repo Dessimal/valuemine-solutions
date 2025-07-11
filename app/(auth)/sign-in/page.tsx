@@ -1,4 +1,4 @@
-import SignInView from "@/modules/auth/SignInView";
+import { SignInView } from "@/modules/auth/SignInView";
 import React, { Suspense } from "react";
 
 const page = () => {

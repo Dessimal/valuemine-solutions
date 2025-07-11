@@ -1,4 +1,4 @@
-import SignUpView from "@/modules/auth/SignUpView";
+import { SignUpView } from "@/modules/auth/SignUpView";
 import React, { Suspense } from "react";
 
 const SignUpPage = () => {

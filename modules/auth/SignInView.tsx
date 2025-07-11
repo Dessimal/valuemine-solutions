@@ -63,10 +63,10 @@ export const SignInView = () => {
   const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   // Only include callbackUrl if it's not "/" and is truthy
-  const signUpHref =
-    callbackUrl && callbackUrl !== "/"
-      ? `/sign-up?callbackUrl=${encodeURIComponent(callbackUrl)}`
-      : "/sign-up";
+  // const signUpHref =
+  //   callbackUrl && callbackUrl !== "/"
+  //     ? `/sign-up?callbackUrl=${encodeURIComponent(callbackUrl)}`
+  //     : "/sign-up";
 
   const onSubmit = async (data: FormData) => {
     try {
@@ -181,14 +181,14 @@ export const SignInView = () => {
                 )}
               </span>
             </Button>
-            <p className="text-sm text-center text-gray-500">
+            {/* <p className="text-sm text-center text-gray-500">
               Don&apos;t have an account?{" "}
               <Link
                 className="underline text-slate-900 font-bold"
                 href={signUpHref}>
                 Sign Up
               </Link>
-            </p>
+            </p> */}
           </CardFooter>
         </CardHeader>
       </Card>
