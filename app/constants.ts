@@ -350,41 +350,41 @@ export const videoLinks = [
 
 export const services = [
   {
-    id: "#design",
+    id: "solar",
     icon: PencilRuler,
     iconSize: 32,
     text: "Design, procurement, and installation of solar and inverter systems.",
   },
   {
-    id: "#electrical",
+    id: "wiring",
     icon: Cable,
     iconSize: 32,
 
     text: "Residential, commercial, and industrial electrical wiring and installations.",
   },
   {
-    id: "#procurement",
+    id: "cctv",
     icon: Cctv,
     iconSize: 32,
 
-    text: "Procurement and installation of CCTV surveillance and security systems.",
+    text: "Procurement and installation of CCTV surveilplance and security systems.",
   },
   {
-    id: "#development",
+    id: "automation",
     icon: Workflow,
     iconSize: 32,
 
     text: "Development and deployment of home and building automation solutions.",
   },
   {
-    id: "#fire-alarm",
+    id: "fire-alarm",
     icon: FireExtinguisher,
     iconSize: 32,
 
     text: "Installation and maintenance of fire alarm and detection systems.",
   },
   {
-    id: "#electronics",
+    id: "electronics",
     icon: AirVent,
     iconSize: 32,
 
@@ -448,4 +448,13 @@ export const contactDetails = [
     title: "Working Hours",
     details: ["Mon-Fri: 8AM - 6PM", "Saturday: 9AM - 1PM"],
   },
+];
+
+export const quickLinks = [
+  { href: "#solar", link: "Solar Energy" },
+  { href: "#wiring", link: "Electrical Wiring" },
+  { href: "#cctv", link: "CCTV" },
+  { href: "#automation", link: "Home Automation" },
+  { href: "#fire-alarm", link: "Fire Alarm System" },
+  { href: "#electronics", link: "Installation of Home Appliances" },
 ];

@@ -13,10 +13,12 @@ body::-webkit-scrollbar {
   }
 
   body {
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
 
-  section {
+  section:not(footer) {
     @apply min-h-screen pt-12 px-4 relative overflow-hidden;
   }
 

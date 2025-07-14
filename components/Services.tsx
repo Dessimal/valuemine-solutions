@@ -38,8 +38,9 @@ const Services = () => {
         </motion.div>
 
         <div className="h-full w-full grid sm:grid-cols-2 md:grid-cols-3 gap-6 my-10">
-          {services.map(({ text, icon: Icon }, index) => (
+          {services.map(({ id, text, icon: Icon }, index) => (
             <motion.div
+              id={id}
               key={index}
               variants={fadeInAnimationVariantY}
               initial="initial"

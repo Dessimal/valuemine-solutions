@@ -30,13 +30,10 @@ const OpenModalButton = ({
         setModalState("form");
         setIsOpen(true);
       }}
-      className={cn(
-        "relative shadow-2xl z-50 px-6 py-8 w-full max-w-[800px] shadow-lg rounded-md",
-        variant ? "" : "gradient-bg"
-      )}>
+      className={cn("relative z-50 w-full", variant ? "" : "gradient-bg")}>
       <span className="inline-flex gap-6 items-center">
         {variant ? "" : <Send size={32} />}{" "}
-        <span className="text-2xl tracking-wide font-bold">{text}</span>
+        <span className="text-lg tracking-wide font-bold">{text}</span>
       </span>
     </Button>
   );

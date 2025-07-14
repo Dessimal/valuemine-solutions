@@ -251,7 +251,7 @@ export function RecommendedPackage({
             ) : (
               // Message shown after countdown finishes
               <p className="mt-4">
-                Click the button below to open WhatsApp if it doesn't open
+                Click the button below to open WhatsApp if it doesn&apos;t open
                 automatically:
               </p>
             )}

@@ -60,16 +60,11 @@ export default async function RootLayout({
         />
       </head>
       <body className={` ${urbanist.variable} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-          <Toaster />
-        </ThemeProvider>
+        <Navbar />
+        <main>{children}</main>
+
+        <Footer />
+        <Toaster />
       </body>
     </html>
   );

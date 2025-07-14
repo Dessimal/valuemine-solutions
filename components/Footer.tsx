@@ -1,7 +1,7 @@
 import React from "react";
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import Link from "next/link";
-import { footerLinks, services } from "@/app/constants";
+import { footerLinks, quickLinks, services } from "@/app/constants";
 // import { Logo } from "@/app/constants";
 
 export const Footer = () => {
@@ -17,7 +17,8 @@ export const Footer = () => {
               <span className="font-bold text-xl">Valuemine Solutions</span>
             </div>
             <p className="text-gray-400 mb-6">
-              Powering Nigeria's future with sustainable solar energy solutions.
+              Powering Nigeria&apos;s future with sustainable solar energy
+              solutions.
             </p>
             <div className="flex space-x-4">
               <Link href="#" className="text-gray-400 hover:text-white">
@@ -38,12 +39,10 @@ export const Footer = () => {
           <div>
             <h3 className="font-semibold text-lg mb-4">Our Services</h3>
             <ul className="space-y-2">
-              {services.map((service) => (
-                <li key={service.id}>
-                  <Link
-                    href={service.id}
-                    className="text-gray-400 hover:text-white">
-                    {service.text}
+              {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={href} className="text-gray-400 hover:text-white">
+                    {link}
                   </Link>
                 </li>
               ))}

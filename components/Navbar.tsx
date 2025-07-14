@@ -129,7 +129,7 @@ export const Navbar = ({}) => {
               </Button>
             </div> */}
           </div>
-          <div className="flex items-center gap-6 border-2">
+          <div className="flex items-center gap-6">
             <ThemeToggle />
             {session ? (
               <div>
