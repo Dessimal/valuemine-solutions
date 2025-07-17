@@ -1,6 +1,18 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import { Card } from "@/components/ui/card";
 import { Toaster } from "sonner";
+import { Inter, Mulish, Urbanist } from "next/font/google";
+import "./globals.css";
+
+const mulish = Mulish({
+  subsets: ["latin"],
+  variable: "--font-mulish",
+});
+
+const urbanist = Urbanist({
+  subsets: ["latin"],
+  variable: "--font-urbanist",
+});
 
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (

@@ -3,9 +3,7 @@ import { Inter, Mulish, Urbanist } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
-import { auth } from "@/utils/auth";
 import { Navbar } from "@/components/Navbar";
-import { headers } from "next/headers";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const mulish = Mulish({
@@ -60,11 +58,17 @@ export default async function RootLayout({
         />
       </head>
       <body className={` ${urbanist.variable} antialiased`}>
-        <Navbar />
-        <main>{children}</main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange>
+          <Navbar />
+          <main>{children}</main>
 
-        <Toaster />
-        <Footer />
+          <Toaster />
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
