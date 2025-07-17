@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Mulish, Urbanist } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { Footer } from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import { Navbar } from "@/components/Navbar";
