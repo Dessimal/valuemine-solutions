@@ -30,7 +30,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
           disableTransitionOnChange>
           <main>
             <div className="bg-muted min-h-screen w-full">
-              <div className=" min-h-screen w-full md:max-w-3xl mx-auto flex items-center justify-center p-2 ">
+              <div className=" container mx-auto min-h-screen w-full md:max-w-3xl mx-auto flex items-center justify-center p-2 ">
                 {children}
               </div>
             </div>

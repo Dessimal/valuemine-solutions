@@ -72,7 +72,7 @@ export const Navbar = ({}) => {
     <>
       <nav
         className={cn(
-          "fixed flex justify-between items-center w-full  transition-all duration-300 py-4 bg-background"
+          "sticky top-0 z-50 flex justify-between items-center w-full  transition-all duration-300 py-4 bg-background"
         )}>
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex space-x-8 items-center ">
