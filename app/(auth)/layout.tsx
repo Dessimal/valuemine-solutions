@@ -2,7 +2,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Card } from "@/components/ui/card";
 import { Toaster } from "sonner";
 import { Inter, Mulish, Urbanist } from "next/font/google";
-import "./globals.css";
 
 const mulish = Mulish({
   subsets: ["latin"],
