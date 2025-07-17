@@ -63,8 +63,8 @@ export default async function RootLayout({
         <Navbar />
         <main>{children}</main>
 
-        <Footer />
         <Toaster />
+        <Footer />
       </body>
     </html>
   );

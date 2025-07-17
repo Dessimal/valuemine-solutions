@@ -39,33 +39,13 @@ export const Footer = () => {
           <div>
             <h3 className="font-semibold text-lg mb-4">Our Services</h3>
             <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
+              {quickLinks.map(({ href, name }) => (
+                <li key={name}>
                   <Link href={href} className="text-gray-400 hover:text-white">
-                    {link}
+                    {name}
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link href="#" className="text-gray-400 hover:text-white">
-                  Commercial Solar
-                </Link>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white">
-                  Industrial Power
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white">
-                  Energy Consulting
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white">
-                  System Maintenance
-                </a>
-              </li>
             </ul>
           </div>
 

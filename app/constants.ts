@@ -451,10 +451,10 @@ export const contactDetails = [
 ];
 
 export const quickLinks = [
-  { href: "#solar", link: "Solar Energy" },
-  { href: "#wiring", link: "Electrical Wiring" },
-  { href: "#cctv", link: "CCTV" },
-  { href: "#automation", link: "Home Automation" },
-  { href: "#fire-alarm", link: "Fire Alarm System" },
-  { href: "#electronics", link: "Installation of Home Appliances" },
+  { href: "#solar", name: "Solar Energy" },
+  { href: "#wiring", name: "Electrical Wiring" },
+  { href: "#cctv", name: "CCTV" },
+  { href: "#automation", name: "Home Automation" },
+  { href: "#fire-alarm", name: "Fire Alarm System" },
+  { href: "#electronics", name: "Installation of Home Appliances" },
 ];
