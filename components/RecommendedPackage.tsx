@@ -251,15 +251,15 @@ export function RecommendedPackage({
             ) : (
               // Message shown after countdown finishes
               <p className="mt-4">
-                Click the button below to open WhatsApp if it doesn&apos;t open
-                automatically:
+                IMPORTANT* Please click the button below to open WhatsApp if it
+                doesn&apos;t open automatically:
               </p>
             )}
           </p>
 
           {/* **** THIS IS THE CONDITIONAL BUTTON INSIDE THE 'SUCCESS' STATE **** */}
           {countdown === 0 && ( // This ternary renders the button ONLY if countdown is 0
-            <div className="w-full border-2 flex items-center justify-center my-4">
+            <div className="w-full flex items-center justify-center my-4">
               <button
                 onClick={handleShare} // Direct user click to open WhatsApp
                 className="mx-auto mt-4 bg-green-600 text-white px-4 py-2 rounded flex items-center gap-2 mx-auto">

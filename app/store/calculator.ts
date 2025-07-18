@@ -326,6 +326,21 @@ export const useCalculatorStore = create(
             normalizedName
           );
         });
+        // Check if standing or table fan is selected
+        const hasTableFanOrStandingFan = devices.some((device) => {
+          const normalizedName = device.name.toLowerCase().replace(/\s+/g, " ");
+          return /\b(fan|standing fan|table fan|exhaust fan|ceiling fan)\b/.test(
+            normalizedName
+          );
+        });
+        const hasTV = devices.some((device) => {
+          const normalizedName = device.name.toLowerCase().replace(/\s+/g, " ");
+          return /\b(LED TV|Plasma TV)\b/.test(normalizedName);
+        });
+        const hasWaterPumpOrDispenser = devices.some((device) => {
+          const normalizedName = device.name.toLowerCase().replace(/\s+/g, " ");
+          return /\b(Water Pump|Water Dispenser)\b/.test(normalizedName);
+        });
 
         if (totalWatts <= 800) {
           if (!hasFreezerOrFridge) {
@@ -339,6 +354,45 @@ export const useCalculatorStore = create(
             }
           } else {
             customPackageName = "1kva(a)";
+          }
+        } else if (totalWatts <= 800) {
+          if (!hasTV) {
+            if (totalWatts < 500) {
+              customPackageName = "500W";
+            }
+            if (totalWatts >= 500 && totalWatts <= 700) {
+              customPackageName = "1000W(a)";
+            } else if (totalWatts >= 700 && totalWatts <= 800) {
+              customPackageName = "1000W(b)";
+            }
+          } else {
+            customPackageName = "1kva(a)";
+          }
+        } else if (totalWatts <= 800) {
+          if (!hasTableFanOrStandingFan) {
+            if (totalWatts < 500) {
+              customPackageName = "500W";
+            }
+            if (totalWatts >= 500 && totalWatts <= 700) {
+              customPackageName = "1000W(a)";
+            } else if (totalWatts >= 700 && totalWatts <= 800) {
+              customPackageName = "1000W(b)";
+            }
+          } else {
+            customPackageName = "1kva(a)";
+          }
+        } else if (totalWatts <= 800) {
+          if (!hasWaterPumpOrDispenser) {
+            if (totalWatts < 500) {
+              customPackageName = "500W";
+            }
+            if (totalWatts >= 500 && totalWatts <= 700) {
+              customPackageName = "1000W(a)";
+            } else if (totalWatts >= 700 && totalWatts <= 800) {
+              customPackageName = "1000W(b)";
+            }
+          } else {
+            customPackageName = "2.5kva";
           }
         } else if (totalkVA > 1 && totalkVA <= 1.5) {
           customPackageName = "1.5kva";
