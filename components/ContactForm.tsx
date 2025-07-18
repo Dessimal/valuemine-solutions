@@ -46,6 +46,7 @@ const ContactForm = () => {
       });
       if (res.ok) {
         setSuccess(true);
+        
         form.reset();
       } else {
         setErrorMsg("Failed to send message. Please try again.");

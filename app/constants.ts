@@ -11,6 +11,8 @@ import fuelQueue from "@/app/assets/fuel-queues.jpeg";
 import DoodleArrowUp from "@/app/assets/Frame 5.svg";
 import DoodleArrowDown from "@/app/assets/Frame 6.svg";
 import {
+  House, 
+  Info,
   Sun,
   Battery,
   Shield,
@@ -458,3 +460,10 @@ export const quickLinks = [
   { href: "#fire-alarm", name: "Fire Alarm System" },
   { href: "#electronics", name: "Installation of Home Appliances" },
 ];
+
+export const navLinks = [
+  {icon: House, name: "Home", path: "/" },
+  { icon: Info, name: "About", path: "/about" },
+  { icon: Phone,  name: "Contact", path: "/contact" },
+];
+

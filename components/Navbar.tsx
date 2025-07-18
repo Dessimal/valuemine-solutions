@@ -1,35 +1,71 @@
+// Navbar.jsx
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useCycle } from "framer-motion";
+
+import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Link from "next/link";
-import { Logo } from "@/app/constants";
+import { Logo, navLinks } from "@/app/constants";
 import Image from "next/image";
 import { FaUser } from "react-icons/fa";
 import { authClient } from "@/app/lib/auth-client";
 import { ThemeToggle } from "./ThemeToggle";
 import { useRouter } from "next/navigation";
 import { UserDropdown } from "./UserDropdown";
+import { Navigation } from "./Navigation";
+import { MenuToggle } from "./MenuToggle";
+import { useDimensions } from "@/hooks/use-dimensions";
+import { toast } from "sonner";
 
-export const Navbar = ({}) => {
+export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isMobile = useIsMobile();
+  const [isOpen, toggleOpen] = useCycle(false, true);
 
-  // console.log("Your session:", session);
+  // We will now use window dimensions for the sidebar, not a ref on the nav.
+  // The 'containerRef' will still be for the motion.nav if you need its dimensions for other reasons,
+  // but not for the sidebar's clipPath.
+  const containerRef = useRef(null); // Keep for potential other uses on the nav itself
+
+  // State to store window dimensions for the sidebar's clipPath
+  const [windowDimensions, setWindowDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
+
+  useEffect(() => {
+    const updateWindowDimensions = () => {
+      setWindowDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    // Set initial dimensions
+    updateWindowDimensions();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", updateWindowDimensions);
+
+    // Clean up event listener
+    return () => {
+      window.removeEventListener("resize", updateWindowDimensions);
+    };
+  }, []); // Run once on mount and on resize
 
   const router = useRouter();
-
   const { data: session, isPending } = authClient.useSession();
+  const [loggingout, setLoggingout] = useState(false);
 
   const handleSignOut = async () => {
     await authClient.signOut({
       fetchOptions: {
         onRequest: () => {
-          setLoggingout(true); // redirect to login page
+          setLoggingout(true);
         },
         onSuccess: () => {
           router.push("/sign-in");
@@ -55,38 +91,47 @@ export const Navbar = ({}) => {
     };
   }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  // Updated sidebar variants to use windowDimensions
+  const sidebar = {
+    open: {
+      clipPath: `circle(${windowDimensions.height * 2 + 200}px at 40px 40px)`,
+      transition: {
+        type: "spring",
+        stiffness: 20,
+        restDelta: 2,
+      },
+    },
+    closed: {
+      clipPath: "circle(30px at 40px 40px)",
+      transition: {
+        delay: 0.5,
+        type: "spring",
+        stiffness: 400,
+        damping: 40,
+      },
+    },
   };
-
-  const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/#about" },
-    { name: "Services", path: "/#services" },
-    { name: "Contact", path: "/#contact" },
-  ];
-
-  // isScrolled ? "bg-black shadow-md py-2" : " py-4"
 
   return (
     <>
       <nav
+        ref={containerRef} // Keep ref on nav if needed for other styling/dimensions
         className={cn(
-          "sticky top-0 z-50 flex justify-between items-center w-full  transition-all duration-300 py-4 bg-background"
+          "fixed top-0 z-50 flex justify-between items-center w-full transition-all duration-300 p-4 bg-background",
+          isScrolled ? "shadow-md py-2" : "py-4"
         )}>
-        <div className="container mx-auto flex justify-between items-center">
-          <div className="flex space-x-8 items-center ">
+        <div className="container mx-auto flex justify-between items-center relative">
+          <div className="flex space-x-8 items-center">
             <Link href="/" className="flex items-center gap-2">
               <Image
-                height={50}
-                width={50}
+                height={32}
+                width={32}
                 src={Logo}
                 alt="Logo"
-                className=" logo-shadow"
+                className="logo-shadow"
               />
               <span className={cn("font-bold text-xl")}>Valuemine</span>
             </Link>
-            {/* Desktop Menu */}
             <div className="hidden md:flex items-center gap-6">
               {navLinks.map((link) => (
                 <Link
@@ -98,70 +143,43 @@ export const Navbar = ({}) => {
                   {link.name}
                 </Link>
               ))}
-              {/* {session && (
-                <div>
-                  {session?.user?.image ? (
-                    <FaUser size={24} color="black" />
-                  ) : (
-                    <>
-                      <span className="size-18 p-2 rounded-full bg-blue-700 text-white text-3xl uppercase text-xs mr-4">
-                        {session?.user?.name.slice(0, 1)}
-                      </span>
-                      <Button variant="ghost" onClick={handleSignOut}>
-                        sign out
-                      </Button>
-                    </>
-                  )}
-                </div>
-              )} */}
             </div>
-            {/* Mobile Menu Button */}
-            {/* <div className="md:hidden">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleMenu}
-                className={cn(
-                  isScrolled ? "text-gray-800" : "text-white",
-                  "hover:bg-transparent"
-                )}>
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </Button>
-            </div> */}
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center justify-between">
             <ThemeToggle />
             {session ? (
-              <div>
-                <UserDropdown />
-              </div>
+              <UserDropdown />
             ) : (
-              <div>
-                <Link href="/sign-in" className="font-bold text-sm md:text-lg">
-                  Sign in
-                </Link>
-              </div>
-            )}
-            {/* Mobile Menu */}
-            {isMobile && isMenuOpen && (
-              <div className="md:hidden bg-white shadow-lg absolute w-full">
-                <div className="container mx-auto py-4 px-6 flex flex-col space-y-4">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.name}
-                      href={link.path}
-                      className="text-gray-800 font-medium py-2"
-                      onClick={() => setIsMenuOpen(false)}>
-                      {link.name}
-                    </Link>
-                  ))}
-                  <Button className="gradient-bg w-full">Get Started</Button>
-                </div>
-              </div>
+              <Link
+                href="/sign-in"
+                className="font-bold hover:text-amber-500 cursor-pointer text-xs md:text-lg">
+                Sign in
+              </Link>
             )}
           </div>
         </div>
+        {/* The MenuToggle is kept here for visibility within the Navbar */}
+        <MenuToggle
+          toggle={() => toggleOpen()}
+          className="absolute top-1/2 right-0 -translate-y-1/2 z-[100]" // Ensure it's very high z-index
+        />
       </nav>
+
+      {/* The full-screen sidebar container */}
+      <motion.div
+        initial={false}
+        animate={isOpen ? "open" : "closed"}
+        custom={windowDimensions.height} // Pass window height as custom prop
+        className="fixed inset-0 z-40 pointer-events-none" // Use inset-0 for full screen, lower z-index than toggle
+      >
+        <motion.div
+          className="absolute top-0 right-0 bottom-0 w-[300px] bg-gray-900 pointer-events-auto" // Sidebar background, make sure it's wide enough
+          variants={sidebar}
+        />
+        <Navigation
+          className="absolute top-[100px] right-0 w-[230px] p-[25px] pointer-events-auto" // Position Navigation within the sidebar
+        />
+      </motion.div>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { Shield, Battery, Sun, Clock } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion } from "@/lib/framerMotion";
 
 import HeroImage from "@/app/assets/valuemine_hero_image.png";
 import Logo from "@/app/assets/logo.svg";
