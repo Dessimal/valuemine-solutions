@@ -94,7 +94,7 @@ export const Navbar = () => {
   // Updated sidebar variants to use windowDimensions
   const sidebar = {
     open: {
-      clipPath: `circle(${windowDimensions.height * 2 + 200}px at 40px 40px)`,
+      clipPath: `circle(${windowDimensions.height * 2 + 200}px at 10px 10px)`,
       transition: {
         type: "spring",
         stiffness: 20,
@@ -102,7 +102,7 @@ export const Navbar = () => {
       },
     },
     closed: {
-      clipPath: "circle(30px at 40px 40px)",
+      clipPath: "circle(20px at 260px 32px)",
       transition: {
         delay: 0.5,
         type: "spring",
@@ -114,7 +114,8 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav
+      <motion.nav
+        animate={isOpen ? "open" : "closed"}
         ref={containerRef} // Keep ref on nav if needed for other styling/dimensions
         className={cn(
           "fixed top-0 z-50 flex justify-between items-center w-full transition-all duration-300 p-4 bg-background",
@@ -145,7 +146,7 @@ export const Navbar = () => {
               ))}
             </div>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mr-12">
             <ThemeToggle />
             {session ? (
               <UserDropdown />
@@ -159,11 +160,13 @@ export const Navbar = () => {
           </div>
         </div>
         {/* The MenuToggle is kept here for visibility within the Navbar */}
-        <MenuToggle
-          toggle={() => toggleOpen()}
-          className="absolute top-1/2 right-0 -translate-y-1/2 z-[100]" // Ensure it's very high z-index
-        />
-      </nav>
+        {isMobile && (
+          <MenuToggle
+            toggle={() => toggleOpen()}
+            className="absolute top-1/2 right-[28px] -translate-y-1/2 z-[100]" // Ensure it's very high z-index
+          />
+        )}
+      </motion.nav>
 
       {/* The full-screen sidebar container */}
       <motion.div
@@ -173,11 +176,11 @@ export const Navbar = () => {
         className="fixed inset-0 z-40 pointer-events-none" // Use inset-0 for full screen, lower z-index than toggle
       >
         <motion.div
-          className="absolute top-0 right-0 bottom-0 w-[300px] bg-gray-900 pointer-events-auto" // Sidebar background, make sure it's wide enough
+          className="absolute top-0 right-0 bottom-0 w-[300px] bg-gray-900 pointer-events-auto z-50" // Sidebar background, make sure it's wide enough
           variants={sidebar}
         />
         <Navigation
-          className="absolute top-[100px] right-0 w-[230px] p-[25px] pointer-events-auto" // Position Navigation within the sidebar
+          className="absolute top-[100px] right-0 w-[230px] p-[25px] pointer-events-auto z-[100]" // Position Navigation within the sidebar
         />
       </motion.div>
     </>

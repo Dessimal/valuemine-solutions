@@ -4,6 +4,7 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import { MenuItem } from "./MenuItem";
 import { navLinks } from "@/app/constants";
+import { cn } from "@/app/lib/utils";
 
 const variants = {
   open: {
@@ -14,10 +15,8 @@ const variants = {
   },
 };
 
-export const Navigation = () => (
-  <motion.ul
-    className="absolute top-[100px] w-[230px] p-[25px]"
-    variants={variants}>
+export const Navigation = ({ className }) => (
+  <motion.ul className={cn("space-y-5", className)} variants={variants}>
     {navLinks.map(({ icon, name, path }) => (
       <MenuItem icon={icon} key={name} name={name} path={path} />
     ))}
