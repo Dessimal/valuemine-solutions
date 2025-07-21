@@ -14,7 +14,7 @@ import Image from "next/image";
 import { FaUser } from "react-icons/fa";
 import { authClient } from "@/app/lib/auth-client";
 import { ThemeToggle } from "./ThemeToggle";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { UserDropdown } from "./UserDropdown";
 import { Navigation } from "./Navigation";
 import { MenuToggle } from "./MenuToggle";
@@ -25,6 +25,8 @@ export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = useIsMobile();
   const [isOpen, toggleOpen] = useCycle(false, true);
+
+  const pathname = usePathname();
 
   // We will now use window dimensions for the sidebar, not a ref on the nav.
   // The 'containerRef' will still be for the motion.nav if you need its dimensions for other reasons,
@@ -102,7 +104,7 @@ export const Navbar = () => {
       },
     },
     closed: {
-      clipPath: "circle(20px at 260px 32px)",
+      clipPath: "circle(20px at 160px 32px)",
       transition: {
         delay: 0.5,
         type: "spring",
@@ -134,14 +136,17 @@ export const Navbar = () => {
               <span className={cn("font-bold text-xl")}>Valuemine</span>
             </Link>
             <div className="hidden md:flex items-center gap-6">
-              {navLinks.map((link) => (
+              {navLinks.map(({ name, path }) => (
                 <Link
-                  key={link.name}
-                  href={link.path}
+                  key={name}
+                  href={path}
                   className={cn(
-                    "font-medium hover:text-brand-orange transition-colors"
+                    " hover:text-brand-orange transition-colors",
+                    pathname === path
+                      ? "gradient-text font-bold"
+                      : "font-medium"
                   )}>
-                  {link.name}
+                  {name}
                 </Link>
               ))}
             </div>
@@ -176,11 +181,11 @@ export const Navbar = () => {
         className="fixed inset-0 z-40 pointer-events-none" // Use inset-0 for full screen, lower z-index than toggle
       >
         <motion.div
-          className="absolute top-0 right-0 bottom-0 w-[300px] bg-gray-900 pointer-events-auto z-50" // Sidebar background, make sure it's wide enough
+          className="absolute top-0 right-0 bottom-0 w-[200px] bg-gray-900 pointer-events-auto z-50" // Sidebar background, make sure it's wide enough
           variants={sidebar}
         />
         <Navigation
-          className="absolute top-[100px] right-0 w-[230px] p-[25px] pointer-events-auto z-[100]" // Position Navigation within the sidebar
+          className="absolute top-[100px] right-0 w-[200px] p-[25px] pointer-events-auto z-[100]" // Position Navigation within the sidebar
         />
       </motion.div>
     </>

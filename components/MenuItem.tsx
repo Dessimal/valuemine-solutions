@@ -4,6 +4,8 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { navLinks } from "@/app/constants";
+import { usePathname } from "next/navigation";
+import { cn } from "@/app/lib/utils";
 
 const variants = {
   open: {
@@ -25,6 +27,9 @@ const variants = {
 const colors = ["#FF008C", "#D309E1", "#9C1AFF", "#7700FF", "#4400FF"];
 
 export const MenuItem = ({ name, icon: Icon, path }) => {
+  const pathname = usePathname();
+  console.log(pathname);
+
   return (
     <motion.li
       className="flex items-center space-x-2"
@@ -32,11 +37,16 @@ export const MenuItem = ({ name, icon: Icon, path }) => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}>
       <div className="rounded-full bg-transparent size[40px] mr-[20px]">
-        <Icon stroke="white" />
+        <Icon stroke={pathname === path ? "orange" : "white"} />
       </div>
       <Link
         href={path}
-        className="font-bold text-sm text-white md:text-lg hover:gradient-bg hover:text-black">
+        className={cn(
+          " text-sm md:text-lg hover:text-black",
+          pathname === path
+            ? "gradient-text font-bold"
+            : "text-white hover:gradient-text font-normal"
+        )}>
         {name}
       </Link>
     </motion.li>
