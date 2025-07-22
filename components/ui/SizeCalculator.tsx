@@ -480,7 +480,7 @@ export const SizeCalculator = ({ enableTour = false }: SizeCalculatorProps) => {
         )}
         {/* Main Calculator UI */}
         <motion.div
-          className="relative flex justify-center card"
+          className="relative flex justify-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

@@ -32,7 +32,7 @@ export const auth = betterAuth({
           console.log("OTP being sent to email:", otp);
           try {
             const { data, error } = await resend.emails.send({
-              from: "Acme <onboarding@resend.dev>",
+              from: "Valuemine <onboarding@resend.dev>",
               to: [email],
               subject: "Your OTP",
               react: EmailTemplate({ otp }),
