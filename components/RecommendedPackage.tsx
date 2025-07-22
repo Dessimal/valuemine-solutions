@@ -222,9 +222,7 @@ export function RecommendedPackage({
           className="bg-green-600 text-white px-4 py-2 rounded w-full hover:bg-green-500">
           <div className="w-full flex justify-center items-center gap-6">
             <FaWhatsapp size={32} />
-            <span className="font-bold capitalize">
-              Give me the list of packages
-            </span>
+            <span className="font-bold capitalize">Submit</span>
           </div>
         </button>
       </form>
