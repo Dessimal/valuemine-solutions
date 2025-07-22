@@ -329,7 +329,7 @@ export const useCalculatorStore = create(
         // Check if standing or table fan is selected
         const hasTableFanOrStandingFan = devices.some((device) => {
           const normalizedName = device.name.toLowerCase().replace(/\s+/g, " ");
-          return /\b(fan|standing fan|table fan|exhaust fan|ceiling fan)\b/.test(
+          return /\b(fan|Standing Fan|Table Fan|exhaust fan|ceiling fan)\b/.test(
             normalizedName
           );
         });

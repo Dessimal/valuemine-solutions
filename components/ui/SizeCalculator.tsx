@@ -660,7 +660,7 @@ export const SizeCalculator = ({ enableTour = false }: SizeCalculatorProps) => {
                 <RotateCcw className="w-4 h-4 text-gray-400 " />
               </Button>
             </div>
-            <div className="text-center text-sm font-light mb-4 flex flex-col space-y-2 tour-estimate">
+            <div className="text-center text-sm text-muted-foreground mb-4 flex flex-col space-y-2 tour-estimate">
               <span className=" ">
                 {" "}
                 Estimated total consumption: {totalWatts}W
@@ -672,7 +672,7 @@ export const SizeCalculator = ({ enableTour = false }: SizeCalculatorProps) => {
               </span>
               <span className=" ">
                 {" "}
-                Recommended Inverter Package: {customPackageName}
+                Min. Package Recommended: {customPackageName}
               </span>
             </div>
 

@@ -114,74 +114,76 @@ export const SignInView = () => {
 
   return (
     <div>
-      <Card>
+      <Card className="space-y-8">
         <CardHeader>
-          <CardTitle className="text-center text-2xl text-slate-600">
-            Welcome Back!
-          </CardTitle>
-          <CardDescription className="text-gray-500 text-sm text-center">
+          <CardTitle className="text-center text-2xl">Welcome Back!</CardTitle>
+          <CardDescription className=" text-sm text-center">
             Please enter your email to sign in
           </CardDescription>
-          <CardContent>
-            <Form {...form}>
-              <form
-                className="grid w-full gap-6"
-                onSubmit={form.handleSubmit(onSubmit)}>
-                <FormField
-                  name="email"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          type="email"
-                          placeholder="johndoe@gmail.com"
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
+        </CardHeader>
 
-                <Button
-                  disabled={loading}
-                  type="submit"
-                  className="gradient-bg mt-10">
-                  {loading ? (
-                    <>
-                      <LoaderCircle className="animate-spin size-8" />
-                      Loading...
-                    </>
-                  ) : (
-                    "Sign In"
-                  )}
-                </Button>
-              </form>
-            </Form>
-          </CardContent>
-          <CardFooter className="grid gap-4 w-full relative">
-            <div className="w-full after:absolute after:border-2 after:border-t z-0 ">
-              <p className="bg-card z-10">or Continue with</p>
-            </div>
-            <Button
-              onClick={handleSocialSignIn}
-              variant="outline"
-              className="w-full">
-              <span className="inline-flex items-center gap-2">
-                {" "}
-                <FaGoogle />
-                {socialLoading ? (
+        <CardContent>
+          <Form {...form}>
+            <form
+              className="grid w-full gap-6"
+              onSubmit={form.handleSubmit(onSubmit)}>
+              <FormField
+                name="email"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        type="email"
+                        placeholder="johndoe@gmail.com"
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+
+              <Button
+                disabled={loading}
+                type="submit"
+                className="gradient-bg mt-10">
+                {loading ? (
                   <>
-                    Signing in with Google...
                     <LoaderCircle className="animate-spin size-8" />
+                    Loading...
                   </>
                 ) : (
-                  "Google"
+                  "Sign In"
                 )}
-              </span>
-            </Button>
-            {/* <p className="text-sm text-center text-gray-500">
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+        <CardFooter className="grid gap-4 w-full">
+          <div className="w-full text-center relative after:absolute after:w-full after:top-1/2 after:flex after-items-center after:border-border after:border-t after:z-0">
+            <span className=" relative text-muted-foreground bg-card px-2 text-sm z-10">
+              or continue with
+            </span>
+          </div>
+          <Button
+            onClick={handleSocialSignIn}
+            variant="outline"
+            className="w-full">
+            <span className="inline-flex items-center gap-2">
+              {" "}
+              <FaGoogle />
+              {socialLoading ? (
+                <>
+                  Signing in with Google...
+                  <LoaderCircle className="animate-spin size-8" />
+                </>
+              ) : (
+                "Google"
+              )}
+            </span>
+          </Button>
+          {/* <p className="text-sm text-center text-gray-500">
               Don&apos;t have an account?{" "}
               <Link
                 className="underline text-slate-900 font-bold"
@@ -189,8 +191,7 @@ export const SignInView = () => {
                 Sign Up
               </Link>
             </p> */}
-          </CardFooter>
-        </CardHeader>
+        </CardFooter>
       </Card>
     </div>
   );
