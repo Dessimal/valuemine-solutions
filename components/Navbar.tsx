@@ -185,7 +185,10 @@ export const Navbar = () => {
           variants={sidebar}
         />
         <Navigation
-          className="absolute top-[100px] right-0 w-[200px] p-[25px] pointer-events-auto z-[100]" // Position Navigation within the sidebar
+          className={cn(
+            "absolute top-[100px] right-0 w-[200px] p-[25px] pointer-events-auto z-[100]",
+            !isOpen ? "hidden" : ""
+          )} // Position Navigation within the sidebar
         />
       </motion.div>
     </>
