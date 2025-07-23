@@ -29,7 +29,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { authClient } from "@/app/lib/auth-client";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { LoaderCircle } from "lucide-react";
 import { EmailTemplate } from "@/components/EmailTemplate";
@@ -38,7 +38,10 @@ import { useCalculatorStore } from "@/app/store/calculator";
 export const SignInView = () => {
   const [loading, setLoading] = useState(false);
   const [socialLoading, setSocialLoading] = useState(false);
+  const [phone, setPhone] = useState("");
 
+  const [hasSentData, setHasSentData] = useState(false);
+  const [showPhonePrompt, setShowPhonePrompt] = useState(false);
   const { email, setEmail } = useCalculatorStore();
 
   const formSchema = z.object({
@@ -57,10 +60,9 @@ export const SignInView = () => {
     },
   });
 
-  const searchParams = useSearchParams();
   const router = useRouter();
 
-  const callbackUrl = searchParams.get("callbackUrl") || "/";
+  const callbackUrl = useCalculatorStore((state) => state.callbackUrl);
 
   // Only include callbackUrl if it's not "/" and is truthy
   // const signUpHref =
@@ -104,7 +106,7 @@ export const SignInView = () => {
     try {
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: callbackUrl,
+        callbackURL: "/callback",
       });
     } catch (error) {
       console.error("Social sign in failed:", error);
@@ -118,14 +120,14 @@ export const SignInView = () => {
         <CardHeader>
           <CardTitle className="text-center text-2xl">Welcome Back!</CardTitle>
           <CardDescription className=" text-sm text-center">
-            Please enter your email to sign in
+            Please sign in to continue
           </CardDescription>
         </CardHeader>
 
         <CardContent>
           <Form {...form}>
             <form
-              className="grid w-full gap-6"
+              className="grid w-full gap-4"
               onSubmit={form.handleSubmit(onSubmit)}>
               <FormField
                 name="email"
@@ -196,3 +198,61 @@ export const SignInView = () => {
     </div>
   );
 };
+
+// "use client";
+
+// import React, { useState, useEffect } from "react";
+// import { FaGoogle } from "react-icons/fa";
+// import { useRouter, useSearchParams } from "next/navigation";
+// import { LoaderCircle } from "lucide-react";
+
+// import { Button } from "@/components/ui/button";
+// import { toast } from "sonner";
+
+// import { authClient } from "@/app/lib/auth-client";
+
+// export const SignInView = () => {
+//   const [socialLoading, setSocialLoading] = useState(false);
+//   const [hasSentData, setHasSentData] = useState(false);
+
+//   const { data: session } = authClient.useSession();
+//   const router = useRouter();
+//   const searchParams = useSearchParams();
+//   const callbackUrl = searchParams.get("callbackUrl") || "/";
+
+//   const handleSocialSignIn = async () => {
+//     setSocialLoading(true);
+//     try {
+//       await authClient.signIn.social({
+//         provider: "google",
+//         callbackURL: callbackUrl,
+//       });
+//     } catch (error) {
+//       console.error("Social sign in failed:", error);
+//       toast("Social sign in failed. Please try again.");
+//     }
+//   };
+
+//   return (
+//     <div className="space-y-6">
+//       <Button
+//         onClick={handleSocialSignIn}
+//         variant="outline"
+//         className="w-full"
+//         disabled={socialLoading}>
+//         <span className="inline-flex items-center gap-2">
+//           <FaGoogle />
+//           {socialLoading ? (
+//             <>
+//               Signing in...
+//               <LoaderCircle className="animate-spin size-5" />
+//             </>
+//           ) : (
+//             "Sign in with Google"
+//           )}
+//         </span>
+//       </Button>
+
+//     </div>
+//   );
+// };
