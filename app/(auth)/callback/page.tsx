@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { authClient } from "@/app/lib/auth-client";
+import { useCalculatorStore } from "@/app/store/calculator";
 
 export default function AuthCallbackPage() {
   const router = useRouter();
@@ -59,12 +60,14 @@ export default function AuthCallbackPage() {
   return (
     <div className="max-w-md mx-auto mt-10 space-y-4">
       {showPrompt && session?.user?.name && (
-        <>
+        <div className="w-full flex flex-col gap-4">
           <p className="text-muted-foreground text-sm">
-            Welcome, {session.user.name.split(" ")[0]}! 👋 Please enter your
-            phone number so we can save your contact.
+            We&apos;re almost done {session.user.name.split(" ")[0]}! 👋, just
+            one more thing. Please enter your phone number so we can save your
+            contact.
           </p>
           <Input
+            className=""
             type="tel"
             placeholder="e.g. 08012345678"
             value={phone}
@@ -81,7 +84,7 @@ export default function AuthCallbackPage() {
             }}>
             Continue
           </Button>
-        </>
+        </div>
       )}
     </div>
   );
