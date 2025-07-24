@@ -198,92 +198,7 @@ export function RecommendedPackage({
     }
   };
 
-  const bodyContent =
-    modalState === "form" ? (
-      <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full">
-        <input
-          type="text"
-          placeholder="Your Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="border w-full mb-3 p-2 rounded"
-          required
-        />
-        <input
-          type="tel"
-          placeholder="Your Phone Number"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          className="border w-full mb-3 p-2 rounded"
-          required
-        />
-        <button
-          type="submit"
-          className="bg-green-600 text-white px-4 py-2 rounded w-full hover:bg-green-500">
-          <div className="w-full flex justify-center items-center gap-6">
-            <FaWhatsapp size={32} />
-            <span className="font-bold capitalize">Submit</span>
-          </div>
-        </button>
-      </form>
-    ) : modalState === "submitting" ? (
-      <div className="flex flex-col items-center justify-center gap-4 py-8">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-green-600 border-solid" />
-        <p className="text-center text-lg text-gray-700">Submitting...</p>
-      </div>
-    ) : modalState === "success" ? (
-      // **** THIS IS THE 'SUCCESS' STATE BLOCK ****
-      <div className="flex flex-col items-center justify-center gap-4 py-8">
-        <CircleCheckBig className="text-green-600" size={64} />
-        <div>
-          <p className="text-center text-xl font-bold uppercase">SUCCESS!</p>
-          <p className="text-center text-sm">
-            Thank you for sharing your contact with us.
-            {countdown > 0 ? (
-              // Message shown during countdown
-              <>
-                You will be redirected to WhatsApp in{" "}
-                <span className="font-bold">{countdown}</span> second
-                {countdown !== 1 ? "s" : ""}.
-              </>
-            ) : (
-              // Message shown after countdown finishes
-              <p className="mt-4">
-                IMPORTANT* Please click the button below to open WhatsApp if it
-                doesn&apos;t open automatically:
-              </p>
-            )}
-          </p>
-
-          {/* **** THIS IS THE CONDITIONAL BUTTON INSIDE THE 'SUCCESS' STATE **** */}
-          {countdown === 0 && ( // This ternary renders the button ONLY if countdown is 0
-            <div className="w-full flex items-center justify-center my-4">
-              <button
-                onClick={handleShare} // Direct user click to open WhatsApp
-                className="mx-auto mt-4 bg-green-600 text-white px-4 py-2 rounded flex items-center gap-2 mx-auto">
-                <FaWhatsapp size={24} /> Share on WhatsApp
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-    ) : (
-      // **** END OF 'SUCCESS' STATE BLOCK ****
-      // Error state
-      <div className="flex flex-col items-center justify-center gap-4 py-8 text-center">
-        <XCircle className="text-red-600" size={64} />
-        <p className="text-xl font-bold text-red-700">Submission Failed</p>
-        <p className="text-gray-600">
-          Something went wrong. Please check your network and try again.
-        </p>
-        <button
-          onClick={() => setModalState("form")}
-          className="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-800 animate-pulse">
-          Try Again
-        </button>
-      </div>
-    );
-
+ 
   const handleCopy = () => {
     if (textRef.current) {
       navigator.clipboard.writeText(textRef.current.innerText);
@@ -354,31 +269,15 @@ export function RecommendedPackage({
           </div>
         </div>
         <div className="w-full flex flex-col gap-10 items-center my-20 justify-center ">
-          <OpenModalButton
-            setModalState={setModalState}
-            setIsOpen={setIsOpen}
-            text="Share Package With Us"
-          />
-          <OpenModalButton
-            variant="outline"
-            setModalState={setModalState}
-            setIsOpen={setIsOpen}
-            text="Pay Small Small"
-          />
+          <button
+            onClick={handleShare} // Direct user click to open WhatsApp
+            className="w-full mt-4 bg-green-600 text-white p-4 rounded flex items-center justify-center gap-2 mx-auto">
+            <FaWhatsapp size={24} /> Share with us on WhatsApp
+          </button>
         </div>
       </div>
 
-      <Modal
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        title={modalState === "form" ? "You're Just One Step Away!" : ""}
-        subtitle={
-          modalState === "form"
-            ? "Kindly enter your contact details so we can easily get in touch with you."
-            : ""
-        }
-        body={bodyContent}
-      />
+      
     </div>
   );
 }

@@ -66,6 +66,7 @@ export default async function RootLayout({
           <main>{children}</main>
           <Toaster />
         </ThemeProvider>
+        <Footer />
       </body>
     </html>
   );

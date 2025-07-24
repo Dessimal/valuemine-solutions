@@ -34,6 +34,7 @@ import Link from "next/link";
 import { LoaderCircle } from "lucide-react";
 import { EmailTemplate } from "@/components/EmailTemplate";
 import { useCalculatorStore } from "@/app/store/calculator";
+import Image from "next/image";
 
 export const SignInView = () => {
   const [loading, setLoading] = useState(false);
@@ -116,7 +117,7 @@ export const SignInView = () => {
 
   return (
     <div>
-      <Card className="space-y-8">
+      <Card className="space-y-2">
         <CardHeader>
           <CardTitle className="text-center text-2xl">Welcome Back!</CardTitle>
           <CardDescription className=" text-sm text-center">
@@ -127,7 +128,7 @@ export const SignInView = () => {
         <CardContent>
           <Form {...form}>
             <form
-              className="grid w-full gap-4"
+              className="grid w-full gap-2"
               onSubmit={form.handleSubmit(onSubmit)}>
               <FormField
                 name="email"
@@ -162,10 +163,10 @@ export const SignInView = () => {
             </form>
           </Form>
         </CardContent>
-        <CardFooter className="grid gap-4 w-full">
+        <CardFooter className="grid gap-6 w-full">
           <div className="w-full text-center relative after:absolute after:w-full after:top-1/2 after:flex after-items-center after:border-border after:border-t after:z-0">
-            <span className=" relative text-muted-foreground bg-card px-2 text-sm z-10">
-              or continue with
+            <span className=" relative text-muted-foreground text-uppercase bg-card px-2 text-sm z-10">
+              OR
             </span>
           </div>
           <Button
@@ -174,14 +175,18 @@ export const SignInView = () => {
             className="w-full">
             <span className="inline-flex items-center gap-2">
               {" "}
-              <FaGoogle />
               {socialLoading ? (
                 <>
                   Signing in with Google...
                   <LoaderCircle className="animate-spin size-8" />
                 </>
               ) : (
-                "Google"
+                <>
+                  Sign in with Google
+                    <span><Image src="/google.png" height= {20} width={20} alt="google logo"
+              
+                    /></span>
+                </>
               )}
             </span>
           </Button>

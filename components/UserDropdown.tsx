@@ -1,6 +1,7 @@
 "use client";
 
 import { Calculator, ChevronDownIcon, LogOutIcon } from "lucide-react";
+import { toast } from "sonner";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -15,8 +16,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { authClient } from "@/app/lib/auth-client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export function UserDropdown() {
+  const router = useRouter();
+
   const { data: session, isPending, error } = authClient.useSession();
 
   if (session) {
@@ -32,6 +36,7 @@ export function UserDropdown() {
       fetchOptions: {
         onSuccess: () => {
           router.push("/sign-in");
+          toast("Successfully signed out");
         },
         onError: () => {
           toast("Error signing out");

@@ -95,6 +95,7 @@ export function ResultComponent() {
   Solar Package: ${selectedPackage?.name}
   Battery: ${selectedPackageBattery}
   Panel Array: ${selectedPackagePanelArray}
+  Price: ${packagePrice}
   ${interestBlock}
   ...
   `;

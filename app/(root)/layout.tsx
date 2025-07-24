@@ -10,8 +10,7 @@ export default async function MainLayout({
   return (
     <>
       <Navbar />
-      <main>{children}</main>
-      <Footer />
+      <div>{children}</div>
     </>
   );
 }
