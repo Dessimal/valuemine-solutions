@@ -11,6 +11,7 @@ export default async function MainLayout({
     <>
       <Navbar />
       <div>{children}</div>
+      <Footer/>
     </>
   );
 }

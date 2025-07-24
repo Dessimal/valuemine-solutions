@@ -1,7 +1,7 @@
 "use client";
 
 import { FaGoogle } from "react-icons/fa";
-
+import { Logo } from "@/app/constants";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 import { useSearchParams, useRouter } from "next/navigation";
 
@@ -119,7 +120,16 @@ export const SignInView = () => {
     <div>
       <Card className="space-y-2">
         <CardHeader>
-          <CardTitle className="text-center text-2xl">Welcome Back!</CardTitle>
+          <CardTitle className="text-center text-2xl"><div><div className="flex items-center justify-center mb-8"> <Link href="/" className="flex items-center gap-2">
+              <Image
+                height={32}
+                width={32}
+                src={Logo}
+                alt="Logo"
+                className="logo-shadow"
+              />
+              <span className={cn("font-bold text-xl")}>Valuemine</span>
+            </Link></div><span>Welcome Back!</span></div></CardTitle>
           <CardDescription className=" text-sm text-center">
             Please sign in to continue
           </CardDescription>
@@ -128,7 +138,7 @@ export const SignInView = () => {
         <CardContent>
           <Form {...form}>
             <form
-              className="grid w-full gap-2"
+              className="grid w-full gap-1"
               onSubmit={form.handleSubmit(onSubmit)}>
               <FormField
                 name="email"
