@@ -164,7 +164,7 @@ export const Solution = () => {
   }, [inView]);
 
   return (
-    <section ref={ref}>
+    <section ref={ref} className="py-20">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -189,7 +189,7 @@ export const Solution = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}>
-              <div className="w-full h-[320px] md:h-[640px] relative rounded-lg shadow-lg overflow-hidden mb-4">
+              <div className="w-full h-[320px] md:h-[640px] relative overflow-hidden mb-4">
                 <Image
                   className={`${
                     isMobile ? "object-cover" : "object-contain"

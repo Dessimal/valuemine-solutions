@@ -38,7 +38,7 @@ export function VerifyUser() {
             setLoading(true);
           },
           onSuccess: () => {
-            toast("OTP verified!");
+            toast("Email verified!");
             setLoading(false);
             setSuccess(true);
             router.push(callbackUrl || "/");
@@ -83,8 +83,6 @@ export function VerifyUser() {
         className="mt-4 px-4 py-2 hover:opacity-70 gradient-bg rounded-md mt-10 w-full">
         {loading ? "Verifying..." : "Verify"}
       </button>
-      {error && <div className="text-red-500 mt-2">{error}</div>}
-      {success && <div className="text-green-600 mt-2">OTP Verified!</div>}
     </form>
   );
 }

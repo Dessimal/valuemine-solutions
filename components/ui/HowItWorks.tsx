@@ -41,7 +41,7 @@ export const HowItWorks = () => {
   };
 
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden border-2 ">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-16"

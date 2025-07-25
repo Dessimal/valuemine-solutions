@@ -3,7 +3,8 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-body::-webkit-scrollbar {
+body::-webkit-scrollbar,
+.faq::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
 }
 
@@ -56,7 +57,7 @@ body::-webkit-scrollbar {
 
 @layer components {
   .section-card {
-    @apply ring ring-gray-800 shadow-md rounded-lg p-6;
+    @apply ring ring-ring shadow-md rounded-lg p-6;
   }
   .result-card {
     @apply w-full ring ring-gray-800 shadow-md;
@@ -103,8 +104,8 @@ body::-webkit-scrollbar {
 
 :root {
   --radius: 0.625rem;
-  /* --background: oklch(1 0 0); */
-  /* --foreground: oklch(0.145 0 0); */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);

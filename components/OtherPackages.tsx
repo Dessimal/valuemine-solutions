@@ -63,33 +63,33 @@ export function OtherPackagesSection() {
     window.open(url, "_blank");
   };
 
-  const carouselItems = PACKAGES.map(
-    (pkg, idx) => (
-      <Card
-        key={pkg.name}
-        card={{
-          src: pkg.picture,
-          title: pkg.name,
-          category: "Solar Package",
-          content:
-            selectedOtherPackage === pkg.name && loading ? (
-              <div className="text-center py-4">Loading...</div>
-            ) : (
-              <>
-                <GeminiResultCard data={aiDescription?.[name]} />
-                <button
-                  onClick={() => handleShare(pkg.name, pkg.battery, pkg.panelArray, pkg.price)} // Direct user click to open WhatsApp
-                  className="mx-auto w-full mt-4 bg-green-600 text-white px-4 py-2 rounded flex items-center justify-center gap-2 mx-auto">
-                  <FaWhatsapp size={24} /> Share with us on WhatsApp
-                </button>
-              </>
-            ),
-        }}
-        index={idx}
-        onSelect={() => handleSelect(pkg)}
-      />
-    )
-  );
+  const carouselItems = PACKAGES.map((pkg, idx) => (
+    <Card
+      key={pkg.name}
+      card={{
+        src: pkg.picture,
+        title: pkg.name,
+        category: "Solar Package",
+        content:
+          selectedOtherPackage === pkg.name && loading ? (
+            <div className="text-center py-4">Loading...</div>
+          ) : (
+            <>
+              <GeminiResultCard data={aiDescription?.[pkg.name]} />
+              <button
+                onClick={() =>
+                  handleShare(pkg.name, pkg.battery, pkg.panelArray, pkg.price)
+                } // Direct user click to open WhatsApp
+                className="mx-auto w-full mt-4 bg-green-600 text-white px-4 py-2 rounded flex items-center justify-center gap-2 mx-auto">
+                <FaWhatsapp size={24} /> Share with us on WhatsApp
+              </button>
+            </>
+          ),
+      }}
+      index={idx}
+      onSelect={() => handleSelect(pkg)}
+    />
+  ));
 
   return (
     <section className="mt-16">

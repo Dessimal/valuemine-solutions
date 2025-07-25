@@ -306,106 +306,221 @@ export const useCalculatorStore = create(
         set({ devices });
       },
 
+      // recalculate: () => {
+      //   const { devices } = get();
+      //   const totalWatts = devices.reduce(
+      //     (sum, device) => sum + Number(device.watts),
+      //     0
+      //   );
+      //   const totalkVA = Number((totalWatts / 800).toFixed(2));
+      //   const approximateLoad = Math.ceil(Number(totalkVA));
+      //   set({ totalWatts, totalkVA, approximateLoad });
+
+      //   // --- Package selection logic ---
+      //   let customPackageName = "";
+
+      //   // Check if freezer or fridge is selected
+      //   const hasFreezerOrFridge = devices.some((device) => {
+      //     const normalizedName = device.name.toLowerCase().replace(/\s+/g, " ");
+      //     return /\b(freezer|deep freezer|fridge|refrigerator|mini fridge|chest freezer|upright freezer)\b/.test(
+      //       normalizedName
+      //     );
+      //   });
+      //   // Check if standing or table fan is selected
+      //   const hasTableFanOrStandingFan = devices.some((device) => {
+      //     const normalizedName = device.name.toLowerCase().replace(/\s+/g, " ");
+      //     return /\b(fan|Standing Fan|Table Fan|exhaust fan|ceiling fan)\b/.test(
+      //       normalizedName
+      //     );
+      //   });
+      //   const hasTV = devices.some((device) => {
+      //     const normalizedName = device.name.toLowerCase().replace(/\s+/g, " ");
+      //     return /\b(LED TV|Plasma TV)\b/.test(normalizedName);
+      //   });
+      //   const hasWaterPumpOrDispenser = devices.some((device) => {
+      //     const normalizedName = device.name.toLowerCase().replace(/\s+/g, " ");
+      //     return /\b(Water Pump|Water Dispenser)\b/.test(normalizedName);
+      //   });
+
+      //   if (totalWatts <= 800) {
+      //     if (!hasFreezerOrFridge) {
+      //       if (totalWatts < 500) {
+      //         customPackageName = "500W";
+      //       }
+      //       if (totalWatts >= 500 && totalWatts <= 700) {
+      //         customPackageName = "1000W(a)";
+      //       } else if (totalWatts >= 700 && totalWatts <= 800) {
+      //         customPackageName = "1000W(b)";
+      //       }
+      //     } else {
+      //       customPackageName = "1kva(a)";
+      //     }
+      //   } else if (totalWatts <= 800) {
+      //     if (!hasTV) {
+      //       if (totalWatts < 500) {
+      //         customPackageName = "500W";
+      //       }
+      //       if (totalWatts >= 500 && totalWatts <= 700) {
+      //         customPackageName = "1000W(a)";
+      //       } else if (totalWatts >= 700 && totalWatts <= 800) {
+      //         customPackageName = "1000W(b)";
+      //       }
+      //     } else {
+      //       customPackageName = "1kva(a)";
+      //     }
+      //   } else if (totalWatts <= 800) {
+      //     if (!hasTableFanOrStandingFan) {
+      //       if (totalWatts < 500) {
+      //         customPackageName = "500W";
+      //       }
+      //       if (totalWatts >= 500 && totalWatts <= 700) {
+      //         customPackageName = "1000W(a)";
+      //       } else if (totalWatts >= 700 && totalWatts <= 800) {
+      //         customPackageName = "1000W(b)";
+      //       }
+      //     } else {
+      //       customPackageName = "1kva(a)";
+      //     }
+      //   } else if (totalWatts <= 800) {
+      //     if (!hasWaterPumpOrDispenser) {
+      //       if (totalWatts < 500) {
+      //         customPackageName = "500W";
+      //       }
+      //       if (totalWatts >= 500 && totalWatts <= 700) {
+      //         customPackageName = "1000W(a)";
+      //       } else if (totalWatts >= 700 && totalWatts <= 800) {
+      //         customPackageName = "1000W(b)";
+      //       }
+      //     } else {
+      //       customPackageName = "2.5kva";
+      //     }
+      //   } else if (totalkVA > 1 && totalkVA <= 1.5) {
+      //     customPackageName = "1.5kva";
+      //   } else if (totalkVA > 1.5 && totalkVA <= 2) {
+      //     customPackageName = "2kva hybrid";
+      //   } else if (totalkVA > 2 && totalkVA <= 2.5) {
+      //     customPackageName = "2.5kva";
+      //   } else if (totalkVA > 2.5 && totalkVA <= 3.5) {
+      //     customPackageName = "3.5kva";
+      //   } else if (totalkVA > 3.5 && totalkVA <= 4.2) {
+      //     customPackageName = "4.2kva";
+      //   } else if (totalkVA > 4.2 && totalkVA <= 6.2) {
+      //     customPackageName = "6.2kva";
+      //   }
+
+      //   const load = Math.ceil(Number(totalkVA)).toString();
+
+      //   const possibleNames = customPackageName
+      //     ? [customPackageName]
+      //     : [
+      //         `${load}kva`,
+      //         `${load}kva(a)`,
+      //         `${load}kva(b)`,
+      //         `${totalWatts}W`,
+      //         `${totalWatts}W(a)`,
+      //         `${totalWatts}W(b)`,
+      //       ];
+
+      //   const selectedPackage = PACKAGES.find((p) =>
+      //     possibleNames.includes(p.name)
+      //   );
+      //   const selectedPackageBattery = selectedPackage?.battery;
+      //   const selectedPackagePanelArray = selectedPackage?.panelArray;
+      //   const selectedPackagePicture = selectedPackage?.picture;
+      //   const packagePrice = selectedPackage?.price;
+
+      //   set({
+      //     customPackageName,
+      //     load,
+      //     selectedPackage,
+      //     selectedPackageBattery,
+      //     selectedPackagePanelArray,
+      //     selectedPackagePicture,
+      //     packagePrice,
+      //   });
+      // },
+
+      // Result getter
+
       recalculate: () => {
         const { devices } = get();
+
         const totalWatts = devices.reduce(
           (sum, device) => sum + Number(device.watts),
           0
         );
         const totalkVA = Number((totalWatts / 800).toFixed(2));
         const approximateLoad = Math.ceil(Number(totalkVA));
-        set({ totalWatts, totalkVA, approximateLoad });
-
-        // --- Package selection logic ---
         let customPackageName = "";
 
-        // Check if freezer or fridge is selected
-        const hasFreezerOrFridge = devices.some((device) => {
-          const normalizedName = device.name.toLowerCase().replace(/\s+/g, " ");
-          return /\b(freezer|deep freezer|fridge|refrigerator|mini fridge|chest freezer|upright freezer)\b/.test(
-            normalizedName
-          );
-        });
-        // Check if standing or table fan is selected
-        const hasTableFanOrStandingFan = devices.some((device) => {
-          const normalizedName = device.name.toLowerCase().replace(/\s+/g, " ");
-          return /\b(fan|Standing Fan|Table Fan|exhaust fan|ceiling fan)\b/.test(
-            normalizedName
-          );
-        });
-        const hasTV = devices.some((device) => {
-          const normalizedName = device.name.toLowerCase().replace(/\s+/g, " ");
-          return /\b(LED TV|Plasma TV)\b/.test(normalizedName);
-        });
-        const hasWaterPumpOrDispenser = devices.some((device) => {
-          const normalizedName = device.name.toLowerCase().replace(/\s+/g, " ");
-          return /\b(Water Pump|Water Dispenser)\b/.test(normalizedName);
-        });
+        // Normalize all device names once for checks
+        const deviceNames = devices.map((d) =>
+          d.name.toLowerCase().replace(/\s+/g, " ")
+        );
 
-        if (totalWatts <= 800) {
-          if (!hasFreezerOrFridge) {
-            if (totalWatts < 500) {
-              customPackageName = "500W";
-            }
-            if (totalWatts >= 500 && totalWatts <= 700) {
-              customPackageName = "1000W(a)";
-            } else if (totalWatts >= 700 && totalWatts <= 800) {
-              customPackageName = "1000W(b)";
-            }
-          } else {
-            customPackageName = "1kva(a)";
-          }
-        } else if (totalWatts <= 800) {
-          if (!hasTV) {
-            if (totalWatts < 500) {
-              customPackageName = "500W";
-            }
-            if (totalWatts >= 500 && totalWatts <= 700) {
-              customPackageName = "1000W(a)";
-            } else if (totalWatts >= 700 && totalWatts <= 800) {
-              customPackageName = "1000W(b)";
-            }
-          } else {
-            customPackageName = "1kva(a)";
-          }
-        } else if (totalWatts <= 800) {
-          if (!hasTableFanOrStandingFan) {
-            if (totalWatts < 500) {
-              customPackageName = "500W";
-            }
-            if (totalWatts >= 500 && totalWatts <= 700) {
-              customPackageName = "1000W(a)";
-            } else if (totalWatts >= 700 && totalWatts <= 800) {
-              customPackageName = "1000W(b)";
-            }
-          } else {
-            customPackageName = "1kva(a)";
-          }
-        } else if (totalWatts <= 800) {
-          if (!hasWaterPumpOrDispenser) {
-            if (totalWatts < 500) {
-              customPackageName = "500W";
-            }
-            if (totalWatts >= 500 && totalWatts <= 700) {
-              customPackageName = "1000W(a)";
-            } else if (totalWatts >= 700 && totalWatts <= 800) {
-              customPackageName = "1000W(b)";
-            }
-          } else {
-            customPackageName = "2.5kva";
-          }
-        } else if (totalkVA > 1 && totalkVA <= 1.5) {
-          customPackageName = "1.5kva";
-        } else if (totalkVA > 1.5 && totalkVA <= 2) {
-          customPackageName = "2kva hybrid";
-        } else if (totalkVA > 2 && totalkVA <= 2.5) {
+        // === New Custom Logic ===
+        const lightLoadDevices = [
+          "fan",
+          "tv",
+          "led tv",
+          "lcd tv",
+          "oled tv",
+          "projector",
+          "blender",
+          "washing machine",
+          "refrigerator",
+          "fridge",
+          "freezer",
+          "deep freezer",
+          "chandelier",
+          "custom device",
+        ];
+        const mediumLoadDevices = [
+          "iron",
+          "toaster",
+          "microwave",
+          "boiling ring",
+          "hair dryer",
+        ];
+
+        const matchesAny = (keywords) =>
+          deviceNames.some((name) =>
+            keywords.some((keyword) => name.includes(keyword))
+          );
+
+        if (matchesAny(lightLoadDevices) && totalWatts < 1000) {
+          customPackageName = "1kva(a)";
+        } else if (matchesAny(mediumLoadDevices) && totalWatts < 2500) {
           customPackageName = "2.5kva";
-        } else if (totalkVA > 2.5 && totalkVA <= 3.5) {
-          customPackageName = "3.5kva";
-        } else if (totalkVA > 3.5 && totalkVA <= 4.2) {
-          customPackageName = "4.2kva";
-        } else if (totalkVA > 4.2 && totalkVA <= 6.2) {
-          customPackageName = "6.2kva";
+        } else {
+          // === Existing Logic ===
+          const hasFreezerOrFridge = deviceNames.some((name) =>
+            /\b(freezer|deep freezer|fridge|refrigerator|mini fridge|chest freezer|upright freezer)\b/.test(
+              name
+            )
+          );
+
+          if (totalWatts <= 800) {
+            if (!hasFreezerOrFridge) {
+              if (totalWatts < 500) customPackageName = "500W";
+              else if (totalWatts <= 700) customPackageName = "1000W(a)";
+              else if (totalWatts <= 800) customPackageName = "1000W(b)";
+            } else {
+              customPackageName = "1kva(a)";
+            }
+          } else if (totalkVA > 1 && totalkVA <= 1.5) {
+            customPackageName = "1.5kva";
+          } else if (totalkVA > 1.5 && totalkVA <= 2) {
+            customPackageName = "2kva hybrid";
+          } else if (totalkVA > 2 && totalkVA <= 2.5) {
+            customPackageName = "2.5kva";
+          } else if (totalkVA > 2.5 && totalkVA <= 3.5) {
+            customPackageName = "3.5kva";
+          } else if (totalkVA > 3.5 && totalkVA <= 4.2) {
+            customPackageName = "4.2kva";
+          } else if (totalkVA > 4.2 && totalkVA <= 6.2) {
+            customPackageName = "6.2kva";
+          }
         }
 
         const load = Math.ceil(Number(totalkVA)).toString();
@@ -430,6 +545,9 @@ export const useCalculatorStore = create(
         const packagePrice = selectedPackage?.price;
 
         set({
+          totalWatts,
+          totalkVA,
+          approximateLoad,
           customPackageName,
           load,
           selectedPackage,
@@ -440,7 +558,6 @@ export const useCalculatorStore = create(
         });
       },
 
-      // Result getter
       result: () => {
         const {
           load,

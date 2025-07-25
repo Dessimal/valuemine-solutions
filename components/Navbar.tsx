@@ -120,10 +120,10 @@ export const Navbar = () => {
         animate={isOpen ? "open" : "closed"}
         ref={containerRef} // Keep ref on nav if needed for other styling/dimensions
         className={cn(
-          "fixed top-0 z-50 flex justify-between items-center w-full transition-all duration-300 p-4 bg-background",
-          isScrolled ? "shadow-md py-2" : "py-4"
+          "fixed bg-background z-[10000] top-0 flex justify-between items-center w-full transition-all duration-300 p-4",
+          isScrolled ? "shadow-md" : ""
         )}>
-        <div className="container mx-auto flex justify-between items-center relative">
+        <div className="container max-w-5xl mx-auto flex justify-between items-center relative">
           <div className="flex space-x-8 items-center">
             <Link href="/" className="flex items-center gap-2">
               <Image
@@ -151,14 +151,14 @@ export const Navbar = () => {
               ))}
             </div>
           </div>
-          <div className="flex items-center justify-between mr-12">
+          <div className="flex items-center gap-6 mr-16 md:m-0">
             <ThemeToggle />
             {session ? (
               <UserDropdown />
             ) : (
               <Link
                 href="/sign-in"
-                className="font-bold hover:text-amber-500 cursor-pointer text-xs md:text-lg">
+                className=" hover:text-amber-500 cursor-pointer">
                 Sign in
               </Link>
             )}
@@ -180,10 +180,12 @@ export const Navbar = () => {
         custom={windowDimensions.height} // Pass window height as custom prop
         className="fixed inset-0 z-40 pointer-events-none" // Use inset-0 for full screen, lower z-index than toggle
       >
-        <motion.div
-          className="absolute top-0 right-0 bottom-0 w-[200px] bg-gray-900 pointer-events-auto z-50" // Sidebar background, make sure it's wide enough
-          variants={sidebar}
-        />
+        {isMobile && (
+          <motion.div
+            className="absolute top-0 right-0 bottom-0 w-[200px] bg-gray-900 pointer-events-auto z-50" // Sidebar background, make sure it's wide enough
+            variants={sidebar}
+          />
+        )}
         <Navigation
           className={cn(
             "absolute top-[100px] right-0 w-[200px] p-[25px] pointer-events-auto z-[100]",

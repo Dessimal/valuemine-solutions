@@ -5,6 +5,7 @@ import { Resend } from "resend";
 import { db } from "@/db"; // your drizzle instance
 import * as schema from "@/db/schema"; // your schema file
 import { EmailTemplate } from "@/components/EmailTemplate";
+import { saveOTPToDB } from "@/lib/otp";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -32,7 +33,7 @@ export const auth = betterAuth({
           console.log("OTP being sent to email:", otp);
           try {
             const { data, error } = await resend.emails.send({
-              from: "Valuemine <onboarding@resend.dev>",
+              from: "Valuemine <info@valueminesolutions.com.ng>",
               to: [email],
               subject: "Your OTP",
               react: EmailTemplate({ otp }),

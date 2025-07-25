@@ -121,7 +121,7 @@ export const ProblemSolution = () => {
                 {problems.map((problem) => (
                   <div
                     key={problem.title}
-                    className="flex flex-col gap-3 rounded-md shadow-lg ring ring-gray-800 p-6">
+                    className="flex flex-col gap-3 rounded-md shadow-lg ring ring-ring p-6">
                     <div className="w-full h-[280px] rounded-lg shadow-md relative overflow-hidden">
                       <Image
                         src={problem.image}

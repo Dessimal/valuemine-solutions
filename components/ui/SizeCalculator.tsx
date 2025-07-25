@@ -485,8 +485,8 @@ export const SizeCalculator = ({ enableTour = false }: SizeCalculatorProps) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}>
-          <div className="relative p-6 rounded-2xl shadow-xl border border-gray-100 max-w-md">
-            <div className="absolute -top-12 -right-12 w-24 h-24 gradient-bg rounded-full flex items-center justify-center">
+          <div className="relative p-6 rounded-2xl shadow-xl border border-border max-w-md bg-card">
+            <div className="absolute -top-12 -right-12 size-20 gradient-bg rounded-full flex items-center justify-center">
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}>
@@ -672,7 +672,7 @@ export const SizeCalculator = ({ enableTour = false }: SizeCalculatorProps) => {
               </span>
               <span className=" ">
                 {" "}
-                Min. Package Recommended: {customPackageName}
+                Min. Recommended Package: {customPackageName}
               </span>
             </div>
 

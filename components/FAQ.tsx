@@ -33,7 +33,7 @@ export const FAQ = () => {
           </div>
           <div
             className={cn(
-              "border-t-[1px] border-border overflow-hidden transition-all ease-out duration-300 ",
+              "border-t-[1px] border-border overflow-hidden transition-all ease-out duration-300 overflow-y-auto faq",
               openIndex === index
                 ? "max-h-40 opacity-100 py-6"
                 : "max-h-0 opacity-0 py-0"

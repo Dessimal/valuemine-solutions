@@ -120,22 +120,64 @@ export const SignInView = () => {
     <div>
       <Card className="space-y-2">
         <CardHeader>
-          <CardTitle className="text-center text-2xl"><div><div className="flex items-center justify-center mb-8"> <Link href="/" className="flex items-center gap-2">
-              <Image
-                height={32}
-                width={32}
-                src={Logo}
-                alt="Logo"
-                className="logo-shadow"
-              />
-              <span className={cn("font-bold text-xl")}>Valuemine</span>
-            </Link></div><span>Welcome Back!</span></div></CardTitle>
+          <CardTitle className="text-center text-2xl">
+            <div>
+              <div className="flex items-center justify-center mb-8">
+                {" "}
+                <Link href="/" className="flex items-center gap-2">
+                  <Image
+                    height={32}
+                    width={32}
+                    src={Logo}
+                    alt="Logo"
+                    className="logo-shadow"
+                  />
+                  <span className={cn("font-bold text-xl")}>Valuemine</span>
+                </Link>
+              </div>
+              <span>Welcome Back!</span>
+            </div>
+          </CardTitle>
           <CardDescription className=" text-sm text-center">
             Please sign in to continue
           </CardDescription>
         </CardHeader>
 
         <CardContent>
+          <Button
+            onClick={handleSocialSignIn}
+            variant="outline"
+            className="w-full">
+            <span className="inline-flex items-center gap-2">
+              {" "}
+              {socialLoading ? (
+                <>
+                  Signing in with Google...
+                  <LoaderCircle className="animate-spin size-8" />
+                </>
+              ) : (
+                <>
+                  Sign in with Google
+                  <span>
+                    <Image
+                      src="/google.png"
+                      height={20}
+                      width={20}
+                      alt="google logo"
+                    />
+                  </span>
+                </>
+              )}
+            </span>
+          </Button>
+        </CardContent>
+        <CardFooter className="grid gap-6 w-full">
+          {" "}
+          <div className="w-full text-center relative after:absolute after:w-full after:top-1/2 after:flex after-items-center after:border-border after:border-t after:z-0">
+            <span className=" relative text-muted-foreground text-uppercase bg-card px-2 text-sm z-10">
+              OR
+            </span>
+          </div>
           <Form {...form}>
             <form
               className="grid w-full gap-1"
@@ -167,47 +209,11 @@ export const SignInView = () => {
                     Loading...
                   </>
                 ) : (
-                  "Sign In"
+                  "Create Account"
                 )}
               </Button>
             </form>
           </Form>
-        </CardContent>
-        <CardFooter className="grid gap-6 w-full">
-          <div className="w-full text-center relative after:absolute after:w-full after:top-1/2 after:flex after-items-center after:border-border after:border-t after:z-0">
-            <span className=" relative text-muted-foreground text-uppercase bg-card px-2 text-sm z-10">
-              OR
-            </span>
-          </div>
-          <Button
-            onClick={handleSocialSignIn}
-            variant="outline"
-            className="w-full">
-            <span className="inline-flex items-center gap-2">
-              {" "}
-              {socialLoading ? (
-                <>
-                  Signing in with Google...
-                  <LoaderCircle className="animate-spin size-8" />
-                </>
-              ) : (
-                <>
-                  Sign in with Google
-                    <span><Image src="/google.png" height= {20} width={20} alt="google logo"
-              
-                    /></span>
-                </>
-              )}
-            </span>
-          </Button>
-          {/* <p className="text-sm text-center text-gray-500">
-              Don&apos;t have an account?{" "}
-              <Link
-                className="underline text-slate-900 font-bold"
-                href={signUpHref}>
-                Sign Up
-              </Link>
-            </p> */}
         </CardFooter>
       </Card>
     </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useTransition, useState } from "react";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -9,10 +9,15 @@ import { motion } from "@/lib/framerMotion";
 
 const Hero = () => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
+  const handleLoadCalculator = () => {
+    setIsLoading(true);
+    router.push("/calculator");
+  };
   return (
-    <section className="w-screen min-h-screen ">
-      <div className="container md:pt-32 pt-16 px-4 flex flex-col md:flex-row  justify-center gap-12 h-full mx-auto hero-container">
+    <section className="w-full min-h-screen ">
+      <div className="container py-16  flex flex-col md:flex-row  justify-center gap-12 h-full mx-auto hero-container">
         <div className="flex justify-center  flex-1/2 flex-col gap-4">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -33,9 +38,14 @@ const Hero = () => {
           {/* CTA BUTTON */}
           <div className="">
             <Button
+              disabled={isLoading}
               className="gradient-bg"
-              onClick={() => router.push("/calculator")}>
-              Try Solar Calculator
+              onClick={handleLoadCalculator}>
+              {isLoading ? (
+                <>Loading Calculator...</>
+              ) : (
+                <>Try Solar Calculator</>
+              )}
               <ArrowRight />
             </Button>
           </div>
