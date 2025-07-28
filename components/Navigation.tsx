@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { MenuItem } from "./MenuItem";
 import { navLinks } from "@/app/constants";
 import { cn } from "@/app/lib/utils";
+import { usePathname } from "next/navigation";
 
 const variants = {
   open: {
@@ -16,6 +17,9 @@ const variants = {
 };
 
 export const Navigation = ({ className }) => (
+
+
+  
   <motion.ul className={cn("space-y-5", className)} variants={variants}>
     {navLinks.map(({ icon, name, path }) => (
       <MenuItem icon={icon} key={name} name={name} path={path} />

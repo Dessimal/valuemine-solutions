@@ -20,7 +20,7 @@ body::-webkit-scrollbar,
   }
 
   section:not(footer) {
-    @apply min-h-screen pt-12 px-4 relative overflow-hidden;
+    @apply pt-12 px-4 relative overflow-hidden;
   }
 
   h3 {

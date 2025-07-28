@@ -1,7 +1,16 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { motion } from "@/lib/framerMotion";
 import { Button } from "@/components/ui/button";
-import { Zap, Battery, Sun, CircleX, DoorClosedLocked } from "lucide-react";
+import {
+  Zap,
+  Battery,
+  Sun,
+  CircleX,
+  DoorClosedLocked,
+  SquarePlus,
+} from "lucide-react";
 import Image from "next/image";
 import {
   fuelQueue,
@@ -13,16 +22,23 @@ import {
   DoodleArrowUp,
 } from "@/app/constants";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { cn } from "@/app/lib/utils";
 
 export const ProblemSolution = () => {
   const isMobile = useIsMobile();
+
+  const [openIndex, setOpenIndex] = useState<null>(null);
+
+  const handleClick = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   const problems = [
     {
       image: nationalGrid,
       title: "PHCN Wahala",
       description: [
-        "Tired of NEPA taking light when you need it the most?",
+        "Tired of 'NEPA taking light' when you need it the most?",
         "You plug your phone, they take it. You’re ironing — boom! Darkness",
         " It’s like playing emotional roulette every day",
         "You pay bills, but power supply is still worse than before",
@@ -78,8 +94,8 @@ export const ProblemSolution = () => {
   // ];
 
   return (
-    <section className="py-36 relative min-h-screen overflow-hidden">
-      <div className="container mx-auto px-4  gap-8">
+    <section className="py-36 relative overflow-x-hidden">
+      <div className="container mx-auto px-4  gap-h8">
         <motion.div
           className=""
           initial={{ opacity: 0, y: 20 }}
@@ -117,8 +133,8 @@ export const ProblemSolution = () => {
                   alt="picture of a powerful inverter system"
                 />
               </div>
-              <div className="flex-2/3 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
-                {problems.map((problem) => (
+              <div className="group not-[]:flex-2/3 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
+                {problems.map((problem, index) => (
                   <div
                     key={problem.title}
                     className="flex flex-col gap-3 rounded-md shadow-lg ring ring-ring p-6">
@@ -135,10 +151,27 @@ export const ProblemSolution = () => {
                       />
                     </div>
                     <div className=" flex flex-col justify-between">
-                      <h3 className="tracking-tight text-xl max-w-32 mb-3">
-                        {problem.title}
-                      </h3>
-                      <ul className="list-none space-y-2">
+                      <div className="flex items-center justify-between">
+                        <h3 className="tracking-tight text-xl max-w-32 mb-3">
+                          {problem.title}
+                        </h3>
+                        <button onClick={() => handleClick(index)}>
+                          <SquarePlus
+                            className={cn(
+                              openIndex === index
+                                ? "rotate-[225deg] transition-all duration-300 ease-out"
+                                : ""
+                            )}
+                          />
+                        </button>
+                      </div>
+                      <ul
+                        className={cn(
+                          "md:max-h-0 md:opacity-0 group-hover:opacity-100 max-h-64 transiton-all ease-out duration-300 overflow-y-auto list-none space-y-2",
+                          openIndex === index
+                            ? "max-h-64 opacity-100"
+                            : "max-h-0 opacity-0"
+                        )}>
                         {problem.description.map((desc, index) => (
                           <li key={index}>
                             <span className="text-sm">
@@ -163,14 +196,14 @@ export const ProblemSolution = () => {
 
       {/* Background decoration */}
       <motion.div
-        className="absolute -bottom-20 -left-20 w-64 h-64 bg-brand-yellow/10 rounded-full blur-3xl"
+        className="absolute -bottom-20 -left-20 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1 }}
       />
       <motion.div
-        className="absolute -top-20 -right-20 w-64 h-64 bg-brand-orange/10 rounded-full blur-3xl"
+        className="absolute -top-20 -right-20 w-64 h-64 bg-orange/10 rounded-full blur-3xl"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}

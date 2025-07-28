@@ -16,16 +16,16 @@ const Hero = () => {
     router.push("/calculator");
   };
   return (
-    <section className="w-full min-h-screen ">
-      <div className="container py-16  flex flex-col md:flex-row  justify-center gap-12 h-full mx-auto hero-container">
-        <div className="flex justify-center  flex-1/2 flex-col gap-4">
+    <section className="w-full">
+      <div className="container max-w-5xl py-16  flex flex-col md:flex-row  justify-center gap-12 h-full mx-auto hero-container">
+        <div className="flex justify-center   flex-1/2 flex-col gap-4">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             className="flex flex-col gap-1">
-            <h1 className="text-5xl md:text-9xl font-extrabold tracking-tight">
+            <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight">
               Say Goodbye to NEPA Wahala
             </h1>
             <p className="max-w-2xs ">
@@ -51,7 +51,7 @@ const Hero = () => {
           </div>
 
           {/* Benefits */}
-          <div className="flex flex-wrap  gap-4 text-sm">
+          <div className="flex-col lg-flex-row flex-wrap   gap-4 text-sm">
             <span className="mr-4 flex items-center gap-2">
               <CheckCircle color="orange" size={18} />
               <span>Zero Blackouts</span>
@@ -67,14 +67,14 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="flex-1/2 ">
+        <div className="flex-1/2">
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             className="flex-1/2 rounded-md">
-            <div className="relative h-[480px]  w-80  md:w-[560px]  ring ring-gray-800 rounded-lg overflow-hidden shadow-lg ">
+            <div className="relative h-[480px]  w-full  lg:w-[560px]  ring ring-gray-800 rounded-lg overflow-hidden shadow-lg ">
               <Image
                 src={MainHeroImage}
                 className="object-cover

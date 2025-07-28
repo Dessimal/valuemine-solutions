@@ -123,7 +123,7 @@ export const Solution = () => {
 
   const { ref, inView } = useInView({
     threshold: 0.5, // Trigger when 50% of the section is in view
-    triggerOnce: true,
+    // triggerOnce: true,
   });
 
   const [showConfetti, setShowConfetti] = useState(false);
@@ -157,7 +157,7 @@ export const Solution = () => {
     if (inView) {
       setShowConfetti(true);
 
-      const timer = setTimeout(() => setShowConfetti(false), 5000);
+      const timer = setTimeout(() => setShowConfetti(false), 10000);
 
       return () => clearTimeout(timer);
     }
