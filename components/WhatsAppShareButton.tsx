@@ -27,7 +27,7 @@ export default function WhatsAppShareButton({
     <motion.button
       onClick={handleShare}
       whileHover={{ scale: 1.1 }}
-      animate={{ scale: [1, 1.02, 1] }}
+      animate={{ scale: [1, 1.05, 1] }}
       transition={{
         duration: 2.5,
         repeat: Infinity,
@@ -35,7 +35,8 @@ export default function WhatsAppShareButton({
         ease: "easeInOut",
       }}
       className={`bg-green-600 text-white p-4 rounded flex items-center justify-center gap-2 ${className}`}>
-      <FaWhatsapp size={24} /> {label}
+      <FaWhatsapp size={24} />{" "}
+      <span className="font-bold tracking-wide">{label}</span>
     </motion.button>
   );
 }
