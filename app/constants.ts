@@ -591,3 +591,185 @@ export const navLinks = [
   { icon: Info, name: "About", path: "/about" },
   { icon: Phone, name: "Contact", path: "/contact" },
 ];
+
+
+
+//DATA FOR ALL PACKAGES
+export const packageBreakdown = [
+  {
+    packageName: "10kva",
+    jsonResponse: {
+      "systemSpecifications": {
+        "totalSolarCapacity": {
+          "value": 12.0,
+          "unit": "kW",
+          "type": "DC"
+        },
+        "inverterCapacity": {
+          "value": 10.0,
+          "unit": "kW",
+          "type": "AC"
+        },
+        "batteryStorage": {
+          "value": 30.0,
+          "unit": "kWh",
+          "type": "LiFePO₄"
+        },
+        "expectedDailyGeneration": {
+          "min": 50,
+          "max": 60,
+          "unit": "kWh",
+          "note": "Average"
+        },
+        "systemEfficiency": {
+          "value": 95,
+          "unit": "%",
+          "type": "Peak"
+        },
+        "warrantyPeriod": {
+          "value": 25,
+          "unit": "Years",
+          "appliesTo": "Solar Panels"
+        }
+      },
+      "installationTimeline": {
+        "steps": [
+          {
+            "name": "Site Assessment",
+            "duration": {
+              "min": 1,
+              "max": 2,
+              "unit": "days"
+            }
+          },
+          {
+            "name": "Installation",
+            "duration": {
+              "min": 2,
+              "max": 3,
+              "unit": "days"
+            }
+          }
+        ],
+        "totalTimeline": {
+          "min": 3,
+          "max": 5,
+          "unit": "days"
+        }
+      },
+      "whatCanThisSystemPower": {
+        "system_power_capability": {
+          "solar_system_kilowatts": 12.0,
+          "battery_storage_kilowatt_hours": 30.0,
+          "comfortably_powers": {
+            "lighting": {
+              "description": "Lighting for large homes or offices.",
+              "appliances": [
+                { "name": "LED Bulb", "watts": 10, "icon": "Bulb" }
+              ]
+            },
+            "cooling_and_ventilation": {
+              "description": "Cooling devices for multiple rooms.",
+              "appliances": [
+                { "name": "Ceiling Fan", "watts": 80, "icon": "Fan" },
+                { "name": "Standing Fan", "watts": 100, "icon": "Fan" },
+                { "name": "Air Conditioner (1.5 HP, Inverter)", "watts": 1200, "icon": "AC" }
+              ]
+            },
+            "heating_appliances": {
+              "description": "Heating and high‑power kitchen appliances.",
+              "appliances": [
+                { "name": "Microwave Oven", "watts": 1200, "icon": "Microwave" },
+                { "name": "Electric Iron", "watts": 1000, "icon": "Iron" }
+              ]
+            },
+            "refrigeration_and_storage": {
+              "description": "Cold storage for food and beverages.",
+              "appliances": [
+                { "name": "Refrigerator or Freezer (up to 500L)", "watts": 300, "icon": "Freezer" }
+              ]
+            },
+            "kitchen_and_cooking": {
+              "description": "Basic kitchen appliances.",
+              "appliances": [
+                { "name": "Blender", "watts": 400, "icon": "Blender" }
+              ]
+            },
+            "entertainment_and_communication": {
+              "description": "Audio and video devices.",
+              "appliances": [
+                { "name": "TV + Decoder", "watts": 100, "icon": "TV" },
+                { "name": "WiFi Router", "watts": 10, "icon": "Router" },
+                { "name": "Sound System", "watts": 150, "icon": "Speaker" }
+              ]
+            },
+            "office_and_computing": {
+              "description": "Devices for work‑from‑home or office productivity.",
+              "appliances": [
+                { "name": "Laptop", "watts": 65, "icon": "Laptop" },
+                { "name": "Desktop Computer", "watts": 200, "icon": "Desktop" }
+              ]
+            },
+            "water_management": {
+              "description": "Pumping water for household or office use.",
+              "appliances": [
+                { "name": "Water Pump (1HP)", "watts": 750, "icon": "Pump" }
+              ]
+            },
+            "security_and_surveillance": {
+              "description": "Home or office security.",
+              "appliances": [
+                { "name": "CCTV Camera", "watts": 15, "icon": "Camera" }
+              ]
+            }
+          }
+        }
+      },
+      "daily_energy_production": {
+        "peak_summer": {
+          "min_kwh": 52,
+          "max_kwh": 60
+        },
+        "spring_fall": {
+          "min_kwh": 45,
+          "max_kwh": 52
+        },
+        "winter": {
+          "min_kwh": 35,
+          "max_kwh": 45
+        },
+        "backup_power": {
+          "min_days": 1,
+          "max_days": 2
+        }
+      },
+      "simultaneousPowerLoadCapacity": {
+        "description": "What can this system power at once?",
+        "devices": [
+          "2 Air Conditioners (1.5HP each, inverter-type)",
+          "25–30 LED bulbs (10W each)",
+          "6–10 ceiling or standing fans",
+          "2 Refrigerators or Freezers (up to 500L each)",
+          "3–5 TVs + Decoders + Sound System",
+          "4 Laptops or Desktop PCs",
+          "Microwave oven, pressing iron, blender",
+          "Water pump (1HP)",
+          "Wi‑Fi router, CCTV, phone charging"
+        ]
+      },
+      "canItPower": {
+        "Air Conditioner": {
+          "emoji": "✅",
+          "response": "Yes — Can handle 1–2 inverter-type ACs up to 1.5HP"
+        },
+        "Freezer": {
+          "emoji": "✅",
+          "response": "Yes — Supports multiple freezers or refrigerators up to 500L"
+        }
+      }
+    }
+    
+  },
+]
+  
+

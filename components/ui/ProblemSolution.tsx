@@ -136,6 +136,7 @@ export const ProblemSolution = () => {
               <div className="group flex-2/3 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
                 {problems.map((problem, index) => (
                   <div
+                    onClick={() => handleClick(index)}
                     key={problem.title}
                     className="flex flex-col gap-3 rounded-md shadow-lg ring ring-ring p-6">
                     <div className="w-full h-[280px] rounded-lg shadow-md relative overflow-hidden">
@@ -155,7 +156,7 @@ export const ProblemSolution = () => {
                         <h3 className="tracking-tight text-xl max-w-32 mb-3">
                           {problem.title}
                         </h3>
-                        <button onClick={() => handleClick(index)}>
+                        <button>
                           <SquarePlus
                             className={cn(
                               openIndex === index
@@ -167,7 +168,7 @@ export const ProblemSolution = () => {
                       </div>
                       <ul
                         className={cn(
-                          "md:max-h-0 md:opacity-0 md:group-hover:opacity-100 max-h-64 transiton-all ease-out duration-300 overflow-y-auto list-none space-y-2",
+                          "max-h-64 transiton-all ease-out duration-300 overflow-y-auto faq list-none space-y-2",
                           openIndex === index
                             ? "max-h-64 opacity-100"
                             : "max-h-0 opacity-0"

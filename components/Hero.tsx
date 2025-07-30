@@ -51,7 +51,7 @@ const Hero = () => {
           </div>
 
           {/* Benefits */}
-          <div className="flex-col lg-flex-row flex-wrap   gap-4 text-sm">
+          <div className="flex-col lg-flex-row flex-wrap   gap-6 text-sm">
             <span className="mr-4 flex items-center gap-2">
               <CheckCircle color="orange" size={18} />
               <span>Zero Blackouts</span>

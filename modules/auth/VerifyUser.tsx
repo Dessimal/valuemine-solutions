@@ -39,9 +39,9 @@ export function VerifyUser() {
           },
           onSuccess: () => {
             toast("Email verified!");
-            setLoading(false);
             setSuccess(true);
-            router.push(callbackUrl || "/");
+            router.push("/callback");
+            setLoading(false);
           },
           onError: () => {
             toast("Something went wrong, please try again");
@@ -51,7 +51,6 @@ export function VerifyUser() {
       );
     } catch (err: unknown) {
       setError(err.message || "Something went wrong");
-      setLoading(false);
     }
   };
 

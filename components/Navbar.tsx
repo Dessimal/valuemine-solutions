@@ -33,6 +33,8 @@ export const Navbar = () => {
   // but not for the sidebar's clipPath.
   const containerRef = useRef(null); // Keep for potential other uses on the nav itself
 
+  const sidebarRef = useRef(null);
+  const toggleButtonRef = useRef(null);
   // State to store window dimensions for the sidebar's clipPath
   const [windowDimensions, setWindowDimensions] = useState({
     width: 0,
@@ -114,6 +116,25 @@ export const Navbar = () => {
     },
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        isOpen &&
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target) &&
+        toggleButtonRef.current &&
+        !toggleButtonRef.current.contains(event.target)
+      ) {
+        toggleOpen(0);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen, toggleOpen]);
+
   return (
     <>
       <motion.nav
@@ -166,10 +187,12 @@ export const Navbar = () => {
         </div>
         {/* The MenuToggle is kept here for visibility within the Navbar */}
         {isMobile && (
-          <MenuToggle
-            toggle={() => toggleOpen()}
-            className="absolute top-1/2 right-[28px] -translate-y-1/2 z-[100]" // Ensure it's very high z-index
-          />
+          <div ref={toggleButtonRef}>
+            <MenuToggle
+              toggle={() => toggleOpen()}
+              className="absolute top-1/2 right-[28px] -translate-y-1/2 z-[100]" // Ensure it's very high z-index
+            />
+          </div>
         )}
       </motion.nav>
 
@@ -182,6 +205,7 @@ export const Navbar = () => {
       >
         {isMobile && (
           <motion.div
+            ref={sidebarRef}
             className="absolute top-0 right-0 bottom-0 w-[200px] bg-gray-900 pointer-events-auto z-50" // Sidebar background, make sure it's wide enough
             variants={sidebar}
           />

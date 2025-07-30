@@ -109,7 +109,7 @@ export function ResultComponent() {
 
   return (
     <>
-      <div className="container  mx-auto w-full py-20">
+      <div className="container  mx-auto w-full py-6">
         <div className="mx-auto max-w-7xl px-1 sm:px-4 lg:px-8 py-12">
           {interestCalculatorEnabled ? (
             <CostBreakdown

@@ -75,10 +75,10 @@ export const FAQ = () => {
           onClick={() => handleClick(index)}
           className="bg-card border border-border p-6 pb-0 flex flex-col justify-center cursor-pointer hover:bg-muted/30 transition-colors">
           <div className="  flex items-center justify-between">
-            <p className="">{question}</p>
+            <p className="text-wrap">{question}</p>
             <SquarePlus
               className={cn(
-                "transition-all duration-300 ease-out  m-0",
+                "transition-all duration-300 ease-out shrink-0   m-0",
                 openIndex === index ? "rotate-[225deg]" : ""
               )}
             />

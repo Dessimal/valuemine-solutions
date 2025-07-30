@@ -15,7 +15,7 @@ export default function AuthCallbackPage() {
   const [phone, setPhone] = useState("");
   const [hasSentData, setHasSentData] = useState(false);
   const [showPrompt, setShowPrompt] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const callbackUrl = useCalculatorStore((state) => state.callbackUrl);
 
@@ -33,13 +33,12 @@ export default function AuthCallbackPage() {
     }
   }, [session]);
 
-
   const sendData = async (name: string, phone: string) => {
     setIsSubmitting(true);
     const formData = new FormData();
     formData.append("name", name);
     formData.append("phone", phone);
-  
+
     try {
       await fetch(
         "https://script.google.com/macros/s/AKfycby2eVwPtRxDwwcIHJqbfgQJ-7MOl70YcFpfC-hLsZhUtiHDbCYp6oY5HJy5W6k-8SCJ/exec",
@@ -48,8 +47,8 @@ export default function AuthCallbackPage() {
           body: formData,
         }
       );
-  
-      toast("Thanks! Your contact was saved.");
+
+      toast("Thanks! Your contact has been saved.");
       setHasSentData(true);
       router.push(callbackUrl || "/");
     } catch (err) {
@@ -59,7 +58,6 @@ export default function AuthCallbackPage() {
       setIsSubmitting(false);
     }
   };
-  
 
   if (isPending) return <p>Loading session...</p>;
 
@@ -80,7 +78,7 @@ export default function AuthCallbackPage() {
             onChange={(e) => setPhone(e.target.value)}
           />
           <Button
-          disabled={isSubmitting}
+            disabled={isSubmitting}
             className="w-full"
             onClick={() => {
               if (!phone.trim()) {
@@ -89,7 +87,7 @@ export default function AuthCallbackPage() {
               }
               sendData(session.user.name, phone);
             }}>
-           {isSubmitting?(<>Saving contact...</>):(<>Continue</>)}
+            {isSubmitting ? <>Saving contact...</> : <>Continue</>}
           </Button>
         </div>
       )}

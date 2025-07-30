@@ -217,10 +217,10 @@ export function RecommendedPackage({
 
   return (
     <div className="container mx-auto max-w-5xl">
-      <p className="font-normal max-w-2xs">
+      <p className="text-sm md:text-base max-w-2xs">
         Here&apos;s the Minimum Recommended Solar Package for your Load:
       </p>
-      <h1 className="text-5xl lg:text-9xl font-extrabold tracking-tight">
+      <h1 className="text-3xl md:text-5xl lg:text-9xl mb-2 text-wrap font-extrabold tracking-tight">
         {selectedPackage?.name
           ? `${selectedPackage.name} Inverter Package`
           : "No Package Selected"}

@@ -14,7 +14,7 @@ const Services = () => {
       transition: {
         delay: 0.2 * index,
         ease: "easeInOut",
-        duration: 1.8,
+        duration: 1,
       },
     }),
   };

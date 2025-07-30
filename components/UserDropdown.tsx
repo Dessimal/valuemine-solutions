@@ -30,6 +30,7 @@ export function UserDropdown() {
   }
 
   const userName = session?.user?.name || session?.user?.email?.split("@")[0];
+  const userAvatar = session?.user?.image;
 
   const handleSignOut = async () => {
     await authClient.signOut({
@@ -50,7 +51,7 @@ export function UserDropdown() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="h-auto p-0 hover:bg-transparent">
           <Avatar>
-            <AvatarImage src="./avatar.jpg" alt="Profile image" />
+            <AvatarImage src={userAvatar} alt="Profile image" />
             <AvatarFallback>
               {userName?.slice(0, 2).toUpperCase()}
             </AvatarFallback>
