@@ -82,7 +82,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
               {specifications.map((spec, index) => (
                 <div
                   key={index}
-                  className="flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0">
+                  className="flex justify-between items-center py-2 border-b  last:border-b-0">
                   <span className="text-sm">{spec.label}</span>
                   <div className="text-right">
                     <span className="font-semibold">{spec.value}</span>
@@ -173,7 +173,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
               ).map(([category, value]: [string, any], categoryIndex) => (
                 <div
                   key={categoryIndex}
-                  className="space-y-4 border-gray-200 border-2 p-2">
+                  className="space-y-4 border-border border-2 p-2">
                   <h4 className="text-xl font-semibold mb-4 flex items-center">
                     <span className="gradient-bg w-2 h-6 rounded-full mr-3"></span>
                     {category.replace(/_/g, " ")}
@@ -184,7 +184,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
                       (item: any, itemIndex: number) => (
                         <div
                           key={itemIndex}
-                          className=" p-4 hover:bg-gray-100 transition-colors  border-gray-300 border-t-[1px]">
+                          className=" p-4 hover:bg-gray-100 transition-colors  border-border border-t-[1px]">
                           <div className="flex items-start space-x-3 ">
                             <div className="p-2 rounded-lg shadow-sm">
                               {/* If you have an icon component mapping, use it here. Otherwise, just show the icon name */}

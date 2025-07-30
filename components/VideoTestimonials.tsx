@@ -22,9 +22,9 @@ export const VideoTestimonials = () => {
   };
 
   return (
-    <section className="space-y-6 py-6 mt-10">
+    <section className="space-y-6 py-6">
       <div className="container mx-auto">
-        <h2 className="tracking-tight text-2xl text-center md:text-5xl mb-2 capitalize font-bold">
+        <h2 className="section-heading">
           What People are saying about Valuemine
         </h2>
       </div>

@@ -13,6 +13,7 @@ import { useCalculatorStore } from "@/app/store/calculator";
 import { fetchPrimaryGeminiDescription } from "@/app/data/aiDescription/get-aiDescription";
 import { FAQ } from "./FAQ";
 import { VideoTestimonials } from "./VideoTestimonials";
+import WhatsAppShareButton from "./WhatsAppShareButton";
 
 export function ResultComponent() {
   const params = useParams();
@@ -107,25 +108,34 @@ export function ResultComponent() {
   );
 
   return (
-    <div className="container  mx-auto w-full py-20">
-      <div className="mx-auto max-w-7xl px-1 sm:px-4 lg:px-8 py-12">
-        {interestCalculatorEnabled ? (
-          <CostBreakdown
-            aiDescription={primaryAIDescription}
-            loading={loading}
-            // getShareText={getShareText}
-          />
-        ) : (
-          <RecommendedPackage
-            aiDescription={primaryAIDescription}
-            loading={loading}
-            getShareText={getShareText}
-          />
-        )}
-        <OtherPackagesSection />
-        <VideoTestimonials />
-        <FAQ />
+    <>
+      <div className="container  mx-auto w-full py-20">
+        <div className="mx-auto max-w-7xl px-1 sm:px-4 lg:px-8 py-12">
+          {interestCalculatorEnabled ? (
+            <CostBreakdown
+              aiDescription={primaryAIDescription}
+              loading={loading}
+              // getShareText={getShareText}
+            />
+          ) : (
+            <RecommendedPackage
+              aiDescription={primaryAIDescription}
+              loading={loading}
+              getShareText={getShareText}
+            />
+          )}
+          <OtherPackagesSection />
+          <VideoTestimonials />
+          <FAQ />
+        </div>
       </div>
-    </div>
+
+      <div className="min-w-screen z-[999] bg-background p-6 fixed bottom-0 left-0 max-w-5xl">
+        <WhatsAppShareButton
+          textToShare={getShareText()}
+          className="w-full mx-auto z-[999]"
+        />
+      </div>
+    </>
   );
 }

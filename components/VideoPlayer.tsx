@@ -77,7 +77,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
         {!playing && (
           <motion.div
             key="overlay"
-            className="absolute inset-0 z-10 flex items-center justify-center border-4 border-slate-500 p-2"
+            className="absolute inset-0 z-10 flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}>

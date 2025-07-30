@@ -133,7 +133,7 @@ export const ProblemSolution = () => {
                   alt="picture of a powerful inverter system"
                 />
               </div>
-              <div className="group not-[]:flex-2/3 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
+              <div className="group flex-2/3 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
                 {problems.map((problem, index) => (
                   <div
                     key={problem.title}
@@ -167,7 +167,7 @@ export const ProblemSolution = () => {
                       </div>
                       <ul
                         className={cn(
-                          "md:max-h-0 md:opacity-0 group-hover:opacity-100 max-h-64 transiton-all ease-out duration-300 overflow-y-auto list-none space-y-2",
+                          "md:max-h-0 md:opacity-0 md:group-hover:opacity-100 max-h-64 transiton-all ease-out duration-300 overflow-y-auto list-none space-y-2",
                           openIndex === index
                             ? "max-h-64 opacity-100"
                             : "max-h-0 opacity-0"

@@ -490,8 +490,8 @@ export const useCalculatorStore = create(
 
         if (matchesAny(lightLoadDevices) && totalWatts < 1000) {
           customPackageName = "1kva(a)";
-        } else if (matchesAny(mediumLoadDevices) && totalWatts < 2500) {
-          customPackageName = "2.5kva";
+        } else if (matchesAny(mediumLoadDevices) && totalWatts < 3500) {
+          customPackageName = "3.5kva";
         } else {
           // === Existing Logic ===
           const hasFreezerOrFridge = deviceNames.some((name) =>

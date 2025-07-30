@@ -35,7 +35,7 @@ body::-webkit-scrollbar,
 
 @layer utilities {
   .section-heading {
-    @apply text-4xl text-wrap max-w-80  tracking-tight font-bold mb-10 capitalize;
+    @apply text-wrap text-3xl md:text-5xl font-extrabold tracking-tighter max-w-4/5;
   }
   .flex-center {
     @apply flex justify-center items-center;

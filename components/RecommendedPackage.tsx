@@ -116,6 +116,7 @@ import { useCalculatorStore } from "@/app/store/calculator";
 import { Modal } from "./Modal";
 import { FaWhatsapp } from "react-icons/fa";
 import OpenModalButton from "./OpenModalButton";
+import WhatsAppShareButton from "./WhatsAppShareButton";
 
 export function RecommendedPackage({
   aiDescription,
@@ -198,7 +199,6 @@ export function RecommendedPackage({
     }
   };
 
- 
   const handleCopy = () => {
     if (textRef.current) {
       navigator.clipboard.writeText(textRef.current.innerText);
@@ -216,16 +216,16 @@ export function RecommendedPackage({
   };
 
   return (
-    <div>
-      <p className="font-bold text-center mb-12">
+    <div className="container mx-auto max-w-5xl">
+      <p className="font-normal max-w-2xs">
         Here&apos;s the Minimum Recommended Solar Package for your Load:
       </p>
-      <h2 className="font-bold text-2xl md:text-5xl mb-10 w-full text-center">
+      <h1 className="text-5xl lg:text-9xl font-extrabold tracking-tight">
         {selectedPackage?.name
           ? `${selectedPackage.name} Inverter Package`
           : "No Package Selected"}
-      </h2>
-      <div className="rounded-md shadow-sm overflow-hidden mb-8 p-4 md:p-10 sm:p-6">
+      </h1>
+      <div className="">
         <div className="w-full">
           {selectedPackagePicture && (
             <Image
@@ -269,15 +269,12 @@ export function RecommendedPackage({
           </div>
         </div>
         <div className="w-full flex flex-col gap-10 items-center my-20 justify-center ">
-          <button
-            onClick={handleShare} // Direct user click to open WhatsApp
-            className="w-full mt-4 bg-green-600 text-white p-4 rounded flex items-center justify-center gap-2 mx-auto">
-            <FaWhatsapp size={24} /> Share with us on WhatsApp
-          </button>
+          <WhatsAppShareButton
+            textToShare={getShareText()}
+            className="w-full mt-4 mx-auto"
+          />
         </div>
       </div>
-
-      
     </div>
   );
 }
