@@ -117,41 +117,20 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import Confetti from "react-confetti";
 import { useInView } from "react-intersection-observer";
+import useWindowSize from "@/hooks/useWindowSize";
 
 export const Solution = () => {
   const isMobile = useIsMobile();
 
+  const { width, height } = useWindowSize();
+
   const { ref, inView } = useInView({
-    threshold: 0.5, // Trigger when 50% of the section is in view
+    threshold: 0.2, // Trigger when 50% of the section is in view
     // triggerOnce: true,
   });
 
   const [showConfetti, setShowConfetti] = useState(false);
   // State to store window dimensions
-  const [windowDimensions, setWindowDimensions] = useState({
-    width: typeof window !== "undefined" ? window.innerWidth : 0,
-    height: typeof window !== "undefined" ? window.innerHeight : 0,
-  });
-
-  useEffect(() => {
-    // Update window dimensions on resize
-    const handleResize = () => {
-      setWindowDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
-
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", handleResize);
-    }
-
-    return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("resize", handleResize);
-      }
-    };
-  }, []);
 
   useEffect(() => {
     if (inView) {
@@ -242,11 +221,11 @@ export const Solution = () => {
         </div>
       </div>
 
-      {showConfetti && (
-        <Confetti
-          width={windowDimensions.width}
-          height={windowDimensions.height}
-        />
+      {showConfetti && width > 0 && height > 0 && (
+        // <div className="fixed inset-0 pointer-events-none z-[9999]">
+        //   <Confetti width={width} height={height} />
+        // </div>
+        <Confetti width={width} height={height} />
       )}
     </section>
   );

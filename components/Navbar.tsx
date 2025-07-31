@@ -186,37 +186,40 @@ export const Navbar = () => {
           </div>
         </div>
         {/* The MenuToggle is kept here for visibility within the Navbar */}
-        {isMobile && (
-          <div ref={toggleButtonRef}>
-            <MenuToggle
-              toggle={() => toggleOpen()}
-              className="absolute top-1/2 right-[28px] -translate-y-1/2 z-[100]" // Ensure it's very high z-index
-            />
-          </div>
-        )}
       </motion.nav>
 
       {/* The full-screen sidebar container */}
-      <motion.div
-        initial={false}
-        animate={isOpen ? "open" : "closed"}
-        custom={windowDimensions.height} // Pass window height as custom prop
-        className="fixed inset-0 z-40 pointer-events-none" // Use inset-0 for full screen, lower z-index than toggle
-      >
-        {isMobile && (
+      {isMobile && (
+        <motion.div
+          initial={false}
+          animate={isOpen ? "open" : "closed"}
+          custom={windowDimensions.height} // Pass window height as custom prop
+          className="fixed inset-0 z-[99999] pointer-events-none" // Use inset-0 for full screen, lower z-index than toggle
+        >
           <motion.div
             ref={sidebarRef}
-            className="absolute top-0 right-0 bottom-0 w-[200px] bg-gray-900 pointer-events-auto z-50" // Sidebar background, make sure it's wide enough
+            className="absolute top-0 right-0 bottom-0 w-[200px] bg-gray-900 pointer-events-auto " // Sidebar background, make sure it's wide enough
             variants={sidebar}
           />
-        )}
-        <Navigation
-          className={cn(
-            "absolute top-[100px] right-0 w-[200px] p-[25px] pointer-events-auto z-[100]",
-            !isOpen ? "hidden" : ""
-          )} // Position Navigation within the sidebar
-        />
-      </motion.div>
+          <Navigation
+            className={cn(
+              "absolute top-[100px] right-0 w-[200px] p-[25px] pointer-events-auto z-[100]",
+              !isOpen ? "hidden" : ""
+            )} // Position Navigation within the sidebar
+          />
+        </motion.div>
+      )}
+      {isMobile && (
+        <motion.div
+          animate={isOpen ? "open" : "closed"}
+          className="fixed top-5 right-7 z-[1000000]"
+          ref={toggleButtonRef}>
+          <MenuToggle
+            toggle={() => toggleOpen()}
+            className="" // Ensure it's very high z-index
+          />
+        </motion.div>
+      )}
     </>
   );
 };
