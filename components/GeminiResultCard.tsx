@@ -171,9 +171,7 @@ export default function GeminiResultCard({ data }: { data: any }) {
                 data.whatCanThisSystemPower.system_power_capability
                   .comfortably_powers
               ).map(([category, value]: [string, any], categoryIndex) => (
-                <div
-                  key={categoryIndex}
-                  className="space-y-4 border-border border-2 p-2">
+                <div key={categoryIndex} className="space-y-4 p-2">
                   <h4 className="text-xl font-semibold mb-4 flex items-center">
                     <span className="gradient-bg w-2 h-6 rounded-full mr-3"></span>
                     {category.replace(/_/g, " ")}
