@@ -20,7 +20,7 @@ Do not omit any field. Do not include any text outside the JSON object. Do not i
       },
       "inverterCapacity": {
         "value": 5.0,
-        "unit": "kW",
+        "unit": "W or KVA",
         "type": "AC"
       },
       "batteryStorage": {
