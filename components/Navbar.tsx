@@ -35,6 +35,7 @@ export const Navbar = () => {
 
   const sidebarRef = useRef(null);
   const toggleButtonRef = useRef(null);
+  const navigationRef = useRef(null);
   // State to store window dimensions for the sidebar's clipPath
   const [windowDimensions, setWindowDimensions] = useState({
     width: 0,
@@ -123,7 +124,9 @@ export const Navbar = () => {
         sidebarRef.current &&
         !sidebarRef.current.contains(event.target) &&
         toggleButtonRef.current &&
-        !toggleButtonRef.current.contains(event.target)
+        !toggleButtonRef.current.contains(event.target) &&
+        navigationRef.current &&
+        !navigationRef.current.contains(event.target)
       ) {
         toggleOpen(0);
       }
@@ -202,10 +205,12 @@ export const Navbar = () => {
             variants={sidebar}
           />
           <Navigation
+            ref={navigationRef}
             className={cn(
               "absolute top-[100px] right-0 w-[200px] p-[25px] pointer-events-auto z-[100]",
               !isOpen ? "hidden" : ""
             )} // Position Navigation within the sidebar
+            toggleOpen={toggleOpen}
           />
         </motion.div>
       )}

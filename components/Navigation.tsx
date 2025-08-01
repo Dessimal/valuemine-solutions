@@ -16,13 +16,16 @@ const variants = {
   },
 };
 
-export const Navigation = ({ className }) => (
-
-
-  
+export const Navigation = ({ className, toggleOpen }) => (
   <motion.ul className={cn("space-y-5", className)} variants={variants}>
     {navLinks.map(({ icon, name, path }) => (
-      <MenuItem icon={icon} key={name} name={name} path={path} />
+      <MenuItem
+        icon={icon}
+        key={name}
+        name={name}
+        path={path}
+        toggleOpen={toggleOpen}
+      />
     ))}
   </motion.ul>
 );

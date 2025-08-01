@@ -79,7 +79,10 @@ export function VerifyUser() {
       <button
         type="submit"
         disabled={otp.length !== 6 || loading}
-        className="mt-4 px-4 py-2 hover:opacity-70 gradient-bg rounded-md mt-10 w-full">
+        className={cn(
+          "mt-4 px-4 py-2 hover:opacity-70 gradient-bg rounded-md mt-10 w-full",
+          loading ? "opacity-50" : ""
+        )}>
         {loading ? "Verifying..." : "Verify"}
       </button>
     </form>
