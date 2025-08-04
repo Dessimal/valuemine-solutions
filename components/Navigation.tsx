@@ -3,9 +3,9 @@
 import * as React from "react";
 import { motion } from "framer-motion";
 import { MenuItem } from "./MenuItem";
-import { navLinks } from "@/app/constants";
 import { cn } from "@/app/lib/utils";
 import { usePathname } from "next/navigation";
+import { navLinks } from "@/app/pageLinks";
 
 const variants = {
   open: {
