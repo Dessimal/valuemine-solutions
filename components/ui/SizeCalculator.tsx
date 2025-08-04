@@ -357,7 +357,7 @@ interface SizeCalculatorProps {
   enableTour?: boolean;
 }
 
-export const SizeCalculator = ({ enableTour = false }: SizeCalculatorProps) => {
+const SizeCalculator = ({ enableTour = false }: SizeCalculatorProps) => {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
@@ -696,3 +696,5 @@ export const SizeCalculator = ({ enableTour = false }: SizeCalculatorProps) => {
     </>
   );
 };
+
+export default SizeCalculator;

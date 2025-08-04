@@ -2,15 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "@/lib/framerMotion";
-import { Button } from "@/components/ui/button";
-import {
-  Zap,
-  Battery,
-  Sun,
-  CircleX,
-  DoorClosedLocked,
-  SquarePlus,
-} from "lucide-react";
+import { CircleX, SquarePlus } from "lucide-react";
 import Image from "next/image";
 import {
   fuelQueue,
@@ -149,6 +141,7 @@ export const ProblemSolution = () => {
                             : "object-cover h-full w-full"
                         }`}
                         fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
                       />
                     </div>
                     <div className=" flex flex-col justify-between">

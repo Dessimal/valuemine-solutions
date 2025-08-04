@@ -1,11 +1,15 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import React from "react";
-import { SizeCalculator } from "./ui/SizeCalculator";
-import { motion, AnimatePresence } from "@/lib/framerMotion";
+import { motion } from "@/lib/framerMotion";
 import { Button } from "@/components/ui/button";
-import { Calculator as CalcIcon, Router } from "lucide-react";
+import { Calculator as CalcIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+
+const DynamicCalculator = dynamic(() => import("./ui/SizeCalculator"), {
+  loading: () => <p>Loading calculator...</p>,
+});
 
 export const CalculatorSection = () => {
   const router = useRouter();
@@ -40,9 +44,9 @@ export const CalculatorSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}>
-              We've made it easy to calculate your ideal solar system. Just tell
-              us what gadgets and appliances you use — our smart calculator does
-              the rest.
+              We&apos;ve made it easy to calculate your ideal solar system. Just
+              tell us what gadgets and appliances you use — our smart calculator
+              does the rest.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -79,7 +83,7 @@ export const CalculatorSection = () => {
             </motion.div>
           </motion.div>
         </div>
-        <SizeCalculator />
+        <DynamicCalculator />
       </div>
     </section>
   );
