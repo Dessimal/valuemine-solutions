@@ -96,8 +96,7 @@ import { db } from "@/db";
 import { eq, and } from "drizzle-orm";
 import { gemini_descriptions } from "@/db/schema";
 import { verifyUser } from "@/app/data/user/verify-user";
-import { packageBreakdown } from "@/app/constants"; // Import your local constants
-
+import { packageBreakdown } from "@/app/data/packageBreakdown"; // Import your local constants
 function hash(str: string) {
   return crypto.createHash("sha256").update(str).digest("hex");
 }

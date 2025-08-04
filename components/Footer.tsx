@@ -1,7 +1,8 @@
 import React from "react";
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import Link from "next/link";
-import { footerLinks, quickLinks, services } from "@/app/constants";
+import { quickLinks } from "@/app/pageLinks";
+import { footerLinks } from "@/app/constants";
 // import { Logo } from "@/app/constants";
 
 export const Footer = () => {

@@ -8,7 +8,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { motion } from "@/lib/framerMotion";
 
 import ContactForm from "./ContactForm";
-import { contactDetails } from "@/app/constants";
+import { contactDetails } from "@/app/pageLinks";
 
 export const Contact = () => {
   // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

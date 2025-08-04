@@ -160,7 +160,7 @@ export const SignInView = () => {
                   Sign in with Google
                   <span>
                     <Image
-                      src="/google.png"
+                      src="/google.webp"
                       height={20}
                       width={20}
                       alt="google logo"

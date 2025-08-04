@@ -12,6 +12,7 @@ import { authClient } from "@/app/lib/auth-client";
 
 import { useCalculatorStore } from "@/app/store/calculator";
 import { toast } from "sonner";
+import { cn } from "@/app/lib/utils";
 
 // You may want to make this a Client Component, not an async function
 export function VerifyUser() {

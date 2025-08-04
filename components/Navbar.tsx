@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Link from "next/link";
-import { Logo, navLinks } from "@/app/constants";
+import { Logo } from "@/app/constants";
 import Image from "next/image";
 import { FaUser } from "react-icons/fa";
 import { authClient } from "@/app/lib/auth-client";
@@ -20,6 +20,7 @@ import { Navigation } from "./Navigation";
 import { MenuToggle } from "./MenuToggle";
 import { useDimensions } from "@/hooks/use-dimensions";
 import { toast } from "sonner";
+import { navLinks } from "@/app/pageLinks";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);

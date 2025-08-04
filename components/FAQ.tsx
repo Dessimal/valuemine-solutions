@@ -51,11 +51,11 @@
 
 "use client";
 
-import { faqs } from "@/app/constants";
 import { cn } from "@/lib/utils";
 import { SquarePlus } from "lucide-react";
 import React, { useState } from "react";
 import { Card } from "./ui/card";
+import { faqs } from "@/app/faq";
 
 export const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<null | number>(null);
@@ -73,7 +73,7 @@ export const FAQ = () => {
         <Card
           key={index}
           onClick={() => handleClick(index)}
-          className="bg-card border border-border p-6 pb-0 flex flex-col justify-center cursor-pointer hover:bg-muted/30 transition-colors">
+          className="bg-card rounded-md border border-border p-6 pb-0 flex flex-col justify-center cursor-pointer hover:bg-muted/30 transition-colors">
           <div className="  flex items-center justify-between">
             <p className="text-wrap">{question}</p>
             <SquarePlus
