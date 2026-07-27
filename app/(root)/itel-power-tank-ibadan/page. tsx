@@ -1,1 +1,378 @@
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Itel Power Tank Price in Ibadan (₦295,000) – Pay on Delivery',
+  description:
+    'Buy the official Itel Power Tank for just ₦295,000 — guaranteed lowest price in Nigeria! Enjoy Pay on Delivery for Ibadan residents. Order today!',
+  keywords: [
+    'Itel Power Tank price in Ibadan',
+    'Itel Power Tank 295k promo',
+    'Buy Itel Power Tank Nigeria',
+    'Power tank pay on delivery Ibadan',
+    'Cheapest Itel Power Tank in Nigeria',
+  ],
+  alternates: {
+    canonical: 'https://www.valueminesolutions.com.ng/itel-power-tank-ibadan',
+  },
+  openGraph: {
+    title: 'Itel Power Tank Price in Ibadan (₦295,000) – Pay on Delivery',
+    description:
+      'Official Itel Power Tank for ₦295,000. Pay on delivery available exclusively for Ibadan residents. Limited promo stock!',
+    url: 'https://www.valueminesolutions.com.ng/itel-power-tank-ibadan',
+    siteName: 'Valuemine Solar Solutions',
+    type: 'website',
+  },
+};
+
+const WHATSAPP_NUMBER = '2348136812541';
+const WHATSAPP_MESSAGE = encodeURIComponent(
+  'Hi, I live in Ibadan and I want to order the Itel Power Tank for ₦295,000 via Pay on Delivery.'
+);
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
+const CALL_URL = 'tel:+2348136812541';
+
+export default function ItelPowerTankPromoPage() {
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'Itel Power Tank',
+    description:
+      'Portable high-capacity power backup generator alternative for home and business equipment.',
+    brand: {
+      '@type': 'Brand',
+      name: 'Itel',
+    },
+    offers: {
+      '@type': 'Offer',
+      url: 'https://www.valueminesolutions.com.ng/itel-power-tank-ibadan',
+      priceCurrency: 'NGN',
+      price: '295000',
+      priceValidUntil: '2026-12-31',
+      itemCondition: 'https://schema.org/NewCondition',
+      availability: 'https://schema.org/InStock',
+      seller: {
+        '@type': 'Organization',
+        name: 'Valuemine Solar Solutions',
+      },
+    },
+  };
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How does Pay on Delivery work in Ibadan?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Simply place your order via our website or WhatsApp. Our local delivery team in Ibadan will bring the Itel Power Tank straight to your doorstep. You inspect the package, confirm everything is intact, and make payment via cash or bank transfer directly to the rider.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is this the original Itel Power Tank?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, 100%. We source directly from official channels, ensuring you receive a brand-new, authentic unit backed by warranty.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why is your price (₦295,000) lower than other market stores?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'We buy in bulk and run direct promotional deals to pass maximum savings straight to our customers.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do you deliver outside Ibadan?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, we deliver nationwide across Nigeria. However, Pay on Delivery is currently exclusive to residents within Ibadan. Deliveries outside Ibadan require payment confirmation before dispatch.',
+        },
+      },
+    ],
+  };
+
+  return (
+    <>
+      {/* Structured Schema Markup */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
+      <div className="min-h-screen bg-slate-50 text-slate-800 pb-20 md:pb-0">
+        {/* SECTION 1: TOP ANNOUNCEMENT BAR */}
+        <div className="bg-amber-500 text-slate-950 text-xs sm:text-sm font-bold text-center py-2 px-4 sticky top-0 z-40 shadow-sm">
+          🚚 IBADAN RESIDENTS PROMO: Pay on Delivery Available Across Ibadan |
+          Guaranteed Lowest Price in Nigeria!
+        </div>
+
+        {/* SECTION 2: HERO SECTION */}
+        <section className="max-w-7xl mx-auto px-4 py-8 md:py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div className="space-y-5">
+            <span className="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+              Limited Stock Promo
+            </span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight">
+              Itel Power Tank — Special Ibadan Promo Price
+            </h1>
+            <div className="flex items-baseline gap-3">
+              <span className="text-3xl sm:text-4xl font-extrabold text-emerald-600">
+                ₦295,000
+              </span>
+              <span className="text-xl text-slate-400 line-through font-medium">
+                ₦350,000
+              </span>
+              <span className="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded">
+                Save ₦55,000
+              </span>
+            </div>
+            <p className="text-base sm:text-lg text-slate-600">
+              Get the ultimate portable power backup for your home and business
+              at the absolute lowest price in Nigeria.{' '}
+              <strong className="text-slate-800">0% Risk:</strong> Residents of
+              Ibadan inspect and Pay on Delivery.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3 pt-2">
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 text-center"
+              >
+                📲 Order via WhatsApp (Pay on Delivery)
+              </a>
+              <a
+                href="#checkout-form"
+                className="inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3.5 px-6 rounded-lg text-center transition-all"
+              >
+                🛒 Buy Online Now
+              </a>
+            </div>
+          </div>
+
+          <div className="relative w-full h-[320px] sm:h-[400px] bg-slate-200 rounded-2xl overflow-hidden shadow-xl border border-slate-200">
+            <Image
+              src="/images/itel-power-tank.jpg"
+              alt="Itel Power Tank Promo Ibadan"
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </section>
+
+        {/* SECTION 3: TRUST BADGES */}
+        <section className="bg-white border-y border-slate-200 py-6">
+          <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left">
+            <div className="flex items-center justify-center md:justify-start space-x-3">
+              <span className="text-2xl">🟢</span>
+              <div>
+                <h4 className="font-bold text-slate-900">Official Itel Product</h4>
+                <p className="text-sm text-slate-600">100% Genuine with Manufacturer Warranty.</p>
+              </div>
+            </div>
+            <div className="flex items-center justify-center md:justify-start space-x-3">
+              <span className="text-2xl">📦</span>
+              <div>
+                <h4 className="font-bold text-slate-900">Pay on Delivery</h4>
+                <p className="text-sm text-slate-600">Inspect product in Ibadan before paying.</p>
+              </div>
+            </div>
+            <div className="flex items-center justify-center md:justify-start space-x-3">
+              <span className="text-2xl">⚡</span>
+              <div>
+                <h4 className="font-bold text-slate-900">Fast Local Dispatch</h4>
+                <p className="text-sm text-slate-600">Delivered within 24–48 hours across Ibadan.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 4: PRODUCT OVERVIEW & KEY FEATURES */}
+        <section className="max-w-7xl mx-auto px-4 py-12">
+          <div className="max-w-3xl mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">
+              Why the Itel Power Tank is the Perfect Power Solution
+            </h2>
+            <p className="text-slate-600 leading-relaxed">
+              Tired of unexpected blackout interruptions? The Itel Power Tank provides clean, quiet, and reliable power backup for your essential home appliances, electronics, laptops, and business equipment. Compact, heavy-duty, and easy to operate, it eliminates the high fuel costs and noise of traditional generators.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+              <div className="text-2xl mb-2">⚡</div>
+              <h3 className="font-bold text-slate-900 mb-2">High Power Capacity</h3>
+              <p className="text-sm text-slate-600">
+                Easily powers TVs, fans, laptops, internet routers, decoders, lighting systems, and smartphones simultaneously.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+              <div className="text-2xl mb-2">🔇</div>
+              <h3 className="font-bold text-slate-900 mb-2">Silent & Clean Operation</h3>
+              <p className="text-sm text-slate-600">
+                Zero noise, zero fumes, zero dangerous emissions—completely safe for indoor setups.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+              <div className="text-2xl mb-2">🔌</div>
+              <h3 className="font-bold text-slate-900 mb-2">Multiple Output Ports</h3>
+              <p className="text-sm text-slate-600">
+                Equipped with standard AC wall sockets, high-speed USB ports, and DC outputs for maximum versatility.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+              <div className="text-2xl mb-2">🔋</div>
+              <h3 className="font-bold text-slate-900 mb-2">Fast Charging Technology</h3>
+              <p className="text-sm text-slate-600">
+                Rapid recharging capability from normal grid power or compatible solar panels.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+              <div className="text-2xl mb-2">🛡️</div>
+              <h3 className="font-bold text-slate-900 mb-2">Built-in Circuit Protection</h3>
+              <p className="text-sm text-slate-600">
+                Features advanced battery management protection against short-circuiting, overcharging, and overheating.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 5: VALUE COMPARISON BLOCK */}
+        <section className="bg-slate-900 text-white py-12">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
+              The Best Itel Power Tank Deal in Nigeria
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                <h3 className="text-emerald-400 font-bold text-lg mb-2">Unbeatable Price</h3>
+                <p className="text-slate-300 text-sm">
+                  At ₦295,000, this is by far the cheapest price for the Itel Power Tank nationwide.
+                </p>
+              </div>
+              <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                <h3 className="text-emerald-400 font-bold text-lg mb-2">Zero Online Scam Risk</h3>
+                <p className="text-slate-300 text-sm">
+                  We understand online trust concerns. That is why we offer Pay on Delivery exclusively for Ibadan residents.
+                </p>
+              </div>
+              <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
+                <h3 className="text-emerald-400 font-bold text-lg mb-2">Local Customer Support</h3>
+                <p className="text-slate-300 text-sm">
+                  Quick doorstep delivery across Bodija, Ring Road, Oluyole, Challenge, Samonda, UI, Akobo, Iwo Road, and all surrounding areas.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 6: FAQS */}
+        <section className="max-w-4xl mx-auto px-4 py-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-8">
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-4">
+            <details className="group bg-white p-5 rounded-xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+              <summary className="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
+                <span>How does Pay on Delivery work in Ibadan?</span>
+                <span className="transition group-open:rotate-180">👇</span>
+              </summary>
+              <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                Simply place your order via our website or WhatsApp. Our local delivery team in Ibadan will bring the Itel Power Tank straight to your doorstep. You inspect the package, confirm everything is intact, and make payment via cash or bank transfer directly to the rider.
+              </p>
+            </details>
+
+            <details className="group bg-white p-5 rounded-xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+              <summary className="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
+                <span>Is this the original Itel Power Tank?</span>
+                <span className="transition group-open:rotate-180">👇</span>
+              </summary>
+              <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                Yes, 100%. We source directly from official channels, ensuring you receive a brand-new, authentic unit backed by warranty.
+              </p>
+            </details>
+
+            <details className="group bg-white p-5 rounded-xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+              <summary className="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
+                <span>Why is your price (₦295,000) lower than other market stores?</span>
+                <span className="transition group-open:rotate-180">👇</span>
+              </summary>
+              <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                We buy in bulk and run direct promotional deals to pass maximum savings straight to our customers.
+              </p>
+            </details>
+
+            <details className="group bg-white p-5 rounded-xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
+              <summary className="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
+                <span>Do you deliver outside Ibadan?</span>
+                <span className="transition group-open:rotate-180">👇</span>
+              </summary>
+              <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                Yes, we deliver nationwide across Nigeria. However, Pay on Delivery is currently exclusive to residents within Ibadan. Deliveries outside Ibadan require payment confirmation before dispatch.
+              </p>
+            </details>
+          </div>
+        </section>
+
+        {/* SECTION 7: FINAL CALL TO ACTION BANNER */}
+        <section id="checkout-form" className="bg-emerald-700 text-white py-12 px-4 text-center">
+          <div className="max-w-3xl mx-auto space-y-5">
+            <h2 className="text-3xl font-extrabold">
+              Don't Miss Out — Secure Your Itel Power Tank at ₦295,000 Today!
+            </h2>
+            <p className="text-emerald-100 text-base sm:text-lg">
+              Promo stock is limited at this price. Order now to lock in the ₦295,000 promotional rate with Pay on Delivery in Ibadan.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4 pt-2">
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white text-emerald-800 hover:bg-emerald-50 font-bold py-3.5 px-6 rounded-lg shadow-lg text-center"
+              >
+                📲 Order on WhatsApp (Ibadan Pay on Delivery)
+              </a>
+              <a
+                href={CALL_URL}
+                className="bg-emerald-900 hover:bg-emerald-950 text-white font-bold py-3.5 px-6 rounded-lg text-center"
+              >
+                📞 Call Us Directly
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 8: MOBILE STICKY FOOTER */}
+        <div className="md:hidden fixed bottom-0 left-0 right-0 bg-slate-900 text-white border-t border-slate-800 p-3 flex items-center justify-between z-50 shadow-2xl">
+          <div>
+            <p className="text-xs text-slate-400">Itel Power Tank</p>
+            <p className="text-lg font-extrabold text-emerald-400">₦295,000</p>
+          </div>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-2.5 px-4 rounded-lg shadow"
+          >
+            Order via WhatsApp
+          </a>
+        </div>
+      </div>
+    </>
+  );
+}
 
