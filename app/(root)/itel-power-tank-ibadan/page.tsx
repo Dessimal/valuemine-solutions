@@ -121,14 +121,14 @@ export default function ItelPowerTankPromoPage() {
         {/* SECTION 2: HERO SECTION */}
         <section className="max-w-7xl mx-auto px-4 py-8 md:py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="space-y-5">
-            <span className="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+            <span className="inline-block bg-[#FF073C] text-[FF073C] text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
               Limited Stock Promo
             </span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight">
               Itel Power Tank — Special Ibadan Promo Price
             </h1>
             <div className="flex items-baseline gap-3">
-              <span className="text-3xl sm:text-4xl font-extrabold text-emerald-600">
+              <span className="text-3xl sm:text-4xl font-extrabold text-[#FF073C]">
                 ₦295,000
               </span>
               <span className="text-xl text-slate-400 line-through font-medium">
@@ -255,19 +255,19 @@ export default function ItelPowerTankPromoPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                <h3 className="text-emerald-400 font-bold text-lg mb-2">Unbeatable Price</h3>
+                <h3 className="text-[#FF073C] font-bold text-lg mb-2">Unbeatable Price</h3>
                 <p className="text-slate-300 text-sm">
                   At ₦295,000, this is by far the cheapest price for the Itel Power Tank nationwide.
                 </p>
               </div>
               <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                <h3 className="text-emerald-400 font-bold text-lg mb-2">Zero Online Scam Risk</h3>
+                <h3 className="text-[#FF073C] font-bold text-lg mb-2">Zero Online Scam Risk</h3>
                 <p className="text-slate-300 text-sm">
                   We understand online trust concerns. That is why we offer Pay on Delivery exclusively for Ibadan residents.
                 </p>
               </div>
               <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                <h3 className="text-emerald-400 font-bold text-lg mb-2">Local Customer Support</h3>
+                <h3 className="text-[#FF073C] font-bold text-lg mb-2">Local Customer Support</h3>
                 <p className="text-slate-300 text-sm">
                   Quick doorstep delivery across Bodija, Ring Road, Oluyole, Challenge, Samonda, UI, Akobo, Iwo Road, and all surrounding areas.
                 </p>
@@ -325,7 +325,7 @@ export default function ItelPowerTankPromoPage() {
         </section>
 
         {/* SECTION 7: FINAL CALL TO ACTION BANNER */}
-        <section id="checkout-form" className="bg-emerald-700 text-white py-12 px-4 text-center">
+        <section id="checkout-form" className="bg-[#FF073C] text-white py-12 px-4 text-center">
           <div className="max-w-3xl mx-auto space-y-5">
             <h2 className="text-3xl font-extrabold">
               Don't Miss Out — Secure Your Itel Power Tank at ₦295,000 Today!
