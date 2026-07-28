@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ItelPowerTank } from "@/app/constants";
 
 export const metadata: Metadata = {
   title: 'Itel Power Tank Price in Ibadan (₦295,000) – Pay on Delivery',
@@ -153,18 +154,13 @@ export default function ItelPowerTankPromoPage() {
               >
                 📲 Order via WhatsApp (Pay on Delivery)
               </a>
-              <a
-                href="#checkout-form"
-                className="inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3.5 px-6 rounded-lg text-center transition-all"
-              >
-                🛒 Buy Online Now
-              </a>
+              
             </div>
           </div>
 
           <div className="relative w-full h-[320px] sm:h-[400px] bg-slate-200 rounded-2xl overflow-hidden shadow-xl border border-slate-200">
             <Image
-              src="/images/itel-power-tank.jpg"
+              src={ItelPowerTank}
               alt="Itel Power Tank Promo Ibadan"
               fill
               priority
