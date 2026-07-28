@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Mulish, Urbanist } from "next/font/google";
+import JsonLd from '@/components/JsonLd';
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
@@ -105,6 +106,7 @@ export default async function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <JsonLd />
         <meta
           name="facebook-domain-verification"
           content="2ngp53js7du0iszol3bufkogxiznlo"
