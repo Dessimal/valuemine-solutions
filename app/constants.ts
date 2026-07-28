@@ -42,7 +42,7 @@ import tenKva from "@/public/10kva 2x15kwh 20x600w.webp";
 
 export {
   Logo,
-  ItelPowerTank
+  ItelPowerTank,
   HeroImage,
   MainHeroImage,
   TiredMan,
