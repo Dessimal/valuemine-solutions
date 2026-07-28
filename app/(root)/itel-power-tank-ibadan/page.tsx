@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ItelPowerTank } from "@/app/constants";
-import {ChevronDown, HelpCircle, PhoneCall, Flame, Truck, ShieldCheck, Sparkles,BadgeCheck, PackageCheck, Zap,MessageCircle, ArrowRight  } from 'lucide-react';
+import {VolumeX, Cpu, BatteryCharging, ChevronDown, HelpCircle, PhoneCall, Flame, Truck, ShieldCheck, Sparkles,BadgeCheck, PackageCheck, Zap,MessageCircle, ArrowRight  } from 'lucide-react';
 
 
 export const metadata: Metadata = {
@@ -251,53 +251,94 @@ export default function ItelPowerTankPromoPage() {
 
         {/* SECTION 4: PRODUCT OVERVIEW & KEY FEATURES */}
         <section className="max-w-7xl mx-auto px-4 py-12">
-          <div className="max-w-3xl mb-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-3">
-              Why the Itel Power Tank is the Perfect Power Solution
-            </h2>
-            <p className="text-slate-600 leading-relaxed">
-              Tired of unexpected blackout interruptions? The Itel Power Tank provides clean, quiet, and reliable power backup for your essential home appliances, electronics, laptops, and business equipment. Compact, heavy-duty, and easy to operate, it eliminates the high fuel costs and noise of traditional generators.
+         <section className="relative overflow-hidden bg-slate-50/50 py-12 sm:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Header Block */}
+        <div className="max-w-3xl mb-10 sm:mb-12 space-y-3">
+          <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/20 px-3.5 py-1 text-xs font-semibold text-amber-700">
+            <Sparkles className="h-3.5 w-3.5 text-amber-600" />
+            <span>Unmatched Reliability</span>
+          </div>
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Why the Itel Power Tank is the Perfect Power Solution
+          </h2>
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal pt-1">
+            Tired of unexpected blackout interruptions? The Itel Power Tank provides clean, quiet, and reliable power backup for your essential home appliances, electronics, laptops, and business equipment. Compact, heavy-duty, and easy to operate, it eliminates the high fuel costs and noise of traditional generators.
+          </p>
+        </div>
+
+        {/* Feature Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          {/* Card 1: High Power Capacity */}
+          <div className="group relative rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-300 hover:border-amber-500/40 hover:shadow-xl hover:shadow-amber-500/5 hover:-translate-y-1">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 transition-colors group-hover:bg-amber-500 group-hover:text-slate-950 mb-4">
+              <Zap className="h-6 w-6 stroke-[2.25]" />
+            </div>
+            <h3 className="text-lg font-bold text-slate-900 mb-2 tracking-tight">
+              High Power Capacity
+            </h3>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              Easily powers TVs, fans, laptops, internet routers, decoders, lighting systems, and smartphones simultaneously.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-              <div className="text-2xl mb-2">⚡</div>
-              <h3 className="font-bold text-slate-900 mb-2">High Power Capacity</h3>
-              <p className="text-sm text-slate-600">
-                Easily powers TVs, fans, laptops, internet routers, decoders, lighting systems, and smartphones simultaneously.
-              </p>
+          {/* Card 2: Silent & Clean Operation */}
+          <div className="group relative rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-300 hover:border-amber-500/40 hover:shadow-xl hover:shadow-amber-500/5 hover:-translate-y-1">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 transition-colors group-hover:bg-amber-500 group-hover:text-slate-950 mb-4">
+              <VolumeX className="h-6 w-6 stroke-[2.25]" />
             </div>
-            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-              <div className="text-2xl mb-2">🔇</div>
-              <h3 className="font-bold text-slate-900 mb-2">Silent & Clean Operation</h3>
-              <p className="text-sm text-slate-600">
-                Zero noise, zero fumes, zero dangerous emissions—completely safe for indoor setups.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-              <div className="text-2xl mb-2">🔌</div>
-              <h3 className="font-bold text-slate-900 mb-2">Multiple Output Ports</h3>
-              <p className="text-sm text-slate-600">
-                Equipped with standard AC wall sockets, high-speed USB ports, and DC outputs for maximum versatility.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-              <div className="text-2xl mb-2">🔋</div>
-              <h3 className="font-bold text-slate-900 mb-2">Fast Charging Technology</h3>
-              <p className="text-sm text-slate-600">
-                Rapid recharging capability from normal grid power or compatible solar panels.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-              <div className="text-2xl mb-2">🛡️</div>
-              <h3 className="font-bold text-slate-900 mb-2">Built-in Circuit Protection</h3>
-              <p className="text-sm text-slate-600">
-                Features advanced battery management protection against short-circuiting, overcharging, and overheating.
-              </p>
-            </div>
+            <h3 className="text-lg font-bold text-slate-900 mb-2 tracking-tight">
+              Silent & Clean Operation
+            </h3>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              Zero noise, zero fumes, zero dangerous emissions—completely safe for indoor setups.
+            </p>
           </div>
-        </section>
+
+          {/* Card 3: Multiple Output Ports */}
+          <div className="group relative rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-300 hover:border-amber-500/40 hover:shadow-xl hover:shadow-amber-500/5 hover:-translate-y-1">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 transition-colors group-hover:bg-amber-500 group-hover:text-slate-950 mb-4">
+              <Cpu className="h-6 w-6 stroke-[2.25]" />
+            </div>
+            <h3 className="text-lg font-bold text-slate-900 mb-2 tracking-tight">
+              Multiple Output Ports
+            </h3>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              Equipped with standard AC wall sockets, high-speed USB ports, and DC outputs for maximum versatility.
+            </p>
+          </div>
+
+          {/* Card 4: Fast Charging Technology */}
+          <div className="group relative rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-300 hover:border-amber-500/40 hover:shadow-xl hover:shadow-amber-500/5 hover:-translate-y-1">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 transition-colors group-hover:bg-amber-500 group-hover:text-slate-950 mb-4">
+              <BatteryCharging className="h-6 w-6 stroke-[2.25]" />
+            </div>
+            <h3 className="text-lg font-bold text-slate-900 mb-2 tracking-tight">
+              Fast Charging Technology
+            </h3>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              Rapid recharging capability from normal grid power or compatible solar panels.
+            </p>
+          </div>
+
+          {/* Card 5: Built-in Circuit Protection */}
+          <div className="group relative rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-300 hover:border-amber-500/40 hover:shadow-xl hover:shadow-amber-500/5 hover:-translate-y-1 sm:col-span-2 lg:col-span-1">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 transition-colors group-hover:bg-amber-500 group-hover:text-slate-950 mb-4">
+              <ShieldCheck className="h-6 w-6 stroke-[2.25]" />
+            </div>
+            <h3 className="text-lg font-bold text-slate-900 mb-2 tracking-tight">
+              Built-in Circuit Protection
+            </h3>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              Features advanced battery management protection against short-circuiting, overcharging, and overheating.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
 
         {/* SECTION 5: VALUE COMPARISON BLOCK */}
         <section className="bg-slate-900 text-white py-12">
