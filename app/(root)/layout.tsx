@@ -16,6 +16,7 @@ const urbanist = Urbanist({
 
 const poppins = Poppins({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"], // Added weights here
   variable: "--font-poppins",
 });
 
