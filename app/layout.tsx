@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Mulish, Urbanist } from "next/font/google";
+import {Poppins, Inter, Mulish, Urbanist } from "next/font/google";
 import JsonLd from '@/components/JsonLd';
 import "./globals.css";
 import { Footer } from "@/components/Footer";
