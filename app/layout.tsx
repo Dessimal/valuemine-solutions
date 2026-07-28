@@ -17,6 +17,11 @@ const urbanist = Urbanist({
   variable: "--font-urbanist",
 });
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  variable: "--font-poppins",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.valueminesolutions.com.ng'),
   title: {
@@ -112,7 +117,7 @@ export default async function RootLayout({
           content="2ngp53js7du0iszol3bufkogxiznlo"
         />
       </head>
-      <body className={` ${urbanist.variable} antialiased`}>
+      <body className={` ${poppins.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
