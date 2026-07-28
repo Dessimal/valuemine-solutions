@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ItelPowerTank } from "@/app/constants";
+import { Truck, ShieldCheck, Sparkles,BadgeCheck, PackageCheck, Zap,MessageCircle, ArrowRight  } from 'lucide-react';
+
 
 export const metadata: Metadata = {
   title: 'Itel Power Tank Price in Ibadan (₦295,000) – Pay on Delivery',
@@ -113,10 +115,13 @@ export default function ItelPowerTankPromoPage() {
 
       <div className="min-h-screen bg-slate-50 text-slate-800 pb-20 md:pb-0">
         {/* SECTION 1: TOP ANNOUNCEMENT BAR */}
-        <div className="bg-amber-500 text-slate-950 text-xs sm:text-sm font-bold text-center py-2 px-4 sticky top-0 z-40 shadow-sm">
-          🚚 IBADAN RESIDENTS PROMO: Pay on Delivery Available Across Ibadan |
-          Guaranteed Lowest Price in Nigeria!
-        </div>
+        {/* Delivery Badge */}
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-slate-950/10 px-2.5 py-0.5 backdrop-blur-sm transition-all hover:bg-slate-950/20">
+            <Truck className="h-4 w-4 shrink-0 text-slate-950 animate-bounce-horizontal" />
+            <span className="font-bold uppercase tracking-wider text-[11px] sm:text-xs">
+              Ibadan Promo
+            </span>
+          </div>
 
         {/* SECTION 2: HERO SECTION */}
         <section className="max-w-7xl mx-auto px-4 py-8 md:py-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -145,17 +150,37 @@ export default function ItelPowerTankPromoPage() {
               Ibadan inspect and Pay on Delivery.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 pt-2">
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 text-center"
-              >
-                📲 Order via WhatsApp (Pay on Delivery)
-              </a>
-              
-            </div>
+             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-3">
+      {/* Primary WhatsApp Action Button */}
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 px-7 py-4 text-white font-bold tracking-wide shadow-lg shadow-emerald-600/25 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-emerald-600/35 active:scale-[0.98]"
+      >
+        {/* Glow overlay effect on hover */}
+        <div className="absolute inset-0 bg-white/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+        {/* WhatsApp Icon with subtle pulse animation */}
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/20 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+          <MessageCircle className="h-5 w-5 fill-white text-emerald-600" />
+        </div>
+
+        {/* Text Content */}
+        <span className="text-base sm:text-lg">
+          Order via WhatsApp
+        </span>
+
+        {/* Dynamic Arrow */}
+        <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+      </a>
+
+      {/* Trust Badge Sub-text */}
+      <div className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-emerald-50 border border-emerald-100 px-3.5 py-2 text-xs font-semibold text-emerald-800">
+        <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />
+        <span>Pay on Delivery</span>
+      </div>
+    </div>
           </div>
 
           <div className="relative w-full h-[320px] sm:h-[400px] bg-slate-200 rounded-2xl overflow-hidden shadow-xl border border-slate-200">
@@ -171,31 +196,58 @@ export default function ItelPowerTankPromoPage() {
         </section>
 
         {/* SECTION 3: TRUST BADGES */}
-        <section className="bg-white border-y border-slate-200 py-6">
-          <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left">
-            <div className="flex items-center justify-center md:justify-start space-x-3">
-              <span className="text-2xl">🟢</span>
-              <div>
-                <h4 className="font-bold text-slate-900">Official Itel Product</h4>
-                <p className="text-sm text-slate-600">100% Genuine with Manufacturer Warranty.</p>
-              </div>
+         <section className="relative overflow-hidden bg-white/80 backdrop-blur-md border-y border-slate-200/80 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          
+          {/* Item 1: Official Product */}
+          <div className="group flex items-start gap-4 rounded-2xl border border-slate-100 bg-slate-50/50 p-4 transition-all duration-300 hover:border-amber-500/30 hover:bg-slate-50 hover:shadow-md hover:shadow-amber-500/5">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 transition-colors group-hover:bg-amber-500 group-hover:text-slate-950">
+              <BadgeCheck className="h-6 w-6 stroke-[2.25]" />
             </div>
-            <div className="flex items-center justify-center md:justify-start space-x-3">
-              <span className="text-2xl">📦</span>
-              <div>
-                <h4 className="font-bold text-slate-900">Pay on Delivery</h4>
-                <p className="text-sm text-slate-600">Inspect product in Ibadan before paying.</p>
-              </div>
-            </div>
-            <div className="flex items-center justify-center md:justify-start space-x-3">
-              <span className="text-2xl">⚡</span>
-              <div>
-                <h4 className="font-bold text-slate-900">Fast Local Dispatch</h4>
-                <p className="text-sm text-slate-600">Delivered within 24–48 hours across Ibadan.</p>
-              </div>
+            <div className="space-y-1">
+              <h4 className="font-bold text-slate-900 tracking-tight">
+                Official Itel Product
+              </h4>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                100% Genuine with Manufacturer Warranty.
+              </p>
             </div>
           </div>
-        </section>
+
+          {/* Item 2: Pay on Delivery */}
+          <div className="group flex items-start gap-4 rounded-2xl border border-slate-100 bg-slate-50/50 p-4 transition-all duration-300 hover:border-amber-500/30 hover:bg-slate-50 hover:shadow-md hover:shadow-amber-500/5">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 transition-colors group-hover:bg-amber-500 group-hover:text-slate-950">
+              <PackageCheck className="h-6 w-6 stroke-[2.25]" />
+            </div>
+            <div className="space-y-1">
+              <h4 className="font-bold text-slate-900 tracking-tight">
+                Pay on Delivery
+              </h4>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Inspect product in Ibadan before paying.
+              </p>
+            </div>
+          </div>
+
+          {/* Item 3: Fast Local Dispatch */}
+          <div className="group flex items-start gap-4 rounded-2xl border border-slate-100 bg-slate-50/50 p-4 transition-all duration-300 hover:border-amber-500/30 hover:bg-slate-50 hover:shadow-md hover:shadow-amber-500/5">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 transition-colors group-hover:bg-amber-500 group-hover:text-slate-950">
+              <Zap className="h-6 w-6 stroke-[2.25]" />
+            </div>
+            <div className="space-y-1">
+              <h4 className="font-bold text-slate-900 tracking-tight">
+                Fast Local Dispatch
+              </h4>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Delivered within 24–48 hours across Ibadan.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
 
         {/* SECTION 4: PRODUCT OVERVIEW & KEY FEATURES */}
         <section className="max-w-7xl mx-auto px-4 py-12">
@@ -277,52 +329,73 @@ export default function ItelPowerTankPromoPage() {
         </section>
 
         {/* SECTION 6: FAQS */}
-        <section className="max-w-4xl mx-auto px-4 py-12">
-          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 text-center mb-8">
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-4">
-            <details className="group bg-white p-5 rounded-xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
-              <summary className="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
-                <span>How does Pay on Delivery work in Ibadan?</span>
-                <span className="transition group-open:rotate-180">👇</span>
-              </summary>
-              <p className="mt-3 text-sm text-slate-600 leading-relaxed">
-                Simply place your order via our website or WhatsApp. Our local delivery team in Ibadan will bring the Itel Power Tank straight to your doorstep. You inspect the package, confirm everything is intact, and make payment via cash or bank transfer directly to the rider.
-              </p>
-            </details>
+        <section className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      {/* Header with Subtle Badge */}
+      <div className="text-center space-y-3 mb-10 sm:mb-12">
+        <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/20 px-3.5 py-1 text-xs font-semibold text-amber-700">
+          <HelpCircle className="h-3.5 w-3.5" />
+          <span>Got Questions? We've Got Answers</span>
+        </div>
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          Frequently Asked Questions
+        </h2>
+      </div>
 
-            <details className="group bg-white p-5 rounded-xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
-              <summary className="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
-                <span>Is this the original Itel Power Tank?</span>
-                <span className="transition group-open:rotate-180">👇</span>
-              </summary>
-              <p className="mt-3 text-sm text-slate-600 leading-relaxed">
-                Yes, 100%. We source directly from official channels, ensuring you receive a brand-new, authentic unit backed by warranty.
-              </p>
-            </details>
+      {/* Accordion List */}
+      <div className="space-y-4">
+        {/* Item 1 */}
+        <details className="group rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-300 hover:border-amber-500/30 hover:shadow-md [&_summary::-webkit-details-marker]:hidden">
+          <summary className="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-900 select-none">
+            <span className="text-base sm:text-lg">How does Pay on Delivery work in Ibadan?</span>
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-500 transition-all duration-300 group-open:rotate-180 group-open:bg-amber-500 group-open:text-slate-950">
+              <ChevronDown className="h-5 w-5 stroke-[2.5]" />
+            </div>
+          </summary>
+          <p className="mt-3.5 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-3.5">
+            Simply place your order via our website or WhatsApp. Our local delivery team in Ibadan will bring the Itel Power Tank straight to your doorstep. You inspect the package, confirm everything is intact, and make payment via cash or bank transfer directly to the rider.
+          </p>
+        </details>
 
-            <details className="group bg-white p-5 rounded-xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
-              <summary className="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
-                <span>Why is your price (₦295,000) lower than other market stores?</span>
-                <span className="transition group-open:rotate-180">👇</span>
-              </summary>
-              <p className="mt-3 text-sm text-slate-600 leading-relaxed">
-                We buy in bulk and run direct promotional deals to pass maximum savings straight to our customers.
-              </p>
-            </details>
+        {/* Item 2 */}
+        <details className="group rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-300 hover:border-amber-500/30 hover:shadow-md [&_summary::-webkit-details-marker]:hidden">
+          <summary className="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-900 select-none">
+            <span className="text-base sm:text-lg">Is this the original Itel Power Tank?</span>
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-500 transition-all duration-300 group-open:rotate-180 group-open:bg-amber-500 group-open:text-slate-950">
+              <ChevronDown className="h-5 w-5 stroke-[2.5]" />
+            </div>
+          </summary>
+          <p className="mt-3.5 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-3.5">
+            Yes, 100%. We source directly from official channels, ensuring you receive a brand-new, authentic unit backed by warranty.
+          </p>
+        </details>
 
-            <details className="group bg-white p-5 rounded-xl border border-slate-200 shadow-sm [&_summary::-webkit-details-marker]:hidden">
-              <summary className="flex items-center justify-between font-bold text-slate-900 cursor-pointer">
-                <span>Do you deliver outside Ibadan?</span>
-                <span className="transition group-open:rotate-180">👇</span>
-              </summary>
-              <p className="mt-3 text-sm text-slate-600 leading-relaxed">
-                Yes, we deliver nationwide across Nigeria. However, Pay on Delivery is currently exclusive to residents within Ibadan. Deliveries outside Ibadan require payment confirmation before dispatch.
-              </p>
-            </details>
-          </div>
-        </section>
+        {/* Item 3 */}
+        <details className="group rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-300 hover:border-amber-500/30 hover:shadow-md [&_summary::-webkit-details-marker]:hidden">
+          <summary className="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-900 select-none">
+            <span className="text-base sm:text-lg">Why is your price (₦295,000) lower than other market stores?</span>
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-500 transition-all duration-300 group-open:rotate-180 group-open:bg-amber-500 group-open:text-slate-950">
+              <ChevronDown className="h-5 w-5 stroke-[2.5]" />
+            </div>
+          </summary>
+          <p className="mt-3.5 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-3.5">
+            We buy in bulk and run direct promotional deals to pass maximum savings straight to our customers.
+          </p>
+        </details>
+
+        {/* Item 4 */}
+        <details className="group rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-300 hover:border-amber-500/30 hover:shadow-md [&_summary::-webkit-details-marker]:hidden">
+          <summary className="flex cursor-pointer items-center justify-between gap-4 font-bold text-slate-900 select-none">
+            <span className="text-base sm:text-lg">Do you deliver outside Ibadan?</span>
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-500 transition-all duration-300 group-open:rotate-180 group-open:bg-amber-500 group-open:text-slate-950">
+              <ChevronDown className="h-5 w-5 stroke-[2.5]" />
+            </div>
+          </summary>
+          <p className="mt-3.5 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-3.5">
+            Yes, we deliver nationwide across Nigeria. However, Pay on Delivery is currently exclusive to residents within Ibadan. Deliveries outside Ibadan require payment confirmation before dispatch.
+          </p>
+        </details>
+      </div>
+    </section>
 
         {/* SECTION 7: FINAL CALL TO ACTION BANNER */}
         <section id="checkout-form" className="bg-[#FF073C] text-white py-12 px-4 text-center">
