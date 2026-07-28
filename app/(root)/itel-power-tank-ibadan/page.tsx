@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ItelPowerTank } from "@/app/constants";
-import { PhoneCall, Flame, Truck, ShieldCheck, Sparkles,BadgeCheck, PackageCheck, Zap,MessageCircle, ArrowRight  } from 'lucide-react';
+import {ChevronDown, HelpCircle, PhoneCall, Flame, Truck, ShieldCheck, Sparkles,BadgeCheck, PackageCheck, Zap,MessageCircle, ArrowRight  } from 'lucide-react';
 
 
 export const metadata: Metadata = {
