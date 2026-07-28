@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ItelPowerTank } from "@/app/constants";
-import { Truck, ShieldCheck, Sparkles,BadgeCheck, PackageCheck, Zap,MessageCircle, ArrowRight  } from 'lucide-react';
+import { PhoneCall, Flame, Truck, ShieldCheck, Sparkles,BadgeCheck, PackageCheck, Zap,MessageCircle, ArrowRight  } from 'lucide-react';
 
 
 export const metadata: Metadata = {
@@ -398,32 +398,72 @@ export default function ItelPowerTankPromoPage() {
     </section>
 
         {/* SECTION 7: FINAL CALL TO ACTION BANNER */}
-        <section id="checkout-form" className="bg-[#FF073C] text-white py-12 px-4 text-center">
-          <div className="max-w-3xl mx-auto space-y-5">
-            <h2 className="text-3xl font-extrabold">
-              Don't Miss Out — Secure Your Itel Power Tank at ₦295,000 Today!
-            </h2>
-            <p className="text-emerald-100 text-base sm:text-lg">
-              Promo stock is limited at this price. Order now to lock in the ₦295,000 promotional rate with Pay on Delivery in Ibadan.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 pt-2">
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white text-emerald-800 hover:bg-emerald-50 font-bold py-3.5 px-6 rounded-lg shadow-lg text-center"
-              >
-                📲 Order on WhatsApp (Ibadan Pay on Delivery)
-              </a>
-              <a
-                href={CALL_URL}
-                className="bg-emerald-900 hover:bg-emerald-950 text-white font-bold py-3.5 px-6 rounded-lg text-center"
-              >
-                📞 Call Us Directly
-              </a>
+        <section 
+      id="checkout-form" 
+      className="relative overflow-hidden bg-gradient-to-br from-[#FF073C] via-[#E00030] to-[#B30024] text-white py-14 px-4 sm:px-6 shadow-2xl"
+    >
+      {/* Decorative background glow elements */}
+      <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-white/10 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-amber-400/20 blur-3xl pointer-events-none" />
+
+      <div className="relative max-w-3xl mx-auto text-center space-y-6">
+        
+        {/* Urgency Badge */}
+        <div className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur-md border border-white/20 px-4 py-1.5 text-xs sm:text-sm font-bold tracking-wide text-white shadow-sm">
+          <Flame className="h-4 w-4 text-amber-300 animate-pulse fill-amber-300" />
+          <span>Limited Promotional Stock Remaining</span>
+        </div>
+
+        {/* Headline */}
+        <h2 className="text-2xl sm:text-4xl font-black tracking-tight leading-tight">
+          Don't Miss Out — Secure Your Itel Power Tank at{' '}
+          <span className="underline decoration-amber-300 decoration-wavy underline-offset-4">
+            ₦295,000
+          </span>{' '}
+          Today!
+        </h2>
+
+        {/* Subtitle */}
+        <p className="text-white/90 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-medium">
+          Promo stock is limited at this price. Order now to lock in the ₦295,000 promotional rate with <span className="font-bold text-amber-200">Pay on Delivery</span> across Ibadan.
+        </p>
+
+        {/* Action Buttons Container */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 pt-4">
+          
+          {/* Primary WhatsApp Button */}
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative inline-flex items-center justify-center gap-2.5 rounded-xl bg-white px-7 py-4 text-emerald-900 font-extrabold text-base sm:text-lg shadow-xl shadow-black/20 transition-all duration-300 hover:scale-[1.02] hover:bg-emerald-50 hover:shadow-2xl active:scale-[0.98]"
+          >
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-600 text-white transition-transform duration-300 group-hover:scale-110">
+              <MessageCircle className="h-4 w-4 fill-white" />
             </div>
-          </div>
-        </section>
+            <span>Order on WhatsApp</span>
+            <ArrowRight className="h-5 w-5 text-emerald-700 transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
+
+          {/* Direct Call Button */}
+          <a
+            href={CALL_URL}
+            className="inline-flex items-center justify-center gap-2.5 rounded-xl bg-slate-950/40 hover:bg-slate-950/60 backdrop-blur-md border border-white/20 px-7 py-4 text-white font-bold text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+          >
+            <PhoneCall className="h-5 w-5 text-amber-300" />
+            <span>Call Us Directly</span>
+          </a>
+
+        </div>
+
+        {/* Trust Note */}
+        <div className="inline-flex items-center justify-center gap-2 text-xs font-semibold text-white/80 pt-2">
+          <ShieldCheck className="h-4 w-4 text-amber-300" />
+          <span>Pay safely after inspection in Ibadan</span>
+        </div>
+
+      </div>
+    </section>
 
         {/* SECTION 8: MOBILE STICKY FOOTER */}
         <div className="md:hidden fixed bottom-0 left-0 right-0 bg-slate-900 text-white border-t border-slate-800 p-3 flex items-center justify-between z-50 shadow-2xl">
