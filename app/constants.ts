@@ -1,5 +1,6 @@
 // constants.ts
 import Logo from "@/public/logo.svg";
+import ItelPowerTank from "@/public/itel-power-tank.png";
 import HeroImage from "@/public/family-hero-image.webp";
 import MainHeroImage from "@/public/main-family-hero-image.webp";
 import TiredMan from "@/public/manTired.webp";
@@ -41,6 +42,7 @@ import tenKva from "@/public/10kva 2x15kwh 20x600w.webp";
 
 export {
   Logo,
+  ItelPowerTank
   HeroImage,
   MainHeroImage,
   TiredMan,
