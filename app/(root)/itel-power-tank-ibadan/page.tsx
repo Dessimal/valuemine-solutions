@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ItelPowerTank } from "@/app/constants";
+import { FaWhatsapp } from "react-icons/fa";
 import {
   ArrowRight,
   BadgeCheck,
@@ -134,11 +135,11 @@ export default function ItelPowerTankPromoPage() {
           <header className="mb-8 flex flex-wrap items-center justify-between gap-3 rounded-full border border-[#ffd3de] bg-white/85 px-4 py-3 shadow-[0_10px_40px_rgba(255,7,60,0.12)] backdrop-blur-xl">
             <div className="inline-flex items-center gap-2 rounded-full bg-[#FF073C] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-white">
               <Truck className="h-4 w-4" />
-              Ibadan promo
+              IBADAN RESIDENTS PROMO
             </div>
             <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
               <ShieldCheck className="h-4 w-4 text-[#FF073C]" />
-              Pay on delivery • Fast local delivery
+              Pay on delivery • Available across Ibadan
             </div>
           </header>
 
@@ -151,11 +152,12 @@ export default function ItelPowerTankPromoPage() {
 
               <div className="space-y-4">
                 <h1 className="text-4xl font-black leading-tight text-slate-950 sm:text-5xl lg:text-6xl">
-                  Itel Power Tank for a smarter backup experience
+                  Itel Power Tank - Special Ibadan Promo Price
                 </h1>
                 <p className="max-w-2xl text-lg leading-8 text-slate-600">
-                  Bring reliable power to your home or business with a quiet,
-                  portable backup that feels as premium as it performs.
+                  Get the ultimate portable power backup for your home and
+                  business at the absolute lowest price in Nigeria. 0% Risk:
+                  Residents of Ibadan inspect and Pay on Delivery.
                 </p>
               </div>
 
@@ -189,7 +191,7 @@ export default function ItelPowerTankPromoPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-[#FF073C] px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#FF073C]/25 transition hover:-translate-y-0.5 hover:bg-[#ff2e5c]">
-                  <MessageCircle className="h-5 w-5" />
+                  <FaWhatsapp className="h-5 w-5" />
                   Order on WhatsApp
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                 </a>
@@ -272,15 +274,17 @@ export default function ItelPowerTankPromoPage() {
             <div className="mb-8 max-w-3xl">
               <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#ffd3de] bg-[#FFF1F4] px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-[#FF073C]">
                 <Sparkles className="h-3.5 w-3.5" />
-                Why it stands out
+                Why the Itel Power Tank is the Perfect Power Solution
               </div>
               <h2 className="text-3xl font-black text-slate-950 sm:text-4xl">
-                A premium backup solution for everyday power needs
+                Tired of unexpected blackout interruptions?
               </h2>
               <p className="mt-3 text-base leading-8 text-slate-600">
-                Built for modern homes and small businesses, this backup unit
-                offers dependable performance without the noise, fumes, or fuel
-                costs of a traditional generator.
+                The Itel Power Tank provides clean, quiet, and reliable power
+                backup for your essential home appliances, electronics, laptops,
+                and business equipment. Compact, heavy-duty, and easy to
+                operate, it eliminates the high fuel costs and noise of
+                traditional generators.
               </p>
             </div>
 
@@ -337,7 +341,7 @@ export default function ItelPowerTankPromoPage() {
               <div>
                 <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-white">
                   <Flame className="h-3.5 w-3.5" />
-                  Best-value offer in Nigeria
+                  The Best Itel Power Tank Deal in Nigeria.
                 </div>
                 <h2 className="text-3xl font-black sm:text-4xl">
                   Secure your Itel Power Tank at the lowest promo price today
@@ -441,7 +445,7 @@ export default function ItelPowerTankPromoPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-3 rounded-2xl bg-white px-6 py-3.5 text-base font-semibold text-[#FF073C] transition hover:-translate-y-0.5">
-                  <MessageCircle className="h-5 w-5 text-[#FF073C]" />
+                  <FaWhatsapp className="h-5 w-5 text-white" />
                   Order via WhatsApp
                 </a>
                 <a
@@ -467,7 +471,7 @@ export default function ItelPowerTankPromoPage() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#FF073C]">
-            <MessageCircle className="h-4 w-4" />
+            <FaWhatsapp className="h-4 w-4" />
             Order now
           </a>
         </div>
