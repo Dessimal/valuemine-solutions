@@ -129,22 +129,22 @@ export default function ItelPowerTankPromoPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(255,7,60,0.16),_transparent_28%),linear-gradient(135deg,_#f8fafc_0%,_#eef2ff_45%,_#fef3c7_100%)] text-slate-800 pb-24 md:pb-0">
+      <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(255,7,60,0.18),_transparent_25%),linear-gradient(135deg,_#ffffff_0%,_#fff7f9_55%,_#ffeef2_100%)] text-slate-800 pb-24 md:pb-0">
         <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
-          <header className="mb-8 flex flex-wrap items-center justify-between gap-3 rounded-full border border-white/60 bg-white/70 px-4 py-3 shadow-[0_10px_40px_rgba(15,23,42,0.08)] backdrop-blur-xl">
-            <div className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-white">
+          <header className="mb-8 flex flex-wrap items-center justify-between gap-3 rounded-full border border-[#ffd3de] bg-white/85 px-4 py-3 shadow-[0_10px_40px_rgba(255,7,60,0.12)] backdrop-blur-xl">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#FF073C] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-white">
               <Truck className="h-4 w-4" />
               Ibadan promo
             </div>
             <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
-              <ShieldCheck className="h-4 w-4 text-emerald-600" />
+              <ShieldCheck className="h-4 w-4 text-[#FF073C]" />
               Pay on delivery • Fast local delivery
             </div>
           </header>
 
-          <section className="grid items-center gap-8 rounded-[2rem] border border-white/70 bg-white/75 p-6 shadow-[0_30px_80px_rgba(15,23,42,0.12)] backdrop-blur-xl md:grid-cols-[1.1fr_0.9fr] md:p-10 lg:p-12">
+          <section className="grid items-center gap-8 rounded-[2rem] border border-[#ffd3de] bg-white/90 p-6 shadow-[0_30px_80px_rgba(255,7,60,0.12)] backdrop-blur-xl md:grid-cols-[1.1fr_0.9fr] md:p-10 lg:p-12">
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-amber-700">
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#ffd3de] bg-[#FFF1F4] px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.25em] text-[#FF073C]">
                 <Sparkles className="h-3.5 w-3.5" />
                 Limited stock promo
               </div>
@@ -159,25 +159,25 @@ export default function ItelPowerTankPromoPage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-slate-200 bg-slate-950 p-5 text-white shadow-xl">
+              <div className="rounded-2xl border border-[#ffd3de] bg-[#FF073C] p-5 text-white shadow-xl">
                 <div className="flex flex-wrap items-end gap-3">
-                  <span className="text-4xl font-black text-amber-400">
+                  <span className="text-4xl font-black text-white">
                     ₦295,000
                   </span>
                   <span className="text-lg text-slate-400 line-through">
                     ₦350,000
                   </span>
-                  <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-sm font-semibold text-emerald-300">
+                  <span className="rounded-full bg-white/15 px-3 py-1 text-sm font-semibold text-white">
                     Save ₦55,000
                   </span>
                 </div>
                 <div className="mt-4 flex flex-wrap gap-3 text-sm text-slate-300">
                   <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5">
-                    <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                    <CheckCircle2 className="h-4 w-4 text-white" />
                     100% genuine product
                   </span>
                   <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5">
-                    <Clock3 className="h-4 w-4 text-amber-400" />
+                    <Clock3 className="h-4 w-4 text-white" />
                     24–48 hour delivery in Ibadan
                   </span>
                 </div>
@@ -188,22 +188,22 @@ export default function ItelPowerTankPromoPage() {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-emerald-600 px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-emerald-600/25 transition hover:-translate-y-0.5 hover:bg-emerald-500">
+                  className="group inline-flex items-center justify-center gap-3 rounded-2xl bg-[#FF073C] px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#FF073C]/25 transition hover:-translate-y-0.5 hover:bg-[#ff2e5c]">
                   <MessageCircle className="h-5 w-5" />
                   Order on WhatsApp
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                 </a>
                 <a
                   href={CALL_URL}
-                  className="inline-flex items-center justify-center gap-3 rounded-2xl border border-slate-300 bg-white px-6 py-3.5 text-base font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:border-slate-400">
-                  <PhoneCall className="h-5 w-5 text-amber-600" />
+                  className="inline-flex items-center justify-center gap-3 rounded-2xl border border-[#ffd3de] bg-white px-6 py-3.5 text-base font-semibold text-[#FF073C] transition hover:-translate-y-0.5 hover:border-[#FF073C]">
+                  <PhoneCall className="h-5 w-5 text-[#FF073C]" />
                   Call us directly
                 </a>
               </div>
             </div>
 
             <div className="relative">
-              <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-amber-400/25 via-rose-500/10 to-transparent blur-3xl" />
+              <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-[#FF073C]/20 via-[#FF073C]/10 to-transparent blur-3xl" />
               <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-100 shadow-2xl">
                 <Image
                   src={ItelPowerTank}
@@ -216,13 +216,13 @@ export default function ItelPowerTankPromoPage() {
                 <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2">
                   <div className="rounded-full border border-white/20 bg-white/15 px-3 py-2 text-sm font-medium text-white backdrop-blur">
                     <span className="mr-2 inline-flex items-center gap-1">
-                      <Star className="h-4 w-4 fill-amber-300 text-amber-300" />
+                      <Star className="h-4 w-4 fill-[#ffd3de] text-[#ffd3de]" />
                       4.9/5 trust rating
                     </span>
                   </div>
                   <div className="rounded-full border border-white/20 bg-white/15 px-3 py-2 text-sm font-medium text-white backdrop-blur">
                     <span className="mr-2 inline-flex items-center gap-1">
-                      <ShieldCheck className="h-4 w-4 text-emerald-300" />
+                      <ShieldCheck className="h-4 w-4 text-[#ffd3de]" />
                       0% risk inspection
                     </span>
                   </div>
@@ -254,7 +254,7 @@ export default function ItelPowerTankPromoPage() {
                 <div
                   key={item.title}
                   className="rounded-[1.5rem] border border-slate-200/70 bg-white/80 p-5 shadow-[0_16px_45px_rgba(15,23,42,0.06)] backdrop-blur">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-600">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#FFF1F4] text-[#FF073C]">
                     <Icon className="h-6 w-6" />
                   </div>
                   <h3 className="text-lg font-semibold text-slate-950">
@@ -268,9 +268,9 @@ export default function ItelPowerTankPromoPage() {
             })}
           </section>
 
-          <section className="mt-10 rounded-[2rem] border border-slate-200/70 bg-white/80 p-6 shadow-[0_25px_65px_rgba(15,23,42,0.08)] backdrop-blur xl:p-8">
+          <section className="mt-10 rounded-[2rem] border border-[#ffd3de] bg-white/90 p-6 shadow-[0_25px_65px_rgba(255,7,60,0.08)] backdrop-blur xl:p-8">
             <div className="mb-8 max-w-3xl">
-              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-amber-700">
+              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#ffd3de] bg-[#FFF1F4] px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-[#FF073C]">
                 <Sparkles className="h-3.5 w-3.5" />
                 Why it stands out
               </div>
@@ -316,8 +316,8 @@ export default function ItelPowerTankPromoPage() {
                 return (
                   <div
                     key={item.title}
-                    className="rounded-[1.5rem] border border-slate-200/70 bg-slate-50 p-5 transition hover:-translate-y-1 hover:border-amber-300 hover:shadow-lg">
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-amber-600 shadow-sm">
+                    className="rounded-[1.5rem] border border-[#ffd3de] bg-[#fff8fa] p-5 transition hover:-translate-y-1 hover:border-[#FF073C]/40 hover:shadow-lg">
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-[#FF073C] shadow-sm">
                       <Icon className="h-6 w-6" />
                     </div>
                     <h3 className="text-lg font-semibold text-slate-950">
@@ -332,10 +332,10 @@ export default function ItelPowerTankPromoPage() {
             </div>
           </section>
 
-          <section className="mt-10 rounded-[2rem] bg-slate-950 p-8 text-white shadow-[0_30px_80px_rgba(15,23,42,0.18)] sm:p-10">
+          <section className="mt-10 rounded-[2rem] bg-[#FF073C] p-8 text-white shadow-[0_30px_80px_rgba(255,7,60,0.18)] sm:p-10">
             <div className="grid gap-6 lg:grid-cols-[1fr_0.8fr] lg:items-center">
               <div>
-                <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-amber-300">
+                <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-white">
                   <Flame className="h-3.5 w-3.5" />
                   Best-value offer in Nigeria
                 </div>
@@ -357,8 +357,8 @@ export default function ItelPowerTankPromoPage() {
                   ].map((point) => (
                     <div
                       key={point}
-                      className="flex items-start gap-3 rounded-2xl bg-slate-900/70 p-3">
-                      <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
+                      className="flex items-start gap-3 rounded-2xl bg-[#a6082d]/80 p-3">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-white" />
                       <span className="text-sm leading-7 text-slate-300">
                         {point}
                       </span>
@@ -371,7 +371,7 @@ export default function ItelPowerTankPromoPage() {
 
           <section className="mx-auto max-w-4xl px-0 py-10 sm:px-2">
             <div className="mb-8 text-center">
-              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-amber-700">
+              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#ffd3de] bg-[#FFF1F4] px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-[#FF073C]">
                 <HelpCircle className="h-3.5 w-3.5" />
                 Questions answered
               </div>
@@ -405,10 +405,10 @@ export default function ItelPowerTankPromoPage() {
               ].map((item) => (
                 <details
                   key={item.question}
-                  className="group rounded-[1.25rem] border border-slate-200 bg-white p-5 shadow-sm transition hover:border-amber-300 hover:shadow-md [&_summary::-webkit-details-marker]:hidden">
+                  className="group rounded-[1.25rem] border border-[#ffd3de] bg-white p-5 shadow-sm transition hover:border-[#FF073C]/40 hover:shadow-md [&_summary::-webkit-details-marker]:hidden">
                   <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-slate-900">
                     <span>{item.question}</span>
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition group-open:rotate-180 group-open:bg-amber-500 group-open:text-slate-950">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#FFF1F4] text-[#FF073C] transition group-open:rotate-180 group-open:bg-[#FF073C] group-open:text-white">
                       <ChevronDown className="h-5 w-5" />
                     </div>
                   </summary>
@@ -422,10 +422,10 @@ export default function ItelPowerTankPromoPage() {
 
           <section className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#ff073c] via-[#e00030] to-[#b30024] px-6 py-12 text-white shadow-[0_30px_80px_rgba(255,7,60,0.24)] sm:px-10">
             <div className="absolute -left-10 top-0 h-52 w-52 rounded-full bg-white/10 blur-3xl" />
-            <div className="absolute -bottom-12 right-0 h-60 w-60 rounded-full bg-amber-400/20 blur-3xl" />
+            <div className="absolute -bottom-12 right-0 h-60 w-60 rounded-full bg-white/10 blur-3xl" />
             <div className="relative mx-auto max-w-3xl text-center">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-semibold backdrop-blur">
-                <Flame className="h-4 w-4 text-amber-300" />
+                <Flame className="h-4 w-4 text-[#ffd3de]" />
                 Limited promotional stock remaining
               </div>
               <h2 className="text-3xl font-black sm:text-4xl">
@@ -440,14 +440,14 @@ export default function ItelPowerTankPromoPage() {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-3 rounded-2xl bg-white px-6 py-3.5 text-base font-semibold text-slate-900 transition hover:-translate-y-0.5">
-                  <MessageCircle className="h-5 w-5 text-emerald-600" />
+                  className="inline-flex items-center justify-center gap-3 rounded-2xl bg-white px-6 py-3.5 text-base font-semibold text-[#FF073C] transition hover:-translate-y-0.5">
+                  <MessageCircle className="h-5 w-5 text-[#FF073C]" />
                   Order via WhatsApp
                 </a>
                 <a
                   href={CALL_URL}
                   className="inline-flex items-center justify-center gap-3 rounded-2xl border border-white/25 bg-slate-950/30 px-6 py-3.5 text-base font-semibold text-white transition hover:-translate-y-0.5">
-                  <PhoneCall className="h-5 w-5 text-amber-300" />
+                  <PhoneCall className="h-5 w-5 text-white" />
                   Call us directly
                 </a>
               </div>
@@ -455,18 +455,18 @@ export default function ItelPowerTankPromoPage() {
           </section>
         </div>
 
-        <div className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between border-t border-slate-800 bg-slate-950/95 px-4 py-3 text-white md:hidden backdrop-blur">
+        <div className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-between border-t border-white/20 bg-[#FF073C]/95 px-4 py-3 text-white md:hidden backdrop-blur">
           <div>
             <p className="text-[11px] uppercase tracking-[0.25em] text-slate-400">
               Itel Power Tank
             </p>
-            <p className="text-lg font-bold text-emerald-400">₦295,000</p>
+            <p className="text-lg font-bold text-white">₦295,000</p>
           </div>
           <a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold">
+            className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#FF073C]">
             <MessageCircle className="h-4 w-4" />
             Order now
           </a>
