@@ -1,230 +1,193 @@
-// Navbar.jsx
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import { motion, useCycle } from "framer-motion";
-
-import { X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
-import Link from "next/link";
-import { Logo } from "@/app/constants";
-import Image from "next/image";
-import { FaUser } from "react-icons/fa";
 import { authClient } from "@/app/lib/auth-client";
+import { Logo } from "@/app/constants";
 import { ThemeToggle } from "./ThemeToggle";
-import { usePathname, useRouter } from "next/navigation";
 import { UserDropdown } from "./UserDropdown";
 import { Navigation } from "./Navigation";
 import { MenuToggle } from "./MenuToggle";
-import { useDimensions } from "@/hooks/use-dimensions";
-import { toast } from "sonner";
 import { navLinks } from "@/app/pageLinks";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
-  const [isOpen, toggleOpen] = useCycle(false, true);
-
   const pathname = usePathname();
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const toggleButtonRef = useRef<HTMLButtonElement>(null);
 
-  // We will now use window dimensions for the sidebar, not a ref on the nav.
-  // The 'containerRef' will still be for the motion.nav if you need its dimensions for other reasons,
-  // but not for the sidebar's clipPath.
-  const containerRef = useRef(null); // Keep for potential other uses on the nav itself
-
-  const sidebarRef = useRef(null);
-  const toggleButtonRef = useRef(null);
-  const navigationRef = useRef(null);
-  // State to store window dimensions for the sidebar's clipPath
-  const [windowDimensions, setWindowDimensions] = useState({
-    width: 0,
-    height: 0,
-  });
-
-  useEffect(() => {
-    const updateWindowDimensions = () => {
-      setWindowDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
-
-    // Set initial dimensions
-    updateWindowDimensions();
-
-    // Add event listener for window resize
-    window.addEventListener("resize", updateWindowDimensions);
-
-    // Clean up event listener
-    return () => {
-      window.removeEventListener("resize", updateWindowDimensions);
-    };
-  }, []); // Run once on mount and on resize
-
-  const router = useRouter();
-  const { data: session, isPending } = authClient.useSession();
-  const [loggingout, setLoggingout] = useState(false);
-
-  const handleSignOut = async () => {
-    await authClient.signOut({
-      fetchOptions: {
-        onRequest: () => {
-          setLoggingout(true);
-        },
-        onSuccess: () => {
-          router.push("/sign-in");
-          toast("You just signed out");
-          setLoggingout(false);
-        },
-      },
-    });
-  };
+  const { data: session } = authClient.useSession();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Updated sidebar variants to use windowDimensions
-  const sidebar = {
-    open: {
-      clipPath: `circle(${windowDimensions.height * 2 + 200}px at 10px 10px)`,
-      transition: {
-        type: "spring",
-        stiffness: 20,
-        restDelta: 2,
-      },
-    },
-    closed: {
-      clipPath: "circle(20px at 160px 32px)",
-      transition: {
-        delay: 0.5,
-        type: "spring",
-        stiffness: 400,
-        damping: 40,
-      },
-    },
-  };
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        isOpen &&
-        sidebarRef.current &&
-        !sidebarRef.current.contains(event.target) &&
-        toggleButtonRef.current &&
-        !toggleButtonRef.current.contains(event.target) &&
-        navigationRef.current &&
-        !navigationRef.current.contains(event.target)
-      ) {
-        toggleOpen(0);
+    if (!isOpen || !isMobile) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+      const clickedInsideDrawer = drawerRef.current?.contains(target);
+      const clickedToggle = toggleButtonRef.current?.contains(target);
+
+      if (!clickedInsideDrawer && !clickedToggle) {
+        setIsOpen(false);
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen, toggleOpen]);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen, isMobile]);
+
+  const closeMenu = () => setIsOpen(false);
 
   return (
     <>
       <motion.nav
-        animate={isOpen ? "open" : "closed"}
-        ref={containerRef} // Keep ref on nav if needed for other styling/dimensions
         className={cn(
-          "fixed bg-background z-[10000] top-0 flex justify-between items-center w-full transition-all duration-300 p-4",
-          isScrolled ? "shadow-md" : ""
+          "fixed top-0 z-[10000] w-full border-b border-slate-200/70 transition-all duration-300",
+          isScrolled
+            ? "bg-white/90 shadow-[0_8px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl"
+            : "bg-white/80 backdrop-blur",
         )}>
-        <div className="container max-w-5xl mx-auto flex justify-between items-center relative">
-          <div className="flex space-x-8 items-center">
-            <Link href="/" className="flex items-center gap-2">
-              <Image
-                height={32}
-                width={32}
-                src={Logo}
-                alt="Logo"
-                className="logo-shadow"
-              />
-              <span className={cn("font-bold text-xl")}>Valuemine</span>
-            </Link>
-            <div className="hidden md:flex items-center gap-6">
-              {navLinks.map(({ name, path }) => (
-                <Link
-                  key={name}
-                  href={path}
-                  className={cn(
-                    " hover:text-brand-orange transition-colors",
-                    pathname === path
-                      ? "gradient-text font-bold"
-                      : "font-medium"
-                  )}>
-                  {name}
-                </Link>
-              ))}
-            </div>
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              height={32}
+              width={32}
+              src={Logo}
+              alt="Logo"
+              className="logo-shadow"
+            />
+            <span className="text-lg font-bold text-slate-900">Valuemine</span>
+          </Link>
+
+          <div className="hidden items-center gap-6 md:flex">
+            {navLinks.map(({ name, path }) => (
+              <Link
+                key={name}
+                href={path}
+                className={cn(
+                  "transition-colors hover:text-amber-500",
+                  pathname === path
+                    ? "font-bold text-amber-600"
+                    : "font-medium text-slate-700",
+                )}>
+                {name}
+              </Link>
+            ))}
           </div>
-          <div className="flex items-center gap-6 mr-16 md:m-0">
+
+          <div className="flex items-center gap-2 sm:gap-3">
             <ThemeToggle />
             {session ? (
-              <UserDropdown />
+              <div className="hidden sm:block">
+                <UserDropdown />
+              </div>
             ) : (
               <Link
                 href="/sign-in"
-                className=" hover:text-amber-500 cursor-pointer">
+                className="hidden rounded-full px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 sm:block">
                 Sign in
               </Link>
             )}
+
+            {isMobile && (
+              <div ref={toggleButtonRef}>
+                <MenuToggle
+                  toggle={() => setIsOpen((prev) => !prev)}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white/90 text-slate-800 shadow-sm"
+                />
+              </div>
+            )}
           </div>
         </div>
-        {/* The MenuToggle is kept here for visibility within the Navbar */}
       </motion.nav>
 
-      {/* The full-screen sidebar container */}
       {isMobile && (
-        <motion.div
-          initial={false}
-          animate={isOpen ? "open" : "closed"}
-          custom={windowDimensions.height} // Pass window height as custom prop
-          className="fixed inset-0 z-[99999] pointer-events-none" // Use inset-0 for full screen, lower z-index than toggle
-        >
+        <>
           <motion.div
-            ref={sidebarRef}
-            className="absolute top-0 right-0 bottom-0 w-[200px] bg-gray-900 pointer-events-auto " // Sidebar background, make sure it's wide enough
-            variants={sidebar}
+            initial={false}
+            animate={isOpen ? "open" : "closed"}
+            variants={{
+              open: { opacity: 1, pointerEvents: "auto" },
+              closed: { opacity: 0, pointerEvents: "none" },
+            }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[99998] bg-slate-950/60 backdrop-blur-sm md:hidden"
+            onClick={closeMenu}
           />
-          <Navigation
-            ref={navigationRef}
-            className={cn(
-              "absolute top-[100px] right-0 w-[200px] p-[25px] pointer-events-auto z-[100]",
-              !isOpen ? "hidden" : ""
-            )} // Position Navigation within the sidebar
-            toggleOpen={toggleOpen}
-          />
-        </motion.div>
-      )}
-      {isMobile && (
-        <motion.div
-          animate={isOpen ? "open" : "closed"}
-          className="fixed top-5 right-7 z-[1000000]"
-          ref={toggleButtonRef}>
-          <MenuToggle
-            toggle={() => toggleOpen()}
-            className="" // Ensure it's very high z-index
-          />
-        </motion.div>
+
+          <motion.aside
+            ref={drawerRef}
+            initial={false}
+            animate={isOpen ? "open" : "closed"}
+            variants={{
+              open: { x: 0, opacity: 1 },
+              closed: { x: "100%", opacity: 0 },
+            }}
+            transition={{ type: "spring", stiffness: 260, damping: 26 }}
+            className="fixed right-0 top-0 z-[99999] flex h-full w-[82vw] max-w-[320px] flex-col border-l border-slate-800 bg-slate-950/95 p-4 shadow-2xl md:hidden">
+            <div className="flex items-center justify-between border-b border-white/10 pb-4">
+              <div className="flex items-center gap-2">
+                <Image
+                  height={24}
+                  width={24}
+                  src={Logo}
+                  alt="Logo"
+                  className="logo-shadow"
+                />
+                <span className="text-base font-semibold text-white">
+                  Valuemine
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={closeMenu}
+                className="rounded-full border border-white/10 bg-white/10 p-2 text-white">
+                <MenuToggle
+                  toggle={closeMenu}
+                  className="flex h-5 w-5 items-center justify-center"
+                />
+              </button>
+            </div>
+
+            <div className="mt-5 flex-1">
+              <Navigation className="space-y-4" toggleOpen={closeMenu} />
+            </div>
+
+            <div className="mt-4 border-t border-white/10 pt-4">
+              {session ? (
+                <div className="rounded-2xl bg-white/10 p-3">
+                  <UserDropdown />
+                </div>
+              ) : (
+                <Link
+                  href="/sign-in"
+                  onClick={closeMenu}
+                  className="flex items-center justify-center rounded-2xl bg-amber-500 px-4 py-3 text-sm font-semibold text-slate-950">
+                  Sign in
+                </Link>
+              )}
+            </div>
+          </motion.aside>
+        </>
       )}
     </>
   );

@@ -90,20 +90,18 @@ export const MenuItem = ({ name, icon: Icon, path, toggleOpen }) => {
 
   return (
     <motion.li
-      className="flex items-center space-x-2 cursor-pointer"
+      className="flex cursor-pointer items-center space-x-3 rounded-2xl px-3 py-2.5 transition hover:bg-white/10"
       variants={variants}
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.95 }}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.97 }}
       onClick={handleClick}>
-      <div className="rounded-full bg-transparent size[40px] mr-[20px]">
-        <Icon stroke={pathname === path ? "orange" : "white"} />
+      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10">
+        <Icon stroke={pathname === path ? "#f59e0b" : "white"} />
       </div>
       <span
         className={cn(
-          "text-sm md:text-lg hover:text-black",
-          pathname === path
-            ? "gradient-text font-bold"
-            : "text-white hover:gradient-text font-normal"
+          "text-base font-medium",
+          pathname === path ? "font-semibold text-amber-400" : "text-white",
         )}>
         {name}
       </span>

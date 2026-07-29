@@ -4,7 +4,6 @@ import * as React from "react";
 import { motion } from "framer-motion";
 import { MenuItem } from "./MenuItem";
 import { cn } from "@/app/lib/utils";
-import { usePathname } from "next/navigation";
 import { navLinks } from "@/app/pageLinks";
 
 const variants = {
@@ -17,7 +16,7 @@ const variants = {
 };
 
 export const Navigation = ({ className, toggleOpen }) => (
-  <motion.ul className={cn("space-y-5", className)} variants={variants}>
+  <motion.ul className={cn("space-y-3", className)} variants={variants}>
     {navLinks.map(({ icon, name, path }) => (
       <MenuItem
         icon={icon}
@@ -29,5 +28,3 @@ export const Navigation = ({ className, toggleOpen }) => (
     ))}
   </motion.ul>
 );
-
-const itemIds = [0, 1, 2, 3, 4];
