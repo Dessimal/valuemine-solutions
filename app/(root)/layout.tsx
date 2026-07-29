@@ -20,15 +20,13 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-
-
 export default async function MainLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <div className={` ${poppins.variable} antialiased`}>
+    <div className={` ${poppins.variable} font-sans antialiased`}>
       <Navbar />
       <div className="max-w-5xl mx-auto">{children}</div>
     </div>

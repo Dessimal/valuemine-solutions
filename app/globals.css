@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@theme {
+  --font-sans: var(--font-poppins);
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 body::-webkit-scrollbar,
