@@ -151,7 +151,7 @@ export default function ItelPowerTankPromoPage() {
               </div>
 
               <div className="space-y-4">
-                <h1 className="text-4xl font-extrabold tracking-tighter leading-snug text-slate-950 sm:text-5xl lg:text-6xl">
+                <h1 className="text-4xl font-extrabold tracking-tighter leading-[18px] text-slate-950 sm:text-5xl lg:text-6xl">
                   Itel Power Tank - Special Ibadan Promo Price
                 </h1>
                 <p className="max-w-2xl text-lg leading-8 text-slate-600">
@@ -161,7 +161,7 @@ export default function ItelPowerTankPromoPage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-[#ffd3de] bg-[#FF073C] p-5 text-white shadow-xl">
+              <div className="rounded-2xl border border-[#ffd3de] bg-gradient-to-tr from-black via-zinc-900 to-neutral-900 p-5 text-white shadow-xl">
                 <div className="flex flex-wrap items-end gap-3">
                   <span className="text-4xl font-black text-white">
                     ₦295,000
