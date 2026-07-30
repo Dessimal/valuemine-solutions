@@ -161,7 +161,7 @@ export default function ItelPowerTankPromoPage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-[#ffd3de] bg-gradient-to-tr from-black via-zinc-900 to-neutral-900 p-5 text-white shadow-xl">
+              <div className="rounded-2xl border border-[#ffd3de] bg-gradient-to-br from-[#FF073C] to-[#80031E] p-5 text-white shadow-xl">
                 <div className="flex flex-wrap items-end gap-3">
                   <span className="text-4xl font-black text-white">
                     ₦295,000
