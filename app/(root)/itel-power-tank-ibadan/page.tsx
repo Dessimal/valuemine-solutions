@@ -336,7 +336,7 @@ export default function ItelPowerTankPromoPage() {
             </div>
           </section>
 
-          <section className="mt-10 rounded-[2rem] bg-gradient-to-r from-[#FF073C] via-[#BF052D] to-[#590214] p-8 text-white shadow-[0_30px_80px_rgba(255,7,60,0.18)] sm:p-10">
+          <section className="mt-10 rounded-[2rem] bg-gradient-to-br from-[#FF073C] via-[#BF052D] to-[#590214] p-8 text-white shadow-[0_30px_80px_rgba(255,7,60,0.18)] sm:p-10">
             <div className="grid gap-6 lg:grid-cols-[1fr_0.8fr] lg:items-center">
               <div>
                 <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-white">
@@ -346,7 +346,7 @@ export default function ItelPowerTankPromoPage() {
                 <h2 className="text-3xl font-black sm:text-4xl">
                   Secure your Itel Power Tank at the lowest promo price today
                 </h2>
-                <p className="mt-4 max-w-2xl text-base leading-8 text-slate-300">
+                <p className="mt-4 max-w-2xl text-base leading-8 text-slate-200">
                   We combine competitive pricing, local support, and a risk-free
                   inspection process to give you confidence from the first
                   message to the final delivery.
