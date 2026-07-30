@@ -17,7 +17,9 @@ export default async function MainLayout({
   return (
     <div className={`${poppins.variable} font-sans antialiased`}>
       <Navbar />
-      <div className="max-w-5xl mx-auto">{children}</div>
+      <main className="min-h-screen pt-24 sm:pt-28">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">{children}</div>
+      </main>
     </div>
   );
 }
