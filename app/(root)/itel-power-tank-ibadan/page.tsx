@@ -133,13 +133,13 @@ export default function ItelPowerTankPromoPage() {
       <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(255,7,60,0.18),_transparent_25%),linear-gradient(135deg,_#ffffff_0%,_#fff7f9_55%,_#ffeef2_100%)] text-slate-800 pb-24 md:pb-0">
         <div className="mx-auto max-w-7xl px-4 pb-5 pt-4 sm:px-6 lg:px-8">
           <header className="mb-8 mt-1 flex flex-wrap items-center justify-between gap-3 rounded-full border border-[#ffd3de] bg-white/85 px-4 py-3 shadow-[0_10px_40px_rgba(255,7,60,0.12)] backdrop-blur-xl">
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#FF073C] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-white">
+            <div className="inline-flex items-center gap-2 rounded-md bg-[#FF073C] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-white">
               <Truck className="h-4 w-4" />
               IBADAN RESIDENTS PROMO
             </div>
             <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
               <ShieldCheck className="h-4 w-4 text-[#FF073C]" />
-              Pay on delivery • Available across Ibadan
+              Pay on delivery in Ibadan
             </div>
           </header>
 
