@@ -1,25 +1,14 @@
-import type { Metadata, Viewport } from "next";
-import { Poppins, Inter, Mulish, Urbanist } from "next/font/google";
+import type { Metadata } from "next";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
-import { Navbar } from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
-
-const mulish = Mulish({
-  subsets: ["latin"],
-  variable: "--font-mulish",
-});
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"], // Added weights here
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-poppins",
-});
-
-const urbanist = Urbanist({
-  subsets: ["latin"],
-  variable: "--font-urbanist",
 });
 
 export const metadata: Metadata = {
@@ -63,7 +52,7 @@ export default async function RootLayout({
           content="2ngp53js7du0iszol3bufkogxiznlo"
         />
       </head>
-      <body className={` ${poppins.variable} font-sans antialiased`}>
+      <body className={`${poppins.variable} font-sans antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

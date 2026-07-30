@@ -5,6 +5,23 @@
   --font-sans: var(--font-poppins);
 }
 
+:root {
+  --font-poppins:
+    "Poppins", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+}
+
+html {
+  font-family: var(--font-poppins);
+}
+
+body {
+  font-family: var(--font-poppins);
+  font-feature-settings:
+    "rlig" 1,
+    "calt" 1;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 body::-webkit-scrollbar,
@@ -23,12 +40,6 @@ body::-webkit-scrollbar,
 @layer base {
   * {
     @apply border-border;
-  }
-
-  body {
-    font-feature-settings:
-      "rlig" 1,
-      "calt" 1;
   }
 
   section:not(footer) {
