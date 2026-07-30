@@ -151,7 +151,7 @@ export default function ItelPowerTankPromoPage() {
               </div>
 
               <div className="space-y-4">
-                <h1 className="text-4xl font-extrabold tracking-tighter leading-[22px] text-slate-950 sm:text-5xl lg:text-6xl">
+                <h1 className="text-4xl font-extrabold tracking-tighter leading-[28px] text-slate-950 sm:text-5xl lg:text-6xl">
                   Itel Power Tank - Special Ibadan Promo Price
                 </h1>
                 <p className="max-w-2xl text-lg leading-8 text-slate-600">
