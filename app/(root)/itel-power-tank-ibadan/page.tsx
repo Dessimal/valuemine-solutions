@@ -135,7 +135,7 @@ export default function ItelPowerTankPromoPage() {
           <header className="mb-8 mt-1 flex flex-wrap items-center justify-between gap-3 rounded-sm border border-[#ffd3de] bg-white/85 px-4 py-3 shadow-[0_10px_40px_rgba(255,7,60,0.12)] backdrop-blur-xl">
             <div className="inline-flex items-center gap-2 rounded-md bg-[#FF073C] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-white">
               <Truck className="h-4 w-4" />
-              IBADAN RESIDENTS PROMO
+              <span>Promo for Ibadan Residents</span>
             </div>
             <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
               <ShieldCheck className="h-4 w-4 text-[#FF073C]" />
@@ -166,14 +166,14 @@ export default function ItelPowerTankPromoPage() {
                   <span className="text-4xl font-black text-white">
                     ₦295,000
                   </span>
-                  <span className="text-lg text-slate-400 line-through">
+                  <span className="text-lg text-slate-200 line-through">
                     ₦350,000
                   </span>
                   <span className="rounded-full bg-white/15 px-3 py-1 text-sm font-semibold text-white">
                     Save ₦55,000
                   </span>
                 </div>
-                <div className="mt-4 flex flex-wrap gap-3 text-sm text-slate-300">
+                <div className="mt-4 flex flex-wrap gap-3 text-sm text-slate-100">
                   <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5">
                     <CheckCircle2 className="h-4 w-4 text-white" />
                     100% genuine product
@@ -272,7 +272,7 @@ export default function ItelPowerTankPromoPage() {
 
           <section className="mt-10 rounded-[2rem] border border-[#ffd3de] bg-white/90 p-6 shadow-[0_25px_65px_rgba(255,7,60,0.08)] backdrop-blur xl:p-8">
             <div className="mb-8 max-w-3xl">
-              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#ffd3de] bg-[#FFF1F4] px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-[#FF073C]">
+              <div className="mb-3 inline-flex items-center gap-2 rounded-md border border-[#ffd3de] bg-[#FFF1F4] px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-[#FF073C]">
                 <Sparkles className="h-3.5 w-3.5" />
                 Why the Itel Power Tank is the Perfect Power Solution
               </div>
@@ -336,7 +336,7 @@ export default function ItelPowerTankPromoPage() {
             </div>
           </section>
 
-          <section className="mt-10 rounded-[2rem] bg-[#FF073C] p-8 text-white shadow-[0_30px_80px_rgba(255,7,60,0.18)] sm:p-10">
+          <section className="mt-10 rounded-[2rem] bg-gradient-to-r from-[#FF073C] via-[#BF052D] to-[#590214] p-8 text-white shadow-[0_30px_80px_rgba(255,7,60,0.18)] sm:p-10">
             <div className="grid gap-6 lg:grid-cols-[1fr_0.8fr] lg:items-center">
               <div>
                 <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-white">
@@ -363,7 +363,7 @@ export default function ItelPowerTankPromoPage() {
                       key={point}
                       className="flex items-start gap-3 rounded-2xl bg-[#a6082d]/80 p-3">
                       <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-white" />
-                      <span className="text-sm leading-7 text-slate-300">
+                      <span className="text-sm leading-7 text-slate-100">
                         {point}
                       </span>
                     </div>
